@@ -24,7 +24,7 @@ namespace HealthCareSystem.Model
 
         public string? City { get; private set; }
 
-        public State? State { get; private set; } //ENUM || string
+        public States? State { get; private set; } //ENUM || string
 
         public string? Country { get; private set; }
 

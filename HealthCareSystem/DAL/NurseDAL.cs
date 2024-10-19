@@ -3,6 +3,7 @@ using MySqlConnector;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,29 +11,43 @@ namespace HealthCareSystem.DAL
 {
     public class NurseDAL
     {
+        private readonly DataHelper databaseConnection;
 
-        public async Task<Nurse> GetNurseAsync(string username)
+        public NurseDAL()
         {
-            var dbConnection = new DataHelper();
-            using (var connection = new MySqlConnection(dbConnection.GetConnectionString()))
+            this.databaseConnection = new DataHelper();
+        }
+
+        public Nurse?  GetNurseByUsername(string username)
+        {
+            using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
             {
-                await connection.OpenAsync();
+                connection.Open();
                 string query = "SELECT * FROM nurse WHERE username = @username";
+
+
                 using (var cmd = new MySqlCommand(query, connection))
                 {
                     cmd.Parameters.AddWithValue("@username", username);
-                    using (var reader = await cmd.ExecuteReaderAsync())
+                    using (var reader = cmd.ExecuteReader())
                     {
-                        if (await reader.ReadAsync())
+                        if (reader.Read())
                         {
-                            return new Nurse( // Check why there is a warning
-                                reader["first_name"].ToString(),
-                                reader["last_name"].ToString(),
+                            return new Nurse(
+                                reader["fname"].ToString(),
+                                reader["lname"].ToString(),
+                                (Gender)Enum.Parse(typeof(Gender), reader["gender"].ToString()),
+                                reader["address"].ToString(),
+                                reader["city"].ToString(),                             
+                                reader["country"].ToString(),
+                                Convert.ToInt32(reader["zipcode"]),
+                                reader["phone_number"].ToString(),
                                 reader["username"].ToString(),
                                 reader["password"].ToString()
                             )
                             {
-                                NurseId = Convert.ToInt32(reader["employee_id"])
+                                NurseId = Convert.ToInt32(reader["nurse_id"])
+
                             };
                         }
                     }

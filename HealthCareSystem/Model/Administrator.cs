@@ -22,7 +22,7 @@ namespace HealthCareSystem.Model
 
         public string? City { get; private set; }
 
-        public State? State { get; private set; }
+        public States? State { get; private set; }
 
         public string? Country { get; private set; }
 
