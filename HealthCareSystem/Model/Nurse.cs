@@ -8,11 +8,11 @@ namespace HealthCareSystem.Model
 {
     public class Nurse
     {
-        public int NurseId { get; private set; }
+        public int NurseId { get; set; }
 
-        public string Firstname { get; private set; }
+        public string? Firstname { get; private set; }
 
-        public string Lastname { get; private set; }
+        public string? Lastname { get; private set; }
 
         public DateTime Birthdate { get; private set; }
         
@@ -30,11 +30,11 @@ namespace HealthCareSystem.Model
 
         public string? PhoneNumber { get; private set; }
 
-        public string Username { get; private set; }
+        public string? Username { get; private set; }
 
-        public string Password { get; private set; }
+        public string? Password { get; private set; }
 
-        public Nurse(string firstname, string lastname, string username, string password)
+        public Nurse(string? firstname, string? lastname, string? username, string? password)
         {
             // Pre-condition checks
             this.Firstname = firstname;

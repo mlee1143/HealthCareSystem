@@ -1,0 +1,111 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\mlee16\\Desktop\\HealthCareSystem\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{435D5366-410F-47B5-B54A-FBD29086850D}|HealthCareSystem\\HealthCareSystem.csproj|c:\\users\\mlee16\\desktop\\healthcaresystem\\healthcaresystem\\dal\\nursedal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{435D5366-410F-47B5-B54A-FBD29086850D}|HealthCareSystem\\HealthCareSystem.csproj|solutionrelative:healthcaresystem\\dal\\nursedal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{435D5366-410F-47B5-B54A-FBD29086850D}|HealthCareSystem\\HealthCareSystem.csproj|c:\\users\\mlee16\\desktop\\healthcaresystem\\healthcaresystem\\model\\nurse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{435D5366-410F-47B5-B54A-FBD29086850D}|HealthCareSystem\\HealthCareSystem.csproj|solutionrelative:healthcaresystem\\model\\nurse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{435D5366-410F-47B5-B54A-FBD29086850D}|HealthCareSystem\\HealthCareSystem.csproj|c:\\users\\mlee16\\desktop\\healthcaresystem\\healthcaresystem\\dal\\datahelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{435D5366-410F-47B5-B54A-FBD29086850D}|HealthCareSystem\\HealthCareSystem.csproj|solutionrelative:healthcaresystem\\dal\\datahelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{435D5366-410F-47B5-B54A-FBD29086850D}|HealthCareSystem\\HealthCareSystem.csproj|c:\\users\\mlee16\\desktop\\healthcaresystem\\healthcaresystem\\dal\\connection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{435D5366-410F-47B5-B54A-FBD29086850D}|HealthCareSystem\\HealthCareSystem.csproj|solutionrelative:healthcaresystem\\dal\\connection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{435D5366-410F-47B5-B54A-FBD29086850D}|HealthCareSystem\\HealthCareSystem.csproj|c:\\users\\mlee16\\desktop\\healthcaresystem\\healthcaresystem\\model\\administrator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{435D5366-410F-47B5-B54A-FBD29086850D}|HealthCareSystem\\HealthCareSystem.csproj|solutionrelative:healthcaresystem\\model\\administrator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "NurseDAL.cs",
+              "DocumentMoniker": "C:\\Users\\mlee16\\Desktop\\HealthCareSystem\\HealthCareSystem\\DAL\\NurseDAL.cs",
+              "RelativeDocumentMoniker": "HealthCareSystem\\DAL\\NurseDAL.cs",
+              "ToolTip": "C:\\Users\\mlee16\\Desktop\\HealthCareSystem\\HealthCareSystem\\DAL\\NurseDAL.cs",
+              "RelativeToolTip": "HealthCareSystem\\DAL\\NurseDAL.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACYAAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-19T15:50:02.529Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DataHelper.cs",
+              "DocumentMoniker": "C:\\Users\\mlee16\\Desktop\\HealthCareSystem\\HealthCareSystem\\DAL\\DataHelper.cs",
+              "RelativeDocumentMoniker": "HealthCareSystem\\DAL\\DataHelper.cs",
+              "ToolTip": "C:\\Users\\mlee16\\Desktop\\HealthCareSystem\\HealthCareSystem\\DAL\\DataHelper.cs",
+              "RelativeToolTip": "HealthCareSystem\\DAL\\DataHelper.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABgAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-19T14:42:26.712Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Connection.cs",
+              "DocumentMoniker": "C:\\Users\\mlee16\\Desktop\\HealthCareSystem\\HealthCareSystem\\DAL\\Connection.cs",
+              "RelativeDocumentMoniker": "HealthCareSystem\\DAL\\Connection.cs",
+              "ToolTip": "C:\\Users\\mlee16\\Desktop\\HealthCareSystem\\HealthCareSystem\\DAL\\Connection.cs",
+              "RelativeToolTip": "HealthCareSystem\\DAL\\Connection.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAwAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-19T14:38:24.185Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Administrator.cs",
+              "DocumentMoniker": "C:\\Users\\mlee16\\Desktop\\HealthCareSystem\\HealthCareSystem\\Model\\Administrator.cs",
+              "RelativeDocumentMoniker": "HealthCareSystem\\Model\\Administrator.cs",
+              "ToolTip": "C:\\Users\\mlee16\\Desktop\\HealthCareSystem\\HealthCareSystem\\Model\\Administrator.cs",
+              "RelativeToolTip": "HealthCareSystem\\Model\\Administrator.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAAB8AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-19T14:03:36.72Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Nurse.cs",
+              "DocumentMoniker": "C:\\Users\\mlee16\\Desktop\\HealthCareSystem\\HealthCareSystem\\Model\\Nurse.cs",
+              "RelativeDocumentMoniker": "HealthCareSystem\\Model\\Nurse.cs",
+              "ToolTip": "C:\\Users\\mlee16\\Desktop\\HealthCareSystem\\HealthCareSystem\\Model\\Nurse.cs",
+              "RelativeToolTip": "HealthCareSystem\\Model\\Nurse.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAABIAAAAyAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-19T15:51:28.46Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
