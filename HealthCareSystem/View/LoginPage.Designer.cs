@@ -127,6 +127,7 @@
             usernameTextBox.Name = "usernameTextBox";
             usernameTextBox.Size = new Size(220, 22);
             usernameTextBox.TabIndex = 7;
+            usernameTextBox.ForeColor = Color.Black;
             // 
             // passwordTextBox
             // 
@@ -136,6 +137,9 @@
             passwordTextBox.Name = "passwordTextBox";
             passwordTextBox.Size = new Size(220, 22);
             passwordTextBox.TabIndex = 8;
+            passwordTextBox.PasswordChar = '•';
+            passwordTextBox.ForeColor = Color.Black;
+
             // 
             // LoginPage
             // 

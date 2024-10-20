@@ -12,6 +12,8 @@ namespace HealthCareSystem.View
 {
     public partial class LoginPage : Form
     {
+        private int nurseId;
+        private string nurseName;
         public LoginPage()
         {
             InitializeComponent();
