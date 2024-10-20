@@ -31,7 +31,7 @@
             healthCareNamePanel = new Panel();
             healthCareNameLabel = new Label();
             symbolPictureBox = new PictureBox();
-            WelcomeNameLabel = new Label();
+            welcomeNameLabel = new Label();
             buttonsPanel = new Panel();
             logoutButton = new Button();
             registerPatientButton = new Button();
@@ -77,16 +77,16 @@
             symbolPictureBox.TabIndex = 1;
             symbolPictureBox.TabStop = false;
             // 
-            // WelcomeNameLabel
+            // welcomeNameLabel
             // 
-            WelcomeNameLabel.AutoSize = true;
-            WelcomeNameLabel.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold);
-            WelcomeNameLabel.ForeColor = Color.FromArgb(242, 243, 244);
-            WelcomeNameLabel.Location = new Point(180, 87);
-            WelcomeNameLabel.Name = "WelcomeNameLabel";
-            WelcomeNameLabel.Size = new Size(92, 25);
-            WelcomeNameLabel.TabIndex = 2;
-            WelcomeNameLabel.Text = "Welcome";
+            welcomeNameLabel.AutoSize = true;
+            welcomeNameLabel.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold);
+            welcomeNameLabel.ForeColor = Color.FromArgb(242, 243, 244);
+            welcomeNameLabel.Location = new Point(180, 87);
+            welcomeNameLabel.Name = "welcomeNameLabel";
+            welcomeNameLabel.Size = new Size(92, 25);
+            welcomeNameLabel.TabIndex = 2;
+            welcomeNameLabel.Text = "Welcome";
             // 
             // buttonsPanel
             // 
@@ -112,6 +112,7 @@
             logoutButton.TabIndex = 6;
             logoutButton.Text = "Logout";
             logoutButton.UseVisualStyleBackColor = true;
+            logoutButton.Click += logoutButton_Click;
             // 
             // registerPatientButton
             // 
@@ -179,7 +180,7 @@
             Controls.Add(dataGridView1);
             Controls.Add(idLabel);
             Controls.Add(buttonsPanel);
-            Controls.Add(WelcomeNameLabel);
+            Controls.Add(welcomeNameLabel);
             Controls.Add(symbolPictureBox);
             Controls.Add(healthCareNamePanel);
             Name = "MainPage";
@@ -199,7 +200,7 @@
         private Panel healthCareNamePanel;
         private PictureBox symbolPictureBox;
         private Label healthCareNameLabel;
-        private Label WelcomeNameLabel;
+        private Label welcomeNameLabel;
         private Panel buttonsPanel;
         private PictureBox genericNursePictureBox;
         private Label idLabel;

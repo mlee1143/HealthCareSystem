@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic.Logging;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,20 @@ namespace HealthCareSystem.View
         public MainPage()
         {
             InitializeComponent();
+        }
+
+        public void SetNurseInfo(int nurseId, string nurseName)
+        {
+            welcomeNameLabel.Text = $"Welcome, {nurseName}";
+            idLabel.Text = $"Nurse ID: {nurseId}";
+        }
+
+        private void logoutButton_Click(object sender, EventArgs e)
+        {
+            LoginPage loginForm = new LoginPage();
+            loginForm.Show();
+
+            this.Close();
         }
     }
 }

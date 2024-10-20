@@ -118,28 +118,28 @@
             loginButton.TabIndex = 6;
             loginButton.Text = "Login";
             loginButton.UseVisualStyleBackColor = false;
+            loginButton.Click += loginButton_Click;
             // 
             // usernameTextBox
             // 
             usernameTextBox.BackColor = Color.FromArgb(255, 255, 242);
+            usernameTextBox.ForeColor = Color.Black;
             usernameTextBox.Location = new Point(89, 227);
             usernameTextBox.Multiline = true;
             usernameTextBox.Name = "usernameTextBox";
             usernameTextBox.Size = new Size(220, 22);
             usernameTextBox.TabIndex = 7;
-            usernameTextBox.ForeColor = Color.Black;
             // 
             // passwordTextBox
             // 
             passwordTextBox.BackColor = Color.FromArgb(255, 255, 242);
+            passwordTextBox.ForeColor = Color.Black;
             passwordTextBox.Location = new Point(89, 307);
             passwordTextBox.Multiline = true;
             passwordTextBox.Name = "passwordTextBox";
+            passwordTextBox.PasswordChar = '•';
             passwordTextBox.Size = new Size(220, 22);
             passwordTextBox.TabIndex = 8;
-            passwordTextBox.PasswordChar = '•';
-            passwordTextBox.ForeColor = Color.Black;
-
             // 
             // LoginPage
             // 
