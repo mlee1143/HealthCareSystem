@@ -8,33 +8,33 @@ namespace HealthCareSystem.Model
 {
     public class Patient
     {
-        public int PatientId { get; private set; }
+        public int PatientId { get;  set; }
 
-        public string Firstname { get; private set; }
+        public string Firstname { get;  set; }
 
-        public string? MiddleInitial {  get; private set; }
+        public string? MiddleInitial {  get;  set; }
 
-        public string Lastname { get; private set; }
+        public string Lastname { get;  set; }
 
-        public DateTime Birthdate { get; private set; }
+        public DateTime Birthdate { get;  set; }
 
-        public Gender Gender { get; private set; }
+        public Gender Gender { get;  set; }
 
-        public string? Address { get; private set; }
+        public string? Address { get;  set; }
 
-        public string? City { get; private set; }
+        public string? City { get;  set; }
 
-        public States? State { get; private set; } //ENUM || string
+        public States? State { get;  set; } //ENUM || string
 
-        public string? Country { get; private set; }
+        public string? Country { get;  set; }
 
-        public int? ZipCode { get; private set; }
+        public int? ZipCode { get;  set; }
 
-        public string? PhoneNumber { get; private set; }
+        public string? PhoneNumber { get;  set; }
 
-        public bool IsActive { get; private set; }
+        public bool IsActive { get;  set; }
 
-        public Symptom PatientSymptom { get; private set; }
+        public Symptom PatientSymptom { get;  set; }
 
         public Patient(string firstname, string lastname, DateTime birthdate, Gender gender, bool isActive, Symptom symptom)
         {

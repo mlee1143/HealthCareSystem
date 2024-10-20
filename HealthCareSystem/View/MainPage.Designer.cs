@@ -37,13 +37,13 @@
             registerPatientButton = new Button();
             genericNursePictureBox = new PictureBox();
             idLabel = new Label();
-            dataGridView1 = new DataGridView();
+            registeredPatiensDataGridView = new DataGridView();
             patientsLabel = new Label();
             healthCareNamePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)symbolPictureBox).BeginInit();
             buttonsPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)genericNursePictureBox).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)registeredPatiensDataGridView).BeginInit();
             SuspendLayout();
             // 
             // healthCareNamePanel
@@ -149,15 +149,15 @@
             idLabel.TabIndex = 4;
             idLabel.Text = "ID:";
             // 
-            // dataGridView1
+            // registeredPatiensDataGridView
             // 
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView1.BackgroundColor = Color.FromArgb(93, 173, 226);
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(180, 241);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(595, 362);
-            dataGridView1.TabIndex = 5;
+            registeredPatiensDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            registeredPatiensDataGridView.BackgroundColor = Color.FromArgb(93, 173, 226);
+            registeredPatiensDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            registeredPatiensDataGridView.Location = new Point(180, 241);
+            registeredPatiensDataGridView.Name = "registeredPatiensDataGridView";
+            registeredPatiensDataGridView.Size = new Size(595, 362);
+            registeredPatiensDataGridView.TabIndex = 5;
             // 
             // patientsLabel
             // 
@@ -177,7 +177,7 @@
             BackColor = Color.FromArgb(40, 116, 166);
             ClientSize = new Size(779, 615);
             Controls.Add(patientsLabel);
-            Controls.Add(dataGridView1);
+            Controls.Add(registeredPatiensDataGridView);
             Controls.Add(idLabel);
             Controls.Add(buttonsPanel);
             Controls.Add(welcomeNameLabel);
@@ -190,7 +190,7 @@
             ((System.ComponentModel.ISupportInitialize)symbolPictureBox).EndInit();
             buttonsPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)genericNursePictureBox).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)registeredPatiensDataGridView).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -204,7 +204,7 @@
         private Panel buttonsPanel;
         private PictureBox genericNursePictureBox;
         private Label idLabel;
-        private DataGridView dataGridView1;
+        private DataGridView registeredPatiensDataGridView;
         private Label patientsLabel;
         private Button logoutButton;
         private Button registerPatientButton;

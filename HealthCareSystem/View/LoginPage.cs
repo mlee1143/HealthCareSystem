@@ -14,7 +14,7 @@ namespace HealthCareSystem.View
 {
     public partial class LoginPage : Form
     {
-        private NurseDAL nurseDAL;
+        private readonly NurseDAL nurseDAL;
         public LoginPage()
         {
             InitializeComponent();
