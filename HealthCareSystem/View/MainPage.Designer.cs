@@ -165,9 +165,9 @@
             patientsLabel.ForeColor = Color.FromArgb(242, 243, 244);
             patientsLabel.Location = new Point(180, 211);
             patientsLabel.Name = "patientsLabel";
-            patientsLabel.Size = new Size(80, 25);
+            patientsLabel.Size = new Size(175, 25);
             patientsLabel.TabIndex = 6;
-            patientsLabel.Text = "Patients";
+            patientsLabel.Text = "Registered Patients";
             // 
             // MainPage
             // 
