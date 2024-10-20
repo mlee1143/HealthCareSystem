@@ -34,9 +34,9 @@ namespace HealthCareSystem.Model
 
         public bool IsActive { get;  set; }
 
-        public Symptom PatientSymptom { get;  set; }
+        //public Symptom PatientSymptom { get;  set; }
 
-        public Patient(string firstname, string lastname, DateTime birthdate, Gender gender, bool isActive, Symptom symptom)
+        public Patient(string firstname, string lastname, DateTime birthdate, Gender gender, bool isActive)//, Symptom symptom)
         {
             this.Firstname = firstname;
             this.Lastname = lastname;
@@ -45,7 +45,7 @@ namespace HealthCareSystem.Model
 
             this.IsActive = isActive;
 
-            this.PatientSymptom = symptom;
+            //this.PatientSymptom = symptom;
 
         }
     }

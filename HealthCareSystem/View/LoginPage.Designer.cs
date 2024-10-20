@@ -137,7 +137,7 @@
             passwordTextBox.Location = new Point(89, 307);
             passwordTextBox.Multiline = true;
             passwordTextBox.Name = "passwordTextBox";
-            passwordTextBox.PasswordChar = '•';
+            //passwordTextBox.PasswordChar = '•';
             passwordTextBox.Size = new Size(220, 22);
             passwordTextBox.TabIndex = 8;
             // 

@@ -36,8 +36,7 @@ namespace HealthCareSystem.DAL
                                 reader["lname"].ToString(),
                                 Convert.ToDateTime(reader["bdate"]),
                                 (Gender)Enum.Parse(typeof(Gender), reader["gender"].ToString()),
-                                Convert.ToBoolean(reader["active"]),
-                                (Symptom)Enum.Parse(typeof(Symptom), reader["symptom"].ToString())
+                                Convert.ToBoolean(reader["active"])
                             )
                             {
                                 PatientId = Convert.ToInt32(reader["patient_id"]),
@@ -58,4 +57,5 @@ namespace HealthCareSystem.DAL
 
             return patients;
         }
+    }
 }
