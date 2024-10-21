@@ -16,10 +16,16 @@ namespace HealthCareSystem.View
     public partial class MainPage : Form
     {
         private PatientDAL patientDAL;
-        public MainPage()
+        public string name { get; private set; }
+        public int id { get; private set; }
+
+        public MainPage(int id, string name)
         {
             InitializeComponent();
             this.patientDAL = new PatientDAL();
+
+            this.id = id;
+            this.name = name;
         }
 
         public void SetNurseInfo(int nurseId, string nurseName)
@@ -36,15 +42,16 @@ namespace HealthCareSystem.View
 
             registeredPatiensDataGridView.Columns.Clear();
             registeredPatiensDataGridView.Columns.Add("PatientId", "Patient ID");
-            registeredPatiensDataGridView.Columns.Add("FullName", "Full Name");
+            registeredPatiensDataGridView.Columns.Add("FirstName", "First Name");
+            registeredPatiensDataGridView.Columns.Add("LastName", "Last Name");
             registeredPatiensDataGridView.Columns.Add("Gender", "Gender");
 
             registeredPatiensDataGridView.Rows.Clear();
 
+
             foreach (var patient in patients)
             {
-                string fullName = $"{patient.Firstname} {patient.Lastname}";
-                registeredPatiensDataGridView.Rows.Add(patient.PatientId, fullName, patient.Gender);
+                registeredPatiensDataGridView.Rows.Add(patient.PatientId, patient.Firstname, patient.Lastname, patient.Gender);
             }
         }
 
@@ -55,5 +62,39 @@ namespace HealthCareSystem.View
 
             this.Close();
         }
+
+        private void registerPatientButton_Click(object sender, EventArgs e)
+        {
+            Patient patient = null;
+
+            if (this.registeredPatiensDataGridView.SelectedRows.Count > 0)
+            {
+                DataGridViewRow selectedRow = registeredPatiensDataGridView.SelectedRows[0];
+
+                if (selectedRow != null)
+                {
+                    var patientid = selectedRow.Cells[0].Value;
+
+                    if (patientid != null)
+                    {
+                        patient = this.patientDAL.GetPatientByID(Convert.ToInt32(patientid)); // Handle null
+
+                        if (patient != null)
+                        {
+                            PatientInformation patientInformation = new PatientInformation(this.id, this.name, patient);
+                            patientInformation.Show();
+                        }
+                        this.Close();
+                    }
+
+                }
+
+            }
+            PatientInformation patientInfo = new PatientInformation(this.id, this.name);
+            patientInfo.Show();
+            this.Close();
+        }
+
+
     }
 }

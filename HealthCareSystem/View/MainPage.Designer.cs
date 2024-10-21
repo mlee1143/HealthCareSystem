@@ -127,6 +127,7 @@
             registerPatientButton.TabIndex = 5;
             registerPatientButton.Text = "Register Patient";
             registerPatientButton.UseVisualStyleBackColor = true;
+            registerPatientButton.Click += registerPatientButton_Click;
             // 
             // genericNursePictureBox
             // 
