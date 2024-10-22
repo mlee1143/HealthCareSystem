@@ -26,6 +26,9 @@ namespace HealthCareSystem.View
 
             this.id = id;
             this.name = name;
+
+            this.LoadPatientData();
+            this.SetNurseInfo(id, name);
         }
 
         public void SetNurseInfo(int nurseId, string nurseName)
@@ -78,20 +81,22 @@ namespace HealthCareSystem.View
                     if (patientid != null)
                     {
                         patient = this.patientDAL.GetPatientByID(Convert.ToInt32(patientid)); // Handle null
-
-                        if (patient != null)
-                        {
-                            PatientInformation patientInformation = new PatientInformation(this.id, this.name, patient);
-                            patientInformation.Show();
-                        }
-                        this.Close();
                     }
 
                 }
 
             }
-            PatientInformation patientInfo = new PatientInformation(this.id, this.name);
-            patientInfo.Show();
+
+            if (patient != null)
+            {
+                PatientInformation patientInformation = new PatientInformation(this.id, this.name, patient);
+                patientInformation.Show();
+            } else
+            {
+                PatientInformation patientInfo = new PatientInformation(this.id, this.name);
+                patientInfo.Show();
+            
+            }
             this.Close();
         }
 

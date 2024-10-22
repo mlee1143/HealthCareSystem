@@ -224,6 +224,7 @@
             femaleRadioButton.Size = new Size(63, 19);
             femaleRadioButton.TabIndex = 1;
             femaleRadioButton.TabStop = true;
+            femaleRadioButton.Tag = "Female";
             femaleRadioButton.Text = "Female";
             femaleRadioButton.UseVisualStyleBackColor = true;
             // 
@@ -235,6 +236,7 @@
             maleRadioButton.Size = new Size(51, 19);
             maleRadioButton.TabIndex = 0;
             maleRadioButton.TabStop = true;
+            maleRadioButton.Tag = "Male";
             maleRadioButton.Text = "Male";
             maleRadioButton.UseVisualStyleBackColor = true;
             // 
@@ -263,6 +265,7 @@
             phone_num_label.Name = "phone_num_label";
             phone_num_label.Size = new Size(166, 23);
             phone_num_label.TabIndex = 18;
+            phone_num_label.TextChanged += phone_num_label_TextChanged;
             // 
             // zip_label
             // 
@@ -271,6 +274,7 @@
             zip_label.Name = "zip_label";
             zip_label.Size = new Size(166, 23);
             zip_label.TabIndex = 19;
+            zip_label.TextChanged += zip_label_TextChanged;
             // 
             // comboBox1
             // 
@@ -459,7 +463,6 @@
             Controls.Add(symbolPictureBox);
             Name = "PatientInformation";
             Text = "Patient Information";
-            Load += PatientInformation_Load;
             ((System.ComponentModel.ISupportInitialize)symbolPictureBox).EndInit();
             healthCareNamePanel.ResumeLayout(false);
             healthCareNamePanel.PerformLayout();

@@ -59,49 +59,21 @@ namespace HealthCareSystem.DAL
             return patients;
         }
 
-        public async Task<Patient> RegisterPatient(Patient patient)
+        public async Task<bool> RegisterPatient(Patient patient)
         {
             using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
             {
                 await connection.OpenAsync();
 
-                string query = $"insert into patient(fname, minitial, lname, bdate, gender, address, city, state, country, zipcode, phone_number, acitve) "
-                    + $"values('{patient.Firstname}', {patient.MiddleInitial}', '{patient.Lastname}', '{patient.Birthdate}', '{patient.Gender}', '{patient.Address}', '{patient.City}', '{patient.State}', '{patient.Country}', '{patient.ZipCode}', '{patient.PhoneNumber}', '{patient.IsActive}'";
+                string query = $"insert into patient(fname, minitial, lname, bdate, gender, address, city, state, country, zipcode, phone_number, active) "
+                             + $" values(@fname, @minitial, @lname, @bdate, @gender, @address, @city, @state, @country, @zipcode, @phone_number, @active);";
 
                 using (var command = new MySqlCommand(query, connection))
                 {
-                    using (var reader = await command.ExecuteReaderAsync(CommandBehavior.SingleRow))
-                    {
-                        if (await reader.ReadAsync())
-                        {
-                        }
-                    }
-                }
-
-                return null;
-            }
-        }
-
-        public async Task UpdatePatientInformation(Patient patient)
-        {
-            using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
-            {
-                await connection.OpenAsync();
-
-                string query = $@"
-                       UPDATE patient
-                       SET 
-                        gender = @gender, 
-                        address = @address,
-                        city = @city,
-                        state = @state,
-                        country = @country,
-                        zipcode = @zipcode,
-                        phone_number = @phone_number
-                       WHERE fname = @firstname AND lname = @lastname AND bdate = @bdate;";
-
-                using (var command = new MySqlCommand(query, connection))
-                {
+                    command.Parameters.AddWithValue("@fname", patient.Firstname);
+                    command.Parameters.AddWithValue("@minitial", patient.MiddleInitial);
+                    command.Parameters.AddWithValue("@lname", patient.Lastname);
+                    command.Parameters.AddWithValue("@bdate", patient.Birthdate);
                     command.Parameters.AddWithValue("@gender", patient.Gender.ToString());
                     command.Parameters.AddWithValue("@address", patient.Address);
                     command.Parameters.AddWithValue("@city", patient.City);
@@ -109,12 +81,53 @@ namespace HealthCareSystem.DAL
                     command.Parameters.AddWithValue("@country", patient.Country);
                     command.Parameters.AddWithValue("@zipcode", patient.ZipCode);
                     command.Parameters.AddWithValue("@phone_number", patient.PhoneNumber);
+                    command.Parameters.AddWithValue("@active", patient.IsActive);
 
-                    command.Parameters.AddWithValue("@firstname", patient.Firstname);
-                    command.Parameters.AddWithValue("@lastname", patient.Lastname);
-                    command.Parameters.AddWithValue("@bdate", patient.Birthdate);
+                    int affected = await command.ExecuteNonQueryAsync();
+                    return affected > 1;
+                }
 
-                    await command.ExecuteNonQueryAsync();
+                
+            }
+        }
+
+        public async Task<bool> UpdatePatientInformation(Patient patient)
+        {
+            using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
+            {
+                await connection.OpenAsync();
+
+                string query = "UPDATE patient " +
+                       "SET minitial = @minitial, " +
+                        "gender = @gender, " + 
+                        "address = @address, " +
+                        "city = @city, " +
+                        "state = @state, " +
+                        "country = @country, " +
+                        "zipcode = @zipcode, " +
+                        "phone_number = @phone_number, " +
+                        "active = @active " +
+                       "WHERE fname = @fname AND lname = @lname;";
+
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@fname", patient.Firstname);
+                    command.Parameters.AddWithValue("@lname", patient.Lastname);
+                    //command.Parameters.AddWithValue("@bdate", patient.Birthdate);
+
+                    command.Parameters.AddWithValue("@minitial", patient.MiddleInitial);
+                    command.Parameters.AddWithValue("@gender", patient.Gender.ToString());
+                    command.Parameters.AddWithValue("@address", patient.Address);
+                    command.Parameters.AddWithValue("@city", patient.City);
+                    command.Parameters.AddWithValue("@state", patient.State.ToString());
+                    command.Parameters.AddWithValue("@country", patient.Country);
+                    command.Parameters.AddWithValue("@zipcode", patient.ZipCode);
+                    command.Parameters.AddWithValue("@phone_number", patient.PhoneNumber);
+                    command.Parameters.AddWithValue("@active", patient.IsActive);
+
+                    int affected = await command.ExecuteNonQueryAsync();
+
+                    return affected > 1;
                 }
             }
         }

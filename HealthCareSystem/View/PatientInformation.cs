@@ -87,44 +87,142 @@ namespace HealthCareSystem.View
 
         }
 
-        private void register_btn_Click(object sender, EventArgs e)
+        private async void register_btn_Click(object sender, EventArgs e)
         {
             var fname = this.pt_fnamelabel.Text;
             var lname = this.pt_lnamelabel.Text;
             var minit = this.minit_txtbx.Text;
-            Gender gender = Gender.Male;//(Gender) Enum.Parse(typeof(Gender), this.genderGroupBox.Controls.);
+            Gender gender;
+            Enum.TryParse(this.GetSelectedRadioButtonTag(), out gender);
             var address = this.address_label.Text;
-            var city = this.cityLabel.Text;
+            var city = this.city_txtbx.Text;
             var zip = Convert.ToInt32(this.zip_label.Text);
             var phone = this.phone_num_label.Text;
-            States state = (States) Enum.Parse(typeof(States), this.state_label.Text);
+            States state = (States)Enum.Parse(typeof(States), this.state_label.Text);
 
-
+            DateTime date = DateTime.Parse(this.bdate_label.Text);
             int isActive = this.yesRadioButton.Checked == true ? 1 : 0;
 
-            Patient patient = new Patient(fname, lname, DateTime.Now, gender, isActive)
+            Patient patient = new Patient(fname, lname, date, gender, isActive)
             {
+                MiddleInitial = minit,
                 Address = address,
                 City = city,
                 State = state,
+                Country = "USA",
                 ZipCode = zip,
                 PhoneNumber = phone
 
             };
 
-             this.patientDAL.RegisterPatient(patient);
+            await this.patientDAL.RegisterPatient(patient);
+
+            MainPage main = new MainPage(this.id, this.name);
+            main.Show();
+            this.Close();
         }
 
-        private void update_btn_Click(object sender, EventArgs e)
+        private async void update_btn_Click(object sender, EventArgs e)
         {
+            var fname = this.pt_fnamelabel.Text;
+            var lname = this.pt_lnamelabel.Text;
+            var minit = this.minit_txtbx.Text;
+            Gender gender;
+            Enum.TryParse(this.GetSelectedRadioButtonTag(), out gender);
+            var address = this.address_label.Text;
+            var city = this.city_txtbx.Text;
+            var zip = Convert.ToInt32(this.zip_label.Text);
+            var phone = this.phone_num_label.Text;
+            States state = (States)Enum.Parse(typeof(States), this.state_label.Text);
+
+            DateTime date = DateTime.Parse(this.bdate_label.Text);
+
+            int isActive = this.yesRadioButton.Checked == true ? 1 : 0;
+
+            Patient patient = new Patient(fname, lname, date, gender, isActive)
+            {
+                MiddleInitial = minit,
+                Address = address,
+                City = city,
+                State = state,
+                Country = "USA",
+                ZipCode = zip,
+                PhoneNumber = phone
+
+            };
+
+            await this.patientDAL.UpdatePatientInformation(patient);
+
+            MainPage main = new MainPage(this.id, this.name);
+            main.Show();
+            this.Close();
 
         }
 
-        private void PatientInformation_Load(object sender, EventArgs e)
+        private string GetSelectedRadioButtonTag()
         {
-
+            foreach (Control curr in this.genderGroupBox.Controls)
+            {
+                if (curr is RadioButton radioBtn && radioBtn.Checked == true)
+                {
+                    return radioBtn.Tag.ToString();
+                }
+            }
+            return null;
         }
 
+        private bool IsNameValid(string name)
+        {
+            return System.Text.RegularExpressions.Regex.IsMatch(name, "^[A-Za-z]+$");
+        }
 
+        private bool IsNumberValid(string number)
+        {
+            return System.Text.RegularExpressions.Regex.IsMatch(number, "^[0-9]+$");
+        }
+
+        private void phone_num_label_TextChanged(object sender, EventArgs e)
+        {
+            string number = phone_num_label.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(number))
+            {
+                this.feedback_label.Text = "Phone number cannot be empty";
+            }
+            else if (!IsNumberValid(number))
+            {
+                this.feedback_label.Text = $"Invalid number format. Phone number: ({number}) should contain only numbers.";
+            }
+            else if (number.Length != 10)
+            {
+                this.feedback_label.Text = $"Phone number: ({number}) must be 10 digits";
+            }
+            else
+            {
+                this.feedback_label.Text = "";
+            }
+        }
+
+        private void zip_label_TextChanged(object sender, EventArgs e)
+        {
+            string zipcode = this.zip_label.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(zipcode))
+            {
+                this.feedback_label.Text = "Zip code cannot be empty";
+            }
+            else if (!IsNumberValid(zipcode))
+            {
+                this.feedback_label.Text = $"Invalid number format. Zipcode: ({zipcode}) should contain only numbers.";
+            }
+            else if (zipcode.Length > 5)
+            {
+                this.feedback_label.Text = $"Zip code: ({zipcode}) must be 5 digits";
+            }
+            else
+            {
+                this.feedback_label.Text = "";
+            }
+        }
     }
 }
