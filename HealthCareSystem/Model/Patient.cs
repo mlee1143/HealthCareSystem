@@ -32,11 +32,11 @@ namespace HealthCareSystem.Model
 
         public string? PhoneNumber { get;  set; }
 
-        public bool IsActive { get;  set; }
+        public int IsActive { get;  set; } // bool
 
         //public Symptom PatientSymptom { get;  set; }
 
-        public Patient(string firstname, string lastname, DateTime birthdate, Gender gender, bool isActive)//, Symptom symptom)
+        public Patient(string firstname, string lastname, DateTime birthdate, Gender gender, int isActive)//, Symptom symptom)
         {
             this.Firstname = firstname;
             this.Lastname = lastname;

@@ -39,25 +39,30 @@
             stateLabel = new Label();
             zipcodeLabel = new Label();
             phoneNumberLabel = new Label();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
+            pt_fnamelabel = new TextBox();
+            pt_lnamelabel = new TextBox();
+            bdate_label = new TextBox();
             genderGroupBox = new GroupBox();
             femaleRadioButton = new RadioButton();
             maleRadioButton = new RadioButton();
-            textBox4 = new TextBox();
+            address_label = new TextBox();
             mIntialDropBox = new Label();
-            textBox5 = new TextBox();
-            textBox6 = new TextBox();
+            phone_num_label = new TextBox();
+            zip_label = new TextBox();
             comboBox1 = new ComboBox();
             comboBox2 = new ComboBox();
-            comboBox3 = new ComboBox();
+            states_combobx = new ComboBox();
             isActiveGroupBox = new GroupBox();
             noRadioButton = new RadioButton();
             yesRadioButton = new RadioButton();
-            button1 = new Button();
+            register_btn = new Button();
             nurseNameLabel = new Label();
             nurseIdLabel = new Label();
+            update_btn = new Button();
+            city_txtbx = new TextBox();
+            minit_txtbx = new TextBox();
+            feedback_label = new Label();
+            state_label = new TextBox();
             ((System.ComponentModel.ISupportInitialize)symbolPictureBox).BeginInit();
             healthCareNamePanel.SuspendLayout();
             genderGroupBox.SuspendLayout();
@@ -174,30 +179,30 @@
             phoneNumberLabel.TabIndex = 10;
             phoneNumberLabel.Text = "Phone Number";
             // 
-            // textBox1
+            // pt_fnamelabel
             // 
-            textBox1.BackColor = Color.FromArgb(255, 255, 242);
-            textBox1.Location = new Point(90, 154);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(221, 23);
-            textBox1.TabIndex = 12;
+            pt_fnamelabel.BackColor = Color.FromArgb(255, 255, 242);
+            pt_fnamelabel.Location = new Point(90, 154);
+            pt_fnamelabel.Multiline = true;
+            pt_fnamelabel.Name = "pt_fnamelabel";
+            pt_fnamelabel.Size = new Size(221, 23);
+            pt_fnamelabel.TabIndex = 12;
             // 
-            // textBox2
+            // pt_lnamelabel
             // 
-            textBox2.BackColor = Color.FromArgb(255, 255, 242);
-            textBox2.Location = new Point(90, 257);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(221, 23);
-            textBox2.TabIndex = 13;
+            pt_lnamelabel.BackColor = Color.FromArgb(255, 255, 242);
+            pt_lnamelabel.Location = new Point(90, 257);
+            pt_lnamelabel.Name = "pt_lnamelabel";
+            pt_lnamelabel.Size = new Size(221, 23);
+            pt_lnamelabel.TabIndex = 13;
             // 
-            // textBox3
+            // bdate_label
             // 
-            textBox3.BackColor = Color.FromArgb(255, 255, 242);
-            textBox3.Location = new Point(90, 318);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(221, 23);
-            textBox3.TabIndex = 14;
+            bdate_label.BackColor = Color.FromArgb(255, 255, 242);
+            bdate_label.Location = new Point(90, 318);
+            bdate_label.Name = "bdate_label";
+            bdate_label.Size = new Size(221, 23);
+            bdate_label.TabIndex = 14;
             // 
             // genderGroupBox
             // 
@@ -219,6 +224,7 @@
             femaleRadioButton.Size = new Size(63, 19);
             femaleRadioButton.TabIndex = 1;
             femaleRadioButton.TabStop = true;
+            femaleRadioButton.Tag = "Female";
             femaleRadioButton.Text = "Female";
             femaleRadioButton.UseVisualStyleBackColor = true;
             // 
@@ -230,16 +236,17 @@
             maleRadioButton.Size = new Size(51, 19);
             maleRadioButton.TabIndex = 0;
             maleRadioButton.TabStop = true;
+            maleRadioButton.Tag = "Male";
             maleRadioButton.Text = "Male";
             maleRadioButton.UseVisualStyleBackColor = true;
             // 
-            // textBox4
+            // address_label
             // 
-            textBox4.BackColor = Color.FromArgb(255, 255, 242);
-            textBox4.Location = new Point(358, 154);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(348, 23);
-            textBox4.TabIndex = 16;
+            address_label.BackColor = Color.FromArgb(255, 255, 242);
+            address_label.Location = new Point(358, 154);
+            address_label.Name = "address_label";
+            address_label.Size = new Size(348, 23);
+            address_label.TabIndex = 16;
             // 
             // mIntialDropBox
             // 
@@ -251,21 +258,23 @@
             mIntialDropBox.TabIndex = 17;
             mIntialDropBox.Text = "Middle Name Initial";
             // 
-            // textBox5
+            // phone_num_label
             // 
-            textBox5.BackColor = Color.FromArgb(255, 255, 242);
-            textBox5.Location = new Point(358, 318);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(166, 23);
-            textBox5.TabIndex = 18;
+            phone_num_label.BackColor = Color.FromArgb(255, 255, 242);
+            phone_num_label.Location = new Point(358, 318);
+            phone_num_label.Name = "phone_num_label";
+            phone_num_label.Size = new Size(166, 23);
+            phone_num_label.TabIndex = 18;
+            phone_num_label.TextChanged += phone_num_label_TextChanged;
             // 
-            // textBox6
+            // zip_label
             // 
-            textBox6.BackColor = Color.FromArgb(255, 255, 242);
-            textBox6.Location = new Point(358, 257);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(166, 23);
-            textBox6.TabIndex = 19;
+            zip_label.BackColor = Color.FromArgb(255, 255, 242);
+            zip_label.Location = new Point(358, 257);
+            zip_label.Name = "zip_label";
+            zip_label.Size = new Size(166, 23);
+            zip_label.TabIndex = 19;
+            zip_label.TextChanged += zip_label_TextChanged;
             // 
             // comboBox1
             // 
@@ -274,8 +283,9 @@
             comboBox1.FormattingEnabled = true;
             comboBox1.Location = new Point(90, 203);
             comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(221, 23);
+            comboBox1.Size = new Size(142, 23);
             comboBox1.TabIndex = 20;
+            comboBox1.Visible = false;
             // 
             // comboBox2
             // 
@@ -286,16 +296,18 @@
             comboBox2.Name = "comboBox2";
             comboBox2.Size = new Size(166, 23);
             comboBox2.TabIndex = 21;
+            comboBox2.Visible = false;
             // 
-            // comboBox3
+            // states_combobx
             // 
-            comboBox3.BackColor = Color.FromArgb(255, 255, 242);
-            comboBox3.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox3.FormattingEnabled = true;
-            comboBox3.Location = new Point(547, 203);
-            comboBox3.Name = "comboBox3";
-            comboBox3.Size = new Size(159, 23);
-            comboBox3.TabIndex = 22;
+            states_combobx.BackColor = Color.FromArgb(255, 255, 242);
+            states_combobx.DropDownStyle = ComboBoxStyle.DropDownList;
+            states_combobx.FormattingEnabled = true;
+            states_combobx.Location = new Point(547, 203);
+            states_combobx.Name = "states_combobx";
+            states_combobx.Size = new Size(159, 23);
+            states_combobx.TabIndex = 22;
+            states_combobx.Visible = false;
             // 
             // isActiveGroupBox
             // 
@@ -331,19 +343,20 @@
             yesRadioButton.Text = "Yes";
             yesRadioButton.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // register_btn
             // 
-            button1.BackColor = Color.FromArgb(255, 255, 242);
-            button1.FlatAppearance.BorderSize = 0;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
-            button1.ForeColor = Color.Black;
-            button1.Location = new Point(341, 456);
-            button1.Name = "button1";
-            button1.Size = new Size(105, 45);
-            button1.TabIndex = 6;
-            button1.Text = "Save";
-            button1.UseVisualStyleBackColor = false;
+            register_btn.BackColor = Color.FromArgb(255, 255, 242);
+            register_btn.FlatAppearance.BorderSize = 0;
+            register_btn.FlatStyle = FlatStyle.Flat;
+            register_btn.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
+            register_btn.ForeColor = Color.Black;
+            register_btn.Location = new Point(369, 456);
+            register_btn.Name = "register_btn";
+            register_btn.Size = new Size(105, 45);
+            register_btn.TabIndex = 6;
+            register_btn.Text = "Register";
+            register_btn.UseVisualStyleBackColor = false;
+            register_btn.Click += register_btn_Click;
             // 
             // nurseNameLabel
             // 
@@ -365,27 +378,79 @@
             nurseIdLabel.TabIndex = 25;
             nurseIdLabel.Text = "ID:";
             // 
+            // update_btn
+            // 
+            update_btn.BackColor = Color.FromArgb(255, 255, 242);
+            update_btn.FlatStyle = FlatStyle.Flat;
+            update_btn.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            update_btn.ForeColor = Color.Black;
+            update_btn.Location = new Point(210, 456);
+            update_btn.Name = "update_btn";
+            update_btn.Size = new Size(101, 45);
+            update_btn.TabIndex = 26;
+            update_btn.Text = "Update";
+            update_btn.UseVisualStyleBackColor = false;
+            update_btn.Click += update_btn_Click;
+            // 
+            // city_txtbx
+            // 
+            city_txtbx.Location = new Point(358, 203);
+            city_txtbx.Name = "city_txtbx";
+            city_txtbx.Size = new Size(166, 23);
+            city_txtbx.TabIndex = 27;
+            // 
+            // minit_txtbx
+            // 
+            minit_txtbx.Location = new Point(90, 203);
+            minit_txtbx.Name = "minit_txtbx";
+            minit_txtbx.Size = new Size(142, 23);
+            minit_txtbx.TabIndex = 29;
+            // 
+            // feedback_label
+            // 
+            feedback_label.AutoSize = true;
+            feedback_label.BackColor = Color.FromArgb(255, 255, 242);
+            feedback_label.ForeColor = Color.Black;
+            feedback_label.Location = new Point(547, 364);
+            feedback_label.Name = "feedback_label";
+            feedback_label.Size = new Size(60, 15);
+            feedback_label.TabIndex = 30;
+            feedback_label.Text = "Feedback:";
+            // 
+            // state_label
+            // 
+            state_label.BackColor = Color.FromArgb(255, 255, 242);
+            state_label.Location = new Point(547, 203);
+            state_label.Name = "state_label";
+            state_label.Size = new Size(159, 23);
+            state_label.TabIndex = 31;
+            // 
             // PatientInformation
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(40, 116, 166);
             ClientSize = new Size(800, 515);
+            Controls.Add(state_label);
+            Controls.Add(feedback_label);
+            Controls.Add(minit_txtbx);
+            Controls.Add(city_txtbx);
+            Controls.Add(update_btn);
             Controls.Add(nurseIdLabel);
             Controls.Add(nurseNameLabel);
-            Controls.Add(button1);
+            Controls.Add(register_btn);
             Controls.Add(isActiveGroupBox);
-            Controls.Add(comboBox3);
+            Controls.Add(states_combobx);
             Controls.Add(comboBox2);
             Controls.Add(comboBox1);
-            Controls.Add(textBox6);
-            Controls.Add(textBox5);
+            Controls.Add(zip_label);
+            Controls.Add(phone_num_label);
             Controls.Add(mIntialDropBox);
-            Controls.Add(textBox4);
+            Controls.Add(address_label);
             Controls.Add(genderGroupBox);
-            Controls.Add(textBox3);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
+            Controls.Add(bdate_label);
+            Controls.Add(pt_lnamelabel);
+            Controls.Add(pt_fnamelabel);
             Controls.Add(phoneNumberLabel);
             Controls.Add(zipcodeLabel);
             Controls.Add(stateLabel);
@@ -422,24 +487,29 @@
         private Label stateLabel;
         private Label zipcodeLabel;
         private Label phoneNumberLabel;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private TextBox textBox3;
+        private TextBox pt_fnamelabel;
+        private TextBox pt_lnamelabel;
+        private TextBox bdate_label;
         private GroupBox genderGroupBox;
         private RadioButton maleRadioButton;
         private RadioButton femaleRadioButton;
-        private TextBox textBox4;
+        private TextBox address_label;
         private Label mIntialDropBox;
-        private TextBox textBox5;
-        private TextBox textBox6;
+        private TextBox phone_num_label;
+        private TextBox zip_label;
         private ComboBox comboBox1;
         private ComboBox comboBox2;
-        private ComboBox comboBox3;
+        private ComboBox states_combobx;
         private GroupBox isActiveGroupBox;
         private RadioButton noRadioButton;
         private RadioButton yesRadioButton;
-        private Button button1;
+        private Button register_btn;
         private Label nurseNameLabel;
         private Label nurseIdLabel;
+        private Button update_btn;
+        private TextBox city_txtbx;
+        private TextBox minit_txtbx;
+        private Label feedback_label;
+        private TextBox state_label;
     }
 }
