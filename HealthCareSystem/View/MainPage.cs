@@ -48,13 +48,14 @@ namespace HealthCareSystem.View
             registeredPatiensDataGridView.Columns.Add("FirstName", "First Name");
             registeredPatiensDataGridView.Columns.Add("LastName", "Last Name");
             registeredPatiensDataGridView.Columns.Add("Gender", "Gender");
+            registeredPatiensDataGridView.Columns.Add("Birthdate", "Birth Date");
 
             registeredPatiensDataGridView.Rows.Clear();
 
 
             foreach (var patient in patients)
             {
-                registeredPatiensDataGridView.Rows.Add(patient.PatientId, patient.Firstname, patient.Lastname, patient.Gender);
+                registeredPatiensDataGridView.Rows.Add(patient.PatientId, patient.Firstname, patient.Lastname, patient.Gender, patient.Birthdate.ToShortDateString());
             }
         }
 
