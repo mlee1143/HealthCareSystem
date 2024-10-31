@@ -4,8 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -35,9 +37,12 @@ namespace HealthCareSystem.View
             this.id = id;
             this.name = name;
             this.patient = patient;
-            
-            this.states_combobox.DataSource = Enum.GetValues(typeof(States));
+
+            this.PopulateComboBoxes();
             this.PopulateFields();
+
+            this.register_btn.Enabled = false;
+            this.register_btn.Visible = false;
         }
 
         /// <summary>
@@ -54,7 +59,28 @@ namespace HealthCareSystem.View
             this.id = id;
             this.name = name;
 
+            this.PopulateComboBoxes();
+            this.SetupRegisterForm();
+            this.PopulateFields();
+            
+        }
+
+        private void PopulateComboBoxes()
+        {
+            this.gender_cmbobx.DataSource = Enum.GetValues(typeof(Gender));
             this.states_combobox.DataSource = Enum.GetValues(typeof(States));
+        }
+
+        private void SetupRegisterForm()
+        {
+            this.update_btn.Enabled = false;
+            this.update_btn.Visible = false;
+
+            this.patientID_txtbx.Visible = false;
+            this.patientID_txtbx.Enabled = false;
+
+            this.ptId_label.Visible = false;
+            this.ptId_label.Enabled = false;
         }
 
         private void PopulateFields()
@@ -62,43 +88,34 @@ namespace HealthCareSystem.View
             this.nurseIdLabel.Text = $"ID: {this.id}";
             this.nurseNameLabel.Text = $"Name: {this.name}";
 
-            this.patientID_txtbx.Text = this.patient.PatientId.ToString();
-            this.pt_fname_txtbx.Text = this.patient.Firstname;
-            this.minit_txtbx.Text = this.patient.MiddleInitial;
-            this.pt_lname_txtbx.Text = this.patient.Lastname;
-
-            this.birthdate_datepicker.Value = this.patient.Birthdate;
-
-            this.address_txtbx.Text = this.patient.Address;
-            this.city_txtbx.Text = this.patient.City;
-            this.states_combobox.SelectedItem = this.patient.State;
-            this.zip_txtbx.Text = this.patient.ZipCode.ToString();
-            this.country_txtbx.Text = this.patient.Country;
-            
-            this.phone_num_txtbx.Text = this.patient.PhoneNumber;
-
-            if (patient.IsActive == 1)
+            if (patient != null)
             {
-                this.yesRadioButton.Checked = true;
-                this.noRadioButton.Checked = false;
-            }
-            else
-            {
-                this.noRadioButton.Checked = true;
-                this.yesRadioButton.Checked = false;
-            }
+                this.patientID_txtbx.Text = this.patient.PatientId.ToString();
+                this.pt_fname_txtbx.Text = this.patient.Firstname;
+                this.minit_txtbx.Text = this.patient.MiddleInitial;
+                this.pt_lname_txtbx.Text = this.patient.Lastname;
+                this.birthdate_datepicker.Value = this.patient.Birthdate;
+                this.address_txtbx.Text = this.patient.Address;
+                this.city_txtbx.Text = this.patient.City;
+                this.states_combobox.SelectedItem = this.patient.State;
+                this.zip_txtbx.Text = this.patient.ZipCode.ToString();
+                this.country_txtbx.Text = this.patient.Country;
+                this.phone_num_txtbx.Text = this.patient.PhoneNumber;
+                this.gender_cmbobx.SelectedItem = this.patient.Gender;
 
-            if (patient.Gender == Gender.Male)
-            {
-                this.maleRadioButton.Checked = true;
-                this.femaleRadioButton.Checked = false;
-            }
-            else
-            {
-                this.femaleRadioButton.Checked = true;
-                this.maleRadioButton.Checked = false;
-            }
+                if (patient.IsActive == 1)
+                {
+                    this.yesRadioButton.Checked = true;
+                    this.noRadioButton.Checked = false;
+                }
+                else
+                {
+                    this.noRadioButton.Checked = true;
+                    this.yesRadioButton.Checked = false;
+                }
 
+            }
+           
         }
 
         private async void register_btn_Click(object sender, EventArgs e)
@@ -123,8 +140,7 @@ namespace HealthCareSystem.View
 
             var phone = this.phone_num_txtbx.Text;
 
-            Gender gender;
-            Enum.TryParse(this.GetSelectedRadioButtonTag(), out gender);
+            Gender gender = (Gender)this.gender_cmbobx.SelectedItem;
 
             int isActive = this.yesRadioButton.Checked == true ? 1 : 0;
 
@@ -158,7 +174,7 @@ namespace HealthCareSystem.View
             DateTime date = this.birthdate_datepicker.Value;
 
             var address = this.address_txtbx.Text;
-            
+
             var city = this.city_txtbx.Text;
 
             States state = (States)this.states_combobox.SelectedItem;
@@ -169,9 +185,8 @@ namespace HealthCareSystem.View
 
             var phone = this.phone_num_txtbx.Text;
 
-            Gender gender;
-            Enum.TryParse(this.GetSelectedRadioButtonTag(), out gender);
-
+            Gender gender = (Gender)this.gender_cmbobx.SelectedItem;
+           
             int isActive = this.yesRadioButton.Checked == true ? 1 : 0;
 
             Patient patient = new Patient(fname, lname, date, gender, isActive)
@@ -192,21 +207,11 @@ namespace HealthCareSystem.View
             this.Close();
         }
 
-        private string? GetSelectedRadioButtonTag()
+        private void back_btn_Click(object sender, EventArgs e)
         {
-            foreach (Control curr in this.genderGroupBox.Controls)
-            {
-                if (curr is RadioButton)
-                {
-                    RadioButton btn = (RadioButton)curr;
-
-                    if (btn.Checked == true)
-                    {
-                        return btn.Tag.ToString();
-                    }
-                }
-            }
-            return null;
+            MainPage main = new MainPage(this.id, this.name);
+            main.Show();
+            this.Close();
         }
 
         private bool IsNameValid(string name)
@@ -224,27 +229,23 @@ namespace HealthCareSystem.View
             return System.Text.RegularExpressions.Regex.IsMatch(address, "^[A - Za - z] + ([A - Za - z] +) ?$");
         }
 
-        private void back_btn_Click(object sender, EventArgs e)
-        {
-            MainPage main = new MainPage(this.id, this.name);
-            main.Show();
-            this.Close();
-        }
-
         private void pt_fname_txtbx_TextChanged(object sender, EventArgs e)
         {
             var name = pt_fname_txtbx.Text.Trim();
 
             if (string.IsNullOrEmpty(name))
             {
+                this.feedback_label.Visible = true;
                 this.feedback_label.Text = "First name cannot be empty";
             }
             else if (!IsNameValid(name))
             {
+                this.feedback_label.Visible = true;
                 this.feedback_label.Text = $"Invalid name format. {name} should contain only letters.";
             }
             else
             {
+                this.feedback_label.Visible = false;
                 this.feedback_label.Text = string.Empty;
             }
         }
@@ -255,14 +256,17 @@ namespace HealthCareSystem.View
 
             if (string.IsNullOrEmpty(name))
             {
+                this.feedback_label.Visible = true;
                 this.feedback_label.Text = "Last name cannot be empty";
             }
             else if (!IsNameValid(name))
             {
+                this.feedback_label.Visible = true;
                 this.feedback_label.Text = $"Invalid name format. {name} should contain only letters.";
             }
             else
             {
+                this.feedback_label.Visible = false;
                 this.feedback_label.Text = string.Empty;
             }
 
@@ -274,14 +278,17 @@ namespace HealthCareSystem.View
 
             if (this.IsAddressValid(address))
             {
+                this.feedback_label.Visible = true;
                 this.feedback_label.Text = $"Invalid Address Format: ({address} is invalid format.)";
             }
             else if (string.IsNullOrEmpty(address))
             {
+                this.feedback_label.Visible = true;
                 this.feedback_label.Text = "Address cannot be empty";
             }
             else
             {
+                this.feedback_label.Visible = false;
                 this.feedback_label.Text = string.Empty;
             }
         }
@@ -292,38 +299,43 @@ namespace HealthCareSystem.View
 
             if (string.IsNullOrEmpty(city))
             {
+                this.feedback_label.Visible = true;
                 feedback_label.Text = "City cannot be empty";
             }
             else if (!IsNameValid(city))
             {
+                this.feedback_label.Visible = true;
                 feedback_label.Text = $"Invalid city format. {city} should contain only letters.";
             }
             else
             {
+                this.feedback_label.Visible = false;
                 this.feedback_label.Text = string.Empty;
             }
         }
 
-        private void states_combobox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void zip_txtbx_TextChanged(object sender, EventArgs e)
         {
-           string zipcode = this.zip_txtbx.Text.Trim();
+            string zipcode = this.zip_txtbx.Text.Trim();
 
             if (string.IsNullOrEmpty(zipcode))
             {
+                this.feedback_label.Visible = true;
                 this.feedback_label.Text = "Zipcode cannot be empty.";
-            } else if (!IsNumberValid(zipcode))
+            }
+            else if (!IsNumberValid(zipcode))
             {
+                this.feedback_label.Visible = true;
                 this.feedback_label.Text = $"{zipcode} : Can only contain numbers.";
-            } else if (zipcode.Length > 5)
+            }
+            else if (zipcode.Length > 5)
             {
+                this.feedback_label.Visible = true;
                 this.feedback_label.Text = $"{zipcode} : Can not be longer than 5 digits.";
-            } else
+            }
+            else
             {
+                this.feedback_label.Visible = false;
                 this.feedback_label.Text = string.Empty;
             }
 
@@ -335,14 +347,17 @@ namespace HealthCareSystem.View
 
             if (string.IsNullOrEmpty(country))
             {
+                this.feedback_label.Visible = true;
                 feedback_label.Text = "Country cannot be empty.";
             }
             else if (!IsNameValid(country))
             {
+                this.feedback_label.Visible = true;
                 feedback_label.Text = $"Invalid Country format. ({country}) should contain only letters.";
             }
             else
             {
+                this.feedback_label.Visible = false;
                 this.feedback_label.Text = string.Empty;
             }
         }
@@ -350,22 +365,26 @@ namespace HealthCareSystem.View
         private void phone_num_txtbx_TextChanged(object sender, EventArgs e)
         {
             string number = phone_num_txtbx.Text.Trim();
-            
+
 
             if (string.IsNullOrEmpty(number))
             {
+                this.feedback_label.Visible = true;
                 this.feedback_label.Text = "Phone number cannot be empty.";
             }
             else if (!IsNumberValid(number))
             {
+                this.feedback_label.Visible = true;
                 feedback_label.Text = $"Invalid number format. Phone number: ({number}) should contain only numbers.";
             }
             else if (number.Length != 10)
             {
+                this.feedback_label.Visible = true;
                 feedback_label.Text = $"Phone number: ({number}) must be 10 digits";
             }
             else
             {
+                this.feedback_label.Visible = false;
                 feedback_label.Text = string.Empty;
             }
         }
@@ -376,12 +395,17 @@ namespace HealthCareSystem.View
 
             if (!IsNameValid(minit))
             {
+                this.feedback_label.Visible = true;
                 this.feedback_label.Text = $"Invalid format. Middle initial: ({minit}) should only contain letters";
-            } else if (minit.Length > 1)
+            }
+            else if (minit.Length > 1)
             {
+                this.feedback_label.Visible = true;
                 this.feedback_label.Text = $"Middle Initial: ({minit}) can only be 1 character";
-            } else
+            }
+            else
             {
+                this.feedback_label.Visible = false;
                 this.feedback_label.Text = string.Empty;
             }
         }

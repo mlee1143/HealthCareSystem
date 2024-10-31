@@ -69,6 +69,14 @@ namespace HealthCareSystem.View
 
         private void registerPatientButton_Click(object sender, EventArgs e)
         {
+            PatientInformation patientInfo = new PatientInformation(this.id, this.name);
+            patientInfo.Show();
+
+            this.Close();
+        }
+
+        private void editPatientButton_Click(object sender, EventArgs e)
+        {
             Patient patient = null;
 
             if (this.registeredPatiensDataGridView.SelectedRows.Count > 0)
@@ -87,20 +95,20 @@ namespace HealthCareSystem.View
                 }
 
             }
+            else
+            {
+                this.errormessageLabel.Visible = true;
+                this.errormessageLabel.Text = "No Patient selected. Please select a patient to edit patient information.";
+            }
 
             if (patient != null)
             {
                 PatientInformation patientInformation = new PatientInformation(this.id, this.name, patient);
                 patientInformation.Show();
-            } else
-            {
-                PatientInformation patientInfo = new PatientInformation(this.id, this.name);
-                patientInfo.Show();
-            
+
+                this.Close();
             }
-            this.Close();
+
         }
-
-
     }
 }
