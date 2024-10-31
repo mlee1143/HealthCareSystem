@@ -411,7 +411,6 @@
             states_combobox.Name = "states_combobox";
             states_combobox.Size = new Size(102, 23);
             states_combobox.TabIndex = 36;
-            states_combobox.SelectedIndexChanged += states_combobox_SelectedIndexChanged;
             // 
             // birthdate_datepicker
             // 
