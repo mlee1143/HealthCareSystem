@@ -42,7 +42,6 @@
             phoneNumberLabel = new Label();
             pt_fname_txtbx = new TextBox();
             pt_lname_txtbx = new TextBox();
-            bdate_txtbx = new TextBox();
             genderGroupBox = new GroupBox();
             femaleRadioButton = new RadioButton();
             maleRadioButton = new RadioButton();
@@ -212,14 +211,6 @@
             pt_lname_txtbx.Size = new Size(230, 23);
             pt_lname_txtbx.TabIndex = 13;
             pt_lname_txtbx.TextChanged += pt_lname_txtbx_TextChanged;
-            // 
-            // bdate_txtbx
-            // 
-            bdate_txtbx.BackColor = Color.FromArgb(255, 255, 242);
-            bdate_txtbx.Location = new Point(33, 406);
-            bdate_txtbx.Name = "bdate_txtbx";
-            bdate_txtbx.Size = new Size(121, 23);
-            bdate_txtbx.TabIndex = 14;
             // 
             // genderGroupBox
             // 
@@ -465,7 +456,6 @@
             birthdate_datepicker.Name = "birthdate_datepicker";
             birthdate_datepicker.Size = new Size(200, 23);
             birthdate_datepicker.TabIndex = 37;
-            birthdate_datepicker.ValueChanged += birthdate_datepicker_ValueChanged;
             // 
             // PatientInformation
             // 
@@ -493,7 +483,6 @@
             Controls.Add(mIntial_label);
             Controls.Add(address_txtbx);
             Controls.Add(genderGroupBox);
-            Controls.Add(bdate_txtbx);
             Controls.Add(pt_lname_txtbx);
             Controls.Add(pt_fname_txtbx);
             Controls.Add(phoneNumberLabel);
@@ -534,7 +523,6 @@
         private Label phoneNumberLabel;
         private TextBox pt_fname_txtbx;
         private TextBox pt_lname_txtbx;
-        private TextBox bdate_txtbx;
         private GroupBox genderGroupBox;
         private RadioButton maleRadioButton;
         private RadioButton femaleRadioButton;

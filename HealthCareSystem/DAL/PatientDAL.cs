@@ -105,6 +105,7 @@ namespace HealthCareSystem.DAL
                         "state = @state, " +
                         "country = @country, " +
                         "zipcode = @zipcode, " +
+                        "bdate = @bdate, " +
                         "phone_number = @phone_number, " +
                         "active = @active " +
                        "WHERE fname = @fname AND lname = @lname;";
@@ -113,7 +114,7 @@ namespace HealthCareSystem.DAL
                 {
                     command.Parameters.AddWithValue("@fname", patient.Firstname);
                     command.Parameters.AddWithValue("@lname", patient.Lastname);
-                    //command.Parameters.AddWithValue("@bdate", patient.Birthdate);
+                    command.Parameters.AddWithValue("@bdate", patient.Birthdate);
 
                     command.Parameters.AddWithValue("@minitial", patient.MiddleInitial);
                     command.Parameters.AddWithValue("@gender", patient.Gender.ToString());

@@ -24,7 +24,7 @@ namespace HealthCareSystem.Model
 
         public string? City { get;  set; }
 
-        public States? State { get;  set; } //ENUM || string
+        public States? State { get;  set; }
 
         public string? Country { get;  set; }
 
@@ -36,17 +36,15 @@ namespace HealthCareSystem.Model
 
         //public Symptom PatientSymptom { get;  set; }
 
-        public Patient(string firstname, string lastname, DateTime birthdate, Gender gender, int isActive)//, Symptom symptom)
+        public Patient(string firstname, string lastname, DateTime birthdate, Gender gender, int isActive)
         {
             this.Firstname = firstname;
             this.Lastname = lastname;
             this.Birthdate = birthdate;
 
+            this.Gender = gender;
 
             this.IsActive = isActive;
-
-            //this.PatientSymptom = symptom;
-
         }
     }
 }

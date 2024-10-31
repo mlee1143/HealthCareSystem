@@ -20,8 +20,12 @@ namespace HealthCareSystem.View
         private string name;
         private Patient patient;
 
-        public List<States> States { get; } = Enum.GetValues(typeof(States)).Cast<States>().ToList();
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PatientInformation"/> class.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="name">The name.</param>
+        /// <param name="patient">The patient.</param>
         public PatientInformation(int id, string name, Patient patient)
         {
             InitializeComponent();
@@ -31,12 +35,16 @@ namespace HealthCareSystem.View
             this.id = id;
             this.name = name;
             this.patient = patient;
-
+            
+            this.states_combobox.DataSource = Enum.GetValues(typeof(States));
             this.PopulateFields();
-
         }
 
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PatientInformation"/> class.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="name">The name.</param>
         public PatientInformation(int id, string name)
         {
             InitializeComponent();
@@ -46,6 +54,7 @@ namespace HealthCareSystem.View
             this.id = id;
             this.name = name;
 
+            this.states_combobox.DataSource = Enum.GetValues(typeof(States));
         }
 
         private void PopulateFields()
@@ -53,17 +62,20 @@ namespace HealthCareSystem.View
             this.nurseIdLabel.Text = $"ID: {this.id}";
             this.nurseNameLabel.Text = $"Name: {this.name}";
 
-            this.pt_fname_txtbx.Text = this.patient.Firstname;
-            this.pt_lname_txtbx.Text = this.patient.Lastname;
-            this.address_txtbx.Text = this.patient.Address;
-            this.zip_txtbx.Text = this.patient.ZipCode.ToString();
-            this.bdate_txtbx.Text = this.patient.Birthdate.ToShortDateString();
-            this.phone_num_txtbx.Text = this.patient.PhoneNumber;
-            this.minit_txtbx.Text = this.patient.MiddleInitial;
-            this.city_txtbx.Text = this.patient.City;
-            this.state_label.Text = (this.patient.State.ToString());
-            this.country_txtbx.Text = this.patient.Country;
             this.patientID_txtbx.Text = this.patient.PatientId.ToString();
+            this.pt_fname_txtbx.Text = this.patient.Firstname;
+            this.minit_txtbx.Text = this.patient.MiddleInitial;
+            this.pt_lname_txtbx.Text = this.patient.Lastname;
+
+            this.birthdate_datepicker.Value = this.patient.Birthdate;
+
+            this.address_txtbx.Text = this.patient.Address;
+            this.city_txtbx.Text = this.patient.City;
+            this.states_combobox.SelectedItem = this.patient.State;
+            this.zip_txtbx.Text = this.patient.ZipCode.ToString();
+            this.country_txtbx.Text = this.patient.Country;
+            
+            this.phone_num_txtbx.Text = this.patient.PhoneNumber;
 
             if (patient.IsActive == 1)
             {
@@ -92,17 +104,28 @@ namespace HealthCareSystem.View
         private async void register_btn_Click(object sender, EventArgs e)
         {
             var fname = this.pt_fname_txtbx.Text;
-            var lname = this.pt_lname_txtbx.Text;
+
             var minit = this.minit_txtbx.Text;
+
+            var lname = this.pt_lname_txtbx.Text;
+
+            DateTime date = this.birthdate_datepicker.Value;
+
+            var address = this.address_txtbx.Text;
+
+            var city = this.city_txtbx.Text;
+
+            States state = (States)this.states_combobox.SelectedItem;
+
+            var zip = Convert.ToInt32(this.zip_txtbx.Text);
+
+            string country = this.country_txtbx.Text;
+
+            var phone = this.phone_num_txtbx.Text;
+
             Gender gender;
             Enum.TryParse(this.GetSelectedRadioButtonTag(), out gender);
-            var address = this.address_txtbx.Text;
-            var city = this.city_txtbx.Text;
-            var zip = Convert.ToInt32(this.zip_txtbx.Text);
-            var phone = this.phone_num_txtbx.Text;
-            States state = (States)Enum.Parse(typeof(States), this.state_label.Text);
 
-            DateTime date = DateTime.Parse(this.bdate_txtbx.Text);
             int isActive = this.yesRadioButton.Checked == true ? 1 : 0;
 
             Patient patient = new Patient(fname, lname, date, gender, isActive)
@@ -111,7 +134,7 @@ namespace HealthCareSystem.View
                 Address = address,
                 City = city,
                 State = state,
-                Country = "USA",
+                Country = country,
                 ZipCode = zip,
                 PhoneNumber = phone
 
@@ -127,17 +150,27 @@ namespace HealthCareSystem.View
         private async void update_btn_Click(object sender, EventArgs e)
         {
             var fname = this.pt_fname_txtbx.Text;
-            var lname = this.pt_lname_txtbx.Text;
+
             var minit = this.minit_txtbx.Text;
+
+            var lname = this.pt_lname_txtbx.Text;
+
+            DateTime date = this.birthdate_datepicker.Value;
+
+            var address = this.address_txtbx.Text;
+            
+            var city = this.city_txtbx.Text;
+
+            States state = (States)this.states_combobox.SelectedItem;
+
+            var zip = Convert.ToInt32(this.zip_txtbx.Text);
+
+            string country = this.country_txtbx.Text;
+
+            var phone = this.phone_num_txtbx.Text;
+
             Gender gender;
             Enum.TryParse(this.GetSelectedRadioButtonTag(), out gender);
-            var address = this.address_txtbx.Text;
-            var city = this.city_txtbx.Text;
-            var zip = Convert.ToInt32(this.zip_txtbx.Text);
-            var phone = this.phone_num_txtbx.Text;
-            States state = (States)Enum.Parse(typeof(States), this.state_label.Text);
-
-            DateTime date = DateTime.Parse(this.bdate_txtbx.Text);
 
             int isActive = this.yesRadioButton.Checked == true ? 1 : 0;
 
@@ -147,10 +180,9 @@ namespace HealthCareSystem.View
                 Address = address,
                 City = city,
                 State = state,
-                Country = "USA",
+                Country = country,
                 ZipCode = zip,
                 PhoneNumber = phone
-
             };
 
             await this.patientDAL.UpdatePatientInformation(patient);
@@ -158,16 +190,20 @@ namespace HealthCareSystem.View
             MainPage main = new MainPage(this.id, this.name);
             main.Show();
             this.Close();
-
         }
 
-        private string GetSelectedRadioButtonTag()
+        private string? GetSelectedRadioButtonTag()
         {
             foreach (Control curr in this.genderGroupBox.Controls)
             {
-                if (curr is RadioButton radioBtn && radioBtn.Checked == true)
+                if (curr is RadioButton)
                 {
-                    return radioBtn.Tag.ToString();
+                    RadioButton btn = (RadioButton)curr;
+
+                    if (btn.Checked == true)
+                    {
+                        return btn.Tag.ToString();
+                    }
                 }
             }
             return null;
@@ -175,7 +211,7 @@ namespace HealthCareSystem.View
 
         private bool IsNameValid(string name)
         {
-            return System.Text.RegularExpressions.Regex.IsMatch(name, "^[A-Za-z]+$");
+            return System.Text.RegularExpressions.Regex.IsMatch(name, "^[A-Za-z]+( [A-Za-z]+)?$");
         }
 
         private bool IsNumberValid(string number)
@@ -183,7 +219,10 @@ namespace HealthCareSystem.View
             return System.Text.RegularExpressions.Regex.IsMatch(number, "^[0-9]+$");
         }
 
-
+        private bool IsAddressValid(string address)
+        {
+            return System.Text.RegularExpressions.Regex.IsMatch(address, "^[A - Za - z] + ([A - Za - z] +) ?$");
+        }
 
         private void back_btn_Click(object sender, EventArgs e)
         {
@@ -229,18 +268,15 @@ namespace HealthCareSystem.View
 
         }
 
-        private void birthdate_datepicker_ValueChanged(object sender, EventArgs e)
-        {
-            var date = this.birthdate_datepicker.Value;
-
-
-        }
-
         private void address_txtbx_TextChanged(object sender, EventArgs e)
         {
             string address = address_txtbx.Text.Trim();
 
-            if (string.IsNullOrEmpty(address))
+            if (this.IsAddressValid(address))
+            {
+                this.feedback_label.Text = $"Invalid Address Format: ({address} is invalid format.)";
+            }
+            else if (string.IsNullOrEmpty(address))
             {
                 this.feedback_label.Text = "Address cannot be empty";
             }
