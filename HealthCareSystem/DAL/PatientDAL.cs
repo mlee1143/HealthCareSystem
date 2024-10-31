@@ -105,6 +105,7 @@ namespace HealthCareSystem.DAL
                         "state = @state, " +
                         "country = @country, " +
                         "zipcode = @zipcode, " +
+                        "bdate = @bdate, " +
                         "phone_number = @phone_number, " +
                         "active = @active " +
                        "WHERE fname = @fname AND lname = @lname;";
@@ -113,6 +114,48 @@ namespace HealthCareSystem.DAL
                 {
                     command.Parameters.AddWithValue("@fname", patient.Firstname);
                     command.Parameters.AddWithValue("@lname", patient.Lastname);
+                    command.Parameters.AddWithValue("@bdate", patient.Birthdate);
+
+                    command.Parameters.AddWithValue("@minitial", patient.MiddleInitial);
+                    command.Parameters.AddWithValue("@gender", patient.Gender.ToString());
+                    command.Parameters.AddWithValue("@address", patient.Address);
+                    command.Parameters.AddWithValue("@city", patient.City);
+                    command.Parameters.AddWithValue("@state", patient.State.ToString());
+                    command.Parameters.AddWithValue("@country", patient.Country);
+                    command.Parameters.AddWithValue("@zipcode", patient.ZipCode);
+                    command.Parameters.AddWithValue("@phone_number", patient.PhoneNumber);
+                    command.Parameters.AddWithValue("@active", patient.IsActive);
+
+                    int affected = await command.ExecuteNonQueryAsync();
+
+                    return affected > 1;
+                }
+            }
+        }
+
+        public async Task<bool> UpdatePatientInformationUsingID(Patient patient)
+        {
+            using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
+            {
+                await connection.OpenAsync();
+
+                string query = "UPDATE patient " +
+                       "SET minitial = @minitial, " +
+                        "gender = @gender, " +
+                        "address = @address, " +
+                        "city = @city, " +
+                        "state = @state, " +
+                        "country = @country, " +
+                        "zipcode = @zipcode, " +
+                        "phone_number = @phone_number, " +
+                        "active = @active " +
+                       "WHERE patient_id = @id;";
+
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@id", patient.PatientId); 
+                    //command.Parameters.AddWithValue("@fname", patient.Firstname);
+                    //command.Parameters.AddWithValue("@lname", patient.Lastname);
                     //command.Parameters.AddWithValue("@bdate", patient.Birthdate);
 
                     command.Parameters.AddWithValue("@minitial", patient.MiddleInitial);

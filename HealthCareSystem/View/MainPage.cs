@@ -48,13 +48,14 @@ namespace HealthCareSystem.View
             registeredPatiensDataGridView.Columns.Add("FirstName", "First Name");
             registeredPatiensDataGridView.Columns.Add("LastName", "Last Name");
             registeredPatiensDataGridView.Columns.Add("Gender", "Gender");
+            registeredPatiensDataGridView.Columns.Add("Birthdate", "Birth Date");
 
             registeredPatiensDataGridView.Rows.Clear();
 
 
             foreach (var patient in patients)
             {
-                registeredPatiensDataGridView.Rows.Add(patient.PatientId, patient.Firstname, patient.Lastname, patient.Gender);
+                registeredPatiensDataGridView.Rows.Add(patient.PatientId, patient.Firstname, patient.Lastname, patient.Gender, patient.Birthdate.ToShortDateString());
             }
         }
 
@@ -67,6 +68,14 @@ namespace HealthCareSystem.View
         }
 
         private void registerPatientButton_Click(object sender, EventArgs e)
+        {
+            PatientInformation patientInfo = new PatientInformation(this.id, this.name);
+            patientInfo.Show();
+
+            this.Close();
+        }
+
+        private void editPatientButton_Click(object sender, EventArgs e)
         {
             Patient patient = null;
 
@@ -86,20 +95,20 @@ namespace HealthCareSystem.View
                 }
 
             }
+            else
+            {
+                this.errormessageLabel.Visible = true;
+                this.errormessageLabel.Text = "No Patient selected. Please select a patient to edit patient information.";
+            }
 
             if (patient != null)
             {
                 PatientInformation patientInformation = new PatientInformation(this.id, this.name, patient);
                 patientInformation.Show();
-            } else
-            {
-                PatientInformation patientInfo = new PatientInformation(this.id, this.name);
-                patientInfo.Show();
-            
+
+                this.Close();
             }
-            this.Close();
+
         }
-
-
     }
 }

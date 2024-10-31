@@ -30,6 +30,7 @@
         {
             symbolPictureBox = new PictureBox();
             healthCareNamePanel = new Panel();
+            back_btn = new Button();
             healthCareNameLabel = new Label();
             patientNameLabel = new Label();
             lastNameLabel = new Label();
@@ -39,19 +40,12 @@
             stateLabel = new Label();
             zipcodeLabel = new Label();
             phoneNumberLabel = new Label();
-            pt_fnamelabel = new TextBox();
-            pt_lnamelabel = new TextBox();
-            bdate_label = new TextBox();
-            genderGroupBox = new GroupBox();
-            femaleRadioButton = new RadioButton();
-            maleRadioButton = new RadioButton();
-            address_label = new TextBox();
-            mIntialDropBox = new Label();
-            phone_num_label = new TextBox();
-            zip_label = new TextBox();
-            comboBox1 = new ComboBox();
-            comboBox2 = new ComboBox();
-            states_combobx = new ComboBox();
+            pt_fname_txtbx = new TextBox();
+            pt_lname_txtbx = new TextBox();
+            address_txtbx = new TextBox();
+            mIntial_label = new Label();
+            phone_num_txtbx = new TextBox();
+            zip_txtbx = new TextBox();
             isActiveGroupBox = new GroupBox();
             noRadioButton = new RadioButton();
             yesRadioButton = new RadioButton();
@@ -62,10 +56,16 @@
             city_txtbx = new TextBox();
             minit_txtbx = new TextBox();
             feedback_label = new Label();
-            state_label = new TextBox();
+            patientID_txtbx = new TextBox();
+            ptId_label = new Label();
+            country_txtbx = new TextBox();
+            label2 = new Label();
+            states_combobox = new ComboBox();
+            birthdate_datepicker = new DateTimePicker();
+            gender_cmbobx = new ComboBox();
+            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)symbolPictureBox).BeginInit();
             healthCareNamePanel.SuspendLayout();
-            genderGroupBox.SuspendLayout();
             isActiveGroupBox.SuspendLayout();
             SuspendLayout();
             // 
@@ -82,11 +82,26 @@
             // healthCareNamePanel
             // 
             healthCareNamePanel.BackColor = Color.FromArgb(93, 109, 126);
+            healthCareNamePanel.Controls.Add(back_btn);
             healthCareNamePanel.Controls.Add(healthCareNameLabel);
             healthCareNamePanel.Location = new Point(87, 1);
             healthCareNamePanel.Name = "healthCareNamePanel";
-            healthCareNamePanel.Size = new Size(714, 76);
+            healthCareNamePanel.Size = new Size(754, 76);
             healthCareNamePanel.TabIndex = 1;
+            // 
+            // back_btn
+            // 
+            back_btn.BackColor = Color.FromArgb(255, 255, 242);
+            back_btn.FlatAppearance.BorderSize = 0;
+            back_btn.FlatStyle = FlatStyle.Flat;
+            back_btn.ForeColor = Color.Black;
+            back_btn.Location = new Point(486, 38);
+            back_btn.Name = "back_btn";
+            back_btn.Size = new Size(75, 23);
+            back_btn.TabIndex = 1;
+            back_btn.Text = "Back";
+            back_btn.UseVisualStyleBackColor = false;
+            back_btn.Click += back_btn_Click;
             // 
             // healthCareNameLabel
             // 
@@ -103,17 +118,17 @@
             // 
             patientNameLabel.AutoSize = true;
             patientNameLabel.ForeColor = Color.FromArgb(242, 243, 244);
-            patientNameLabel.Location = new Point(85, 136);
+            patientNameLabel.Location = new Point(23, 136);
             patientNameLabel.Name = "patientNameLabel";
-            patientNameLabel.Size = new Size(39, 15);
+            patientNameLabel.Size = new Size(64, 15);
             patientNameLabel.TabIndex = 2;
-            patientNameLabel.Text = "Name";
+            patientNameLabel.Text = "First Name";
             // 
             // lastNameLabel
             // 
             lastNameLabel.AutoSize = true;
             lastNameLabel.ForeColor = Color.FromArgb(242, 243, 244);
-            lastNameLabel.Location = new Point(90, 239);
+            lastNameLabel.Location = new Point(366, 136);
             lastNameLabel.Name = "lastNameLabel";
             lastNameLabel.Size = new Size(63, 15);
             lastNameLabel.TabIndex = 3;
@@ -123,7 +138,7 @@
             // 
             birthdateLabel.AutoSize = true;
             birthdateLabel.ForeColor = Color.FromArgb(242, 243, 244);
-            birthdateLabel.Location = new Point(90, 300);
+            birthdateLabel.Location = new Point(68, 309);
             birthdateLabel.Name = "birthdateLabel";
             birthdateLabel.Size = new Size(55, 15);
             birthdateLabel.TabIndex = 4;
@@ -133,7 +148,7 @@
             // 
             addressLabel.AutoSize = true;
             addressLabel.ForeColor = Color.FromArgb(242, 243, 244);
-            addressLabel.Location = new Point(358, 136);
+            addressLabel.Location = new Point(23, 191);
             addressLabel.Name = "addressLabel";
             addressLabel.Size = new Size(49, 15);
             addressLabel.TabIndex = 6;
@@ -143,7 +158,7 @@
             // 
             cityLabel.AutoSize = true;
             cityLabel.ForeColor = Color.FromArgb(242, 243, 244);
-            cityLabel.Location = new Point(358, 185);
+            cityLabel.Location = new Point(323, 191);
             cityLabel.Name = "cityLabel";
             cityLabel.Size = new Size(28, 15);
             cityLabel.TabIndex = 7;
@@ -153,7 +168,7 @@
             // 
             stateLabel.AutoSize = true;
             stateLabel.ForeColor = Color.FromArgb(242, 243, 244);
-            stateLabel.Location = new Point(547, 185);
+            stateLabel.Location = new Point(494, 191);
             stateLabel.Name = "stateLabel";
             stateLabel.Size = new Size(33, 15);
             stateLabel.TabIndex = 8;
@@ -163,7 +178,7 @@
             // 
             zipcodeLabel.AutoSize = true;
             zipcodeLabel.ForeColor = Color.FromArgb(242, 243, 244);
-            zipcodeLabel.Location = new Point(358, 239);
+            zipcodeLabel.Location = new Point(22, 244);
             zipcodeLabel.Name = "zipcodeLabel";
             zipcodeLabel.Size = new Size(50, 15);
             zipcodeLabel.TabIndex = 9;
@@ -173,148 +188,74 @@
             // 
             phoneNumberLabel.AutoSize = true;
             phoneNumberLabel.ForeColor = Color.FromArgb(242, 243, 244);
-            phoneNumberLabel.Location = new Point(358, 300);
+            phoneNumberLabel.Location = new Point(466, 246);
             phoneNumberLabel.Name = "phoneNumberLabel";
             phoneNumberLabel.Size = new Size(88, 15);
             phoneNumberLabel.TabIndex = 10;
             phoneNumberLabel.Text = "Phone Number";
             // 
-            // pt_fnamelabel
+            // pt_fname_txtbx
             // 
-            pt_fnamelabel.BackColor = Color.FromArgb(255, 255, 242);
-            pt_fnamelabel.Location = new Point(90, 154);
-            pt_fnamelabel.Multiline = true;
-            pt_fnamelabel.Name = "pt_fnamelabel";
-            pt_fnamelabel.Size = new Size(221, 23);
-            pt_fnamelabel.TabIndex = 12;
+            pt_fname_txtbx.BackColor = Color.FromArgb(255, 255, 242);
+            pt_fname_txtbx.Location = new Point(23, 154);
+            pt_fname_txtbx.Multiline = true;
+            pt_fname_txtbx.Name = "pt_fname_txtbx";
+            pt_fname_txtbx.Size = new Size(228, 23);
+            pt_fname_txtbx.TabIndex = 12;
+            pt_fname_txtbx.TextChanged += pt_fname_txtbx_TextChanged;
             // 
-            // pt_lnamelabel
+            // pt_lname_txtbx
             // 
-            pt_lnamelabel.BackColor = Color.FromArgb(255, 255, 242);
-            pt_lnamelabel.Location = new Point(90, 257);
-            pt_lnamelabel.Name = "pt_lnamelabel";
-            pt_lnamelabel.Size = new Size(221, 23);
-            pt_lnamelabel.TabIndex = 13;
+            pt_lname_txtbx.BackColor = Color.FromArgb(255, 255, 242);
+            pt_lname_txtbx.Location = new Point(366, 154);
+            pt_lname_txtbx.Name = "pt_lname_txtbx";
+            pt_lname_txtbx.Size = new Size(230, 23);
+            pt_lname_txtbx.TabIndex = 13;
+            pt_lname_txtbx.TextChanged += pt_lname_txtbx_TextChanged;
             // 
-            // bdate_label
+            // address_txtbx
             // 
-            bdate_label.BackColor = Color.FromArgb(255, 255, 242);
-            bdate_label.Location = new Point(90, 318);
-            bdate_label.Name = "bdate_label";
-            bdate_label.Size = new Size(221, 23);
-            bdate_label.TabIndex = 14;
+            address_txtbx.BackColor = Color.FromArgb(255, 255, 242);
+            address_txtbx.Location = new Point(23, 209);
+            address_txtbx.Name = "address_txtbx";
+            address_txtbx.Size = new Size(268, 23);
+            address_txtbx.TabIndex = 16;
+            address_txtbx.TextChanged += address_txtbx_TextChanged;
             // 
-            // genderGroupBox
+            // mIntial_label
             // 
-            genderGroupBox.Controls.Add(femaleRadioButton);
-            genderGroupBox.Controls.Add(maleRadioButton);
-            genderGroupBox.ForeColor = Color.FromArgb(242, 243, 244);
-            genderGroupBox.Location = new Point(90, 364);
-            genderGroupBox.Name = "genderGroupBox";
-            genderGroupBox.Size = new Size(221, 75);
-            genderGroupBox.TabIndex = 15;
-            genderGroupBox.TabStop = false;
-            genderGroupBox.Text = "Gender";
+            mIntial_label.AutoSize = true;
+            mIntial_label.ForeColor = Color.FromArgb(242, 243, 244);
+            mIntial_label.Location = new Point(288, 136);
+            mIntial_label.Name = "mIntial_label";
+            mIntial_label.Size = new Size(21, 15);
+            mIntial_label.TabIndex = 17;
+            mIntial_label.Text = "MI";
             // 
-            // femaleRadioButton
+            // phone_num_txtbx
             // 
-            femaleRadioButton.AutoSize = true;
-            femaleRadioButton.Location = new Point(14, 47);
-            femaleRadioButton.Name = "femaleRadioButton";
-            femaleRadioButton.Size = new Size(63, 19);
-            femaleRadioButton.TabIndex = 1;
-            femaleRadioButton.TabStop = true;
-            femaleRadioButton.Tag = "Female";
-            femaleRadioButton.Text = "Female";
-            femaleRadioButton.UseVisualStyleBackColor = true;
+            phone_num_txtbx.BackColor = Color.FromArgb(255, 255, 242);
+            phone_num_txtbx.Location = new Point(466, 264);
+            phone_num_txtbx.Name = "phone_num_txtbx";
+            phone_num_txtbx.Size = new Size(130, 23);
+            phone_num_txtbx.TabIndex = 18;
+            phone_num_txtbx.TextChanged += phone_num_txtbx_TextChanged;
             // 
-            // maleRadioButton
+            // zip_txtbx
             // 
-            maleRadioButton.AutoSize = true;
-            maleRadioButton.Location = new Point(14, 22);
-            maleRadioButton.Name = "maleRadioButton";
-            maleRadioButton.Size = new Size(51, 19);
-            maleRadioButton.TabIndex = 0;
-            maleRadioButton.TabStop = true;
-            maleRadioButton.Tag = "Male";
-            maleRadioButton.Text = "Male";
-            maleRadioButton.UseVisualStyleBackColor = true;
-            // 
-            // address_label
-            // 
-            address_label.BackColor = Color.FromArgb(255, 255, 242);
-            address_label.Location = new Point(358, 154);
-            address_label.Name = "address_label";
-            address_label.Size = new Size(348, 23);
-            address_label.TabIndex = 16;
-            // 
-            // mIntialDropBox
-            // 
-            mIntialDropBox.AutoSize = true;
-            mIntialDropBox.ForeColor = Color.FromArgb(242, 243, 244);
-            mIntialDropBox.Location = new Point(90, 185);
-            mIntialDropBox.Name = "mIntialDropBox";
-            mIntialDropBox.Size = new Size(111, 15);
-            mIntialDropBox.TabIndex = 17;
-            mIntialDropBox.Text = "Middle Name Initial";
-            // 
-            // phone_num_label
-            // 
-            phone_num_label.BackColor = Color.FromArgb(255, 255, 242);
-            phone_num_label.Location = new Point(358, 318);
-            phone_num_label.Name = "phone_num_label";
-            phone_num_label.Size = new Size(166, 23);
-            phone_num_label.TabIndex = 18;
-            phone_num_label.TextChanged += phone_num_label_TextChanged;
-            // 
-            // zip_label
-            // 
-            zip_label.BackColor = Color.FromArgb(255, 255, 242);
-            zip_label.Location = new Point(358, 257);
-            zip_label.Name = "zip_label";
-            zip_label.Size = new Size(166, 23);
-            zip_label.TabIndex = 19;
-            zip_label.TextChanged += zip_label_TextChanged;
-            // 
-            // comboBox1
-            // 
-            comboBox1.BackColor = Color.FromArgb(255, 255, 242);
-            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(90, 203);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(142, 23);
-            comboBox1.TabIndex = 20;
-            comboBox1.Visible = false;
-            // 
-            // comboBox2
-            // 
-            comboBox2.BackColor = Color.FromArgb(255, 255, 242);
-            comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(358, 203);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(166, 23);
-            comboBox2.TabIndex = 21;
-            comboBox2.Visible = false;
-            // 
-            // states_combobx
-            // 
-            states_combobx.BackColor = Color.FromArgb(255, 255, 242);
-            states_combobx.DropDownStyle = ComboBoxStyle.DropDownList;
-            states_combobx.FormattingEnabled = true;
-            states_combobx.Location = new Point(547, 203);
-            states_combobx.Name = "states_combobx";
-            states_combobx.Size = new Size(159, 23);
-            states_combobx.TabIndex = 22;
-            states_combobx.Visible = false;
+            zip_txtbx.BackColor = Color.FromArgb(255, 255, 242);
+            zip_txtbx.Location = new Point(23, 262);
+            zip_txtbx.Name = "zip_txtbx";
+            zip_txtbx.Size = new Size(96, 23);
+            zip_txtbx.TabIndex = 19;
+            zip_txtbx.TextChanged += zip_txtbx_TextChanged;
             // 
             // isActiveGroupBox
             // 
             isActiveGroupBox.Controls.Add(noRadioButton);
             isActiveGroupBox.Controls.Add(yesRadioButton);
             isActiveGroupBox.ForeColor = Color.FromArgb(242, 243, 244);
-            isActiveGroupBox.Location = new Point(358, 364);
+            isActiveGroupBox.Location = new Point(370, 309);
             isActiveGroupBox.Name = "isActiveGroupBox";
             isActiveGroupBox.Size = new Size(166, 75);
             isActiveGroupBox.TabIndex = 23;
@@ -350,7 +291,7 @@
             register_btn.FlatStyle = FlatStyle.Flat;
             register_btn.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             register_btn.ForeColor = Color.Black;
-            register_btn.Location = new Point(369, 456);
+            register_btn.Location = new Point(265, 443);
             register_btn.Name = "register_btn";
             register_btn.Size = new Size(105, 45);
             register_btn.TabIndex = 6;
@@ -361,30 +302,33 @@
             // nurseNameLabel
             // 
             nurseNameLabel.AutoSize = true;
+            nurseNameLabel.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             nurseNameLabel.ForeColor = Color.FromArgb(242, 243, 244);
-            nurseNameLabel.Location = new Point(87, 91);
+            nurseNameLabel.Location = new Point(23, 89);
             nurseNameLabel.Name = "nurseNameLabel";
-            nurseNameLabel.Size = new Size(39, 15);
+            nurseNameLabel.Size = new Size(45, 17);
             nurseNameLabel.TabIndex = 24;
             nurseNameLabel.Text = "Name";
             // 
             // nurseIdLabel
             // 
             nurseIdLabel.AutoSize = true;
+            nurseIdLabel.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             nurseIdLabel.ForeColor = Color.FromArgb(242, 243, 244);
-            nurseIdLabel.Location = new Point(358, 91);
+            nurseIdLabel.Location = new Point(179, 89);
             nurseIdLabel.Name = "nurseIdLabel";
-            nurseIdLabel.Size = new Size(21, 15);
+            nurseIdLabel.Size = new Size(66, 17);
             nurseIdLabel.TabIndex = 25;
-            nurseIdLabel.Text = "ID:";
+            nurseIdLabel.Text = "Nurse ID:";
             // 
             // update_btn
             // 
             update_btn.BackColor = Color.FromArgb(255, 255, 242);
+            update_btn.FlatAppearance.BorderSize = 0;
             update_btn.FlatStyle = FlatStyle.Flat;
             update_btn.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             update_btn.ForeColor = Color.Black;
-            update_btn.Location = new Point(210, 456);
+            update_btn.Location = new Point(250, 443);
             update_btn.Name = "update_btn";
             update_btn.Size = new Size(101, 45);
             update_btn.TabIndex = 26;
@@ -394,44 +338,124 @@
             // 
             // city_txtbx
             // 
-            city_txtbx.Location = new Point(358, 203);
+            city_txtbx.BackColor = Color.FromArgb(255, 255, 242);
+            city_txtbx.Location = new Point(323, 209);
             city_txtbx.Name = "city_txtbx";
-            city_txtbx.Size = new Size(166, 23);
+            city_txtbx.Size = new Size(130, 23);
             city_txtbx.TabIndex = 27;
+            city_txtbx.TextChanged += city_txtbx_TextChanged;
             // 
             // minit_txtbx
             // 
-            minit_txtbx.Location = new Point(90, 203);
+            minit_txtbx.Location = new Point(288, 154);
             minit_txtbx.Name = "minit_txtbx";
-            minit_txtbx.Size = new Size(142, 23);
+            minit_txtbx.Size = new Size(34, 23);
             minit_txtbx.TabIndex = 29;
+            minit_txtbx.TextChanged += minit_txtbx_TextChanged;
             // 
             // feedback_label
             // 
             feedback_label.AutoSize = true;
             feedback_label.BackColor = Color.FromArgb(255, 255, 242);
-            feedback_label.ForeColor = Color.Black;
-            feedback_label.Location = new Point(547, 364);
+            feedback_label.ForeColor = Color.Red;
+            feedback_label.Location = new Point(87, 404);
             feedback_label.Name = "feedback_label";
             feedback_label.Size = new Size(60, 15);
             feedback_label.TabIndex = 30;
             feedback_label.Text = "Feedback:";
+            feedback_label.Visible = false;
             // 
-            // state_label
+            // patientID_txtbx
             // 
-            state_label.BackColor = Color.FromArgb(255, 255, 242);
-            state_label.Location = new Point(547, 203);
-            state_label.Name = "state_label";
-            state_label.Size = new Size(159, 23);
-            state_label.TabIndex = 31;
+            patientID_txtbx.BackColor = Color.FromArgb(255, 255, 242);
+            patientID_txtbx.Enabled = false;
+            patientID_txtbx.Location = new Point(573, 83);
+            patientID_txtbx.Name = "patientID_txtbx";
+            patientID_txtbx.ReadOnly = true;
+            patientID_txtbx.Size = new Size(50, 23);
+            patientID_txtbx.TabIndex = 32;
+            // 
+            // ptId_label
+            // 
+            ptId_label.AutoSize = true;
+            ptId_label.ForeColor = Color.FromArgb(244, 243, 242);
+            ptId_label.Location = new Point(509, 91);
+            ptId_label.Name = "ptId_label";
+            ptId_label.Size = new Size(58, 15);
+            ptId_label.TabIndex = 33;
+            ptId_label.Text = "Patient ID";
+            // 
+            // country_txtbx
+            // 
+            country_txtbx.BackColor = Color.FromArgb(255, 255, 242);
+            country_txtbx.Location = new Point(162, 264);
+            country_txtbx.Name = "country_txtbx";
+            country_txtbx.Size = new Size(119, 23);
+            country_txtbx.TabIndex = 34;
+            country_txtbx.TextChanged += country_txtbx_TextChanged;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.ForeColor = Color.FromArgb(244, 243, 242);
+            label2.Location = new Point(162, 246);
+            label2.Name = "label2";
+            label2.Size = new Size(50, 15);
+            label2.TabIndex = 35;
+            label2.Text = "Country";
+            // 
+            // states_combobox
+            // 
+            states_combobox.FormattingEnabled = true;
+            states_combobox.Location = new Point(494, 209);
+            states_combobox.Name = "states_combobox";
+            states_combobox.Size = new Size(102, 23);
+            states_combobox.TabIndex = 36;
+            states_combobox.SelectedIndexChanged += states_combobox_SelectedIndexChanged;
+            // 
+            // birthdate_datepicker
+            // 
+            birthdate_datepicker.CalendarMonthBackground = Color.FromArgb(255, 255, 242);
+            birthdate_datepicker.Location = new Point(68, 325);
+            birthdate_datepicker.Name = "birthdate_datepicker";
+            birthdate_datepicker.Size = new Size(200, 23);
+            birthdate_datepicker.TabIndex = 37;
+            // 
+            // gender_cmbobx
+            // 
+            gender_cmbobx.BackColor = Color.FromArgb(255, 255, 242);
+            gender_cmbobx.ForeColor = Color.Black;
+            gender_cmbobx.FormattingEnabled = true;
+            gender_cmbobx.Location = new Point(319, 264);
+            gender_cmbobx.Name = "gender_cmbobx";
+            gender_cmbobx.Size = new Size(110, 23);
+            gender_cmbobx.TabIndex = 38;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.FromArgb(242, 243, 244);
+            label1.Location = new Point(319, 244);
+            label1.Name = "label1";
+            label1.Size = new Size(51, 17);
+            label1.TabIndex = 39;
+            label1.Text = "Gender";
             // 
             // PatientInformation
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(40, 116, 166);
-            ClientSize = new Size(800, 515);
-            Controls.Add(state_label);
+            ClientSize = new Size(664, 509);
+            Controls.Add(label1);
+            Controls.Add(gender_cmbobx);
+            Controls.Add(birthdate_datepicker);
+            Controls.Add(states_combobox);
+            Controls.Add(label2);
+            Controls.Add(country_txtbx);
+            Controls.Add(ptId_label);
+            Controls.Add(patientID_txtbx);
             Controls.Add(feedback_label);
             Controls.Add(minit_txtbx);
             Controls.Add(city_txtbx);
@@ -440,17 +464,12 @@
             Controls.Add(nurseNameLabel);
             Controls.Add(register_btn);
             Controls.Add(isActiveGroupBox);
-            Controls.Add(states_combobx);
-            Controls.Add(comboBox2);
-            Controls.Add(comboBox1);
-            Controls.Add(zip_label);
-            Controls.Add(phone_num_label);
-            Controls.Add(mIntialDropBox);
-            Controls.Add(address_label);
-            Controls.Add(genderGroupBox);
-            Controls.Add(bdate_label);
-            Controls.Add(pt_lnamelabel);
-            Controls.Add(pt_fnamelabel);
+            Controls.Add(zip_txtbx);
+            Controls.Add(phone_num_txtbx);
+            Controls.Add(mIntial_label);
+            Controls.Add(address_txtbx);
+            Controls.Add(pt_lname_txtbx);
+            Controls.Add(pt_fname_txtbx);
             Controls.Add(phoneNumberLabel);
             Controls.Add(zipcodeLabel);
             Controls.Add(stateLabel);
@@ -466,8 +485,6 @@
             ((System.ComponentModel.ISupportInitialize)symbolPictureBox).EndInit();
             healthCareNamePanel.ResumeLayout(false);
             healthCareNamePanel.PerformLayout();
-            genderGroupBox.ResumeLayout(false);
-            genderGroupBox.PerformLayout();
             isActiveGroupBox.ResumeLayout(false);
             isActiveGroupBox.PerformLayout();
             ResumeLayout(false);
@@ -487,19 +504,12 @@
         private Label stateLabel;
         private Label zipcodeLabel;
         private Label phoneNumberLabel;
-        private TextBox pt_fnamelabel;
-        private TextBox pt_lnamelabel;
-        private TextBox bdate_label;
-        private GroupBox genderGroupBox;
-        private RadioButton maleRadioButton;
-        private RadioButton femaleRadioButton;
-        private TextBox address_label;
-        private Label mIntialDropBox;
-        private TextBox phone_num_label;
-        private TextBox zip_label;
-        private ComboBox comboBox1;
-        private ComboBox comboBox2;
-        private ComboBox states_combobx;
+        private TextBox pt_fname_txtbx;
+        private TextBox pt_lname_txtbx;
+        private TextBox address_txtbx;
+        private Label mIntial_label;
+        private TextBox phone_num_txtbx;
+        private TextBox zip_txtbx;
         private GroupBox isActiveGroupBox;
         private RadioButton noRadioButton;
         private RadioButton yesRadioButton;
@@ -510,6 +520,14 @@
         private TextBox city_txtbx;
         private TextBox minit_txtbx;
         private Label feedback_label;
-        private TextBox state_label;
+        private TextBox patientID_txtbx;
+        private Label ptId_label;
+        private TextBox country_txtbx;
+        private Label label2;
+        private Button back_btn;
+        private ComboBox states_combobox;
+        private DateTimePicker birthdate_datepicker;
+        private ComboBox gender_cmbobx;
+        private Label label1;
     }
 }

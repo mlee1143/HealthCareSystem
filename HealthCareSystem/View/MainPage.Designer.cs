@@ -33,12 +33,14 @@
             symbolPictureBox = new PictureBox();
             welcomeNameLabel = new Label();
             buttonsPanel = new Panel();
+            editPatientButton = new Button();
             logoutButton = new Button();
             registerPatientButton = new Button();
             genericNursePictureBox = new PictureBox();
             idLabel = new Label();
             registeredPatiensDataGridView = new DataGridView();
             patientsLabel = new Label();
+            errormessageLabel = new Label();
             healthCareNamePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)symbolPictureBox).BeginInit();
             buttonsPanel.SuspendLayout();
@@ -91,6 +93,7 @@
             // buttonsPanel
             // 
             buttonsPanel.BackColor = Color.FromArgb(93, 109, 126);
+            buttonsPanel.Controls.Add(editPatientButton);
             buttonsPanel.Controls.Add(logoutButton);
             buttonsPanel.Controls.Add(registerPatientButton);
             buttonsPanel.Controls.Add(genericNursePictureBox);
@@ -99,6 +102,21 @@
             buttonsPanel.Size = new Size(174, 541);
             buttonsPanel.TabIndex = 3;
             // 
+            // editPatientButton
+            // 
+            editPatientButton.BackColor = Color.FromArgb(255, 255, 242);
+            editPatientButton.FlatAppearance.BorderSize = 0;
+            editPatientButton.FlatStyle = FlatStyle.Flat;
+            editPatientButton.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            editPatientButton.ForeColor = Color.Black;
+            editPatientButton.Location = new Point(0, 209);
+            editPatientButton.Name = "editPatientButton";
+            editPatientButton.Size = new Size(174, 49);
+            editPatientButton.TabIndex = 7;
+            editPatientButton.Text = "Edit Patient";
+            editPatientButton.UseVisualStyleBackColor = true;
+            editPatientButton.Click += editPatientButton_Click;
+            // 
             // logoutButton
             // 
             logoutButton.BackColor = Color.FromArgb(255, 255, 242);
@@ -106,7 +124,7 @@
             logoutButton.FlatStyle = FlatStyle.Flat;
             logoutButton.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             logoutButton.ForeColor = Color.Black;
-            logoutButton.Location = new Point(0, 208);
+            logoutButton.Location = new Point(0, 255);
             logoutButton.Name = "logoutButton";
             logoutButton.Size = new Size(174, 49);
             logoutButton.TabIndex = 6;
@@ -171,12 +189,25 @@
             patientsLabel.TabIndex = 6;
             patientsLabel.Text = "Registered Patients";
             // 
+            // errormessageLabel
+            // 
+            errormessageLabel.AutoSize = true;
+            errormessageLabel.BackColor = Color.FromArgb(244, 244, 243);
+            errormessageLabel.ForeColor = Color.Red;
+            errormessageLabel.Location = new Point(388, 219);
+            errormessageLabel.Name = "errormessageLabel";
+            errormessageLabel.Size = new Size(35, 15);
+            errormessageLabel.TabIndex = 7;
+            errormessageLabel.Text = "Error:";
+            errormessageLabel.Visible = false;
+            // 
             // MainPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(40, 116, 166);
             ClientSize = new Size(779, 615);
+            Controls.Add(errormessageLabel);
             Controls.Add(patientsLabel);
             Controls.Add(registeredPatiensDataGridView);
             Controls.Add(idLabel);
@@ -209,5 +240,7 @@
         private Label patientsLabel;
         private Button logoutButton;
         private Button registerPatientButton;
+        private Button editPatientButton;
+        private Label errormessageLabel;
     }
 }

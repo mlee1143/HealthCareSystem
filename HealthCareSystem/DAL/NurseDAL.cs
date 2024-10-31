@@ -55,6 +55,7 @@ namespace HealthCareSystem.DAL
             }
             return null;
         }
+
         public Nurse? ValidateNurseLogin(string username, string password)
         {
             using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
