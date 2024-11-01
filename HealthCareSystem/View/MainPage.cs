@@ -110,5 +110,10 @@ namespace HealthCareSystem.View
             }
 
         }
+
+        private void searchButton_Click(object sender, EventArgs e)
+        {
+            DialogResult res = MessageBox.Show(this, "Search for Patient", "How to search");
+        }
     }
 }
