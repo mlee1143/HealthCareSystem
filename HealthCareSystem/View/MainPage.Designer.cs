@@ -33,6 +33,7 @@
             symbolPictureBox = new PictureBox();
             welcomeNameLabel = new Label();
             buttonsPanel = new Panel();
+            appointmentsButton = new Button();
             editPatientButton = new Button();
             logoutButton = new Button();
             registerPatientButton = new Button();
@@ -93,6 +94,7 @@
             // buttonsPanel
             // 
             buttonsPanel.BackColor = Color.FromArgb(93, 109, 126);
+            buttonsPanel.Controls.Add(appointmentsButton);
             buttonsPanel.Controls.Add(editPatientButton);
             buttonsPanel.Controls.Add(logoutButton);
             buttonsPanel.Controls.Add(registerPatientButton);
@@ -101,6 +103,20 @@
             buttonsPanel.Name = "buttonsPanel";
             buttonsPanel.Size = new Size(174, 541);
             buttonsPanel.TabIndex = 3;
+            // 
+            // appointmentsButton
+            // 
+            appointmentsButton.BackColor = Color.FromArgb(255, 255, 242);
+            appointmentsButton.FlatAppearance.BorderSize = 0;
+            appointmentsButton.FlatStyle = FlatStyle.Flat;
+            appointmentsButton.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
+            appointmentsButton.ForeColor = Color.Black;
+            appointmentsButton.Location = new Point(0, 257);
+            appointmentsButton.Name = "appointmentsButton";
+            appointmentsButton.Size = new Size(174, 49);
+            appointmentsButton.TabIndex = 8;
+            appointmentsButton.Text = "Appointments";
+            appointmentsButton.UseVisualStyleBackColor = true;
             // 
             // editPatientButton
             // 
@@ -124,7 +140,7 @@
             logoutButton.FlatStyle = FlatStyle.Flat;
             logoutButton.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             logoutButton.ForeColor = Color.Black;
-            logoutButton.Location = new Point(0, 255);
+            logoutButton.Location = new Point(0, 480);
             logoutButton.Name = "logoutButton";
             logoutButton.Size = new Size(174, 49);
             logoutButton.TabIndex = 6;
@@ -242,5 +258,6 @@
         private Button registerPatientButton;
         private Button editPatientButton;
         private Label errormessageLabel;
+        private Button appointmentsButton;
     }
 }
