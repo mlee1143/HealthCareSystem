@@ -38,7 +38,7 @@ namespace HealthCareSystem.DAL
                                 reader["lname"].ToString()
                             )
                             {
-                                Birthdate = Convert.ToDateTime(reader["bdate"]),
+                                Birthdate = Convert.ToDateTime(reader["birth_date"]),
                                 Gender = (Gender)Enum.Parse(typeof(Gender), reader["gender"].ToString()),
                                 Address = reader["address"].ToString(),
                                 City = reader["city"].ToString(),

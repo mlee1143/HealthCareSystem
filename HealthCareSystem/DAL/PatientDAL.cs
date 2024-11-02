@@ -213,6 +213,49 @@ namespace HealthCareSystem.DAL
             }
             return null;
         }
- 
+
+        public List<Patient> GetActivePatients()
+        {
+            List<Patient> activePatients = new List<Patient>();
+
+            using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
+            {
+                connection.Open();
+                string query = "SELECT * FROM patient WHERE active = 1";
+
+                using (var cmd = new MySqlCommand(query, connection))
+                {
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Patient patient = new Patient(
+                                reader["fname"].ToString(),
+                                reader["lname"].ToString(),
+                                Convert.ToDateTime(reader["bdate"]),
+                                (Gender)Enum.Parse(typeof(Gender), reader["gender"].ToString()),
+                                Convert.ToInt32(reader["active"])
+                            )
+                            {
+                                PatientId = Convert.ToInt32(reader["patient_id"]),
+                                MiddleInitial = reader["minitial"].ToString(),
+                                Address = reader["address"].ToString(),
+                                City = reader["city"].ToString(),
+                                State = (States?)Enum.Parse(typeof(States), reader["state"].ToString()),
+                                Country = reader["country"].ToString(),
+                                ZipCode = reader["zipcode"] != DBNull.Value ? Convert.ToInt32(reader["zipcode"]) : (int?)null,
+                                PhoneNumber = reader["phone_number"].ToString()
+                            };
+
+                            activePatients.Add(patient);
+                        }
+                    }
+                }
+            }
+
+            return activePatients;
+        }
+
+
     }
 }
