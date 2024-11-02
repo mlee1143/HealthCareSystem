@@ -67,7 +67,7 @@ namespace HealthCareSystem.DAL
             }
         }
 
-        public bool AppointmentExists(int patientId, int doctorId, DateTime appointmentDateTime)
+        public bool AppointmentExists(Appointment appointment)
         {
             using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
             {
@@ -79,7 +79,28 @@ namespace HealthCareSystem.DAL
 
                 using (var cmd = new MySqlCommand(query, connection))
                 {
-                    cmd.Parameters.AddWithValue("@patientId", patientId);
+                    cmd.Parameters.AddWithValue("@patientId", appointment.PatientID);
+                    cmd.Parameters.AddWithValue("@doctorId", appointment.DoctorID);
+                    cmd.Parameters.AddWithValue("@appointmentDateTime", appointment.AppointmentDateTime.ToString("yyyy-MM-dd HH:mm"));
+
+                    int count = Convert.ToInt32(cmd.ExecuteScalar());
+                    return count > 0;
+                }
+            }
+        }
+
+        public bool DoctorAppointmentExists(int doctorId, DateTime appointmentDateTime)
+        {
+            using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
+            {
+                connection.Open();
+
+                
+                string query = "SELECT COUNT(*) FROM appointment WHERE doctor_id = @doctorId " +
+                               "AND DATE_FORMAT(appointment_datetime, '%Y-%m-%d %H:%i') = DATE_FORMAT(@appointmentDateTime, '%Y-%m-%d %H:%i')";
+
+                using (var cmd = new MySqlCommand(query, connection))
+                {
                     cmd.Parameters.AddWithValue("@doctorId", doctorId);
                     cmd.Parameters.AddWithValue("@appointmentDateTime", appointmentDateTime.ToString("yyyy-MM-dd HH:mm"));
 
@@ -88,5 +109,6 @@ namespace HealthCareSystem.DAL
                 }
             }
         }
+
     }
 }

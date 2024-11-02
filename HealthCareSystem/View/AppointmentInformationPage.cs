@@ -66,9 +66,15 @@ namespace HealthCareSystem.View
                 string reason = reasonTextBox.Text;
                 Appointment newAppointment = new Appointment(patientId, doctorId, appointmentDateTime, reason);
 
-                if (appointmentDAL.AppointmentExists(patientId, doctorId, appointmentDateTime))
+                if (appointmentDAL.AppointmentExists(newAppointment))
                 {
                     MessageBox.Show("This appointment already exists. Please select a different date or time.");
+                    return;
+                }
+
+                if (appointmentDAL.DoctorAppointmentExists(doctorId, appointmentDateTime))
+                {
+                    MessageBox.Show("This doctor is already booked at the selected date and time. Please choose a different time.");
                     return;
                 }
 
@@ -80,7 +86,7 @@ namespace HealthCareSystem.View
                     AppointmentsPage appointments = new AppointmentsPage();
                     appointments.Show();
 
-                    this.Close()
+                    this.Close();
                 }
                 else
                 {
