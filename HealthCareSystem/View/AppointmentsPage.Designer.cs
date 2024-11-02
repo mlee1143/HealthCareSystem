@@ -141,6 +141,7 @@
             appointmentsDataGridView.Name = "appointmentsDataGridView";
             appointmentsDataGridView.Size = new Size(473, 316);
             appointmentsDataGridView.TabIndex = 3;
+            appointmentsDataGridView.ReadOnly = true;
             // 
             // nurseNameLabel
             // 
