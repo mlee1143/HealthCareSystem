@@ -117,6 +117,7 @@
             appointmentsButton.TabIndex = 8;
             appointmentsButton.Text = "Appointments";
             appointmentsButton.UseVisualStyleBackColor = true;
+            appointmentsButton.Click += appointmentsButton_Click;
             // 
             // editPatientButton
             // 

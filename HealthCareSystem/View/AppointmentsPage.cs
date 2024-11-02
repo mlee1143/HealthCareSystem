@@ -16,5 +16,21 @@ namespace HealthCareSystem.View
         {
             InitializeComponent();
         }
+
+        private void newAppointmentButton_Click(object sender, EventArgs e)
+        {
+            AppointmentInformationPage appointmentInformationPage = new AppointmentInformationPage();
+            appointmentInformationPage.Show();
+
+            this.Close();
+        }
+
+        private void backToMainButton_Click(object sender, EventArgs e)
+        {
+            MainPage mainPage = new MainPage(0, "cobra");
+            mainPage.Show();
+
+            this.Close();
+        }
     }
 }

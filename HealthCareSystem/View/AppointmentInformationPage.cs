@@ -16,5 +16,13 @@ namespace HealthCareSystem.View
         {
             InitializeComponent();
         }
+
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
+            AppointmentsPage appointments = new AppointmentsPage();
+            appointments.Show();
+
+            this.Close();
+        }
     }
 }

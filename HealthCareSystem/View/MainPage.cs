@@ -110,5 +110,13 @@ namespace HealthCareSystem.View
             }
 
         }
+
+        private void appointmentsButton_Click(object sender, EventArgs e)
+        {
+            AppointmentsPage appointments = new AppointmentsPage();
+            appointments.Show();
+
+            this.Close();
+        }
     }
 }

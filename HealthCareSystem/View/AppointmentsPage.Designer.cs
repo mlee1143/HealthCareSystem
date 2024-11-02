@@ -101,6 +101,7 @@
             backToMainButton.TabIndex = 2;
             backToMainButton.Text = "Back To Main";
             backToMainButton.UseVisualStyleBackColor = true;
+            backToMainButton.Click += backToMainButton_Click;
             // 
             // editAppointment
             // 
@@ -129,6 +130,7 @@
             newAppointmentButton.TabIndex = 0;
             newAppointmentButton.Text = "New Appointment";
             newAppointmentButton.UseVisualStyleBackColor = true;
+            newAppointmentButton.Click += newAppointmentButton_Click;
             // 
             // appointmentsDataGridView
             // 
