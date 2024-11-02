@@ -116,6 +116,7 @@
             editAppointment.TabIndex = 1;
             editAppointment.Text = "Edit Appointment";
             editAppointment.UseVisualStyleBackColor = true;
+            editAppointment.Click += editAppointment_Click;
             // 
             // newAppointmentButton
             // 
@@ -139,9 +140,9 @@
             appointmentsDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             appointmentsDataGridView.Location = new Point(166, 163);
             appointmentsDataGridView.Name = "appointmentsDataGridView";
+            appointmentsDataGridView.ReadOnly = true;
             appointmentsDataGridView.Size = new Size(473, 316);
             appointmentsDataGridView.TabIndex = 3;
-            appointmentsDataGridView.ReadOnly = true;
             // 
             // nurseNameLabel
             // 

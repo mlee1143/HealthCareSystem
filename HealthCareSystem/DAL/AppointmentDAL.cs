@@ -110,5 +110,60 @@ namespace HealthCareSystem.DAL
             }
         }
 
+        public Appointment GetAppointment(int patientId, DateTime appointmentDateTime)
+        {
+            using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
+            {
+                connection.Open();
+
+                string query = "SELECT * FROM appointment WHERE patient_id = @patientId AND appointment_datetime = @appointmentDateTime";
+
+                using (var cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@patientId", patientId);
+                    cmd.Parameters.AddWithValue("@appointmentDateTime", appointmentDateTime);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return new Appointment(
+                            reader.GetInt32("patient_id"),
+                            reader.GetInt32("doctor_id"),
+                            reader.GetDateTime("appointment_datetime"),
+                            reader.GetString("reason")
+                            );
+
+                        }
+                    }
+                }
+            }
+            return null;
+        }
+
+        public bool UpdateAppointment(int patientId, int doctorId, DateTime originalDateTime, DateTime newDateTime, string reason)
+        {
+            using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
+            {
+                connection.Open();
+
+                string query = "UPDATE appointment SET doctor_id = @doctorId, appointment_datetime = @newDateTime, reason = @reason " +
+                               "WHERE patient_id = @patientId AND appointment_datetime = @originalDateTime";
+
+                using (var cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@patientId", patientId);
+                    cmd.Parameters.AddWithValue("@doctorId", doctorId);
+                    cmd.Parameters.AddWithValue("@originalDateTime", originalDateTime);
+                    cmd.Parameters.AddWithValue("@newDateTime", newDateTime);
+                    cmd.Parameters.AddWithValue("@reason", reason);
+
+                    return cmd.ExecuteNonQuery() > 0;
+                }
+            }
+        }
+
+
+
     }
 }

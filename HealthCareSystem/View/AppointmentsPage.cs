@@ -48,7 +48,7 @@ namespace HealthCareSystem.View
             appointmentsDataGridView.Columns.Clear();
             appointmentsDataGridView.Columns.Add("PatientID", "Patient ID");
             appointmentsDataGridView.Columns.Add("DoctorID", "Doctor ID");
-            appointmentsDataGridView.Columns.Add("DateTime", "Date/Time");
+            appointmentsDataGridView.Columns.Add("AppointmentDateTime", "Date/Time");
 
             appointmentsDataGridView.Rows.Clear();
 
@@ -59,6 +59,22 @@ namespace HealthCareSystem.View
             }
         }
 
+        private void editAppointment_Click(object sender, EventArgs e)
+        {
+            if (appointmentsDataGridView.SelectedRows.Count > 0)
+            {
+                int patientId = (int)appointmentsDataGridView.SelectedRows[0].Cells["PatientId"].Value;
+                DateTime appointmentDateTime = (DateTime)appointmentsDataGridView.SelectedRows[0].Cells["AppointmentDateTime"].Value;
 
+                AppointmentInformationPage editPage = new AppointmentInformationPage(patientId, appointmentDateTime);
+                editPage.Show();
+
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Please select an appointment to edit.");
+            }
+        }
     }
 }

@@ -18,6 +18,8 @@ namespace HealthCareSystem.View
         private DoctorDAL doctorDAL;
         private PatientDAL patientDAL;
         private AppointmentDAL appointmentDAL;
+        private int patientId;
+        private DateTime originalDateTime;
 
         public AppointmentInformationPage()
         {
@@ -28,6 +30,34 @@ namespace HealthCareSystem.View
 
             this.loadDoctors();
             this.loadActivePatients();
+        }
+
+
+        public AppointmentInformationPage(int patientId, DateTime appointmentDateTime)
+        {
+            InitializeComponent();
+            this.appointmentDAL = new AppointmentDAL();
+            this.doctorDAL = new DoctorDAL();
+            this.patientDAL = new PatientDAL();
+            loadActivePatients();
+            loadDoctors();
+
+            this.patientId = patientId;
+            this.originalDateTime = appointmentDateTime;
+            LoadAppointmentData();
+        }
+
+        private void LoadAppointmentData()
+        {
+            var appointment = appointmentDAL.GetAppointment(patientId, originalDateTime);
+
+            if (appointment != null)
+            {
+                patientComboBox.SelectedValue = appointment.PatientID;
+                doctorComboBox.SelectedValue = appointment.DoctorID;
+                apptDateTimePicker.Value = appointment.AppointmentDateTime;
+                reasonTextBox.Text = appointment.Reason;
+            }
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
