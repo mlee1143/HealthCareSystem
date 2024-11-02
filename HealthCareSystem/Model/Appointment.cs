@@ -8,20 +8,21 @@ namespace HealthCareSystem.Model
 {
     public class Appointment
     {
-        public Patient Patient { get; set; }
+        public int PatientID { get; set; }
 
-        public Doctor Doctor { get; set; }
+        public int DoctorID { get; set; }
 
         public DateTime AppointmentDateTime { get; set; }
 
         public string? Reason { get; set; }
 
-        public Appointment(Patient patient, Doctor doctor, DateTime appointmentDateTime) 
+        public Appointment(int patientId, int doctorId, DateTime appointmentDateTime, string reason) 
         {
             // Pre-condition checks
-            this.Patient = patient;
-            this.Doctor = doctor;
+            this.PatientID = patientId;
+            this.DoctorID = doctorId;
             this.AppointmentDateTime = appointmentDateTime;
+            this.Reason = reason;
         }
     }
 }

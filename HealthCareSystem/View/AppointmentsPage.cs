@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HealthCareSystem.DAL;
+using HealthCareSystem.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +14,14 @@ namespace HealthCareSystem.View
 {
     public partial class AppointmentsPage : Form
     {
+        private AppointmentDAL appointmentDAL;
+
         public AppointmentsPage()
         {
             InitializeComponent();
+            this.appointmentDAL = new AppointmentDAL();
+
+            this.loadAppointments();
         }
 
         private void newAppointmentButton_Click(object sender, EventArgs e)
@@ -32,5 +39,26 @@ namespace HealthCareSystem.View
 
             this.Close();
         }
+
+        private void loadAppointments()
+        {
+            List<Appointment> appointments = this.appointmentDAL.getAllAppointments();
+            appointmentsDataGridView.DataSource = appointments;
+
+            //appointmentsDataGridView.Columns.Clear();
+            //appointmentsDataGridView.Columns.Add("PatientID", "Patient ID");
+            //appointmentsDataGridView.Columns.Add("DoctorID", "Doctor ID");
+            //appointmentsDataGridView.Columns.Add("DateTime", "Date Time");
+
+            //appointmentsDataGridView.Rows.Clear();
+
+
+            //foreach (var appointment in appointments)
+            //{
+            //    appointmentsDataGridView.Rows.Add(appointment.PatientID, appointment.DoctorID, appointment.AppointmentDateTime);
+            //}
+        }
+
+
     }
 }
