@@ -43,5 +43,27 @@ namespace HealthCareSystem.DAL
 
                 return appointments;
         }
+
+        public bool InsertAppointment(Appointment appointment)
+        {
+            using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
+            {
+                connection.Open();
+
+                string query = "INSERT INTO appointment (patient_id, doctor_id, appointment_datetime, reason) " +
+                               "VALUES (@patientId, @doctorId, @appointmentDateTime, @reason)";
+
+                using (var cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@patientId", appointment.PatientID);
+                    cmd.Parameters.AddWithValue("@doctorId", appointment.DoctorID);
+                    cmd.Parameters.AddWithValue("@appointmentDateTime", appointment.AppointmentDateTime);
+                    cmd.Parameters.AddWithValue("@reason", appointment.Reason);
+
+                    int result = cmd.ExecuteNonQuery();
+                    return result > 0;
+                }
+            }
+        }
     }
 }

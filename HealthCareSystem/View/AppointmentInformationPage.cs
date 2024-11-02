@@ -16,12 +16,14 @@ namespace HealthCareSystem.View
     {
         private DoctorDAL doctorDAL;
         private PatientDAL patientDAL;
+        private AppointmentDAL appointmentDAL;
 
         public AppointmentInformationPage()
         {
             InitializeComponent();
             this.doctorDAL = new DoctorDAL();
             this.patientDAL = new PatientDAL();
+            this.appointmentDAL = new AppointmentDAL();
 
             this.loadDoctors();
             this.loadActivePatients();
@@ -51,6 +53,37 @@ namespace HealthCareSystem.View
             patientComboBox.DisplayMember = "FullName";
             patientComboBox.ValueMember = "PatientID";
             patientComboBox.DataSource = activePatients;
+        }
+
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int patientId = (int)patientComboBox.SelectedValue;
+                int doctorId = (int)doctorComboBox.SelectedValue;
+                DateTime appointmentDateTime = apptDateTimePicker.Value;
+                string reason = reasonTextBox.Text;
+                Appointment newAppointment = new Appointment(patientId, doctorId, appointmentDateTime, reason);
+
+                bool success = appointmentDAL.InsertAppointment(newAppointment);
+
+                if (success)
+                {
+                    MessageBox.Show("Appointment created successfully.");
+                    AppointmentsPage appointments = new AppointmentsPage();
+                    appointments.Show();
+
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Failed to create the appointment. Please try again.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}");
+            }
         }
     }
 }

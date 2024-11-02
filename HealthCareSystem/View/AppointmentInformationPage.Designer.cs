@@ -38,7 +38,7 @@
             patientComboBox = new ComboBox();
             doctorComboBox = new ComboBox();
             apptDateTimePicker = new DateTimePicker();
-            textBox1 = new TextBox();
+            reasonTextBox = new TextBox();
             cancelButton = new Button();
             saveButton = new Button();
             healthCareNamePanel.SuspendLayout();
@@ -150,15 +150,15 @@
             apptDateTimePicker.Size = new Size(148, 23);
             apptDateTimePicker.TabIndex = 8;
             // 
-            // textBox1
+            // reasonTextBox
             // 
-            textBox1.BackColor = Color.FromArgb(242, 243, 244);
-            textBox1.Font = new Font("Segoe UI", 12F);
-            textBox1.Location = new Point(85, 255);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(472, 137);
-            textBox1.TabIndex = 9;
+            reasonTextBox.BackColor = Color.FromArgb(242, 243, 244);
+            reasonTextBox.Font = new Font("Segoe UI", 12F);
+            reasonTextBox.Location = new Point(85, 255);
+            reasonTextBox.Multiline = true;
+            reasonTextBox.Name = "reasonTextBox";
+            reasonTextBox.Size = new Size(472, 137);
+            reasonTextBox.TabIndex = 9;
             // 
             // cancelButton
             // 
@@ -188,6 +188,7 @@
             saveButton.TabIndex = 11;
             saveButton.Text = "Save";
             saveButton.UseVisualStyleBackColor = true;
+            saveButton.Click += saveButton_Click;
             // 
             // AppointmentInformationPage
             // 
@@ -197,7 +198,7 @@
             ClientSize = new Size(582, 450);
             Controls.Add(saveButton);
             Controls.Add(cancelButton);
-            Controls.Add(textBox1);
+            Controls.Add(reasonTextBox);
             Controls.Add(apptDateTimePicker);
             Controls.Add(doctorComboBox);
             Controls.Add(patientComboBox);
@@ -228,7 +229,7 @@
         private ComboBox patientComboBox;
         private ComboBox doctorComboBox;
         private DateTimePicker apptDateTimePicker;
-        private TextBox textBox1;
+        private TextBox reasonTextBox;
         private Button cancelButton;
         private Button saveButton;
     }
