@@ -58,6 +58,13 @@ namespace HealthCareSystem.View
 
         private void saveButton_Click(object sender, EventArgs e)
         {
+
+            if (string.IsNullOrWhiteSpace(reasonTextBox.Text))
+            {
+                MessageBox.Show("Please enter a reason for the appointment.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             try
             {
                 int patientId = (int)patientComboBox.SelectedValue;
