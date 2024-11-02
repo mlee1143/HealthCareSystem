@@ -1,5 +1,6 @@
 ﻿using HealthCareSystem.DAL;
 using HealthCareSystem.Model;
+using MySqlConnector;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -65,6 +66,12 @@ namespace HealthCareSystem.View
                 string reason = reasonTextBox.Text;
                 Appointment newAppointment = new Appointment(patientId, doctorId, appointmentDateTime, reason);
 
+                if (appointmentDAL.AppointmentExists(patientId, doctorId, appointmentDateTime))
+                {
+                    MessageBox.Show("This appointment already exists. Please select a different date or time.");
+                    return;
+                }
+
                 bool success = appointmentDAL.InsertAppointment(newAppointment);
 
                 if (success)
@@ -73,7 +80,7 @@ namespace HealthCareSystem.View
                     AppointmentsPage appointments = new AppointmentsPage();
                     appointments.Show();
 
-                    this.Close();
+                    this.Close()
                 }
                 else
                 {

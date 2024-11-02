@@ -141,7 +141,7 @@
             // apptDateTimePicker
             // 
             apptDateTimePicker.CalendarMonthBackground = Color.FromArgb(242, 243, 244);
-            apptDateTimePicker.CustomFormat = "yyyy-MM-dd HH:mm:ss";
+            apptDateTimePicker.CustomFormat = "yyyy-MM-dd HH:mm";
             apptDateTimePicker.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
             apptDateTimePicker.Format = DateTimePickerFormat.Custom;
             apptDateTimePicker.Location = new Point(113, 170);
