@@ -39,6 +39,7 @@
             nurseNameLabel = new Label();
             nurseIdLabel = new Label();
             appointmentsLabel = new Label();
+            errorLabel = new Label();
             healthCareNamePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)symbolPictureBox).BeginInit();
             appointmentsButtonPanel.SuspendLayout();
@@ -51,7 +52,7 @@
             healthCareNamePanel.Controls.Add(healthCareNameLabel);
             healthCareNamePanel.Location = new Point(87, 0);
             healthCareNamePanel.Name = "healthCareNamePanel";
-            healthCareNamePanel.Size = new Size(509, 76);
+            healthCareNamePanel.Size = new Size(558, 76);
             healthCareNamePanel.TabIndex = 0;
             // 
             // healthCareNameLabel
@@ -84,7 +85,7 @@
             appointmentsButtonPanel.Controls.Add(newAppointmentButton);
             appointmentsButtonPanel.Location = new Point(0, 80);
             appointmentsButtonPanel.Name = "appointmentsButtonPanel";
-            appointmentsButtonPanel.Size = new Size(133, 374);
+            appointmentsButtonPanel.Size = new Size(160, 411);
             appointmentsButtonPanel.TabIndex = 2;
             // 
             // backToMainButton
@@ -96,7 +97,7 @@
             backToMainButton.ForeColor = Color.Black;
             backToMainButton.Location = new Point(0, 94);
             backToMainButton.Name = "backToMainButton";
-            backToMainButton.Size = new Size(133, 47);
+            backToMainButton.Size = new Size(160, 47);
             backToMainButton.TabIndex = 2;
             backToMainButton.Text = "Back To Main";
             backToMainButton.UseVisualStyleBackColor = true;
@@ -110,7 +111,7 @@
             editAppointment.ForeColor = Color.Black;
             editAppointment.Location = new Point(0, 47);
             editAppointment.Name = "editAppointment";
-            editAppointment.Size = new Size(133, 47);
+            editAppointment.Size = new Size(160, 47);
             editAppointment.TabIndex = 1;
             editAppointment.Text = "Edit Appointment";
             editAppointment.UseVisualStyleBackColor = true;
@@ -124,19 +125,19 @@
             newAppointmentButton.ForeColor = Color.Black;
             newAppointmentButton.Location = new Point(0, 0);
             newAppointmentButton.Name = "newAppointmentButton";
-            newAppointmentButton.Size = new Size(133, 47);
+            newAppointmentButton.Size = new Size(160, 47);
             newAppointmentButton.TabIndex = 0;
             newAppointmentButton.Text = "New Appointment";
             newAppointmentButton.UseVisualStyleBackColor = true;
             // 
             // appointmentsDataGridView
-            //
+            // 
             appointmentsDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             appointmentsDataGridView.BackgroundColor = Color.FromArgb(93, 173, 226);
             appointmentsDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            appointmentsDataGridView.Location = new Point(139, 163);
+            appointmentsDataGridView.Location = new Point(166, 163);
             appointmentsDataGridView.Name = "appointmentsDataGridView";
-            appointmentsDataGridView.Size = new Size(450, 278);
+            appointmentsDataGridView.Size = new Size(473, 316);
             appointmentsDataGridView.TabIndex = 3;
             // 
             // nurseNameLabel
@@ -144,7 +145,7 @@
             nurseNameLabel.AutoSize = true;
             nurseNameLabel.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
             nurseNameLabel.ForeColor = Color.FromArgb(242, 243, 244);
-            nurseNameLabel.Location = new Point(139, 79);
+            nurseNameLabel.Location = new Point(166, 79);
             nurseNameLabel.Name = "nurseNameLabel";
             nurseNameLabel.Size = new Size(57, 21);
             nurseNameLabel.TabIndex = 4;
@@ -155,7 +156,7 @@
             nurseIdLabel.AutoSize = true;
             nurseIdLabel.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
             nurseIdLabel.ForeColor = Color.FromArgb(242, 243, 244);
-            nurseIdLabel.Location = new Point(261, 79);
+            nurseIdLabel.Location = new Point(349, 79);
             nurseIdLabel.Name = "nurseIdLabel";
             nurseIdLabel.Size = new Size(77, 21);
             nurseIdLabel.TabIndex = 5;
@@ -166,18 +167,31 @@
             appointmentsLabel.AutoSize = true;
             appointmentsLabel.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
             appointmentsLabel.ForeColor = Color.FromArgb(242, 243, 244);
-            appointmentsLabel.Location = new Point(139, 139);
+            appointmentsLabel.Location = new Point(166, 139);
             appointmentsLabel.Name = "appointmentsLabel";
             appointmentsLabel.Size = new Size(115, 21);
             appointmentsLabel.TabIndex = 6;
             appointmentsLabel.Text = "Appointments";
+            // 
+            // errorLabel
+            // 
+            errorLabel.AutoSize = true;
+            errorLabel.Font = new Font("Segoe UI", 12F);
+            errorLabel.ForeColor = Color.Red;
+            errorLabel.Location = new Point(349, 139);
+            errorLabel.Name = "errorLabel";
+            errorLabel.Size = new Size(52, 21);
+            errorLabel.TabIndex = 7;
+            errorLabel.Text = "Error: ";
+            errorLabel.Visible = false;
             // 
             // AppointmentsPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(40, 116, 166);
-            ClientSize = new Size(596, 450);
+            ClientSize = new Size(644, 491);
+            Controls.Add(errorLabel);
             Controls.Add(appointmentsLabel);
             Controls.Add(nurseIdLabel);
             Controls.Add(nurseNameLabel);
@@ -209,5 +223,6 @@
         private Button backToMainButton;
         private Button editAppointment;
         private Button newAppointmentButton;
+        private Label errorLabel;
     }
 }
