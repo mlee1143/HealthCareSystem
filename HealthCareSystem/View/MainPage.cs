@@ -113,7 +113,108 @@ namespace HealthCareSystem.View
 
         private void searchButton_Click(object sender, EventArgs e)
         {
-            DialogResult res = MessageBox.Show(this, "Search for Patient", "How to search");
+            if (this.searchGroupBox.Visible)
+            {
+                this.searchGroupBox.Visible = false;
+                this.welcomeNameLabel.Visible = true;
+                this.idLabel.Visible = true;
+                this.LoadPatientData();
+            }
+            else
+            {
+                this.searchGroupBox.Visible = true;
+                this.welcomeNameLabel.Visible = false;
+                this.idLabel.Visible = false;
+            }
+        }
+
+        private async void patientSearchButton_Click(object sender, EventArgs e)
+        {
+            if (this.nameRadioButton.Checked) // Condense this part PH
+            {
+                List<Patient> patients = await patientDAL.GetPatientsByName(fnameSearchTextBox.Text, lnameTextBox.Text);
+
+                registeredPatiensDataGridView.Columns.Clear();
+                registeredPatiensDataGridView.Columns.Add("PatientId", "Patient ID");
+                registeredPatiensDataGridView.Columns.Add("FirstName", "First Name");
+                registeredPatiensDataGridView.Columns.Add("LastName", "Last Name");
+                registeredPatiensDataGridView.Columns.Add("Gender", "Gender");
+                registeredPatiensDataGridView.Columns.Add("Birthdate", "Birth Date");
+
+                registeredPatiensDataGridView.Rows.Clear();
+
+
+                foreach (var patient in patients)
+                {
+                    registeredPatiensDataGridView.Rows.Add(patient.PatientId, patient.Firstname, patient.Lastname, patient.Gender, patient.Birthdate.ToShortDateString());
+                }
+            }
+            else if (this.birthdateRadioButton.Checked)
+            {
+                List<Patient> patients = await patientDAL.GetPatientsByNameAndBirthdate(this.fnameSearchTextBox.Text, this.lnameTextBox.Text,this.searchDatePicker.Value);
+
+                registeredPatiensDataGridView.Columns.Clear();
+                registeredPatiensDataGridView.Columns.Add("PatientId", "Patient ID");
+                registeredPatiensDataGridView.Columns.Add("FirstName", "First Name");
+                registeredPatiensDataGridView.Columns.Add("LastName", "Last Name");
+                registeredPatiensDataGridView.Columns.Add("Gender", "Gender");
+                registeredPatiensDataGridView.Columns.Add("Birthdate", "Birth Date");
+
+                registeredPatiensDataGridView.Rows.Clear();
+
+
+                foreach (var patient in patients)
+                {
+                    registeredPatiensDataGridView.Rows.Add(patient.PatientId, patient.Firstname, patient.Lastname, patient.Gender, patient.Birthdate.ToShortDateString());
+                }
+            } else if (this.bothRadioButton.Checked)
+            {
+                List<Patient> patients = await patientDAL.GetPatientsByName(fnameSearchTextBox.Text, lnameTextBox.Text);
+
+                registeredPatiensDataGridView.Columns.Clear();
+                registeredPatiensDataGridView.Columns.Add("PatientId", "Patient ID");
+                registeredPatiensDataGridView.Columns.Add("FirstName", "First Name");
+                registeredPatiensDataGridView.Columns.Add("LastName", "Last Name");
+                registeredPatiensDataGridView.Columns.Add("Gender", "Gender");
+                registeredPatiensDataGridView.Columns.Add("Birthdate", "Birth Date");
+
+                registeredPatiensDataGridView.Rows.Clear();
+
+
+                foreach (var patient in patients)
+                {
+                    registeredPatiensDataGridView.Rows.Add(patient.PatientId, patient.Firstname, patient.Lastname, patient.Gender, patient.Birthdate.ToShortDateString());
+                }
+            } else
+            {
+                this.errormessageLabel.Text = "No criteria selected."; // Maybe change to search being disabled
+            }
+        }
+
+        private void visitInformationButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void nameRadioButton_Click(object sender, EventArgs e)
+        {
+            this.searchDatePicker.Enabled = false;
+            this.fnameSearchTextBox.Enabled = true;
+            this.lnameTextBox.Enabled = true;
+        }
+
+        private void birthdateRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            this.searchDatePicker.Enabled = true;
+            this.fnameSearchTextBox.Enabled = false;
+            this.lnameTextBox.Enabled= false;
+        }
+
+        private void bothRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            this.searchDatePicker.Enabled= true;
+            this.fnameSearchTextBox.Enabled= true;
+            this.lnameTextBox.Enabled= true;
         }
     }
 }

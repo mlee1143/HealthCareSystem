@@ -221,12 +221,12 @@ namespace HealthCareSystem.DAL
             {
                 await connection.OpenAsync();
 
-                string query = "SELECT * FROM patients WHERE fname = @firstName AND lname = @lastName";
+                string query = "SELECT * FROM patient WHERE fname = @fname AND lname = @lname";
 
                 using (var command = new MySqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@firstName", firstName);
-                    command.Parameters.AddWithValue("@lastName", lastName);
+                    command.Parameters.AddWithValue("@fname", firstName);
+                    command.Parameters.AddWithValue("@lname", lastName);
 
                     using (var reader = await command.ExecuteReaderAsync())
                     {
@@ -266,7 +266,7 @@ namespace HealthCareSystem.DAL
             {
                 await connection.OpenAsync();
 
-                string query = "SELECT * FROM patients WHERE bdate = @birthdate";
+                string query = "SELECT * FROM patient WHERE bdate = @birthdate";
 
                 using (var command = new MySqlCommand(query, connection))
                 {
@@ -310,7 +310,7 @@ namespace HealthCareSystem.DAL
             {
                 await connection.OpenAsync();
 
-                string query = "SELECT * FROM patients WHERE fname = @firstname AND lname = @lastname AND bdate = @birthdate";
+                string query = "SELECT * FROM patient WHERE fname = @firstname AND lname = @lastname AND bdate = @birthdate";
 
                 using (var command = new MySqlCommand(query, connection))
                 {
