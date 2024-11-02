@@ -43,20 +43,20 @@ namespace HealthCareSystem.View
         private void loadAppointments()
         {
             List<Appointment> appointments = this.appointmentDAL.getAllAppointments();
-            appointmentsDataGridView.DataSource = appointments;
+            //appointmentsDataGridView.DataSource = appointments;
 
-            //appointmentsDataGridView.Columns.Clear();
-            //appointmentsDataGridView.Columns.Add("PatientID", "Patient ID");
-            //appointmentsDataGridView.Columns.Add("DoctorID", "Doctor ID");
-            //appointmentsDataGridView.Columns.Add("DateTime", "Date Time");
+            appointmentsDataGridView.Columns.Clear();
+            appointmentsDataGridView.Columns.Add("PatientID", "Patient ID");
+            appointmentsDataGridView.Columns.Add("DoctorID", "Doctor ID");
+            appointmentsDataGridView.Columns.Add("DateTime", "Date/Time");
 
-            //appointmentsDataGridView.Rows.Clear();
+            appointmentsDataGridView.Rows.Clear();
 
 
-            //foreach (var appointment in appointments)
-            //{
-            //    appointmentsDataGridView.Rows.Add(appointment.PatientID, appointment.DoctorID, appointment.AppointmentDateTime);
-            //}
+            foreach (var appointment in appointments)
+            {
+                appointmentsDataGridView.Rows.Add(appointment.PatientID, appointment.DoctorID, appointment.AppointmentDateTime);
+            }
         }
 
 
