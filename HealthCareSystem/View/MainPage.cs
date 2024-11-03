@@ -151,7 +151,7 @@ namespace HealthCareSystem.View
             }
             else if (this.birthdateRadioButton.Checked)
             {
-                List<Patient> patients = await patientDAL.GetPatientsByNameAndBirthdate(this.fnameSearchTextBox.Text, this.lnameTextBox.Text,this.searchDatePicker.Value);
+                List<Patient> patients = await patientDAL.GetPatientsByBirthdate(this.searchDatePicker.Value);
 
                 registeredPatiensDataGridView.Columns.Clear();
                 registeredPatiensDataGridView.Columns.Add("PatientId", "Patient ID");
@@ -167,9 +167,10 @@ namespace HealthCareSystem.View
                 {
                     registeredPatiensDataGridView.Rows.Add(patient.PatientId, patient.Firstname, patient.Lastname, patient.Gender, patient.Birthdate.ToShortDateString());
                 }
-            } else if (this.bothRadioButton.Checked)
+            }
+            else if (this.bothRadioButton.Checked)
             {
-                List<Patient> patients = await patientDAL.GetPatientsByName(fnameSearchTextBox.Text, lnameTextBox.Text);
+                List<Patient> patients = await patientDAL.GetPatientsByNameAndBirthdate(fnameSearchTextBox.Text, lnameTextBox.Text, this.searchDatePicker.Value);
 
                 registeredPatiensDataGridView.Columns.Clear();
                 registeredPatiensDataGridView.Columns.Add("PatientId", "Patient ID");
@@ -185,7 +186,8 @@ namespace HealthCareSystem.View
                 {
                     registeredPatiensDataGridView.Rows.Add(patient.PatientId, patient.Firstname, patient.Lastname, patient.Gender, patient.Birthdate.ToShortDateString());
                 }
-            } else
+            }
+            else
             {
                 this.errormessageLabel.Text = "No criteria selected."; // Maybe change to search being disabled
             }
@@ -193,6 +195,23 @@ namespace HealthCareSystem.View
 
         private void visitInformationButton_Click(object sender, EventArgs e)
         {
+            
+            if (this.registeredPatiensDataGridView.Visible)
+            {
+                this.registeredPatiensDataGridView.Visible = false;
+
+                this.searchGroupBox.Visible = false;
+
+                this.routineGroupBox.Visible = true;
+                this.routineGroupBox.Enabled = true;
+            }
+            else
+            {
+                this.registeredPatiensDataGridView.Visible = true;
+                this.routineGroupBox.Visible = false;
+                this.routineGroupBox.Enabled = false;
+            }
+
 
         }
 
@@ -207,14 +226,19 @@ namespace HealthCareSystem.View
         {
             this.searchDatePicker.Enabled = true;
             this.fnameSearchTextBox.Enabled = false;
-            this.lnameTextBox.Enabled= false;
+            this.lnameTextBox.Enabled = false;
         }
 
         private void bothRadioButton_CheckedChanged(object sender, EventArgs e)
         {
-            this.searchDatePicker.Enabled= true;
-            this.fnameSearchTextBox.Enabled= true;
-            this.lnameTextBox.Enabled= true;
+            this.searchDatePicker.Enabled = true;
+            this.fnameSearchTextBox.Enabled = true;
+            this.lnameTextBox.Enabled = true;
+        }
+
+        private void temperatureTextBox_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

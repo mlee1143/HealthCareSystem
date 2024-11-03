@@ -3,6 +3,7 @@ using MySqlConnector;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -258,19 +259,21 @@ namespace HealthCareSystem.DAL
             return patients;
         }
 
-        public async Task<List<Patient>> GetPatientsByBirthdate(DateTime birthDate)
+        public async Task<List<Patient>> GetPatientsByBirthdate(DateTime dob)
         {
             var patients = new List<Patient>();
+
+            var bdate = dob.ToString("yyyy-MM-dd");
 
             using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
             {
                 await connection.OpenAsync();
 
-                string query = "SELECT * FROM patient WHERE bdate = @birthdate";
+                string query = "SELECT * FROM patient WHERE bdate = @bdate";
 
                 using (var command = new MySqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@birthdate", birthDate);
+                    command.Parameters.AddWithValue("@bdate", bdate);
 
                     using (var reader = await command.ExecuteReaderAsync())
                     {
@@ -302,21 +305,23 @@ namespace HealthCareSystem.DAL
             return patients;
         }
 
-        public async Task<List<Patient>> GetPatientsByNameAndBirthdate(string firstname, string lastname, DateTime birthdate)
+        public async Task<List<Patient>> GetPatientsByNameAndBirthdate(string firstname, string lastname, DateTime dob)
         {
             var patients = new List<Patient>();
+
+            var bdate = dob.ToString("yyyy-MM-dd");
 
             using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
             {
                 await connection.OpenAsync();
 
-                string query = "SELECT * FROM patient WHERE fname = @firstname AND lname = @lastname AND bdate = @birthdate";
+                string query = "SELECT * FROM patient WHERE fname = @fname AND lname = @lname AND bdate = @bdate";
 
                 using (var command = new MySqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@firstname", firstname);
-                    command.Parameters.AddWithValue("@lastname", lastname);
-                    command.Parameters.AddWithValue("@birthdate", birthdate);
+                    command.Parameters.AddWithValue("@fname", firstname);
+                    command.Parameters.AddWithValue("@lname", lastname);
+                    command.Parameters.AddWithValue("@bdate", bdate);
 
                     using (var reader = await command.ExecuteReaderAsync())
                     {

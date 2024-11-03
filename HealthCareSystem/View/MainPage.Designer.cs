@@ -51,12 +51,24 @@
             bothRadioButton = new RadioButton();
             birthdateRadioButton = new RadioButton();
             nameRadioButton = new RadioButton();
+            routineGroupBox = new GroupBox();
+            symptomsLabel = new Label();
+            routinePtNameLabel = new Label();
+            routinePtIDLabel = new Label();
+            symptomsTextBox = new RichTextBox();
+            temperatureTextBox = new TextBox();
+            temperatureLabel = new Label();
+            pulseTextBox = new TextBox();
+            pulseLabel = new Label();
+            bloodpressureTextBox = new TextBox();
+            bloodpressureLabel = new Label();
             healthCareNamePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)symbolPictureBox).BeginInit();
             buttonsPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)genericNursePictureBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)registeredPatiensDataGridView).BeginInit();
             searchGroupBox.SuspendLayout();
+            routineGroupBox.SuspendLayout();
             SuspendLayout();
             // 
             // healthCareNamePanel
@@ -215,9 +227,9 @@
             registeredPatiensDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             registeredPatiensDataGridView.BackgroundColor = Color.FromArgb(93, 173, 226);
             registeredPatiensDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            registeredPatiensDataGridView.Location = new Point(180, 241);
+            registeredPatiensDataGridView.Location = new Point(180, 239);
             registeredPatiensDataGridView.Name = "registeredPatiensDataGridView";
-            registeredPatiensDataGridView.Size = new Size(595, 362);
+            registeredPatiensDataGridView.Size = new Size(595, 364);
             registeredPatiensDataGridView.TabIndex = 5;
             // 
             // patientsLabel
@@ -236,7 +248,7 @@
             errormessageLabel.AutoSize = true;
             errormessageLabel.BackColor = Color.FromArgb(244, 244, 243);
             errormessageLabel.ForeColor = Color.Red;
-            errormessageLabel.Location = new Point(388, 219);
+            errormessageLabel.Location = new Point(389, 219);
             errormessageLabel.Name = "errormessageLabel";
             errormessageLabel.Size = new Size(35, 15);
             errormessageLabel.TabIndex = 7;
@@ -277,6 +289,7 @@
             // 
             // lnameTextBox
             // 
+            lnameTextBox.BackColor = Color.FromArgb(255, 255, 244);
             lnameTextBox.Location = new Point(23, 67);
             lnameTextBox.Name = "lnameTextBox";
             lnameTextBox.PlaceholderText = "Last Name";
@@ -285,6 +298,7 @@
             // 
             // fnameSearchTextBox
             // 
+            fnameSearchTextBox.BackColor = Color.FromArgb(255, 255, 244);
             fnameSearchTextBox.Location = new Point(23, 28);
             fnameSearchTextBox.Name = "fnameSearchTextBox";
             fnameSearchTextBox.PlaceholderText = "First Name";
@@ -336,12 +350,125 @@
             nameRadioButton.UseVisualStyleBackColor = true;
             nameRadioButton.Click += nameRadioButton_Click;
             // 
+            // routineGroupBox
+            // 
+            routineGroupBox.Controls.Add(symptomsLabel);
+            routineGroupBox.Controls.Add(routinePtNameLabel);
+            routineGroupBox.Controls.Add(routinePtIDLabel);
+            routineGroupBox.Controls.Add(symptomsTextBox);
+            routineGroupBox.Controls.Add(temperatureTextBox);
+            routineGroupBox.Controls.Add(temperatureLabel);
+            routineGroupBox.Controls.Add(pulseTextBox);
+            routineGroupBox.Controls.Add(pulseLabel);
+            routineGroupBox.Controls.Add(bloodpressureTextBox);
+            routineGroupBox.Controls.Add(bloodpressureLabel);
+            routineGroupBox.Enabled = false;
+            routineGroupBox.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            routineGroupBox.ForeColor = Color.FromArgb(255, 255, 244);
+            routineGroupBox.Location = new Point(182, 285);
+            routineGroupBox.Name = "routineGroupBox";
+            routineGroupBox.Size = new Size(593, 257);
+            routineGroupBox.TabIndex = 9;
+            routineGroupBox.TabStop = false;
+            routineGroupBox.Text = "Routine Check-Up";
+            routineGroupBox.Visible = false;
+            // 
+            // symptomsLabel
+            // 
+            symptomsLabel.AutoSize = true;
+            symptomsLabel.Location = new Point(41, 133);
+            symptomsLabel.Name = "symptomsLabel";
+            symptomsLabel.Size = new Size(69, 17);
+            symptomsLabel.TabIndex = 9;
+            symptomsLabel.Text = "Symptoms";
+            // 
+            // routinePtNameLabel
+            // 
+            routinePtNameLabel.AutoSize = true;
+            routinePtNameLabel.Location = new Point(112, 37);
+            routinePtNameLabel.Name = "routinePtNameLabel";
+            routinePtNameLabel.Size = new Size(61, 17);
+            routinePtNameLabel.TabIndex = 8;
+            routinePtNameLabel.Text = "Pt Name:";
+            // 
+            // routinePtIDLabel
+            // 
+            routinePtIDLabel.AutoSize = true;
+            routinePtIDLabel.Location = new Point(21, 37);
+            routinePtIDLabel.Name = "routinePtIDLabel";
+            routinePtIDLabel.Size = new Size(38, 17);
+            routinePtIDLabel.TabIndex = 7;
+            routinePtIDLabel.Text = "Pt ID:";
+            // 
+            // symptomsTextBox
+            // 
+            symptomsTextBox.BackColor = Color.FromArgb(255, 255, 242);
+            symptomsTextBox.ForeColor = Color.Black;
+            symptomsTextBox.Location = new Point(38, 153);
+            symptomsTextBox.Name = "symptomsTextBox";
+            symptomsTextBox.Size = new Size(506, 81);
+            symptomsTextBox.TabIndex = 6;
+            symptomsTextBox.Text = "";
+            // 
+            // temperatureTextBox
+            // 
+            temperatureTextBox.BackColor = Color.FromArgb(255, 255, 242);
+            temperatureTextBox.Location = new Point(439, 96);
+            temperatureTextBox.Name = "temperatureTextBox";
+            temperatureTextBox.Size = new Size(52, 25);
+            temperatureTextBox.TabIndex = 5;
+            temperatureTextBox.TextChanged += temperatureTextBox_TextChanged;
+            // 
+            // temperatureLabel
+            // 
+            temperatureLabel.AutoSize = true;
+            temperatureLabel.Location = new Point(439, 76);
+            temperatureLabel.Name = "temperatureLabel";
+            temperatureLabel.Size = new Size(82, 17);
+            temperatureLabel.TabIndex = 4;
+            temperatureLabel.Text = "Temperature";
+            // 
+            // pulseTextBox
+            // 
+            pulseTextBox.BackColor = Color.FromArgb(255, 255, 242);
+            pulseTextBox.Location = new Point(260, 96);
+            pulseTextBox.Name = "pulseTextBox";
+            pulseTextBox.Size = new Size(66, 25);
+            pulseTextBox.TabIndex = 3;
+            // 
+            // pulseLabel
+            // 
+            pulseLabel.AutoSize = true;
+            pulseLabel.Location = new Point(260, 76);
+            pulseLabel.Name = "pulseLabel";
+            pulseLabel.Size = new Size(38, 17);
+            pulseLabel.TabIndex = 2;
+            pulseLabel.Text = "Pulse";
+            // 
+            // bloodpressureTextBox
+            // 
+            bloodpressureTextBox.BackColor = Color.FromArgb(255, 255, 242);
+            bloodpressureTextBox.Location = new Point(76, 96);
+            bloodpressureTextBox.Name = "bloodpressureTextBox";
+            bloodpressureTextBox.Size = new Size(69, 25);
+            bloodpressureTextBox.TabIndex = 1;
+            // 
+            // bloodpressureLabel
+            // 
+            bloodpressureLabel.AutoSize = true;
+            bloodpressureLabel.Location = new Point(76, 76);
+            bloodpressureLabel.Name = "bloodpressureLabel";
+            bloodpressureLabel.Size = new Size(96, 17);
+            bloodpressureLabel.TabIndex = 0;
+            bloodpressureLabel.Text = "Blood Pressure";
+            // 
             // MainPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(40, 116, 166);
             ClientSize = new Size(779, 615);
+            Controls.Add(routineGroupBox);
             Controls.Add(searchGroupBox);
             Controls.Add(errormessageLabel);
             Controls.Add(patientsLabel);
@@ -361,6 +488,8 @@
             ((System.ComponentModel.ISupportInitialize)registeredPatiensDataGridView).EndInit();
             searchGroupBox.ResumeLayout(false);
             searchGroupBox.PerformLayout();
+            routineGroupBox.ResumeLayout(false);
+            routineGroupBox.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -390,5 +519,16 @@
         private TextBox lnameTextBox;
         private TextBox fnameSearchTextBox;
         private Button visitInformationButton;
+        private GroupBox routineGroupBox;
+        private TextBox bloodpressureTextBox;
+        private Label bloodpressureLabel;
+        private TextBox pulseTextBox;
+        private Label pulseLabel;
+        private Label temperatureLabel;
+        private RichTextBox symptomsTextBox;
+        private TextBox temperatureTextBox;
+        private Label routinePtNameLabel;
+        private Label routinePtIDLabel;
+        private Label symptomsLabel;
     }
 }
