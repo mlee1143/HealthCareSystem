@@ -57,6 +57,17 @@ namespace HealthCareSystem.View
                 doctorComboBox.SelectedValue = appointment.DoctorID;
                 apptDateTimePicker.Value = appointment.AppointmentDateTime;
                 reasonTextBox.Text = appointment.Reason;
+
+                if (appointment.AppointmentDateTime < DateTime.Now)
+                {
+                    MessageBox.Show("This appointment is in the past and cannot be edited.", "Edit Not Allowed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    patientComboBox.Enabled = false;
+                    doctorComboBox.Enabled = false;
+                    apptDateTimePicker.Enabled = false;
+                    reasonTextBox.Enabled = false;
+                    saveButton.Enabled = false;
+                }
             }
         }
 
