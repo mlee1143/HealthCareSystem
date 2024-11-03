@@ -16,8 +16,8 @@ namespace HealthCareSystem.View
     public partial class MainPage : Form
     {
         private PatientDAL patientDAL;
-        public string name { get; private set; }
-        public int id { get; private set; }
+        private string name;
+        private int id;
 
         public MainPage(int id, string name)
         {
@@ -28,10 +28,10 @@ namespace HealthCareSystem.View
             this.name = name;
 
             this.LoadPatientData();
-            this.SetNurseInfo(id, name);
+            this.setNurseInfo(id, name);
         }
 
-        public void SetNurseInfo(int nurseId, string nurseName)
+        private void setNurseInfo(int nurseId, string nurseName)
         {
             welcomeNameLabel.Text = $"Welcome, {nurseName}";
             idLabel.Text = $"Nurse ID: {nurseId}";
@@ -113,7 +113,7 @@ namespace HealthCareSystem.View
 
         private void appointmentsButton_Click(object sender, EventArgs e)
         {
-            AppointmentsPage appointments = new AppointmentsPage();
+            AppointmentsPage appointments = new AppointmentsPage(this.id, this.name);
             appointments.Show();
 
             this.Close();

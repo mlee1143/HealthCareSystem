@@ -30,8 +30,8 @@ namespace HealthCareSystem.View
 
             if (nurse != null)
             {
-                MainPage mainPage = new MainPage(nurse.NurseId, nurse.Firstname);
-                mainPage.SetNurseInfo(nurse.NurseId, $"{nurse.Firstname} {nurse.Lastname}");
+                var nurseName = nurse.Firstname + " " + nurse.Lastname;
+                MainPage mainPage = new MainPage(nurse.NurseId, nurseName);
                 mainPage.Show();
 
                 this.Hide();

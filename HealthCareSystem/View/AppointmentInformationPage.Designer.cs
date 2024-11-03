@@ -41,6 +41,8 @@
             reasonTextBox = new TextBox();
             cancelButton = new Button();
             saveButton = new Button();
+            nurseNameLabel = new Label();
+            nurseIdLabel = new Label();
             healthCareNamePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)symbolPictureBox).BeginInit();
             SuspendLayout();
@@ -81,7 +83,7 @@
             patientLabel.AutoSize = true;
             patientLabel.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
             patientLabel.ForeColor = Color.FromArgb(242, 243, 244);
-            patientLabel.Location = new Point(14, 110);
+            patientLabel.Location = new Point(14, 128);
             patientLabel.Name = "patientLabel";
             patientLabel.Size = new Size(65, 21);
             patientLabel.TabIndex = 2;
@@ -92,7 +94,7 @@
             doctorLabel.AutoSize = true;
             doctorLabel.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
             doctorLabel.ForeColor = Color.FromArgb(242, 243, 244);
-            doctorLabel.Location = new Point(292, 111);
+            doctorLabel.Location = new Point(292, 129);
             doctorLabel.Name = "doctorLabel";
             doctorLabel.Size = new Size(66, 21);
             doctorLabel.TabIndex = 3;
@@ -103,7 +105,7 @@
             DateLabel.AutoSize = true;
             DateLabel.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
             DateLabel.ForeColor = Color.FromArgb(242, 243, 244);
-            DateLabel.Location = new Point(14, 170);
+            DateLabel.Location = new Point(14, 188);
             DateLabel.Name = "DateLabel";
             DateLabel.Size = new Size(93, 21);
             DateLabel.TabIndex = 4;
@@ -124,7 +126,7 @@
             // 
             patientComboBox.BackColor = Color.FromArgb(242, 243, 244);
             patientComboBox.FormattingEnabled = true;
-            patientComboBox.Location = new Point(85, 108);
+            patientComboBox.Location = new Point(85, 126);
             patientComboBox.Name = "patientComboBox";
             patientComboBox.Size = new Size(193, 23);
             patientComboBox.TabIndex = 6;
@@ -133,7 +135,7 @@
             // 
             doctorComboBox.BackColor = Color.FromArgb(242, 243, 244);
             doctorComboBox.FormattingEnabled = true;
-            doctorComboBox.Location = new Point(364, 111);
+            doctorComboBox.Location = new Point(364, 129);
             doctorComboBox.Name = "doctorComboBox";
             doctorComboBox.Size = new Size(193, 23);
             doctorComboBox.TabIndex = 7;
@@ -144,7 +146,7 @@
             apptDateTimePicker.CustomFormat = "yyyy-MM-dd HH:mm";
             apptDateTimePicker.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
             apptDateTimePicker.Format = DateTimePickerFormat.Custom;
-            apptDateTimePicker.Location = new Point(113, 170);
+            apptDateTimePicker.Location = new Point(113, 188);
             apptDateTimePicker.Name = "apptDateTimePicker";
             apptDateTimePicker.ShowUpDown = true;
             apptDateTimePicker.Size = new Size(148, 23);
@@ -190,12 +192,36 @@
             saveButton.UseVisualStyleBackColor = true;
             saveButton.Click += saveButton_Click;
             // 
+            // nurseNameLabel
+            // 
+            nurseNameLabel.AutoSize = true;
+            nurseNameLabel.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
+            nurseNameLabel.ForeColor = Color.FromArgb(242, 243, 244);
+            nurseNameLabel.Location = new Point(14, 86);
+            nurseNameLabel.Name = "nurseNameLabel";
+            nurseNameLabel.Size = new Size(49, 19);
+            nurseNameLabel.TabIndex = 12;
+            nurseNameLabel.Text = "Name:";
+            // 
+            // nurseIdLabel
+            // 
+            nurseIdLabel.AutoSize = true;
+            nurseIdLabel.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
+            nurseIdLabel.ForeColor = Color.FromArgb(242, 243, 244);
+            nurseIdLabel.Location = new Point(193, 86);
+            nurseIdLabel.Name = "nurseIdLabel";
+            nurseIdLabel.Size = new Size(67, 19);
+            nurseIdLabel.TabIndex = 13;
+            nurseIdLabel.Text = "Nurse ID:";
+            // 
             // AppointmentInformationPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(40, 116, 166);
             ClientSize = new Size(582, 450);
+            Controls.Add(nurseIdLabel);
+            Controls.Add(nurseNameLabel);
             Controls.Add(saveButton);
             Controls.Add(cancelButton);
             Controls.Add(reasonTextBox);
@@ -232,5 +258,7 @@
         private TextBox reasonTextBox;
         private Button cancelButton;
         private Button saveButton;
+        private Label nurseNameLabel;
+        private Label nurseIdLabel;
     }
 }

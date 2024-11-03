@@ -20,34 +20,48 @@ namespace HealthCareSystem.View
         private AppointmentDAL appointmentDAL;
         private int originalPatientId;
         private DateTime originalDateTime;
+        private int nurseId;
+        private string nurseName;
 
-        public AppointmentInformationPage()
+        public AppointmentInformationPage(int nurseId, string nurseName)
         {
             InitializeComponent();
             this.doctorDAL = new DoctorDAL();
             this.patientDAL = new PatientDAL();
             this.appointmentDAL = new AppointmentDAL();
+            this.nurseId = nurseId;
+            this.nurseName = nurseName;
 
+            this.setNurseInformation();
             this.loadDoctors();
             this.loadActivePatients();
         }
 
 
-        public AppointmentInformationPage(int patientId, DateTime appointmentDateTime)
+        public AppointmentInformationPage(int nurseId, string nurseName, int patientId, DateTime appointmentDateTime)
         {
             InitializeComponent();
             this.appointmentDAL = new AppointmentDAL();
             this.doctorDAL = new DoctorDAL();
             this.patientDAL = new PatientDAL();
-            loadActivePatients();
-            loadDoctors();
-
+            this.nurseId = nurseId;
+            this.nurseName = nurseName;
             this.originalPatientId = patientId;
             this.originalDateTime = appointmentDateTime;
-            LoadAppointmentData();
+
+            this.setNurseInformation();
+            this.loadActivePatients();
+            this.loadDoctors();
+            this.loadAppointmentData();
         }
 
-        private void LoadAppointmentData()
+        private void setNurseInformation()
+        {
+            nurseNameLabel.Text = $"Name: {this.nurseName}";
+            nurseIdLabel.Text = $"Nurse ID: {this.nurseId}";
+        }
+
+        private void loadAppointmentData()
         {
             var appointment = appointmentDAL.GetAppointment(this.originalPatientId, this.originalDateTime);
 
@@ -73,7 +87,7 @@ namespace HealthCareSystem.View
 
         private void cancelButton_Click(object sender, EventArgs e)
         {
-            AppointmentsPage appointments = new AppointmentsPage();
+            AppointmentsPage appointments = new AppointmentsPage(this.nurseId, this.nurseName);
             appointments.Show();
 
             this.Close();
@@ -123,7 +137,7 @@ namespace HealthCareSystem.View
 
                     if (updateExistingAppointment(this.originalPatientId, this.originalDateTime, appointment))
                     {
-                        AppointmentsPage appointments = new AppointmentsPage();
+                        AppointmentsPage appointments = new AppointmentsPage(this.nurseId, this.nurseName);
                         appointments.Show();
                         this.Close();
                     }
@@ -137,7 +151,7 @@ namespace HealthCareSystem.View
 
                     if (insertNewAppointment(appointment))
                     {
-                        AppointmentsPage appointments = new AppointmentsPage();
+                        AppointmentsPage appointments = new AppointmentsPage(this.nurseId, this.nurseName);
                         appointments.Show();
                         this.Close();
                     }

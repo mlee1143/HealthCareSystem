@@ -15,18 +15,22 @@ namespace HealthCareSystem.View
     public partial class AppointmentsPage : Form
     {
         private AppointmentDAL appointmentDAL;
+        private int nurseID;
+        private string nurseName;
 
-        public AppointmentsPage()
+        public AppointmentsPage(int nurseId, string nurseName)
         {
             InitializeComponent();
             this.appointmentDAL = new AppointmentDAL();
+            this.nurseID = nurseId;
+            this.nurseName = nurseName;
 
             this.loadAppointments();
         }
 
         private void newAppointmentButton_Click(object sender, EventArgs e)
         {
-            AppointmentInformationPage appointmentInformationPage = new AppointmentInformationPage();
+            AppointmentInformationPage appointmentInformationPage = new AppointmentInformationPage(this.nurseID, this.nurseName);
             appointmentInformationPage.Show();
 
             this.Close();
@@ -34,7 +38,7 @@ namespace HealthCareSystem.View
 
         private void backToMainButton_Click(object sender, EventArgs e)
         {
-            MainPage mainPage = new MainPage(0, "cobra");
+            MainPage mainPage = new MainPage(this.nurseID, this.nurseName);
             mainPage.Show();
 
             this.Close();
@@ -42,6 +46,8 @@ namespace HealthCareSystem.View
 
         private void loadAppointments()
         {
+            nurseNameLabel.Text = $"Name: {this.nurseName}";
+            nurseIdLabel.Text = $"Nurse ID: {this.nurseID}";
             List<Appointment> appointments = this.appointmentDAL.getAllAppointments();
             //appointmentsDataGridView.DataSource = appointments;
 
@@ -66,7 +72,7 @@ namespace HealthCareSystem.View
                 int patientId = (int)appointmentsDataGridView.SelectedRows[0].Cells["PatientId"].Value;
                 DateTime appointmentDateTime = (DateTime)appointmentsDataGridView.SelectedRows[0].Cells["AppointmentDateTime"].Value;
 
-                AppointmentInformationPage editPage = new AppointmentInformationPage(patientId, appointmentDateTime);
+                AppointmentInformationPage editPage = new AppointmentInformationPage(this.nurseID, this.nurseName, patientId, appointmentDateTime);
                 editPage.Show();
 
                 this.Close();
