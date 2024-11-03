@@ -74,13 +74,11 @@ namespace HealthCareSystem.DAL
                 connection.Open();
 
                 string query = "SELECT COUNT(*) FROM appointment WHERE patient_id = @patientId " +
-                               "AND doctor_id = @doctorId " +
                                "AND DATE_FORMAT(appointment_datetime, '%Y-%m-%d %H:%i') = DATE_FORMAT(@appointmentDateTime, '%Y-%m-%d %H:%i')";
 
                 using (var cmd = new MySqlCommand(query, connection))
                 {
                     cmd.Parameters.AddWithValue("@patientId", appointment.PatientID);
-                    cmd.Parameters.AddWithValue("@doctorId", appointment.DoctorID);
                     cmd.Parameters.AddWithValue("@appointmentDateTime", appointment.AppointmentDateTime.ToString("yyyy-MM-dd HH:mm"));
 
                     int count = Convert.ToInt32(cmd.ExecuteScalar());
@@ -89,20 +87,30 @@ namespace HealthCareSystem.DAL
             }
         }
 
-        public bool DoctorAppointmentExists(int doctorId, DateTime appointmentDateTime)
+        public bool DoctorAppointmentExists(int doctorId, DateTime appointmentDateTime, int? excludePatientId = null, DateTime? excludeDateTime = null)
         {
             using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
             {
                 connection.Open();
 
-                
                 string query = "SELECT COUNT(*) FROM appointment WHERE doctor_id = @doctorId " +
                                "AND DATE_FORMAT(appointment_datetime, '%Y-%m-%d %H:%i') = DATE_FORMAT(@appointmentDateTime, '%Y-%m-%d %H:%i')";
+
+                if (excludePatientId.HasValue && excludeDateTime.HasValue)
+                {
+                    query += " AND NOT (patient_id = @excludePatientId AND DATE_FORMAT(appointment_datetime, '%Y-%m-%d %H:%i') = DATE_FORMAT(@excludeDateTime, '%Y-%m-%d %H:%i'))";
+                }
 
                 using (var cmd = new MySqlCommand(query, connection))
                 {
                     cmd.Parameters.AddWithValue("@doctorId", doctorId);
-                    cmd.Parameters.AddWithValue("@appointmentDateTime", appointmentDateTime.ToString("yyyy-MM-dd HH:mm"));
+                    cmd.Parameters.AddWithValue("@appointmentDateTime", appointmentDateTime);
+
+                    if (excludePatientId.HasValue && excludeDateTime.HasValue)
+                    {
+                        cmd.Parameters.AddWithValue("@excludePatientId", excludePatientId.Value);
+                        cmd.Parameters.AddWithValue("@excludeDateTime", excludeDateTime.Value.ToString("yyyy-MM-dd HH:mm"));
+                    }
 
                     int count = Convert.ToInt32(cmd.ExecuteScalar());
                     return count > 0;
@@ -141,29 +149,28 @@ namespace HealthCareSystem.DAL
             return null;
         }
 
-        public bool UpdateAppointment(int patientId, int doctorId, DateTime originalDateTime, DateTime newDateTime, string reason)
+        public bool UpdateAppointment(int originalPatientId, DateTime originalDateTime, Appointment appointment)
         {
             using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
             {
                 connection.Open();
 
-                string query = "UPDATE appointment SET doctor_id = @doctorId, appointment_datetime = @newDateTime, reason = @reason " +
-                               "WHERE patient_id = @patientId AND appointment_datetime = @originalDateTime";
+                string query = "UPDATE appointment SET patient_id = @newPatientId, doctor_id = @doctorId, " +
+                               "appointment_datetime = @newDateTime, reason = @reason " +
+                               "WHERE patient_id = @originalPatientId AND appointment_datetime = @originalDateTime";
 
                 using (var cmd = new MySqlCommand(query, connection))
                 {
-                    cmd.Parameters.AddWithValue("@patientId", patientId);
-                    cmd.Parameters.AddWithValue("@doctorId", doctorId);
+                    cmd.Parameters.AddWithValue("@originalPatientId", originalPatientId);
+                    cmd.Parameters.AddWithValue("@newPatientId", appointment.PatientID);
+                    cmd.Parameters.AddWithValue("@doctorId", appointment.DoctorID);
                     cmd.Parameters.AddWithValue("@originalDateTime", originalDateTime);
-                    cmd.Parameters.AddWithValue("@newDateTime", newDateTime);
-                    cmd.Parameters.AddWithValue("@reason", reason);
+                    cmd.Parameters.AddWithValue("@newDateTime", appointment.AppointmentDateTime);
+                    cmd.Parameters.AddWithValue("@reason", appointment.Reason);
 
                     return cmd.ExecuteNonQuery() > 0;
                 }
             }
         }
-
-
-
     }
 }

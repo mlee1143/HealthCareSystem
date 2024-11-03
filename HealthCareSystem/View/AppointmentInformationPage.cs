@@ -18,7 +18,7 @@ namespace HealthCareSystem.View
         private DoctorDAL doctorDAL;
         private PatientDAL patientDAL;
         private AppointmentDAL appointmentDAL;
-        private int patientId;
+        private int originalPatientId;
         private DateTime originalDateTime;
 
         public AppointmentInformationPage()
@@ -42,14 +42,14 @@ namespace HealthCareSystem.View
             loadActivePatients();
             loadDoctors();
 
-            this.patientId = patientId;
+            this.originalPatientId = patientId;
             this.originalDateTime = appointmentDateTime;
             LoadAppointmentData();
         }
 
         private void LoadAppointmentData()
         {
-            var appointment = appointmentDAL.GetAppointment(patientId, originalDateTime);
+            var appointment = appointmentDAL.GetAppointment(this.originalPatientId, this.originalDateTime);
 
             if (appointment != null)
             {
@@ -97,31 +97,34 @@ namespace HealthCareSystem.View
 
             try
             {
-                int patientId = (int)patientComboBox.SelectedValue;
+                int newPatientId = (int)patientComboBox.SelectedValue;
                 int doctorId = (int)doctorComboBox.SelectedValue;
-                DateTime appointmentDateTime = apptDateTimePicker.Value;
+                DateTime newDateTime = apptDateTimePicker.Value;
                 string reason = reasonTextBox.Text;
-                Appointment newAppointment = new Appointment(patientId, doctorId, appointmentDateTime, reason);
+                Appointment appointment = new Appointment(newPatientId, doctorId, newDateTime, reason);
 
-                // Check for double booking in both new and edit modes
-                if (IsDoctorDoubleBooked(doctorId, appointmentDateTime))
+                if (this.originalDateTime != DateTime.MinValue)
                 {
-                    return;
-                }
+                    if (isDoctorDoubleBooked(doctorId, newDateTime, this.originalPatientId, this.originalDateTime))
+                    {
+                        return;
+                    }
 
-                // Distinguish between new and edit modes
-                if (originalDateTime == DateTime.MinValue) // New appointment
-                {
-                    if (InsertNewAppointment(newAppointment))
+                    if (updateExistingAppointment(this.originalPatientId, this.originalDateTime, appointment))
                     {
                         AppointmentsPage appointments = new AppointmentsPage();
                         appointments.Show();
                         this.Close();
                     }
                 }
-                else // Edit mode
+                else
                 {
-                    if (UpdateExistingAppointment(newAppointment))
+                    if (isDoctorDoubleBooked(doctorId, newDateTime))
+                    {
+                        return;
+                    }
+
+                    if (insertNewAppointment(appointment))
                     {
                         AppointmentsPage appointments = new AppointmentsPage();
                         appointments.Show();
@@ -135,9 +138,9 @@ namespace HealthCareSystem.View
             }
         }
 
-        private bool IsDoctorDoubleBooked(int doctorId, DateTime appointmentDateTime)
+        private bool isDoctorDoubleBooked(int doctorId, DateTime appointmentDateTime, int? excludePatientId = null, DateTime? excludeDateTime = null)
         {
-            if (appointmentDAL.DoctorAppointmentExists(doctorId, appointmentDateTime))
+            if (appointmentDAL.DoctorAppointmentExists(doctorId, appointmentDateTime, excludePatientId, excludeDateTime))
             {
                 MessageBox.Show("This doctor is already booked at the selected date and time. Please choose a different time.");
                 return true;
@@ -145,7 +148,8 @@ namespace HealthCareSystem.View
             return false;
         }
 
-        private bool InsertNewAppointment(Appointment newAppointment)
+
+        private bool insertNewAppointment(Appointment newAppointment)
         {
             if (appointmentDAL.AppointmentExists(newAppointment))
             {
@@ -166,15 +170,12 @@ namespace HealthCareSystem.View
             }
         }
 
-        private bool UpdateExistingAppointment(Appointment updatedAppointment)
+        private bool updateExistingAppointment(int originalPatientId, DateTime originalDateTime, Appointment updatedAppointment)
         {
-            // Logic for updating the appointment
             bool success = appointmentDAL.UpdateAppointment(
-                updatedAppointment.PatientID,
-                updatedAppointment.DoctorID,
-                originalDateTime,  // Original date/time for identifying the record
-                updatedAppointment.AppointmentDateTime,
-                updatedAppointment.Reason
+                originalPatientId,
+                originalDateTime,
+                updatedAppointment
             );
 
             if (success)
