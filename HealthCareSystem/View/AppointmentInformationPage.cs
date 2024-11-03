@@ -103,36 +103,89 @@ namespace HealthCareSystem.View
                 string reason = reasonTextBox.Text;
                 Appointment newAppointment = new Appointment(patientId, doctorId, appointmentDateTime, reason);
 
-                if (appointmentDAL.AppointmentExists(newAppointment))
+                // Check for double booking in both new and edit modes
+                if (IsDoctorDoubleBooked(doctorId, appointmentDateTime))
                 {
-                    MessageBox.Show("This appointment already exists. Please select a different date or time.");
                     return;
                 }
 
-                if (appointmentDAL.DoctorAppointmentExists(doctorId, appointmentDateTime))
+                // Distinguish between new and edit modes
+                if (originalDateTime == DateTime.MinValue) // New appointment
                 {
-                    MessageBox.Show("This doctor is already booked at the selected date and time. Please choose a different time.");
-                    return;
+                    if (InsertNewAppointment(newAppointment))
+                    {
+                        AppointmentsPage appointments = new AppointmentsPage();
+                        appointments.Show();
+                        this.Close();
+                    }
                 }
-
-                bool success = appointmentDAL.InsertAppointment(newAppointment);
-
-                if (success)
+                else // Edit mode
                 {
-                    MessageBox.Show("Appointment created successfully.");
-                    AppointmentsPage appointments = new AppointmentsPage();
-                    appointments.Show();
-
-                    this.Close();
-                }
-                else
-                {
-                    MessageBox.Show("Failed to create the appointment. Please try again.");
+                    if (UpdateExistingAppointment(newAppointment))
+                    {
+                        AppointmentsPage appointments = new AppointmentsPage();
+                        appointments.Show();
+                        this.Close();
+                    }
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"An error occurred: {ex.Message}");
+            }
+        }
+
+        private bool IsDoctorDoubleBooked(int doctorId, DateTime appointmentDateTime)
+        {
+            if (appointmentDAL.DoctorAppointmentExists(doctorId, appointmentDateTime))
+            {
+                MessageBox.Show("This doctor is already booked at the selected date and time. Please choose a different time.");
+                return true;
+            }
+            return false;
+        }
+
+        private bool InsertNewAppointment(Appointment newAppointment)
+        {
+            if (appointmentDAL.AppointmentExists(newAppointment))
+            {
+                MessageBox.Show("This appointment already exists. Please select a different date or time.");
+                return false;
+            }
+
+            bool success = appointmentDAL.InsertAppointment(newAppointment);
+            if (success)
+            {
+                MessageBox.Show("Appointment created successfully.");
+                return true;
+            }
+            else
+            {
+                MessageBox.Show("Failed to create the appointment. Please try again.");
+                return false;
+            }
+        }
+
+        private bool UpdateExistingAppointment(Appointment updatedAppointment)
+        {
+            // Logic for updating the appointment
+            bool success = appointmentDAL.UpdateAppointment(
+                updatedAppointment.PatientID,
+                updatedAppointment.DoctorID,
+                originalDateTime,  // Original date/time for identifying the record
+                updatedAppointment.AppointmentDateTime,
+                updatedAppointment.Reason
+            );
+
+            if (success)
+            {
+                MessageBox.Show("Appointment updated successfully.");
+                return true;
+            }
+            else
+            {
+                MessageBox.Show("Failed to update the appointment. Please try again.");
+                return false;
             }
         }
     }

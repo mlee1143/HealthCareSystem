@@ -8,13 +8,13 @@ namespace HealthCareSystem.Model
 {
     public class Appointment
     {
-        public int? PatientID { get; set; }
+        public int PatientID { get; set; }
 
-        public int? DoctorID { get; set; }
+        public int DoctorID { get; set; }
 
         public DateTime AppointmentDateTime { get; set; }
 
-        public string? Reason { get; set; }
+        public string Reason { get; set; }
 
         public Appointment(int patientId, int doctorId, DateTime appointmentDateTime, string reason) 
         {
