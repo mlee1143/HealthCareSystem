@@ -195,7 +195,7 @@ namespace HealthCareSystem.View
 
         private void visitInformationButton_Click(object sender, EventArgs e)
         {
-            
+
             if (this.registeredPatiensDataGridView.Visible)
             {
                 this.registeredPatiensDataGridView.Visible = false;
@@ -238,6 +238,7 @@ namespace HealthCareSystem.View
 
         private void temperatureTextBox_TextChanged(object sender, EventArgs e)
         {
+        }
 
         private void appointmentsButton_Click(object sender, EventArgs e)
         {
@@ -247,4 +248,5 @@ namespace HealthCareSystem.View
             this.Close();
         }
     }
+    
 }
