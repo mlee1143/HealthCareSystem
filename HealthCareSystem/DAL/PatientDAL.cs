@@ -214,32 +214,28 @@ namespace HealthCareSystem.DAL
             return null;
         }
 
-        public async Task<List<Patient>> GetPatientsByName(string firstName,  string lastName)
+        public List<Patient> GetActivePatients()
         {
-            var patients = new List<Patient>();
+            List<Patient> activePatients = new List<Patient>();
 
             using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
             {
-                await connection.OpenAsync();
+                connection.Open();
+                string query = "SELECT * FROM patient WHERE active = 1";
 
-                string query = "SELECT * FROM patient WHERE fname = @fname AND lname = @lname";
-
-                using (var command = new MySqlCommand(query, connection))
+                using (var cmd = new MySqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@fname", firstName);
-                    command.Parameters.AddWithValue("@lname", lastName);
-
-                    using (var reader = await command.ExecuteReaderAsync())
+                    using (var reader = cmd.ExecuteReader())
                     {
-                        while (await reader.ReadAsync())
+                        while (reader.Read())
                         {
                             Patient patient = new Patient(
-                               reader["fname"].ToString(),
-                               reader["lname"].ToString(),
-                               Convert.ToDateTime(reader["bdate"]),
-                               (Gender)Enum.Parse(typeof(Gender), reader["gender"].ToString()),
-                               Convert.ToInt32(reader["active"])
-                           )
+                                reader["fname"].ToString(),
+                                reader["lname"].ToString(),
+                                Convert.ToDateTime(reader["bdate"]),
+                                (Gender)Enum.Parse(typeof(Gender), reader["gender"].ToString()),
+                                Convert.ToInt32(reader["active"])
+                            )
                             {
                                 PatientId = Convert.ToInt32(reader["patient_id"]),
                                 MiddleInitial = reader["minitial"].ToString(),
@@ -251,107 +247,15 @@ namespace HealthCareSystem.DAL
                                 PhoneNumber = reader["phone_number"].ToString()
                             };
 
-                            patients.Add(patient);
+                            activePatients.Add(patient);
                         }
                     }
                 }
             }
-            return patients;
+
+            return activePatients;
         }
 
-        public async Task<List<Patient>> GetPatientsByBirthdate(DateTime dob)
-        {
-            var patients = new List<Patient>();
 
-            var bdate = dob.ToString("yyyy-MM-dd");
-
-            using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
-            {
-                await connection.OpenAsync();
-
-                string query = "SELECT * FROM patient WHERE bdate = @bdate";
-
-                using (var command = new MySqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@bdate", bdate);
-
-                    using (var reader = await command.ExecuteReaderAsync())
-                    {
-                        while (await reader.ReadAsync())
-                        {
-                            Patient patient = new Patient(
-                               reader["fname"].ToString(),
-                               reader["lname"].ToString(),
-                               Convert.ToDateTime(reader["bdate"]),
-                               (Gender)Enum.Parse(typeof(Gender), reader["gender"].ToString()),
-                               Convert.ToInt32(reader["active"])
-                           )
-                            {
-                                PatientId = Convert.ToInt32(reader["patient_id"]),
-                                MiddleInitial = reader["minitial"].ToString(),
-                                Address = reader["address"].ToString(),
-                                City = reader["city"].ToString(),
-                                State = (States?)Enum.Parse(typeof(States), reader["state"].ToString()),
-                                Country = reader["country"].ToString(),
-                                ZipCode = reader["zipcode"] != DBNull.Value ? Convert.ToInt32(reader["zipcode"]) : (int?)null,
-                                PhoneNumber = reader["phone_number"].ToString()
-                            };
-
-                            patients.Add(patient);
-                        }
-                    }
-                }
-            }
-            return patients;
-        }
-
-        public async Task<List<Patient>> GetPatientsByNameAndBirthdate(string firstname, string lastname, DateTime dob)
-        {
-            var patients = new List<Patient>();
-
-            var bdate = dob.ToString("yyyy-MM-dd");
-
-            using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
-            {
-                await connection.OpenAsync();
-
-                string query = "SELECT * FROM patient WHERE fname = @fname AND lname = @lname AND bdate = @bdate";
-
-                using (var command = new MySqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@fname", firstname);
-                    command.Parameters.AddWithValue("@lname", lastname);
-                    command.Parameters.AddWithValue("@bdate", bdate);
-
-                    using (var reader = await command.ExecuteReaderAsync())
-                    {
-                        while (await reader.ReadAsync())
-                        {
-                            Patient patient = new Patient(
-                              reader["fname"].ToString(),
-                              reader["lname"].ToString(),
-                              Convert.ToDateTime(reader["bdate"]),
-                              (Gender)Enum.Parse(typeof(Gender), reader["gender"].ToString()),
-                              Convert.ToInt32(reader["active"])
-                          )
-                            {
-                                PatientId = Convert.ToInt32(reader["patient_id"]),
-                                MiddleInitial = reader["minitial"].ToString(),
-                                Address = reader["address"].ToString(),
-                                City = reader["city"].ToString(),
-                                State = (States?)Enum.Parse(typeof(States), reader["state"].ToString()),
-                                Country = reader["country"].ToString(),
-                                ZipCode = reader["zipcode"] != DBNull.Value ? Convert.ToInt32(reader["zipcode"]) : (int?)null,
-                                PhoneNumber = reader["phone_number"].ToString()
-                            };
-
-                            patients.Add(patient);
-                        }
-                    }
-                }
-            }
-            return patients;
-        }
- 
     }
 }
