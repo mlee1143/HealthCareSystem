@@ -15,6 +15,7 @@ namespace HealthCareSystem.View
     public partial class AppointmentsPage : Form
     {
         private AppointmentDAL appointmentDAL;
+        private PatientDAL patientDAL;
 
         private Nurse nurse;
 
@@ -22,6 +23,7 @@ namespace HealthCareSystem.View
         {
             InitializeComponent();
             this.appointmentDAL = new AppointmentDAL();
+            this.patientDAL = new PatientDAL();
 
             this.nurse = nurse;
 
@@ -135,6 +137,66 @@ namespace HealthCareSystem.View
                 this.searchGroupBox.Visible = true;
                 this.nurseNameLabel.Visible = false;
                 this.nurseIdLabel.Visible = false;
+            }
+        }
+
+        private async void appointmentSearchButton_Click(object sender, EventArgs e)
+        {
+            if (this.nameRadioButton.Checked) // Condense this part PH
+            {
+                //Patient patient = await patientDAL
+                List<Appointment> appointments = appointmentDAL.getAllAppointments();
+
+                appointmentsDataGridView.Columns.Clear();
+                appointmentsDataGridView.Columns.Add("PatientID", "Patient ID");
+                appointmentsDataGridView.Columns.Add("DoctorID", "Doctor ID");
+                appointmentsDataGridView.Columns.Add("AppointmentDateTime", "Date/Time");
+
+                appointmentsDataGridView.Rows.Clear();
+
+
+                foreach (var appointment in appointments)
+                {
+                    appointmentsDataGridView.Rows.Add(appointment.PatientID, appointment.DoctorID, appointment.AppointmentDateTime);
+                }
+            }
+            else if (this.appointmentDateRadioButton.Checked)
+            {
+                List<Appointment> appointments =  appointmentDAL.getAllAppointments();
+
+                appointmentsDataGridView.Columns.Clear();
+                appointmentsDataGridView.Columns.Add("PatientID", "Patient ID");
+                appointmentsDataGridView.Columns.Add("DoctorID", "Doctor ID");
+                appointmentsDataGridView.Columns.Add("AppointmentDateTime", "Date/Time");
+
+                appointmentsDataGridView.Rows.Clear();
+
+
+                foreach (var appointment in appointments)
+                {
+                    appointmentsDataGridView.Rows.Add(appointment.PatientID, appointment.DoctorID, appointment.AppointmentDateTime);
+                }
+            }
+            else if (this.bothRadioButton.Checked)
+            {
+                List<Appointment> appointments = appointmentDAL.getAllAppointments();
+
+                appointmentsDataGridView.Columns.Clear();
+                appointmentsDataGridView.Columns.Add("PatientID", "Patient ID");
+                appointmentsDataGridView.Columns.Add("DoctorID", "Doctor ID");
+                appointmentsDataGridView.Columns.Add("AppointmentDateTime", "Date/Time");
+
+                appointmentsDataGridView.Rows.Clear();
+
+
+                foreach (var appointment in appointments)
+                {
+                    appointmentsDataGridView.Rows.Add(appointment.PatientID, appointment.DoctorID, appointment.AppointmentDateTime);
+                }
+            }
+            else
+            {
+                this.errorLabel.Text = "No criteria selected."; // Maybe change to search being disabled
             }
         }
     }

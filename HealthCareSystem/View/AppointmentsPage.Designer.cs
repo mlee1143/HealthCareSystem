@@ -32,6 +32,7 @@
             healthCareNameLabel = new Label();
             symbolPictureBox = new PictureBox();
             appointmentsButtonPanel = new Panel();
+            searchButton = new Button();
             visitInformationButton = new Button();
             backToMainButton = new Button();
             editAppointment = new Button();
@@ -49,7 +50,6 @@
             bothRadioButton = new RadioButton();
             appointmentDateRadioButton = new RadioButton();
             nameRadioButton = new RadioButton();
-            searchButton = new Button();
             healthCareNamePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)symbolPictureBox).BeginInit();
             appointmentsButtonPanel.SuspendLayout();
@@ -100,6 +100,21 @@
             appointmentsButtonPanel.Name = "appointmentsButtonPanel";
             appointmentsButtonPanel.Size = new Size(160, 429);
             appointmentsButtonPanel.TabIndex = 2;
+            // 
+            // searchButton
+            // 
+            searchButton.BackColor = Color.FromArgb(255, 255, 244);
+            searchButton.FlatAppearance.BorderSize = 0;
+            searchButton.FlatStyle = FlatStyle.Flat;
+            searchButton.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            searchButton.ForeColor = Color.Black;
+            searchButton.Location = new Point(0, 156);
+            searchButton.Name = "searchButton";
+            searchButton.Size = new Size(160, 53);
+            searchButton.TabIndex = 11;
+            searchButton.Text = "Search for Appt.";
+            searchButton.UseVisualStyleBackColor = false;
+            searchButton.Click += searchButton_Click;
             // 
             // visitInformationButton
             // 
@@ -248,6 +263,7 @@
             appointmentSearchButton.TabIndex = 6;
             appointmentSearchButton.Text = "Search";
             appointmentSearchButton.UseVisualStyleBackColor = false;
+            appointmentSearchButton.Click += appointmentSearchButton_Click;
             // 
             // lnameTextBox
             // 
@@ -308,21 +324,6 @@
             nameRadioButton.TabStop = true;
             nameRadioButton.Text = "Name";
             nameRadioButton.UseVisualStyleBackColor = true;
-            // 
-            // searchButton
-            // 
-            searchButton.BackColor = Color.FromArgb(255, 255, 244);
-            searchButton.FlatAppearance.BorderSize = 0;
-            searchButton.FlatStyle = FlatStyle.Flat;
-            searchButton.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            searchButton.ForeColor = Color.Black;
-            searchButton.Location = new Point(0, 156);
-            searchButton.Name = "searchButton";
-            searchButton.Size = new Size(160, 53);
-            searchButton.TabIndex = 11;
-            searchButton.Text = "Search for Appt.";
-            searchButton.UseVisualStyleBackColor = false;
-            searchButton.Click += searchButton_Click;
             // 
             // AppointmentsPage
             // 

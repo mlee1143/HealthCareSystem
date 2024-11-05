@@ -120,7 +120,24 @@ namespace HealthCareSystem.View
 
         private void submitButton_Click(object sender, EventArgs e)
         {
+            Visit visit = new Visit(this.appointment, Convert.ToDouble(this.weightTextbox.Text), Convert.ToDouble(this.heightTextbox.Text), this.bloodpressureTextBox.Text)
+            {
+                Nurse = this.nurse,
+                Pulse = this.pulseTextbox.Text.Trim(),
+                Temperature = Convert.ToDouble(this.temperatureTextbox.Text.Trim()),
+                InitialDiagnosis = this.diagnosisTextbox.Text.Trim(),
+                SymptomsDescription = this.symptomsTextbox.Text.Trim()
+            };
 
+            if (visitDAL.InsertVisitInformation(visit))
+            {
+                AppointmentsPage apps = new AppointmentsPage(this.nurse);
+                apps.Show();
+                this.Close();
+            } else
+            {
+                errorLabel.Text = "Could not insert visit information";
+            }
         }
 
         private void back_btn_Click(object sender, EventArgs e)
@@ -128,6 +145,11 @@ namespace HealthCareSystem.View
             AppointmentsPage appointmentsPage = new AppointmentsPage(this.nurse);
             appointmentsPage.Show();
             this.Close();
+        }
+
+        private bool CheckIfAllFieldsAreCompleted()
+        {
+            return true;
         }
     }
 }
