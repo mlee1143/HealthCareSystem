@@ -2,7 +2,9 @@
 using MySqlConnector;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -86,14 +88,12 @@ namespace HealthCareSystem.DAL
                     int affected = await command.ExecuteNonQueryAsync();
                     return affected > 1;
                 }
-
-                
             }
         }
 
         public async Task<bool> UpdatePatientInformation(Patient patient)
         {
-            using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
+            using (var connection = new MySqlConnection(databaseConnection.GetConnectionString())) // FIX to update names too. BOTH Updates
             {
                 await connection.OpenAsync();
 
@@ -140,13 +140,16 @@ namespace HealthCareSystem.DAL
                 await connection.OpenAsync();
 
                 string query = "UPDATE patient " +
-                       "SET minitial = @minitial, " +
+                       "SET fname = @fname, " +
+                       "minitial = @minitial, " +
+                       "lname = @lname, " +
                         "gender = @gender, " +
                         "address = @address, " +
                         "city = @city, " +
                         "state = @state, " +
                         "country = @country, " +
                         "zipcode = @zipcode, " +
+                        "bdate = @bdate, " +
                         "phone_number = @phone_number, " +
                         "active = @active " +
                        "WHERE patient_id = @id;";
@@ -154,9 +157,9 @@ namespace HealthCareSystem.DAL
                 using (var command = new MySqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@id", patient.PatientId); 
-                    //command.Parameters.AddWithValue("@fname", patient.Firstname);
-                    //command.Parameters.AddWithValue("@lname", patient.Lastname);
-                    //command.Parameters.AddWithValue("@bdate", patient.Birthdate);
+                    command.Parameters.AddWithValue("@fname", patient.Firstname);
+                    command.Parameters.AddWithValue("@lname", patient.Lastname);
+                    command.Parameters.AddWithValue("@bdate", patient.Birthdate);
 
                     command.Parameters.AddWithValue("@minitial", patient.MiddleInitial);
                     command.Parameters.AddWithValue("@gender", patient.Gender.ToString());
@@ -190,7 +193,6 @@ namespace HealthCareSystem.DAL
                     {
                         if (reader.Read())
                         {
-                            string? active = reader["active"].ToString();
                             return new Patient(
                                 reader["fname"].ToString(),
                                 reader["lname"].ToString(),
@@ -254,6 +256,169 @@ namespace HealthCareSystem.DAL
             }
 
             return activePatients;
+        }
+
+        public async Task<List<Patient>> GetPatientsByName(string firstName, string lastName)
+        {
+            var patients = new List<Patient>();
+
+            using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
+            {
+                await connection.OpenAsync();
+
+                string query = "SELECT * FROM patient WHERE fname = @fname AND lname = @lname";
+
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@fname", firstName);
+                    command.Parameters.AddWithValue("@lname", lastName);
+
+                    using (var reader = await command.ExecuteReaderAsync())
+                    {
+                        while (await reader.ReadAsync())
+                        {
+                            Patient patient = new Patient(
+                               reader["fname"].ToString(),
+                               reader["lname"].ToString(),
+                               Convert.ToDateTime(reader["bdate"]),
+                               (Gender)Enum.Parse(typeof(Gender), reader["gender"].ToString()),
+                               Convert.ToInt32(reader["active"])
+                           )
+                            {
+                                PatientId = Convert.ToInt32(reader["patient_id"]),
+                                MiddleInitial = reader["minitial"].ToString(),
+                                Address = reader["address"].ToString(),
+                                City = reader["city"].ToString(),
+                                State = (States?)Enum.Parse(typeof(States), reader["state"].ToString()),
+                                Country = reader["country"].ToString(),
+                                ZipCode = reader["zipcode"] != DBNull.Value ? Convert.ToInt32(reader["zipcode"]) : (int?)null,
+                                PhoneNumber = reader["phone_number"].ToString()
+                            };
+
+                            patients.Add(patient);
+                        }
+                    }
+                }
+            }
+            return patients;
+        }
+
+        public async Task<List<Patient>> GetPatientsByBirthdate(DateTime dob)
+        {
+            var patients = new List<Patient>();
+
+            var bdate = dob.ToString("yyyy-MM-dd");
+
+            using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
+            {
+                await connection.OpenAsync();
+
+                string query = "SELECT * FROM patient WHERE bdate = @bdate";
+
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@bdate", bdate);
+
+                    using (var reader = await command.ExecuteReaderAsync())
+                    {
+                        while (await reader.ReadAsync())
+                        {
+                            Patient patient = new Patient(
+                               reader["fname"].ToString(),
+                               reader["lname"].ToString(),
+                               Convert.ToDateTime(reader["bdate"]),
+                               (Gender)Enum.Parse(typeof(Gender), reader["gender"].ToString()),
+                               Convert.ToInt32(reader["active"])
+                           )
+                            {
+                                PatientId = Convert.ToInt32(reader["patient_id"]),
+                                MiddleInitial = reader["minitial"].ToString(),
+                                Address = reader["address"].ToString(),
+                                City = reader["city"].ToString(),
+                                State = (States?)Enum.Parse(typeof(States), reader["state"].ToString()),
+                                Country = reader["country"].ToString(),
+                                ZipCode = reader["zipcode"] != DBNull.Value ? Convert.ToInt32(reader["zipcode"]) : (int?)null,
+                                PhoneNumber = reader["phone_number"].ToString()
+                            };
+
+                            patients.Add(patient);
+                        }
+                    }
+                }
+            }
+            return patients;
+        }
+
+        public async Task<List<Patient>> GetPatientsByNameAndBirthdate(string firstname, string lastname, DateTime dob)
+        {
+            var patients = new List<Patient>();
+
+            var bdate = dob.ToString("yyyy-MM-dd");
+
+            using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
+            {
+                await connection.OpenAsync();
+
+                string query = "SELECT * FROM patient WHERE fname = @fname AND lname = @lname AND bdate = @bdate";
+
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@fname", firstname);
+                    command.Parameters.AddWithValue("@lname", lastname);
+                    command.Parameters.AddWithValue("@bdate", bdate);
+
+                    using (var reader = await command.ExecuteReaderAsync())
+                    {
+                        while (await reader.ReadAsync())
+                        {
+                            Patient patient = new Patient(
+                              reader["fname"].ToString(),
+                              reader["lname"].ToString(),
+                              Convert.ToDateTime(reader["bdate"]),
+                              (Gender)Enum.Parse(typeof(Gender), reader["gender"].ToString()),
+                              Convert.ToInt32(reader["active"])
+                          )
+                            {
+                                PatientId = Convert.ToInt32(reader["patient_id"]),
+                                MiddleInitial = reader["minitial"].ToString(),
+                                Address = reader["address"].ToString(),
+                                City = reader["city"].ToString(),
+                                State = (States?)Enum.Parse(typeof(States), reader["state"].ToString()),
+                                Country = reader["country"].ToString(),
+                                ZipCode = reader["zipcode"] != DBNull.Value ? Convert.ToInt32(reader["zipcode"]) : (int?)null,
+                                PhoneNumber = reader["phone_number"].ToString()
+                            };
+
+                            patients.Add(patient);
+                        }
+                    }
+                }
+            }
+            return patients;
+        }
+
+        public string GetPatientNameFromPatientID(int id)
+        {
+            using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
+            {
+                connection.Open();
+
+                string query = "SELECT fname, lname FROM patient WHERE patient_id = @id";
+
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@id", id);
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return reader["fname"].ToString() + " " + reader["lname"].ToString();
+                        }
+                    }
+                }
+            }
+            return null;
         }
 
 

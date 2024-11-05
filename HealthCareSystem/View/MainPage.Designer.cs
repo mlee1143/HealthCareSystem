@@ -33,6 +33,7 @@
             symbolPictureBox = new PictureBox();
             welcomeNameLabel = new Label();
             buttonsPanel = new Panel();
+            searchButton = new Button();
             appointmentsButton = new Button();
             editPatientButton = new Button();
             logoutButton = new Button();
@@ -42,11 +43,20 @@
             registeredPatiensDataGridView = new DataGridView();
             patientsLabel = new Label();
             errormessageLabel = new Label();
+            searchGroupBox = new GroupBox();
+            patientSearchButton = new Button();
+            lnameTextBox = new TextBox();
+            fnameSearchTextBox = new TextBox();
+            searchDatePicker = new DateTimePicker();
+            bothRadioButton = new RadioButton();
+            birthdateRadioButton = new RadioButton();
+            nameRadioButton = new RadioButton();
             healthCareNamePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)symbolPictureBox).BeginInit();
             buttonsPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)genericNursePictureBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)registeredPatiensDataGridView).BeginInit();
+            searchGroupBox.SuspendLayout();
             SuspendLayout();
             // 
             // healthCareNamePanel
@@ -94,6 +104,7 @@
             // buttonsPanel
             // 
             buttonsPanel.BackColor = Color.FromArgb(93, 109, 126);
+            buttonsPanel.Controls.Add(searchButton);
             buttonsPanel.Controls.Add(appointmentsButton);
             buttonsPanel.Controls.Add(editPatientButton);
             buttonsPanel.Controls.Add(logoutButton);
@@ -103,6 +114,21 @@
             buttonsPanel.Name = "buttonsPanel";
             buttonsPanel.Size = new Size(174, 540);
             buttonsPanel.TabIndex = 3;
+            // 
+            // searchButton
+            // 
+            searchButton.BackColor = Color.FromArgb(255, 255, 242);
+            searchButton.FlatAppearance.BorderSize = 0;
+            searchButton.FlatStyle = FlatStyle.Flat;
+            searchButton.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            searchButton.ForeColor = Color.Black;
+            searchButton.Location = new Point(0, 305);
+            searchButton.Name = "searchButton";
+            searchButton.Size = new Size(174, 49);
+            searchButton.TabIndex = 8;
+            searchButton.Text = "Search for Patient";
+            searchButton.UseVisualStyleBackColor = false;
+            searchButton.Click += searchButton_Click;
             // 
             // appointmentsButton
             // 
@@ -141,7 +167,7 @@
             logoutButton.FlatStyle = FlatStyle.Flat;
             logoutButton.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             logoutButton.ForeColor = Color.Black;
-            logoutButton.Location = new Point(0, 306);
+            logoutButton.Location = new Point(0, 349);
             logoutButton.Name = "logoutButton";
             logoutButton.Size = new Size(174, 49);
             logoutButton.TabIndex = 6;
@@ -190,9 +216,10 @@
             registeredPatiensDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             registeredPatiensDataGridView.BackgroundColor = Color.FromArgb(93, 173, 226);
             registeredPatiensDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            registeredPatiensDataGridView.Location = new Point(180, 241);
+            registeredPatiensDataGridView.Location = new Point(180, 239);
             registeredPatiensDataGridView.Name = "registeredPatiensDataGridView";
-            registeredPatiensDataGridView.Size = new Size(595, 362);
+            registeredPatiensDataGridView.RowHeadersWidth = 62;
+            registeredPatiensDataGridView.Size = new Size(595, 334);
             registeredPatiensDataGridView.TabIndex = 5;
             // 
             // patientsLabel
@@ -211,19 +238,116 @@
             errormessageLabel.AutoSize = true;
             errormessageLabel.BackColor = Color.FromArgb(244, 244, 243);
             errormessageLabel.ForeColor = Color.Red;
-            errormessageLabel.Location = new Point(388, 219);
+            errormessageLabel.Location = new Point(389, 219);
             errormessageLabel.Name = "errormessageLabel";
             errormessageLabel.Size = new Size(35, 15);
             errormessageLabel.TabIndex = 7;
             errormessageLabel.Text = "Error:";
             errormessageLabel.Visible = false;
             // 
+            // searchGroupBox
+            // 
+            searchGroupBox.Controls.Add(patientSearchButton);
+            searchGroupBox.Controls.Add(lnameTextBox);
+            searchGroupBox.Controls.Add(fnameSearchTextBox);
+            searchGroupBox.Controls.Add(searchDatePicker);
+            searchGroupBox.Controls.Add(bothRadioButton);
+            searchGroupBox.Controls.Add(birthdateRadioButton);
+            searchGroupBox.Controls.Add(nameRadioButton);
+            searchGroupBox.ForeColor = Color.FromArgb(255, 255, 244);
+            searchGroupBox.Location = new Point(180, 82);
+            searchGroupBox.Name = "searchGroupBox";
+            searchGroupBox.Size = new Size(587, 121);
+            searchGroupBox.TabIndex = 8;
+            searchGroupBox.TabStop = false;
+            searchGroupBox.Text = "Search for patient:";
+            searchGroupBox.Visible = false;
+            // 
+            // patientSearchButton
+            // 
+            patientSearchButton.BackColor = Color.FromArgb(255, 255, 244);
+            patientSearchButton.Enabled = false;
+            patientSearchButton.FlatAppearance.BorderSize = 0;
+            patientSearchButton.FlatStyle = FlatStyle.Flat;
+            patientSearchButton.ForeColor = Color.Black;
+            patientSearchButton.Location = new Point(253, 92);
+            patientSearchButton.Name = "patientSearchButton";
+            patientSearchButton.Size = new Size(75, 23);
+            patientSearchButton.TabIndex = 6;
+            patientSearchButton.Text = "Search";
+            patientSearchButton.UseVisualStyleBackColor = false;
+            patientSearchButton.Click += patientSearchButton_Click;
+            // 
+            // lnameTextBox
+            // 
+            lnameTextBox.BackColor = Color.FromArgb(255, 255, 244);
+            lnameTextBox.Location = new Point(23, 67);
+            lnameTextBox.Name = "lnameTextBox";
+            lnameTextBox.PlaceholderText = "Last Name";
+            lnameTextBox.Size = new Size(152, 23);
+            lnameTextBox.TabIndex = 5;
+            // 
+            // fnameSearchTextBox
+            // 
+            fnameSearchTextBox.BackColor = Color.FromArgb(255, 255, 244);
+            fnameSearchTextBox.Location = new Point(23, 28);
+            fnameSearchTextBox.Name = "fnameSearchTextBox";
+            fnameSearchTextBox.PlaceholderText = "First Name";
+            fnameSearchTextBox.Size = new Size(152, 23);
+            fnameSearchTextBox.TabIndex = 4;
+            // 
+            // searchDatePicker
+            // 
+            searchDatePicker.CustomFormat = "";
+            searchDatePicker.ImeMode = ImeMode.Off;
+            searchDatePicker.Location = new Point(223, 41);
+            searchDatePicker.Name = "searchDatePicker";
+            searchDatePicker.Size = new Size(192, 23);
+            searchDatePicker.TabIndex = 3;
+            // 
+            // bothRadioButton
+            // 
+            bothRadioButton.AutoSize = true;
+            bothRadioButton.Location = new Point(473, 80);
+            bothRadioButton.Name = "bothRadioButton";
+            bothRadioButton.Size = new Size(50, 19);
+            bothRadioButton.TabIndex = 2;
+            bothRadioButton.TabStop = true;
+            bothRadioButton.Text = "Both";
+            bothRadioButton.UseVisualStyleBackColor = true;
+            bothRadioButton.CheckedChanged += bothRadioButton_CheckedChanged;
+            // 
+            // birthdateRadioButton
+            // 
+            birthdateRadioButton.AutoSize = true;
+            birthdateRadioButton.Location = new Point(473, 52);
+            birthdateRadioButton.Name = "birthdateRadioButton";
+            birthdateRadioButton.Size = new Size(73, 19);
+            birthdateRadioButton.TabIndex = 1;
+            birthdateRadioButton.TabStop = true;
+            birthdateRadioButton.Text = "Birthdate";
+            birthdateRadioButton.UseVisualStyleBackColor = true;
+            birthdateRadioButton.CheckedChanged += birthdateRadioButton_CheckedChanged;
+            // 
+            // nameRadioButton
+            // 
+            nameRadioButton.AutoSize = true;
+            nameRadioButton.Location = new Point(473, 22);
+            nameRadioButton.Name = "nameRadioButton";
+            nameRadioButton.Size = new Size(57, 19);
+            nameRadioButton.TabIndex = 0;
+            nameRadioButton.TabStop = true;
+            nameRadioButton.Text = "Name";
+            nameRadioButton.UseVisualStyleBackColor = true;
+            nameRadioButton.Click += nameRadioButton_Click;
+            // 
             // MainPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(40, 116, 166);
-            ClientSize = new Size(779, 615);
+            ClientSize = new Size(779, 586);
+            Controls.Add(searchGroupBox);
             Controls.Add(errormessageLabel);
             Controls.Add(patientsLabel);
             Controls.Add(registeredPatiensDataGridView);
@@ -240,6 +364,8 @@
             buttonsPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)genericNursePictureBox).EndInit();
             ((System.ComponentModel.ISupportInitialize)registeredPatiensDataGridView).EndInit();
+            searchGroupBox.ResumeLayout(false);
+            searchGroupBox.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -259,6 +385,15 @@
         private Button registerPatientButton;
         private Button editPatientButton;
         private Label errormessageLabel;
+        private Button searchButton;
+        private GroupBox searchGroupBox;
+        private RadioButton nameRadioButton;
+        private RadioButton birthdateRadioButton;
+        private DateTimePicker searchDatePicker;
+        private RadioButton bothRadioButton;
+        private Button patientSearchButton;
+        private TextBox lnameTextBox;
+        private TextBox fnameSearchTextBox;
         private Button appointmentsButton;
     }
 }

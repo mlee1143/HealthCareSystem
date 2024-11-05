@@ -11,21 +11,23 @@ namespace HealthCareSystem.Model
     {
         public Appointment Appointment { get; private set; }
 
-        public Nurse? Nurse { get; private set; }
+        public Nurse? Nurse { get;  set; }
 
         public double Weight { get; private set; }
 
         public double Height { get; private set; }
 
-        public string BloodPressure { get; private set; }
+        public string BloodPressure { get;  set; }
 
-        public string? Pulse { get; private set; }
+        public string? Pulse { get;  set; }
 
-        public double? Temperature { get; private set; }
+        public double? Temperature { get;  set; }
 
-        public string? InitialDiagnosis { get; private set; }
+        public string? InitialDiagnosis { get;  set; }
 
-        public string? FinalDiagnosis { get; private set; }
+        public string? FinalDiagnosis { get;  set; }
+
+        public string? SymptomsDescription { get;  set; }
 
         public Visit(Appointment appointment, double weight, double height, string bloodPressure)
         {

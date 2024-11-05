@@ -31,7 +31,7 @@ namespace HealthCareSystem.View
             if (nurse != null)
             {
                 var nurseName = nurse.Firstname + " " + nurse.Lastname;
-                MainPage mainPage = new MainPage(nurse.NurseId, nurseName);
+                MainPage mainPage = new MainPage(nurse);
                 mainPage.Show();
 
                 this.Hide();

@@ -18,8 +18,7 @@ namespace HealthCareSystem.View
     {
         private PatientDAL patientDAL;
 
-        private int id;
-        private string name;
+        private Nurse nurse;
         private Patient patient;
 
         /// <summary>
@@ -28,14 +27,12 @@ namespace HealthCareSystem.View
         /// <param name="id">The identifier.</param>
         /// <param name="name">The name.</param>
         /// <param name="patient">The patient.</param>
-        public PatientInformation(int id, string name, Patient patient)
+        public PatientInformation(Nurse nurse, Patient patient)
         {
             InitializeComponent();
 
             this.patientDAL = new PatientDAL();
-
-            this.id = id;
-            this.name = name;
+            this.nurse = nurse;
             this.patient = patient;
 
             this.PopulateComboBoxes();
@@ -50,14 +47,13 @@ namespace HealthCareSystem.View
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <param name="name">The name.</param>
-        public PatientInformation(int id, string name)
+        public PatientInformation(Nurse nurse)
         {
             InitializeComponent();
 
-            this.patientDAL = new PatientDAL();
+            this.nurse = nurse;
 
-            this.id = id;
-            this.name = name;
+            this.patientDAL = new PatientDAL();
 
             this.PopulateComboBoxes();
             this.SetupRegisterForm();
@@ -85,8 +81,8 @@ namespace HealthCareSystem.View
 
         private void PopulateFields()
         {
-            this.nurseIdLabel.Text = $"ID: {this.id}";
-            this.nurseNameLabel.Text = $"Name: {this.name}";
+            this.nurseIdLabel.Text = $"ID: {this.nurse.NurseId}";
+            this.nurseNameLabel.Text = $"Name: {this.nurse.Firstname} {this.nurse.Lastname}";
 
             if (patient != null)
             {
@@ -158,7 +154,7 @@ namespace HealthCareSystem.View
 
             await this.patientDAL.RegisterPatient(patient);
 
-            MainPage main = new MainPage(this.id, this.name);
+            MainPage main = new MainPage(this.nurse);
             main.Show();
             this.Close();
         }
@@ -202,14 +198,14 @@ namespace HealthCareSystem.View
 
             await this.patientDAL.UpdatePatientInformation(patient);
 
-            MainPage main = new MainPage(this.id, this.name);
+            MainPage main = new MainPage(this.nurse);
             main.Show();
             this.Close();
         }
 
         private void back_btn_Click(object sender, EventArgs e)
         {
-            MainPage main = new MainPage(this.id, this.name);
+            MainPage main = new MainPage(this.nurse);
             main.Show();
             this.Close();
         }
