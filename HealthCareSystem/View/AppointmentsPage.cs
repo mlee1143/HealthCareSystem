@@ -15,22 +15,22 @@ namespace HealthCareSystem.View
     public partial class AppointmentsPage : Form
     {
         private AppointmentDAL appointmentDAL;
-        private int nurseID;
-        private string nurseName;
 
-        public AppointmentsPage(int nurseId, string nurseName)
+        private Nurse nurse;
+
+        public AppointmentsPage(Nurse nurse)
         {
             InitializeComponent();
             this.appointmentDAL = new AppointmentDAL();
-            this.nurseID = nurseId;
-            this.nurseName = nurseName;
+
+            this.nurse = nurse;
 
             this.loadAppointments();
         }
 
         private void newAppointmentButton_Click(object sender, EventArgs e)
         {
-            AppointmentInformationPage appointmentInformationPage = new AppointmentInformationPage(this.nurseID, this.nurseName);
+            AppointmentInformationPage appointmentInformationPage = new AppointmentInformationPage(this.nurse);
             appointmentInformationPage.Show();
 
             this.Close();
@@ -38,7 +38,7 @@ namespace HealthCareSystem.View
 
         private void backToMainButton_Click(object sender, EventArgs e)
         {
-            MainPage mainPage = new MainPage(this.nurseID, this.nurseName);
+            MainPage mainPage = new MainPage(this.nurse);
             mainPage.Show();
 
             this.Close();
@@ -46,8 +46,8 @@ namespace HealthCareSystem.View
 
         private void loadAppointments()
         {
-            nurseNameLabel.Text = $"Name: {this.nurseName}";
-            nurseIdLabel.Text = $"Nurse ID: {this.nurseID}";
+            nurseNameLabel.Text = $"Name: {this.nurse.Firstname} {this.nurse.Lastname}";
+            nurseIdLabel.Text = $"Nurse ID: {this.nurse.NurseId}";
             List<Appointment> appointments = this.appointmentDAL.getAllAppointments();
             //appointmentsDataGridView.DataSource = appointments;
 
@@ -72,7 +72,7 @@ namespace HealthCareSystem.View
                 int patientId = (int)appointmentsDataGridView.SelectedRows[0].Cells["PatientId"].Value;
                 DateTime appointmentDateTime = (DateTime)appointmentsDataGridView.SelectedRows[0].Cells["AppointmentDateTime"].Value;
 
-                AppointmentInformationPage editPage = new AppointmentInformationPage(this.nurseID, this.nurseName, patientId, appointmentDateTime);
+                AppointmentInformationPage editPage = new AppointmentInformationPage(this.nurse, patientId, appointmentDateTime);
                 editPage.Show();
 
                 this.Close();
@@ -93,11 +93,13 @@ namespace HealthCareSystem.View
 
                 if (selectedRow != null)
                 {
-                    var appID = selectedRow.Cells[0].Value;
+                    var patientID = (int)selectedRow.Cells[0].Value;
+                    var docID = selectedRow.Cells[1].Value;
+                    DateTime appDateTime = (DateTime)selectedRow.Cells[2].Value;
 
-                    if (appID != null)
+                    if (patientID != null && appDateTime != null)
                     {
-                      //  patient = this.appointmentDAL // Handle null
+                        appointment = this.appointmentDAL.GetAppointment(patientID, appDateTime);
                     }
 
                 }
@@ -106,10 +108,34 @@ namespace HealthCareSystem.View
             else
             {
                 this.errorLabel.Visible = true;
-                this.errorLabel.Text = "No Patient selected. Please select a patient to edit patient information.";
+                this.errorLabel.Text = "No Appointment selected. Please select an appointment to start inputting visit information.";
             }
 
-           
+            if (appointment != null)
+            {
+                VisitInformation visitInformation = new VisitInformation(this.nurse, appointment);
+                visitInformation.Show();
+                this.Close();
+
+            }
+
+        }
+
+        private void searchButton_Click(object sender, EventArgs e)
+        {
+            if (this.searchGroupBox.Visible)
+            {
+                this.searchGroupBox.Visible = false;
+                this.nurseNameLabel.Visible = true;
+                this.nurseIdLabel.Visible = true;
+                this.loadAppointments();
+            }
+            else
+            {
+                this.searchGroupBox.Visible = true;
+                this.nurseNameLabel.Visible = false;
+                this.nurseIdLabel.Visible = false;
+            }
         }
     }
 }

@@ -16,25 +16,24 @@ namespace HealthCareSystem.View
     public partial class MainPage : Form
     {
         private PatientDAL patientDAL;
-        private string name;
-        private int id;
+        
+        private Nurse nurse;
 
-        public MainPage(int id, string name)
+        public MainPage(Nurse nurse)
         {
             InitializeComponent();
             this.patientDAL = new PatientDAL();
 
-            this.id = id;
-            this.name = name;
+            this.nurse = nurse;
 
             this.LoadPatientData();
-            this.setNurseInfo(id, name);
+            this.setNurseInfo(nurse);
         }
 
-        private void setNurseInfo(int nurseId, string nurseName)
+        private void setNurseInfo(Nurse nurse)
         {
-            welcomeNameLabel.Text = $"Welcome, {nurseName}";
-            idLabel.Text = $"Nurse ID: {nurseId}";
+            welcomeNameLabel.Text = $"Welcome, {nurse.Firstname} {nurse.Lastname}";
+            idLabel.Text = $"Nurse ID: {nurse.NurseId}";
 
             this.LoadPatientData();
         }
@@ -69,7 +68,7 @@ namespace HealthCareSystem.View
 
         private void registerPatientButton_Click(object sender, EventArgs e)
         {
-            PatientInformation patientInfo = new PatientInformation(this.id, this.name);
+            PatientInformation patientInfo = new PatientInformation(this.nurse);
             patientInfo.Show();
 
             this.Close();
@@ -103,7 +102,7 @@ namespace HealthCareSystem.View
 
             if (patient != null)
             {
-                PatientInformation patientInformation = new PatientInformation(this.id, this.name, patient);
+                PatientInformation patientInformation = new PatientInformation(this.nurse, patient);
                 patientInformation.Show();
 
                 this.Close();
@@ -199,6 +198,8 @@ namespace HealthCareSystem.View
             this.searchDatePicker.Enabled = false;
             this.fnameSearchTextBox.Enabled = true;
             this.lnameTextBox.Enabled = true;
+
+            this.patientSearchButton.Enabled = true;
         }
 
         private void birthdateRadioButton_CheckedChanged(object sender, EventArgs e)
@@ -206,6 +207,8 @@ namespace HealthCareSystem.View
             this.searchDatePicker.Enabled = true;
             this.fnameSearchTextBox.Enabled = false;
             this.lnameTextBox.Enabled = false;
+
+            this.patientSearchButton.Enabled = true;
         }
 
         private void bothRadioButton_CheckedChanged(object sender, EventArgs e)
@@ -213,15 +216,13 @@ namespace HealthCareSystem.View
             this.searchDatePicker.Enabled = true;
             this.fnameSearchTextBox.Enabled = true;
             this.lnameTextBox.Enabled = true;
-        }
 
-        private void temperatureTextBox_TextChanged(object sender, EventArgs e)
-        {
+            this.patientSearchButton.Enabled = true;
         }
 
         private void appointmentsButton_Click(object sender, EventArgs e)
         {
-            AppointmentsPage appointments = new AppointmentsPage(this.id, this.name);
+            AppointmentsPage appointments = new AppointmentsPage(this.nurse);
             appointments.Show();
 
             this.Close();

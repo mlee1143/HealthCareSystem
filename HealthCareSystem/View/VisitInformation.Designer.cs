@@ -50,6 +50,7 @@
             doctorIDLabel = new Label();
             label5 = new Label();
             submitButton = new Button();
+            errorLabel = new Label();
             healthCareNamePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)symbolPictureBox).BeginInit();
             SuspendLayout();
@@ -124,7 +125,7 @@
             // bloodpressureTextBox
             // 
             bloodpressureTextBox.BackColor = Color.FromArgb(255, 255, 242);
-            bloodpressureTextBox.Location = new Point(96, 230);
+            bloodpressureTextBox.Location = new Point(95, 220);
             bloodpressureTextBox.Name = "bloodpressureTextBox";
             bloodpressureTextBox.Size = new Size(47, 23);
             bloodpressureTextBox.TabIndex = 6;
@@ -135,7 +136,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.FromArgb(242, 243, 244);
-            label1.Location = new Point(83, 210);
+            label1.Location = new Point(83, 200);
             label1.Name = "label1";
             label1.Size = new Size(96, 17);
             label1.TabIndex = 7;
@@ -145,7 +146,7 @@
             // 
             temperatureTextbox.BackColor = Color.FromArgb(255, 255, 242);
             temperatureTextbox.ForeColor = Color.Black;
-            temperatureTextbox.Location = new Point(448, 230);
+            temperatureTextbox.Location = new Point(448, 220);
             temperatureTextbox.Name = "temperatureTextbox";
             temperatureTextbox.Size = new Size(63, 23);
             temperatureTextbox.TabIndex = 8;
@@ -156,7 +157,7 @@
             temperatureLabel.AutoSize = true;
             temperatureLabel.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             temperatureLabel.ForeColor = Color.FromArgb(242, 243, 244);
-            temperatureLabel.Location = new Point(432, 210);
+            temperatureLabel.Location = new Point(431, 200);
             temperatureLabel.Name = "temperatureLabel";
             temperatureLabel.Size = new Size(100, 17);
             temperatureLabel.TabIndex = 9;
@@ -167,7 +168,7 @@
             pulseLabel.AutoSize = true;
             pulseLabel.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             pulseLabel.ForeColor = Color.FromArgb(255, 255, 242);
-            pulseLabel.Location = new Point(276, 210);
+            pulseLabel.Location = new Point(276, 200);
             pulseLabel.Name = "pulseLabel";
             pulseLabel.Size = new Size(38, 17);
             pulseLabel.TabIndex = 10;
@@ -177,7 +178,7 @@
             // 
             pulseTextbox.BackColor = Color.FromArgb(255, 255, 242);
             pulseTextbox.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            pulseTextbox.Location = new Point(263, 230);
+            pulseTextbox.Location = new Point(264, 220);
             pulseTextbox.Name = "pulseTextbox";
             pulseTextbox.Size = new Size(63, 23);
             pulseTextbox.TabIndex = 11;
@@ -216,7 +217,7 @@
             // 
             // heightTextbox
             // 
-            heightTextbox.Location = new Point(180, 176);
+            heightTextbox.Location = new Point(180, 167);
             heightTextbox.Name = "heightTextbox";
             heightTextbox.Size = new Size(60, 23);
             heightTextbox.TabIndex = 15;
@@ -226,7 +227,7 @@
             // 
             label2.AutoSize = true;
             label2.ForeColor = Color.FromArgb(242, 243, 244);
-            label2.Location = new Point(180, 158);
+            label2.Location = new Point(180, 149);
             label2.Name = "label2";
             label2.Size = new Size(67, 15);
             label2.TabIndex = 16;
@@ -234,7 +235,7 @@
             // 
             // weightTextbox
             // 
-            weightTextbox.Location = new Point(349, 176);
+            weightTextbox.Location = new Point(349, 167);
             weightTextbox.Name = "weightTextbox";
             weightTextbox.Size = new Size(66, 23);
             weightTextbox.TabIndex = 17;
@@ -244,7 +245,7 @@
             // 
             label3.AutoSize = true;
             label3.ForeColor = Color.FromArgb(244, 243, 242);
-            label3.Location = new Point(349, 158);
+            label3.Location = new Point(349, 149);
             label3.Name = "label3";
             label3.Size = new Size(74, 15);
             label3.TabIndex = 18;
@@ -282,12 +283,24 @@
             submitButton.UseVisualStyleBackColor = true;
             submitButton.Click += submitButton_Click;
             // 
+            // errorLabel
+            // 
+            errorLabel.AutoSize = true;
+            errorLabel.BackColor = Color.FromArgb(244, 243, 242);
+            errorLabel.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            errorLabel.ForeColor = Color.Red;
+            errorLabel.Location = new Point(157, 256);
+            errorLabel.Name = "errorLabel";
+            errorLabel.Size = new Size(0, 17);
+            errorLabel.TabIndex = 22;
+            // 
             // VisitInformation
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(40, 116, 166);
             ClientSize = new Size(624, 533);
+            Controls.Add(errorLabel);
             Controls.Add(submitButton);
             Controls.Add(label5);
             Controls.Add(doctorIDLabel);
@@ -341,5 +354,6 @@
         private Label doctorIDLabel;
         private Label label5;
         private Button submitButton;
+        private Label errorLabel;
     }
 }

@@ -41,10 +41,20 @@
             nurseIdLabel = new Label();
             appointmentsLabel = new Label();
             errorLabel = new Label();
+            searchGroupBox = new GroupBox();
+            appointmentSearchButton = new Button();
+            lnameTextBox = new TextBox();
+            fnameSearchTextBox = new TextBox();
+            searchDatePicker = new DateTimePicker();
+            bothRadioButton = new RadioButton();
+            appointmentDateRadioButton = new RadioButton();
+            nameRadioButton = new RadioButton();
+            searchButton = new Button();
             healthCareNamePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)symbolPictureBox).BeginInit();
             appointmentsButtonPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)appointmentsDataGridView).BeginInit();
+            searchGroupBox.SuspendLayout();
             SuspendLayout();
             // 
             // healthCareNamePanel
@@ -53,7 +63,7 @@
             healthCareNamePanel.Controls.Add(healthCareNameLabel);
             healthCareNamePanel.Location = new Point(87, 0);
             healthCareNamePanel.Name = "healthCareNamePanel";
-            healthCareNamePanel.Size = new Size(558, 76);
+            healthCareNamePanel.Size = new Size(651, 76);
             healthCareNamePanel.TabIndex = 0;
             // 
             // healthCareNameLabel
@@ -81,13 +91,14 @@
             // appointmentsButtonPanel
             // 
             appointmentsButtonPanel.BackColor = Color.FromArgb(93, 109, 126);
+            appointmentsButtonPanel.Controls.Add(searchButton);
             appointmentsButtonPanel.Controls.Add(visitInformationButton);
             appointmentsButtonPanel.Controls.Add(backToMainButton);
             appointmentsButtonPanel.Controls.Add(editAppointment);
             appointmentsButtonPanel.Controls.Add(newAppointmentButton);
             appointmentsButtonPanel.Location = new Point(0, 82);
             appointmentsButtonPanel.Name = "appointmentsButtonPanel";
-            appointmentsButtonPanel.Size = new Size(160, 409);
+            appointmentsButtonPanel.Size = new Size(160, 429);
             appointmentsButtonPanel.TabIndex = 2;
             // 
             // visitInformationButton
@@ -112,7 +123,7 @@
             backToMainButton.FlatStyle = FlatStyle.Flat;
             backToMainButton.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             backToMainButton.ForeColor = Color.Black;
-            backToMainButton.Location = new Point(0, 155);
+            backToMainButton.Location = new Point(0, 204);
             backToMainButton.Name = "backToMainButton";
             backToMainButton.Size = new Size(160, 53);
             backToMainButton.TabIndex = 2;
@@ -155,10 +166,10 @@
             appointmentsDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             appointmentsDataGridView.BackgroundColor = Color.FromArgb(93, 173, 226);
             appointmentsDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            appointmentsDataGridView.Location = new Point(166, 163);
+            appointmentsDataGridView.Location = new Point(166, 218);
             appointmentsDataGridView.Name = "appointmentsDataGridView";
             appointmentsDataGridView.ReadOnly = true;
-            appointmentsDataGridView.Size = new Size(473, 316);
+            appointmentsDataGridView.Size = new Size(538, 293);
             appointmentsDataGridView.TabIndex = 3;
             // 
             // nurseNameLabel
@@ -206,12 +217,120 @@
             errorLabel.Text = "Error: ";
             errorLabel.Visible = false;
             // 
+            // searchGroupBox
+            // 
+            searchGroupBox.Controls.Add(appointmentSearchButton);
+            searchGroupBox.Controls.Add(lnameTextBox);
+            searchGroupBox.Controls.Add(fnameSearchTextBox);
+            searchGroupBox.Controls.Add(searchDatePicker);
+            searchGroupBox.Controls.Add(bothRadioButton);
+            searchGroupBox.Controls.Add(appointmentDateRadioButton);
+            searchGroupBox.Controls.Add(nameRadioButton);
+            searchGroupBox.ForeColor = Color.FromArgb(255, 255, 244);
+            searchGroupBox.Location = new Point(166, 79);
+            searchGroupBox.Name = "searchGroupBox";
+            searchGroupBox.Size = new Size(538, 133);
+            searchGroupBox.TabIndex = 9;
+            searchGroupBox.TabStop = false;
+            searchGroupBox.Text = "Search for appointment:";
+            searchGroupBox.Visible = false;
+            // 
+            // appointmentSearchButton
+            // 
+            appointmentSearchButton.BackColor = Color.FromArgb(255, 255, 244);
+            appointmentSearchButton.Enabled = false;
+            appointmentSearchButton.FlatAppearance.BorderSize = 0;
+            appointmentSearchButton.FlatStyle = FlatStyle.Flat;
+            appointmentSearchButton.ForeColor = Color.Black;
+            appointmentSearchButton.Location = new Point(253, 92);
+            appointmentSearchButton.Name = "appointmentSearchButton";
+            appointmentSearchButton.Size = new Size(75, 23);
+            appointmentSearchButton.TabIndex = 6;
+            appointmentSearchButton.Text = "Search";
+            appointmentSearchButton.UseVisualStyleBackColor = false;
+            // 
+            // lnameTextBox
+            // 
+            lnameTextBox.BackColor = Color.FromArgb(255, 255, 244);
+            lnameTextBox.Location = new Point(23, 67);
+            lnameTextBox.Name = "lnameTextBox";
+            lnameTextBox.PlaceholderText = "Last Name";
+            lnameTextBox.Size = new Size(152, 23);
+            lnameTextBox.TabIndex = 5;
+            // 
+            // fnameSearchTextBox
+            // 
+            fnameSearchTextBox.BackColor = Color.FromArgb(255, 255, 244);
+            fnameSearchTextBox.Location = new Point(23, 28);
+            fnameSearchTextBox.Name = "fnameSearchTextBox";
+            fnameSearchTextBox.PlaceholderText = "First Name";
+            fnameSearchTextBox.Size = new Size(152, 23);
+            fnameSearchTextBox.TabIndex = 4;
+            // 
+            // searchDatePicker
+            // 
+            searchDatePicker.CustomFormat = "";
+            searchDatePicker.ImeMode = ImeMode.Off;
+            searchDatePicker.Location = new Point(223, 41);
+            searchDatePicker.Name = "searchDatePicker";
+            searchDatePicker.Size = new Size(192, 23);
+            searchDatePicker.TabIndex = 3;
+            // 
+            // bothRadioButton
+            // 
+            bothRadioButton.AutoSize = true;
+            bothRadioButton.Location = new Point(450, 72);
+            bothRadioButton.Name = "bothRadioButton";
+            bothRadioButton.Size = new Size(50, 19);
+            bothRadioButton.TabIndex = 2;
+            bothRadioButton.TabStop = true;
+            bothRadioButton.Text = "Both";
+            bothRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // appointmentDateRadioButton
+            // 
+            appointmentDateRadioButton.AutoSize = true;
+            appointmentDateRadioButton.Location = new Point(450, 47);
+            appointmentDateRadioButton.Name = "appointmentDateRadioButton";
+            appointmentDateRadioButton.Size = new Size(81, 19);
+            appointmentDateRadioButton.TabIndex = 1;
+            appointmentDateRadioButton.TabStop = true;
+            appointmentDateRadioButton.Text = "Appt. Date";
+            appointmentDateRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // nameRadioButton
+            // 
+            nameRadioButton.AutoSize = true;
+            nameRadioButton.Location = new Point(450, 22);
+            nameRadioButton.Name = "nameRadioButton";
+            nameRadioButton.Size = new Size(57, 19);
+            nameRadioButton.TabIndex = 0;
+            nameRadioButton.TabStop = true;
+            nameRadioButton.Text = "Name";
+            nameRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // searchButton
+            // 
+            searchButton.BackColor = Color.FromArgb(255, 255, 244);
+            searchButton.FlatAppearance.BorderSize = 0;
+            searchButton.FlatStyle = FlatStyle.Flat;
+            searchButton.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            searchButton.ForeColor = Color.Black;
+            searchButton.Location = new Point(0, 156);
+            searchButton.Name = "searchButton";
+            searchButton.Size = new Size(160, 53);
+            searchButton.TabIndex = 11;
+            searchButton.Text = "Search for Appt.";
+            searchButton.UseVisualStyleBackColor = false;
+            searchButton.Click += searchButton_Click;
+            // 
             // AppointmentsPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(40, 116, 166);
-            ClientSize = new Size(644, 491);
+            ClientSize = new Size(716, 526);
+            Controls.Add(searchGroupBox);
             Controls.Add(errorLabel);
             Controls.Add(appointmentsLabel);
             Controls.Add(nurseIdLabel);
@@ -227,6 +346,8 @@
             ((System.ComponentModel.ISupportInitialize)symbolPictureBox).EndInit();
             appointmentsButtonPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)appointmentsDataGridView).EndInit();
+            searchGroupBox.ResumeLayout(false);
+            searchGroupBox.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -246,5 +367,14 @@
         private Button newAppointmentButton;
         private Label errorLabel;
         private Button visitInformationButton;
+        private GroupBox searchGroupBox;
+        private Button appointmentSearchButton;
+        private TextBox lnameTextBox;
+        private TextBox fnameSearchTextBox;
+        private DateTimePicker searchDatePicker;
+        private RadioButton bothRadioButton;
+        private RadioButton appointmentDateRadioButton;
+        private RadioButton nameRadioButton;
+        private Button searchButton;
     }
 }

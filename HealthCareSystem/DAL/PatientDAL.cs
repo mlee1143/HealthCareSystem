@@ -2,6 +2,7 @@
 using MySqlConnector;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Data;
 using System.Globalization;
 using System.Linq;
@@ -394,6 +395,30 @@ namespace HealthCareSystem.DAL
                 }
             }
             return patients;
+        }
+
+        public string GetPatientNameFromPatientID(int id)
+        {
+            using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
+            {
+                connection.Open();
+
+                string query = "SELECT fname, lname FROM patient WHERE patient_id = @id";
+
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@id", id);
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return reader["fname"].ToString() + " " + reader["lname"].ToString();
+                        }
+                    }
+                }
+            }
+            return null;
         }
 
 

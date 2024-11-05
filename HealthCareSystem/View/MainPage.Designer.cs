@@ -255,7 +255,7 @@
             searchGroupBox.Controls.Add(birthdateRadioButton);
             searchGroupBox.Controls.Add(nameRadioButton);
             searchGroupBox.ForeColor = Color.FromArgb(255, 255, 244);
-            searchGroupBox.Location = new Point(180, 87);
+            searchGroupBox.Location = new Point(180, 82);
             searchGroupBox.Name = "searchGroupBox";
             searchGroupBox.Size = new Size(587, 121);
             searchGroupBox.TabIndex = 8;
@@ -266,6 +266,7 @@
             // patientSearchButton
             // 
             patientSearchButton.BackColor = Color.FromArgb(255, 255, 244);
+            patientSearchButton.Enabled = false;
             patientSearchButton.FlatAppearance.BorderSize = 0;
             patientSearchButton.FlatStyle = FlatStyle.Flat;
             patientSearchButton.ForeColor = Color.Black;
