@@ -193,27 +193,6 @@ namespace HealthCareSystem.View
             }
         }
 
-        private void visitInformationButton_Click(object sender, EventArgs e)
-        {
-
-            if (this.registeredPatiensDataGridView.Visible)
-            {
-                this.registeredPatiensDataGridView.Visible = false;
-
-                this.searchGroupBox.Visible = false;
-
-                this.routineGroupBox.Visible = true;
-                this.routineGroupBox.Enabled = true;
-            }
-            else
-            {
-                this.registeredPatiensDataGridView.Visible = true;
-                this.routineGroupBox.Visible = false;
-                this.routineGroupBox.Enabled = false;
-            }
-
-
-        }
 
         private void nameRadioButton_Click(object sender, EventArgs e)
         {

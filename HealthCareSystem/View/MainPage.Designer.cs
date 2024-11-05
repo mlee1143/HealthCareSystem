@@ -33,7 +33,6 @@
             symbolPictureBox = new PictureBox();
             welcomeNameLabel = new Label();
             buttonsPanel = new Panel();
-            visitInformationButton = new Button();
             searchButton = new Button();
             appointmentsButton = new Button();
             editPatientButton = new Button();
@@ -52,34 +51,21 @@
             bothRadioButton = new RadioButton();
             birthdateRadioButton = new RadioButton();
             nameRadioButton = new RadioButton();
-            routineGroupBox = new GroupBox();
-            symptomsLabel = new Label();
-            routinePtNameLabel = new Label();
-            routinePtIDLabel = new Label();
-            symptomsTextBox = new RichTextBox();
-            temperatureTextBox = new TextBox();
-            temperatureLabel = new Label();
-            pulseTextBox = new TextBox();
-            pulseLabel = new Label();
-            bloodpressureTextBox = new TextBox();
-            bloodpressureLabel = new Label();
             healthCareNamePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)symbolPictureBox).BeginInit();
             buttonsPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)genericNursePictureBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)registeredPatiensDataGridView).BeginInit();
             searchGroupBox.SuspendLayout();
-            routineGroupBox.SuspendLayout();
             SuspendLayout();
             // 
             // healthCareNamePanel
             // 
             healthCareNamePanel.BackColor = Color.FromArgb(93, 109, 126);
             healthCareNamePanel.Controls.Add(healthCareNameLabel);
-            healthCareNamePanel.Location = new Point(119, 0);
-            healthCareNamePanel.Margin = new Padding(4, 5, 4, 5);
+            healthCareNamePanel.Location = new Point(83, 0);
             healthCareNamePanel.Name = "healthCareNamePanel";
-            healthCareNamePanel.Size = new Size(1000, 127);
+            healthCareNamePanel.Size = new Size(700, 76);
             healthCareNamePanel.TabIndex = 0;
             // 
             // healthCareNameLabel
@@ -87,10 +73,9 @@
             healthCareNameLabel.AutoSize = true;
             healthCareNameLabel.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
             healthCareNameLabel.ForeColor = Color.FromArgb(242, 243, 244);
-            healthCareNameLabel.Location = new Point(11, 32);
-            healthCareNameLabel.Margin = new Padding(4, 0, 4, 0);
+            healthCareNameLabel.Location = new Point(8, 19);
             healthCareNameLabel.Name = "healthCareNameLabel";
-            healthCareNameLabel.Size = new Size(444, 48);
+            healthCareNameLabel.Size = new Size(298, 32);
             healthCareNameLabel.TabIndex = 2;
             healthCareNameLabel.Text = "UWG Health Care System";
             // 
@@ -99,9 +84,8 @@
             symbolPictureBox.BackColor = Color.FromArgb(242, 243, 244);
             symbolPictureBox.Image = Properties.Resources.Symbol;
             symbolPictureBox.Location = new Point(0, 0);
-            symbolPictureBox.Margin = new Padding(4, 5, 4, 5);
             symbolPictureBox.Name = "symbolPictureBox";
-            symbolPictureBox.Size = new Size(124, 127);
+            symbolPictureBox.Size = new Size(87, 76);
             symbolPictureBox.SizeMode = PictureBoxSizeMode.Zoom;
             symbolPictureBox.TabIndex = 1;
             symbolPictureBox.TabStop = false;
@@ -111,43 +95,25 @@
             welcomeNameLabel.AutoSize = true;
             welcomeNameLabel.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold);
             welcomeNameLabel.ForeColor = Color.FromArgb(242, 243, 244);
-            welcomeNameLabel.Location = new Point(257, 145);
-            welcomeNameLabel.Margin = new Padding(4, 0, 4, 0);
+            welcomeNameLabel.Location = new Point(180, 87);
             welcomeNameLabel.Name = "welcomeNameLabel";
-            welcomeNameLabel.Size = new Size(135, 38);
+            welcomeNameLabel.Size = new Size(92, 25);
             welcomeNameLabel.TabIndex = 2;
             welcomeNameLabel.Text = "Welcome";
             // 
             // buttonsPanel
             // 
             buttonsPanel.BackColor = Color.FromArgb(93, 109, 126);
-            buttonsPanel.Controls.Add(visitInformationButton);
             buttonsPanel.Controls.Add(searchButton);
             buttonsPanel.Controls.Add(appointmentsButton);
             buttonsPanel.Controls.Add(editPatientButton);
             buttonsPanel.Controls.Add(logoutButton);
             buttonsPanel.Controls.Add(registerPatientButton);
             buttonsPanel.Controls.Add(genericNursePictureBox);
-            buttonsPanel.Location = new Point(0, 127);
-            buttonsPanel.Margin = new Padding(4, 5, 4, 5);
+            buttonsPanel.Location = new Point(0, 76);
             buttonsPanel.Name = "buttonsPanel";
-            buttonsPanel.Size = new Size(249, 900);
+            buttonsPanel.Size = new Size(174, 540);
             buttonsPanel.TabIndex = 3;
-            // 
-            // visitInformationButton
-            // 
-            visitInformationButton.BackColor = Color.FromArgb(255, 255, 244);
-            visitInformationButton.FlatAppearance.BorderSize = 0;
-            visitInformationButton.FlatStyle = FlatStyle.Flat;
-            visitInformationButton.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            visitInformationButton.Location = new Point(-2, 579);
-            visitInformationButton.Margin = new Padding(4, 5, 4, 5);
-            visitInformationButton.Name = "visitInformationButton";
-            visitInformationButton.Size = new Size(251, 82);
-            visitInformationButton.TabIndex = 9;
-            visitInformationButton.Text = "Visit Information";
-            visitInformationButton.UseVisualStyleBackColor = false;
-            visitInformationButton.Click += visitInformationButton_Click;
             // 
             // searchButton
             // 
@@ -156,10 +122,9 @@
             searchButton.FlatStyle = FlatStyle.Flat;
             searchButton.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             searchButton.ForeColor = Color.Black;
-            searchButton.Location = new Point(0, 508);
-            searchButton.Margin = new Padding(4, 5, 4, 5);
+            searchButton.Location = new Point(0, 305);
             searchButton.Name = "searchButton";
-            searchButton.Size = new Size(249, 82);
+            searchButton.Size = new Size(174, 49);
             searchButton.TabIndex = 8;
             searchButton.Text = "Search for Patient";
             searchButton.UseVisualStyleBackColor = false;
@@ -172,10 +137,9 @@
             appointmentsButton.FlatStyle = FlatStyle.Flat;
             appointmentsButton.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             appointmentsButton.ForeColor = Color.Black;
-            appointmentsButton.Location = new Point(0, 428);
-            appointmentsButton.Margin = new Padding(4, 5, 4, 5);
+            appointmentsButton.Location = new Point(0, 257);
             appointmentsButton.Name = "appointmentsButton";
-            appointmentsButton.Size = new Size(249, 82);
+            appointmentsButton.Size = new Size(174, 49);
             appointmentsButton.TabIndex = 8;
             appointmentsButton.Text = "Appointments";
             appointmentsButton.UseVisualStyleBackColor = true;
@@ -188,10 +152,9 @@
             editPatientButton.FlatStyle = FlatStyle.Flat;
             editPatientButton.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             editPatientButton.ForeColor = Color.Black;
-            editPatientButton.Location = new Point(0, 348);
-            editPatientButton.Margin = new Padding(4, 5, 4, 5);
+            editPatientButton.Location = new Point(0, 209);
             editPatientButton.Name = "editPatientButton";
-            editPatientButton.Size = new Size(249, 82);
+            editPatientButton.Size = new Size(174, 49);
             editPatientButton.TabIndex = 7;
             editPatientButton.Text = "Edit Patient";
             editPatientButton.UseVisualStyleBackColor = true;
@@ -204,10 +167,9 @@
             logoutButton.FlatStyle = FlatStyle.Flat;
             logoutButton.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             logoutButton.ForeColor = Color.Black;
-            logoutButton.Location = new Point(0, 653);
-            logoutButton.Margin = new Padding(4, 5, 4, 5);
+            logoutButton.Location = new Point(0, 349);
             logoutButton.Name = "logoutButton";
-            logoutButton.Size = new Size(249, 82);
+            logoutButton.Size = new Size(174, 49);
             logoutButton.TabIndex = 6;
             logoutButton.Text = "Logout";
             logoutButton.UseVisualStyleBackColor = true;
@@ -220,10 +182,9 @@
             registerPatientButton.FlatStyle = FlatStyle.Flat;
             registerPatientButton.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             registerPatientButton.ForeColor = Color.Black;
-            registerPatientButton.Location = new Point(0, 267);
-            registerPatientButton.Margin = new Padding(4, 5, 4, 5);
+            registerPatientButton.Location = new Point(0, 160);
             registerPatientButton.Name = "registerPatientButton";
-            registerPatientButton.Size = new Size(249, 82);
+            registerPatientButton.Size = new Size(174, 49);
             registerPatientButton.TabIndex = 5;
             registerPatientButton.Text = "Register Patient";
             registerPatientButton.UseVisualStyleBackColor = true;
@@ -233,9 +194,8 @@
             // 
             genericNursePictureBox.Image = Properties.Resources.nurseSymbol;
             genericNursePictureBox.Location = new Point(0, 0);
-            genericNursePictureBox.Margin = new Padding(4, 5, 4, 5);
             genericNursePictureBox.Name = "genericNursePictureBox";
-            genericNursePictureBox.Size = new Size(249, 267);
+            genericNursePictureBox.Size = new Size(174, 160);
             genericNursePictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
             genericNursePictureBox.TabIndex = 4;
             genericNursePictureBox.TabStop = false;
@@ -245,10 +205,9 @@
             idLabel.AutoSize = true;
             idLabel.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold);
             idLabel.ForeColor = Color.FromArgb(242, 243, 244);
-            idLabel.Location = new Point(257, 210);
-            idLabel.Margin = new Padding(4, 0, 4, 0);
+            idLabel.Location = new Point(180, 126);
             idLabel.Name = "idLabel";
-            idLabel.Size = new Size(52, 38);
+            idLabel.Size = new Size(37, 25);
             idLabel.TabIndex = 4;
             idLabel.Text = "ID:";
             // 
@@ -257,11 +216,10 @@
             registeredPatiensDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             registeredPatiensDataGridView.BackgroundColor = Color.FromArgb(93, 173, 226);
             registeredPatiensDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            registeredPatiensDataGridView.Location = new Point(257, 398);
-            registeredPatiensDataGridView.Margin = new Padding(4, 5, 4, 5);
+            registeredPatiensDataGridView.Location = new Point(180, 239);
             registeredPatiensDataGridView.Name = "registeredPatiensDataGridView";
             registeredPatiensDataGridView.RowHeadersWidth = 62;
-            registeredPatiensDataGridView.Size = new Size(850, 607);
+            registeredPatiensDataGridView.Size = new Size(595, 334);
             registeredPatiensDataGridView.TabIndex = 5;
             // 
             // patientsLabel
@@ -269,10 +227,9 @@
             patientsLabel.AutoSize = true;
             patientsLabel.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold);
             patientsLabel.ForeColor = Color.FromArgb(242, 243, 244);
-            patientsLabel.Location = new Point(257, 352);
-            patientsLabel.Margin = new Padding(4, 0, 4, 0);
+            patientsLabel.Location = new Point(180, 211);
             patientsLabel.Name = "patientsLabel";
-            patientsLabel.Size = new Size(259, 38);
+            patientsLabel.Size = new Size(175, 25);
             patientsLabel.TabIndex = 6;
             patientsLabel.Text = "Registered Patients";
             // 
@@ -281,10 +238,9 @@
             errormessageLabel.AutoSize = true;
             errormessageLabel.BackColor = Color.FromArgb(244, 244, 243);
             errormessageLabel.ForeColor = Color.Red;
-            errormessageLabel.Location = new Point(556, 365);
-            errormessageLabel.Margin = new Padding(4, 0, 4, 0);
+            errormessageLabel.Location = new Point(389, 219);
             errormessageLabel.Name = "errormessageLabel";
-            errormessageLabel.Size = new Size(54, 25);
+            errormessageLabel.Size = new Size(35, 15);
             errormessageLabel.TabIndex = 7;
             errormessageLabel.Text = "Error:";
             errormessageLabel.Visible = false;
@@ -299,11 +255,9 @@
             searchGroupBox.Controls.Add(birthdateRadioButton);
             searchGroupBox.Controls.Add(nameRadioButton);
             searchGroupBox.ForeColor = Color.FromArgb(255, 255, 244);
-            searchGroupBox.Location = new Point(257, 145);
-            searchGroupBox.Margin = new Padding(4, 5, 4, 5);
+            searchGroupBox.Location = new Point(180, 87);
             searchGroupBox.Name = "searchGroupBox";
-            searchGroupBox.Padding = new Padding(4, 5, 4, 5);
-            searchGroupBox.Size = new Size(839, 202);
+            searchGroupBox.Size = new Size(587, 121);
             searchGroupBox.TabIndex = 8;
             searchGroupBox.TabStop = false;
             searchGroupBox.Text = "Search for patient:";
@@ -315,10 +269,9 @@
             patientSearchButton.FlatAppearance.BorderSize = 0;
             patientSearchButton.FlatStyle = FlatStyle.Flat;
             patientSearchButton.ForeColor = Color.Black;
-            patientSearchButton.Location = new Point(361, 153);
-            patientSearchButton.Margin = new Padding(4, 5, 4, 5);
+            patientSearchButton.Location = new Point(253, 92);
             patientSearchButton.Name = "patientSearchButton";
-            patientSearchButton.Size = new Size(107, 38);
+            patientSearchButton.Size = new Size(75, 23);
             patientSearchButton.TabIndex = 6;
             patientSearchButton.Text = "Search";
             patientSearchButton.UseVisualStyleBackColor = false;
@@ -327,40 +280,36 @@
             // lnameTextBox
             // 
             lnameTextBox.BackColor = Color.FromArgb(255, 255, 244);
-            lnameTextBox.Location = new Point(33, 112);
-            lnameTextBox.Margin = new Padding(4, 5, 4, 5);
+            lnameTextBox.Location = new Point(23, 67);
             lnameTextBox.Name = "lnameTextBox";
             lnameTextBox.PlaceholderText = "Last Name";
-            lnameTextBox.Size = new Size(215, 31);
+            lnameTextBox.Size = new Size(152, 23);
             lnameTextBox.TabIndex = 5;
             // 
             // fnameSearchTextBox
             // 
             fnameSearchTextBox.BackColor = Color.FromArgb(255, 255, 244);
-            fnameSearchTextBox.Location = new Point(33, 47);
-            fnameSearchTextBox.Margin = new Padding(4, 5, 4, 5);
+            fnameSearchTextBox.Location = new Point(23, 28);
             fnameSearchTextBox.Name = "fnameSearchTextBox";
             fnameSearchTextBox.PlaceholderText = "First Name";
-            fnameSearchTextBox.Size = new Size(215, 31);
+            fnameSearchTextBox.Size = new Size(152, 23);
             fnameSearchTextBox.TabIndex = 4;
             // 
             // searchDatePicker
             // 
             searchDatePicker.CustomFormat = "";
             searchDatePicker.ImeMode = ImeMode.Off;
-            searchDatePicker.Location = new Point(319, 68);
-            searchDatePicker.Margin = new Padding(4, 5, 4, 5);
+            searchDatePicker.Location = new Point(223, 41);
             searchDatePicker.Name = "searchDatePicker";
-            searchDatePicker.Size = new Size(273, 31);
+            searchDatePicker.Size = new Size(192, 23);
             searchDatePicker.TabIndex = 3;
             // 
             // bothRadioButton
             // 
             bothRadioButton.AutoSize = true;
-            bothRadioButton.Location = new Point(676, 133);
-            bothRadioButton.Margin = new Padding(4, 5, 4, 5);
+            bothRadioButton.Location = new Point(473, 80);
             bothRadioButton.Name = "bothRadioButton";
-            bothRadioButton.Size = new Size(74, 29);
+            bothRadioButton.Size = new Size(50, 19);
             bothRadioButton.TabIndex = 2;
             bothRadioButton.TabStop = true;
             bothRadioButton.Text = "Both";
@@ -370,10 +319,9 @@
             // birthdateRadioButton
             // 
             birthdateRadioButton.AutoSize = true;
-            birthdateRadioButton.Location = new Point(676, 87);
-            birthdateRadioButton.Margin = new Padding(4, 5, 4, 5);
+            birthdateRadioButton.Location = new Point(473, 52);
             birthdateRadioButton.Name = "birthdateRadioButton";
-            birthdateRadioButton.Size = new Size(108, 29);
+            birthdateRadioButton.Size = new Size(73, 19);
             birthdateRadioButton.TabIndex = 1;
             birthdateRadioButton.TabStop = true;
             birthdateRadioButton.Text = "Birthdate";
@@ -383,147 +331,21 @@
             // nameRadioButton
             // 
             nameRadioButton.AutoSize = true;
-            nameRadioButton.Location = new Point(676, 37);
-            nameRadioButton.Margin = new Padding(4, 5, 4, 5);
+            nameRadioButton.Location = new Point(473, 22);
             nameRadioButton.Name = "nameRadioButton";
-            nameRadioButton.Size = new Size(84, 29);
+            nameRadioButton.Size = new Size(57, 19);
             nameRadioButton.TabIndex = 0;
             nameRadioButton.TabStop = true;
             nameRadioButton.Text = "Name";
             nameRadioButton.UseVisualStyleBackColor = true;
             nameRadioButton.Click += nameRadioButton_Click;
             // 
-            // routineGroupBox
-            // 
-            routineGroupBox.Controls.Add(symptomsLabel);
-            routineGroupBox.Controls.Add(routinePtNameLabel);
-            routineGroupBox.Controls.Add(routinePtIDLabel);
-            routineGroupBox.Controls.Add(symptomsTextBox);
-            routineGroupBox.Controls.Add(temperatureTextBox);
-            routineGroupBox.Controls.Add(temperatureLabel);
-            routineGroupBox.Controls.Add(pulseTextBox);
-            routineGroupBox.Controls.Add(pulseLabel);
-            routineGroupBox.Controls.Add(bloodpressureTextBox);
-            routineGroupBox.Controls.Add(bloodpressureLabel);
-            routineGroupBox.Enabled = false;
-            routineGroupBox.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            routineGroupBox.ForeColor = Color.FromArgb(255, 255, 244);
-            routineGroupBox.Location = new Point(260, 475);
-            routineGroupBox.Margin = new Padding(4, 5, 4, 5);
-            routineGroupBox.Name = "routineGroupBox";
-            routineGroupBox.Padding = new Padding(4, 5, 4, 5);
-            routineGroupBox.Size = new Size(847, 428);
-            routineGroupBox.TabIndex = 9;
-            routineGroupBox.TabStop = false;
-            routineGroupBox.Text = "Routine Check-Up";
-            routineGroupBox.Visible = false;
-            // 
-            // symptomsLabel
-            // 
-            symptomsLabel.AutoSize = true;
-            symptomsLabel.Location = new Point(59, 222);
-            symptomsLabel.Margin = new Padding(4, 0, 4, 0);
-            symptomsLabel.Name = "symptomsLabel";
-            symptomsLabel.Size = new Size(105, 28);
-            symptomsLabel.TabIndex = 9;
-            symptomsLabel.Text = "Symptoms";
-            // 
-            // routinePtNameLabel
-            // 
-            routinePtNameLabel.AutoSize = true;
-            routinePtNameLabel.Location = new Point(160, 62);
-            routinePtNameLabel.Margin = new Padding(4, 0, 4, 0);
-            routinePtNameLabel.Name = "routinePtNameLabel";
-            routinePtNameLabel.Size = new Size(91, 28);
-            routinePtNameLabel.TabIndex = 8;
-            routinePtNameLabel.Text = "Pt Name:";
-            // 
-            // routinePtIDLabel
-            // 
-            routinePtIDLabel.AutoSize = true;
-            routinePtIDLabel.Location = new Point(30, 62);
-            routinePtIDLabel.Margin = new Padding(4, 0, 4, 0);
-            routinePtIDLabel.Name = "routinePtIDLabel";
-            routinePtIDLabel.Size = new Size(58, 28);
-            routinePtIDLabel.TabIndex = 7;
-            routinePtIDLabel.Text = "Pt ID:";
-            // 
-            // symptomsTextBox
-            // 
-            symptomsTextBox.BackColor = Color.FromArgb(255, 255, 242);
-            symptomsTextBox.ForeColor = Color.Black;
-            symptomsTextBox.Location = new Point(54, 255);
-            symptomsTextBox.Margin = new Padding(4, 5, 4, 5);
-            symptomsTextBox.Name = "symptomsTextBox";
-            symptomsTextBox.Size = new Size(721, 132);
-            symptomsTextBox.TabIndex = 6;
-            symptomsTextBox.Text = "";
-            // 
-            // temperatureTextBox
-            // 
-            temperatureTextBox.BackColor = Color.FromArgb(255, 255, 242);
-            temperatureTextBox.Location = new Point(627, 160);
-            temperatureTextBox.Margin = new Padding(4, 5, 4, 5);
-            temperatureTextBox.Name = "temperatureTextBox";
-            temperatureTextBox.Size = new Size(73, 33);
-            temperatureTextBox.TabIndex = 5;
-            temperatureTextBox.TextChanged += temperatureTextBox_TextChanged;
-            // 
-            // temperatureLabel
-            // 
-            temperatureLabel.AutoSize = true;
-            temperatureLabel.Location = new Point(627, 127);
-            temperatureLabel.Margin = new Padding(4, 0, 4, 0);
-            temperatureLabel.Name = "temperatureLabel";
-            temperatureLabel.Size = new Size(121, 28);
-            temperatureLabel.TabIndex = 4;
-            temperatureLabel.Text = "Temperature";
-            // 
-            // pulseTextBox
-            // 
-            pulseTextBox.BackColor = Color.FromArgb(255, 255, 242);
-            pulseTextBox.Location = new Point(371, 160);
-            pulseTextBox.Margin = new Padding(4, 5, 4, 5);
-            pulseTextBox.Name = "pulseTextBox";
-            pulseTextBox.Size = new Size(93, 33);
-            pulseTextBox.TabIndex = 3;
-            // 
-            // pulseLabel
-            // 
-            pulseLabel.AutoSize = true;
-            pulseLabel.Location = new Point(371, 127);
-            pulseLabel.Margin = new Padding(4, 0, 4, 0);
-            pulseLabel.Name = "pulseLabel";
-            pulseLabel.Size = new Size(57, 28);
-            pulseLabel.TabIndex = 2;
-            pulseLabel.Text = "Pulse";
-            // 
-            // bloodpressureTextBox
-            // 
-            bloodpressureTextBox.BackColor = Color.FromArgb(255, 255, 242);
-            bloodpressureTextBox.Location = new Point(109, 160);
-            bloodpressureTextBox.Margin = new Padding(4, 5, 4, 5);
-            bloodpressureTextBox.Name = "bloodpressureTextBox";
-            bloodpressureTextBox.Size = new Size(97, 33);
-            bloodpressureTextBox.TabIndex = 1;
-            // 
-            // bloodpressureLabel
-            // 
-            bloodpressureLabel.AutoSize = true;
-            bloodpressureLabel.Location = new Point(109, 127);
-            bloodpressureLabel.Margin = new Padding(4, 0, 4, 0);
-            bloodpressureLabel.Name = "bloodpressureLabel";
-            bloodpressureLabel.Size = new Size(141, 28);
-            bloodpressureLabel.TabIndex = 0;
-            bloodpressureLabel.Text = "Blood Pressure";
-            // 
             // MainPage
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(40, 116, 166);
-            ClientSize = new Size(1113, 1025);
-            Controls.Add(routineGroupBox);
+            ClientSize = new Size(779, 586);
             Controls.Add(searchGroupBox);
             Controls.Add(errormessageLabel);
             Controls.Add(patientsLabel);
@@ -533,7 +355,6 @@
             Controls.Add(welcomeNameLabel);
             Controls.Add(symbolPictureBox);
             Controls.Add(healthCareNamePanel);
-            Margin = new Padding(4, 5, 4, 5);
             Name = "MainPage";
             Text = "MainPage";
             healthCareNamePanel.ResumeLayout(false);
@@ -544,8 +365,6 @@
             ((System.ComponentModel.ISupportInitialize)registeredPatiensDataGridView).EndInit();
             searchGroupBox.ResumeLayout(false);
             searchGroupBox.PerformLayout();
-            routineGroupBox.ResumeLayout(false);
-            routineGroupBox.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -574,18 +393,6 @@
         private Button patientSearchButton;
         private TextBox lnameTextBox;
         private TextBox fnameSearchTextBox;
-        private Button visitInformationButton;
-        private GroupBox routineGroupBox;
-        private TextBox bloodpressureTextBox;
-        private Label bloodpressureLabel;
-        private TextBox pulseTextBox;
-        private Label pulseLabel;
-        private Label temperatureLabel;
-        private RichTextBox symptomsTextBox;
-        private TextBox temperatureTextBox;
-        private Label routinePtNameLabel;
-        private Label routinePtIDLabel;
-        private Label symptomsLabel;
         private Button appointmentsButton;
     }
 }

@@ -291,7 +291,7 @@
             register_btn.FlatStyle = FlatStyle.Flat;
             register_btn.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             register_btn.ForeColor = Color.Black;
-            register_btn.Location = new Point(265, 443);
+            register_btn.Location = new Point(250, 443);
             register_btn.Name = "register_btn";
             register_btn.Size = new Size(105, 45);
             register_btn.TabIndex = 6;
@@ -328,7 +328,7 @@
             update_btn.FlatStyle = FlatStyle.Flat;
             update_btn.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             update_btn.ForeColor = Color.Black;
-            update_btn.Location = new Point(250, 443);
+            update_btn.Location = new Point(269, 443);
             update_btn.Name = "update_btn";
             update_btn.Size = new Size(101, 45);
             update_btn.TabIndex = 26;

@@ -42,6 +42,14 @@
             pulseTextbox = new TextBox();
             symptomsLabel = new Label();
             symptomsTextbox = new RichTextBox();
+            diagnosisTextbox = new RichTextBox();
+            heightTextbox = new TextBox();
+            label2 = new Label();
+            weightTextbox = new TextBox();
+            label3 = new Label();
+            doctorIDLabel = new Label();
+            label5 = new Label();
+            submitButton = new Button();
             healthCareNamePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)symbolPictureBox).BeginInit();
             SuspendLayout();
@@ -68,6 +76,7 @@
             back_btn.TabIndex = 1;
             back_btn.Text = "Back";
             back_btn.UseVisualStyleBackColor = false;
+            back_btn.Click += back_btn_Click;
             // 
             // healthCareNameLabel
             // 
@@ -95,7 +104,7 @@
             patientIDLabel.AutoSize = true;
             patientIDLabel.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             patientIDLabel.ForeColor = Color.FromArgb(242, 243, 244);
-            patientIDLabel.Location = new Point(40, 104);
+            patientIDLabel.Location = new Point(40, 88);
             patientIDLabel.Name = "patientIDLabel";
             patientIDLabel.Size = new Size(75, 17);
             patientIDLabel.TabIndex = 4;
@@ -106,7 +115,7 @@
             patientnameLabel.AutoSize = true;
             patientnameLabel.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             patientnameLabel.ForeColor = Color.FromArgb(242, 243, 244);
-            patientnameLabel.Location = new Point(191, 104);
+            patientnameLabel.Location = new Point(40, 105);
             patientnameLabel.Name = "patientnameLabel";
             patientnameLabel.Size = new Size(94, 17);
             patientnameLabel.TabIndex = 5;
@@ -115,49 +124,52 @@
             // bloodpressureTextBox
             // 
             bloodpressureTextBox.BackColor = Color.FromArgb(255, 255, 242);
-            bloodpressureTextBox.Location = new Point(52, 196);
+            bloodpressureTextBox.Location = new Point(96, 230);
             bloodpressureTextBox.Name = "bloodpressureTextBox";
-            bloodpressureTextBox.Size = new Size(116, 23);
+            bloodpressureTextBox.Size = new Size(47, 23);
             bloodpressureTextBox.TabIndex = 6;
+            bloodpressureTextBox.TextChanged += bloodpressureTextBox_TextChanged;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.FromArgb(242, 243, 244);
-            label1.Location = new Point(52, 176);
+            label1.Location = new Point(83, 210);
             label1.Name = "label1";
-            label1.Size = new Size(99, 17);
+            label1.Size = new Size(96, 17);
             label1.TabIndex = 7;
             label1.Text = "Blood Pressure";
             // 
             // temperatureTextbox
             // 
             temperatureTextbox.BackColor = Color.FromArgb(255, 255, 242);
-            temperatureTextbox.Location = new Point(247, 196);
+            temperatureTextbox.ForeColor = Color.Black;
+            temperatureTextbox.Location = new Point(448, 230);
             temperatureTextbox.Name = "temperatureTextbox";
             temperatureTextbox.Size = new Size(63, 23);
             temperatureTextbox.TabIndex = 8;
+            temperatureTextbox.TextChanged += temperatureTextbox_TextChanged;
             // 
             // temperatureLabel
             // 
             temperatureLabel.AutoSize = true;
-            temperatureLabel.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            temperatureLabel.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             temperatureLabel.ForeColor = Color.FromArgb(242, 243, 244);
-            temperatureLabel.Location = new Point(247, 176);
+            temperatureLabel.Location = new Point(432, 210);
             temperatureLabel.Name = "temperatureLabel";
-            temperatureLabel.Size = new Size(139, 17);
+            temperatureLabel.Size = new Size(100, 17);
             temperatureLabel.TabIndex = 9;
-            temperatureLabel.Text = "Body Temperature (F)";
+            temperatureLabel.Text = "Temperature (F)";
             // 
             // pulseLabel
             // 
             pulseLabel.AutoSize = true;
-            pulseLabel.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            pulseLabel.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             pulseLabel.ForeColor = Color.FromArgb(255, 255, 242);
-            pulseLabel.Location = new Point(472, 176);
+            pulseLabel.Location = new Point(276, 210);
             pulseLabel.Name = "pulseLabel";
-            pulseLabel.Size = new Size(40, 17);
+            pulseLabel.Size = new Size(38, 17);
             pulseLabel.TabIndex = 10;
             pulseLabel.Text = "Pulse";
             // 
@@ -165,19 +177,20 @@
             // 
             pulseTextbox.BackColor = Color.FromArgb(255, 255, 242);
             pulseTextbox.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            pulseTextbox.Location = new Point(472, 196);
+            pulseTextbox.Location = new Point(263, 230);
             pulseTextbox.Name = "pulseTextbox";
             pulseTextbox.Size = new Size(63, 23);
             pulseTextbox.TabIndex = 11;
+            pulseTextbox.TextChanged += pulseTextbox_TextChanged;
             // 
             // symptomsLabel
             // 
             symptomsLabel.AutoSize = true;
-            symptomsLabel.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            symptomsLabel.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             symptomsLabel.ForeColor = Color.FromArgb(255, 255, 242);
-            symptomsLabel.Location = new Point(52, 252);
+            symptomsLabel.Location = new Point(95, 280);
             symptomsLabel.Name = "symptomsLabel";
-            symptomsLabel.Size = new Size(73, 17);
+            symptomsLabel.Size = new Size(69, 17);
             symptomsLabel.TabIndex = 12;
             symptomsLabel.Text = "Symptoms";
             // 
@@ -185,18 +198,104 @@
             // 
             symptomsTextbox.BackColor = Color.FromArgb(255, 255, 242);
             symptomsTextbox.ForeColor = Color.Black;
-            symptomsTextbox.Location = new Point(52, 272);
+            symptomsTextbox.Location = new Point(96, 300);
             symptomsTextbox.Name = "symptomsTextbox";
-            symptomsTextbox.Size = new Size(483, 108);
+            symptomsTextbox.Size = new Size(415, 70);
             symptomsTextbox.TabIndex = 13;
             symptomsTextbox.Text = "";
+            // 
+            // diagnosisTextbox
+            // 
+            diagnosisTextbox.BackColor = Color.FromArgb(255, 255, 242);
+            diagnosisTextbox.ForeColor = Color.Black;
+            diagnosisTextbox.Location = new Point(95, 408);
+            diagnosisTextbox.Name = "diagnosisTextbox";
+            diagnosisTextbox.Size = new Size(415, 63);
+            diagnosisTextbox.TabIndex = 14;
+            diagnosisTextbox.Text = "";
+            // 
+            // heightTextbox
+            // 
+            heightTextbox.Location = new Point(180, 176);
+            heightTextbox.Name = "heightTextbox";
+            heightTextbox.Size = new Size(60, 23);
+            heightTextbox.TabIndex = 15;
+            heightTextbox.TextChanged += heightTextbox_TextChanged;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.ForeColor = Color.FromArgb(242, 243, 244);
+            label2.Location = new Point(180, 158);
+            label2.Name = "label2";
+            label2.Size = new Size(67, 15);
+            label2.TabIndex = 16;
+            label2.Text = "Height (in.)";
+            // 
+            // weightTextbox
+            // 
+            weightTextbox.Location = new Point(349, 176);
+            weightTextbox.Name = "weightTextbox";
+            weightTextbox.Size = new Size(66, 23);
+            weightTextbox.TabIndex = 17;
+            weightTextbox.TextChanged += weightTextbox_TextChanged;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.ForeColor = Color.FromArgb(244, 243, 242);
+            label3.Location = new Point(349, 158);
+            label3.Name = "label3";
+            label3.Size = new Size(74, 15);
+            label3.TabIndex = 18;
+            label3.Text = "Weight (lbs.)";
+            // 
+            // doctorIDLabel
+            // 
+            doctorIDLabel.AutoSize = true;
+            doctorIDLabel.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            doctorIDLabel.ForeColor = Color.FromArgb(244, 243, 242);
+            doctorIDLabel.Location = new Point(483, 88);
+            doctorIDLabel.Name = "doctorIDLabel";
+            doctorIDLabel.Size = new Size(69, 17);
+            doctorIDLabel.TabIndex = 19;
+            doctorIDLabel.Text = "Doctor ID:";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label5.ForeColor = Color.FromArgb(244, 243, 242);
+            label5.Location = new Point(96, 388);
+            label5.Name = "label5";
+            label5.Size = new Size(99, 17);
+            label5.TabIndex = 20;
+            label5.Text = "Initial Diagnosis";
+            // 
+            // submitButton
+            // 
+            submitButton.Location = new Point(249, 498);
+            submitButton.Name = "submitButton";
+            submitButton.Size = new Size(90, 23);
+            submitButton.TabIndex = 21;
+            submitButton.Text = "Submit";
+            submitButton.UseVisualStyleBackColor = true;
+            submitButton.Click += submitButton_Click;
             // 
             // VisitInformation
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(40, 116, 166);
-            ClientSize = new Size(625, 424);
+            ClientSize = new Size(624, 533);
+            Controls.Add(submitButton);
+            Controls.Add(label5);
+            Controls.Add(doctorIDLabel);
+            Controls.Add(label3);
+            Controls.Add(weightTextbox);
+            Controls.Add(label2);
+            Controls.Add(heightTextbox);
+            Controls.Add(diagnosisTextbox);
             Controls.Add(symptomsTextbox);
             Controls.Add(symptomsLabel);
             Controls.Add(pulseTextbox);
@@ -234,5 +333,13 @@
         private TextBox pulseTextbox;
         private Label symptomsLabel;
         private RichTextBox symptomsTextbox;
+        private RichTextBox diagnosisTextbox;
+        private TextBox heightTextbox;
+        private Label label2;
+        private TextBox weightTextbox;
+        private Label label3;
+        private Label doctorIDLabel;
+        private Label label5;
+        private Button submitButton;
     }
 }

@@ -32,6 +32,7 @@
             healthCareNameLabel = new Label();
             symbolPictureBox = new PictureBox();
             appointmentsButtonPanel = new Panel();
+            visitInformationButton = new Button();
             backToMainButton = new Button();
             editAppointment = new Button();
             newAppointmentButton = new Button();
@@ -80,13 +81,29 @@
             // appointmentsButtonPanel
             // 
             appointmentsButtonPanel.BackColor = Color.FromArgb(93, 109, 126);
+            appointmentsButtonPanel.Controls.Add(visitInformationButton);
             appointmentsButtonPanel.Controls.Add(backToMainButton);
             appointmentsButtonPanel.Controls.Add(editAppointment);
             appointmentsButtonPanel.Controls.Add(newAppointmentButton);
-            appointmentsButtonPanel.Location = new Point(0, 80);
+            appointmentsButtonPanel.Location = new Point(0, 82);
             appointmentsButtonPanel.Name = "appointmentsButtonPanel";
-            appointmentsButtonPanel.Size = new Size(160, 411);
+            appointmentsButtonPanel.Size = new Size(160, 409);
             appointmentsButtonPanel.TabIndex = 2;
+            // 
+            // visitInformationButton
+            // 
+            visitInformationButton.BackColor = Color.FromArgb(255, 255, 244);
+            visitInformationButton.FlatAppearance.BorderSize = 0;
+            visitInformationButton.FlatStyle = FlatStyle.Flat;
+            visitInformationButton.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            visitInformationButton.ForeColor = Color.Black;
+            visitInformationButton.Location = new Point(0, 110);
+            visitInformationButton.Name = "visitInformationButton";
+            visitInformationButton.Size = new Size(160, 49);
+            visitInformationButton.TabIndex = 10;
+            visitInformationButton.Text = "Visit Information";
+            visitInformationButton.UseVisualStyleBackColor = false;
+            visitInformationButton.Click += visitInformationButton_Click;
             // 
             // backToMainButton
             // 
@@ -95,9 +112,9 @@
             backToMainButton.FlatStyle = FlatStyle.Flat;
             backToMainButton.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             backToMainButton.ForeColor = Color.Black;
-            backToMainButton.Location = new Point(0, 94);
+            backToMainButton.Location = new Point(0, 155);
             backToMainButton.Name = "backToMainButton";
-            backToMainButton.Size = new Size(160, 47);
+            backToMainButton.Size = new Size(160, 53);
             backToMainButton.TabIndex = 2;
             backToMainButton.Text = "Back To Main";
             backToMainButton.UseVisualStyleBackColor = true;
@@ -110,7 +127,7 @@
             editAppointment.FlatStyle = FlatStyle.Flat;
             editAppointment.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             editAppointment.ForeColor = Color.Black;
-            editAppointment.Location = new Point(0, 47);
+            editAppointment.Location = new Point(0, 68);
             editAppointment.Name = "editAppointment";
             editAppointment.Size = new Size(160, 47);
             editAppointment.TabIndex = 1;
@@ -125,9 +142,9 @@
             newAppointmentButton.FlatStyle = FlatStyle.Flat;
             newAppointmentButton.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             newAppointmentButton.ForeColor = Color.Black;
-            newAppointmentButton.Location = new Point(0, 0);
+            newAppointmentButton.Location = new Point(0, 3);
             newAppointmentButton.Name = "newAppointmentButton";
-            newAppointmentButton.Size = new Size(160, 47);
+            newAppointmentButton.Size = new Size(160, 68);
             newAppointmentButton.TabIndex = 0;
             newAppointmentButton.Text = "New Appointment";
             newAppointmentButton.UseVisualStyleBackColor = true;
@@ -228,5 +245,6 @@
         private Button editAppointment;
         private Button newAppointmentButton;
         private Label errorLabel;
+        private Button visitInformationButton;
     }
 }

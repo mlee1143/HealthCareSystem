@@ -82,5 +82,34 @@ namespace HealthCareSystem.View
                 MessageBox.Show("Please select an appointment to edit.");
             }
         }
+
+        private void visitInformationButton_Click(object sender, EventArgs e)
+        {
+            Appointment appointment = null;
+
+            if (this.appointmentsDataGridView.SelectedRows.Count > 0)
+            {
+                DataGridViewRow selectedRow = appointmentsDataGridView.SelectedRows[0];
+
+                if (selectedRow != null)
+                {
+                    var appID = selectedRow.Cells[0].Value;
+
+                    if (appID != null)
+                    {
+                      //  patient = this.appointmentDAL // Handle null
+                    }
+
+                }
+
+            }
+            else
+            {
+                this.errorLabel.Visible = true;
+                this.errorLabel.Text = "No Patient selected. Please select a patient to edit patient information.";
+            }
+
+           
+        }
     }
 }
