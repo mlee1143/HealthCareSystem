@@ -88,7 +88,7 @@ namespace HealthCareSystem.View
 
                     if (patientid != null)
                     {
-                        patient = this.patientDAL.GetPatientByID(Convert.ToInt32(patientid)); // Handle null
+                        patient = this.patientDAL.GetPatientByID(Convert.ToInt32(patientid));
                     }
 
                 }
@@ -96,8 +96,7 @@ namespace HealthCareSystem.View
             }
             else
             {
-                this.errormessageLabel.Visible = true;
-                this.errormessageLabel.Text = "No Patient selected. Please select a patient to edit patient information.";
+                MessageBox.Show("No Patient selected. Please select a patient to edit patient information");
             }
 
             if (patient != null)

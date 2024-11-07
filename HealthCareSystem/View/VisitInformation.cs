@@ -19,6 +19,7 @@ namespace HealthCareSystem.View
 
         PatientDAL patientDAL;
         VisitDAL visitDAL;
+        DoctorDAL doctorDAL;
 
         public VisitInformation(Nurse nurse, Appointment appointment)
         {
@@ -29,6 +30,7 @@ namespace HealthCareSystem.View
 
             this.patientDAL = new PatientDAL();
             this.visitDAL = new VisitDAL();
+            this.doctorDAL = new DoctorDAL();
 
             this.SetupLabels();
         }
@@ -41,6 +43,13 @@ namespace HealthCareSystem.View
             this.patientnameLabel.Text += $" {name}";
 
             this.doctorIDLabel.Text += $" {appointment.DoctorID}";
+            var doctorName = doctorDAL.GetDoctorNameByDoctorID(appointment.DoctorID);
+            this.doctorNameLabel.Text += $" {doctorName}";
+        }
+
+        private void PopulateFields()
+        {
+
         }
 
         private bool IsNumberValid(string number)

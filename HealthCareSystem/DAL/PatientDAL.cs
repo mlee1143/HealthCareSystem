@@ -133,7 +133,7 @@ namespace HealthCareSystem.DAL
             }
         }
 
-        public async Task<bool> UpdatePatientInformationUsingID(Patient patient)
+        public async Task<bool> UpdatePatientInformationUsingID(int patientID, Patient patient)
         {
             using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
             {
@@ -156,7 +156,8 @@ namespace HealthCareSystem.DAL
 
                 using (var command = new MySqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@id", patient.PatientId); 
+                    command.Parameters.AddWithValue("@id", patientID);
+
                     command.Parameters.AddWithValue("@fname", patient.Firstname);
                     command.Parameters.AddWithValue("@lname", patient.Lastname);
                     command.Parameters.AddWithValue("@bdate", patient.Birthdate);

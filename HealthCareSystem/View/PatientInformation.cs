@@ -38,8 +38,9 @@ namespace HealthCareSystem.View
             this.PopulateComboBoxes();
             this.PopulateFields();
 
-            this.register_btn.Enabled = false;
             this.register_btn.Visible = false;
+            this.register_btn.Enabled = false;
+            
         }
 
         /// <summary>
@@ -116,91 +117,108 @@ namespace HealthCareSystem.View
 
         private async void register_btn_Click(object sender, EventArgs e)
         {
-            var fname = this.pt_fname_txtbx.Text;
-
-            var minit = this.minit_txtbx.Text;
-
-            var lname = this.pt_lname_txtbx.Text;
-
-            DateTime date = this.birthdate_datepicker.Value;
-
-            var address = this.address_txtbx.Text;
-
-            var city = this.city_txtbx.Text;
-
-            States state = (States)this.states_combobox.SelectedItem;
-
-            var zip = Convert.ToInt32(this.zip_txtbx.Text);
-
-            string country = this.country_txtbx.Text;
-
-            var phone = this.phone_num_txtbx.Text;
-
-            Gender gender = (Gender)this.gender_cmbobx.SelectedItem;
-
-            int isActive = this.yesRadioButton.Checked == true ? 1 : 0;
-
-            Patient patient = new Patient(fname, lname, date, gender, isActive)
+            if (this.IsReadyToClick())
             {
-                MiddleInitial = minit,
-                Address = address,
-                City = city,
-                State = state,
-                Country = country,
-                ZipCode = zip,
-                PhoneNumber = phone
 
-            };
 
-            await this.patientDAL.RegisterPatient(patient);
+                var fname = this.pt_fname_txtbx.Text;
 
-            MainPage main = new MainPage(this.nurse);
-            main.Show();
-            this.Close();
+                var minit = this.minit_txtbx.Text;
+
+                var lname = this.pt_lname_txtbx.Text;
+
+                DateTime date = this.birthdate_datepicker.Value;
+
+                var address = this.address_txtbx.Text;
+
+                var city = this.city_txtbx.Text;
+
+                States state = (States)this.states_combobox.SelectedItem;
+
+                var zip = Convert.ToInt32(this.zip_txtbx.Text);
+
+                string country = this.country_txtbx.Text;
+
+                var phone = this.phone_num_txtbx.Text;
+
+                Gender gender = (Gender)this.gender_cmbobx.SelectedItem;
+
+                int isActive = this.yesRadioButton.Checked == true ? 1 : 0;
+
+                Patient patient = new Patient(fname, lname, date, gender, isActive)
+                {
+                    MiddleInitial = minit,
+                    Address = address,
+                    City = city,
+                    State = state,
+                    Country = country,
+                    ZipCode = zip,
+                    PhoneNumber = phone
+
+                };
+
+                await this.patientDAL.RegisterPatient(patient);
+
+                MainPage main = new MainPage(this.nurse);
+                main.Show();
+                this.Close();
+            } else
+            {
+                MessageBox.Show("Please fill out ALL required fields");
+            }
         }
 
         private async void update_btn_Click(object sender, EventArgs e)
         {
-            var fname = this.pt_fname_txtbx.Text;
-
-            var minit = this.minit_txtbx.Text;
-
-            var lname = this.pt_lname_txtbx.Text;
-
-            DateTime date = this.birthdate_datepicker.Value;
-
-            var address = this.address_txtbx.Text;
-
-            var city = this.city_txtbx.Text;
-
-            States state = (States)this.states_combobox.SelectedItem;
-
-            var zip = Convert.ToInt32(this.zip_txtbx.Text);
-
-            string country = this.country_txtbx.Text;
-
-            var phone = this.phone_num_txtbx.Text;
-
-            Gender gender = (Gender)this.gender_cmbobx.SelectedItem;
-           
-            int isActive = this.yesRadioButton.Checked == true ? 1 : 0;
-
-            Patient patient = new Patient(fname, lname, date, gender, isActive)
+            if (this.IsReadyToClick())
             {
-                MiddleInitial = minit,
-                Address = address,
-                City = city,
-                State = state,
-                Country = country,
-                ZipCode = zip,
-                PhoneNumber = phone
-            };
+                var fname = this.pt_fname_txtbx.Text;
 
-            await this.patientDAL.UpdatePatientInformation(patient);
+                var minit = this.minit_txtbx.Text;
 
-            MainPage main = new MainPage(this.nurse);
-            main.Show();
-            this.Close();
+                var lname = this.pt_lname_txtbx.Text;
+
+                DateTime date = this.birthdate_datepicker.Value;
+
+                var address = this.address_txtbx.Text;
+
+                var city = this.city_txtbx.Text;
+
+                States state = (States)this.states_combobox.SelectedItem;
+
+                var zip = Convert.ToInt32(this.zip_txtbx.Text);
+
+                string country = this.country_txtbx.Text;
+
+                var phone = this.phone_num_txtbx.Text;
+
+                Gender gender = (Gender)this.gender_cmbobx.SelectedItem;
+
+                int isActive = this.yesRadioButton.Checked == true ? 1 : 0;
+
+                Patient patient = new Patient(fname, lname, date, gender, isActive)
+                {
+                    MiddleInitial = minit,
+                    Address = address,
+                    City = city,
+                    State = state,
+                    Country = country,
+                    ZipCode = zip,
+                    PhoneNumber = phone
+                };
+
+                int patientID = Convert.ToInt32(this.patientID_txtbx.Text);
+
+                await this.patientDAL.UpdatePatientInformationUsingID(patientID, patient);
+
+                MainPage main = new MainPage(this.nurse);
+                main.Show();
+                this.Close();
+
+            } else
+            {
+                MessageBox.Show("Please fill out ALL required fields.");
+            }
         }
 
         private void back_btn_Click(object sender, EventArgs e)
@@ -244,6 +262,7 @@ namespace HealthCareSystem.View
                 this.feedback_label.Visible = false;
                 this.feedback_label.Text = string.Empty;
             }
+           
         }
 
         private void pt_lname_txtbx_TextChanged(object sender, EventArgs e)
@@ -265,7 +284,7 @@ namespace HealthCareSystem.View
                 this.feedback_label.Visible = false;
                 this.feedback_label.Text = string.Empty;
             }
-
+            
         }
 
         private void address_txtbx_TextChanged(object sender, EventArgs e)
@@ -287,6 +306,7 @@ namespace HealthCareSystem.View
                 this.feedback_label.Visible = false;
                 this.feedback_label.Text = string.Empty;
             }
+           
         }
 
         private void city_txtbx_TextChanged(object sender, EventArgs e)
@@ -308,6 +328,7 @@ namespace HealthCareSystem.View
                 this.feedback_label.Visible = false;
                 this.feedback_label.Text = string.Empty;
             }
+           
         }
 
         private void zip_txtbx_TextChanged(object sender, EventArgs e)
@@ -334,7 +355,7 @@ namespace HealthCareSystem.View
                 this.feedback_label.Visible = false;
                 this.feedback_label.Text = string.Empty;
             }
-
+           
         }
 
         private void country_txtbx_TextChanged(object sender, EventArgs e)
@@ -356,6 +377,7 @@ namespace HealthCareSystem.View
                 this.feedback_label.Visible = false;
                 this.feedback_label.Text = string.Empty;
             }
+           
         }
 
         private void phone_num_txtbx_TextChanged(object sender, EventArgs e)
@@ -383,6 +405,7 @@ namespace HealthCareSystem.View
                 this.feedback_label.Visible = false;
                 feedback_label.Text = string.Empty;
             }
+            
         }
 
         private void minit_txtbx_TextChanged(object sender, EventArgs e)
@@ -404,6 +427,21 @@ namespace HealthCareSystem.View
                 this.feedback_label.Visible = false;
                 this.feedback_label.Text = string.Empty;
             }
+            
+        }
+
+        private bool IsReadyToClick()
+        {
+            if (!feedback_label.Visible)
+            {
+                if (pt_fname_txtbx.Text.Length > 0 && pt_lname_txtbx.Text.Length > 0 && address_txtbx.Text.Length > 0 && city_txtbx.Text.Length > 0 && states_combobox.SelectedItem != null && zip_txtbx.Text.Length > 0 && country_txtbx.Text.Length > 0 && gender_cmbobx.SelectedItem != null && phone_num_txtbx.Text.Length > 0)
+                {
+                   //this.register_btn.Enabled = true;
+                   //this.update_btn.Enabled = true;
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

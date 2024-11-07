@@ -35,7 +35,7 @@
             patientIDLabel = new Label();
             patientnameLabel = new Label();
             bloodpressureTextBox = new TextBox();
-            label1 = new Label();
+            bpLabel = new Label();
             temperatureTextbox = new TextBox();
             temperatureLabel = new Label();
             pulseLabel = new Label();
@@ -44,13 +44,14 @@
             symptomsTextbox = new RichTextBox();
             diagnosisTextbox = new RichTextBox();
             heightTextbox = new TextBox();
-            label2 = new Label();
+            heightLabel = new Label();
             weightTextbox = new TextBox();
-            label3 = new Label();
+            weightLabel = new Label();
             doctorIDLabel = new Label();
-            label5 = new Label();
+            diagnosisLabel = new Label();
             submitButton = new Button();
             errorLabel = new Label();
+            doctorNameLabel = new Label();
             healthCareNamePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)symbolPictureBox).BeginInit();
             SuspendLayout();
@@ -131,16 +132,16 @@
             bloodpressureTextBox.TabIndex = 6;
             bloodpressureTextBox.TextChanged += bloodpressureTextBox_TextChanged;
             // 
-            // label1
+            // bpLabel
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.FromArgb(242, 243, 244);
-            label1.Location = new Point(83, 200);
-            label1.Name = "label1";
-            label1.Size = new Size(96, 17);
-            label1.TabIndex = 7;
-            label1.Text = "Blood Pressure";
+            bpLabel.AutoSize = true;
+            bpLabel.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            bpLabel.ForeColor = Color.FromArgb(242, 243, 244);
+            bpLabel.Location = new Point(83, 200);
+            bpLabel.Name = "bpLabel";
+            bpLabel.Size = new Size(96, 17);
+            bpLabel.TabIndex = 7;
+            bpLabel.Text = "Blood Pressure";
             // 
             // temperatureTextbox
             // 
@@ -223,15 +224,15 @@
             heightTextbox.TabIndex = 15;
             heightTextbox.TextChanged += heightTextbox_TextChanged;
             // 
-            // label2
+            // heightLabel
             // 
-            label2.AutoSize = true;
-            label2.ForeColor = Color.FromArgb(242, 243, 244);
-            label2.Location = new Point(180, 149);
-            label2.Name = "label2";
-            label2.Size = new Size(67, 15);
-            label2.TabIndex = 16;
-            label2.Text = "Height (in.)";
+            heightLabel.AutoSize = true;
+            heightLabel.ForeColor = Color.FromArgb(242, 243, 244);
+            heightLabel.Location = new Point(180, 149);
+            heightLabel.Name = "heightLabel";
+            heightLabel.Size = new Size(67, 15);
+            heightLabel.TabIndex = 16;
+            heightLabel.Text = "Height (in.)";
             // 
             // weightTextbox
             // 
@@ -241,37 +242,37 @@
             weightTextbox.TabIndex = 17;
             weightTextbox.TextChanged += weightTextbox_TextChanged;
             // 
-            // label3
+            // weightLabel
             // 
-            label3.AutoSize = true;
-            label3.ForeColor = Color.FromArgb(244, 243, 242);
-            label3.Location = new Point(349, 149);
-            label3.Name = "label3";
-            label3.Size = new Size(74, 15);
-            label3.TabIndex = 18;
-            label3.Text = "Weight (lbs.)";
+            weightLabel.AutoSize = true;
+            weightLabel.ForeColor = Color.FromArgb(244, 243, 242);
+            weightLabel.Location = new Point(349, 149);
+            weightLabel.Name = "weightLabel";
+            weightLabel.Size = new Size(74, 15);
+            weightLabel.TabIndex = 18;
+            weightLabel.Text = "Weight (lbs.)";
             // 
             // doctorIDLabel
             // 
             doctorIDLabel.AutoSize = true;
             doctorIDLabel.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             doctorIDLabel.ForeColor = Color.FromArgb(244, 243, 242);
-            doctorIDLabel.Location = new Point(483, 88);
+            doctorIDLabel.Location = new Point(412, 88);
             doctorIDLabel.Name = "doctorIDLabel";
             doctorIDLabel.Size = new Size(69, 17);
             doctorIDLabel.TabIndex = 19;
             doctorIDLabel.Text = "Doctor ID:";
             // 
-            // label5
+            // diagnosisLabel
             // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label5.ForeColor = Color.FromArgb(244, 243, 242);
-            label5.Location = new Point(96, 388);
-            label5.Name = "label5";
-            label5.Size = new Size(99, 17);
-            label5.TabIndex = 20;
-            label5.Text = "Initial Diagnosis";
+            diagnosisLabel.AutoSize = true;
+            diagnosisLabel.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            diagnosisLabel.ForeColor = Color.FromArgb(244, 243, 242);
+            diagnosisLabel.Location = new Point(96, 388);
+            diagnosisLabel.Name = "diagnosisLabel";
+            diagnosisLabel.Size = new Size(99, 17);
+            diagnosisLabel.TabIndex = 20;
+            diagnosisLabel.Text = "Initial Diagnosis";
             // 
             // submitButton
             // 
@@ -294,19 +295,31 @@
             errorLabel.Size = new Size(0, 17);
             errorLabel.TabIndex = 22;
             // 
+            // doctorNameLabel
+            // 
+            doctorNameLabel.AutoSize = true;
+            doctorNameLabel.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            doctorNameLabel.ForeColor = Color.FromArgb(244, 243, 242);
+            doctorNameLabel.Location = new Point(412, 105);
+            doctorNameLabel.Name = "doctorNameLabel";
+            doctorNameLabel.Size = new Size(92, 17);
+            doctorNameLabel.TabIndex = 23;
+            doctorNameLabel.Text = "Doctor Name:";
+            // 
             // VisitInformation
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(40, 116, 166);
             ClientSize = new Size(624, 533);
+            Controls.Add(doctorNameLabel);
             Controls.Add(errorLabel);
             Controls.Add(submitButton);
-            Controls.Add(label5);
+            Controls.Add(diagnosisLabel);
             Controls.Add(doctorIDLabel);
-            Controls.Add(label3);
+            Controls.Add(weightLabel);
             Controls.Add(weightTextbox);
-            Controls.Add(label2);
+            Controls.Add(heightLabel);
             Controls.Add(heightTextbox);
             Controls.Add(diagnosisTextbox);
             Controls.Add(symptomsTextbox);
@@ -315,7 +328,7 @@
             Controls.Add(pulseLabel);
             Controls.Add(temperatureLabel);
             Controls.Add(temperatureTextbox);
-            Controls.Add(label1);
+            Controls.Add(bpLabel);
             Controls.Add(bloodpressureTextBox);
             Controls.Add(patientnameLabel);
             Controls.Add(patientIDLabel);
@@ -339,7 +352,7 @@
         private Label patientIDLabel;
         private Label patientnameLabel;
         private TextBox bloodpressureTextBox;
-        private Label label1;
+        private Label bpLabel;
         private TextBox temperatureTextbox;
         private Label temperatureLabel;
         private Label pulseLabel;
@@ -348,12 +361,13 @@
         private RichTextBox symptomsTextbox;
         private RichTextBox diagnosisTextbox;
         private TextBox heightTextbox;
-        private Label label2;
+        private Label heightLabel;
         private TextBox weightTextbox;
-        private Label label3;
+        private Label weightLabel;
         private Label doctorIDLabel;
-        private Label label5;
+        private Label diagnosisLabel;
         private Button submitButton;
         private Label errorLabel;
+        private Label doctorNameLabel;
     }
 }

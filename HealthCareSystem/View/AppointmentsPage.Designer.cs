@@ -48,7 +48,7 @@
             fnameSearchTextBox = new TextBox();
             searchDatePicker = new DateTimePicker();
             bothRadioButton = new RadioButton();
-            appointmentDateRadioButton = new RadioButton();
+            birthdateDateRadioButton = new RadioButton();
             nameRadioButton = new RadioButton();
             healthCareNamePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)symbolPictureBox).BeginInit();
@@ -239,7 +239,7 @@
             searchGroupBox.Controls.Add(fnameSearchTextBox);
             searchGroupBox.Controls.Add(searchDatePicker);
             searchGroupBox.Controls.Add(bothRadioButton);
-            searchGroupBox.Controls.Add(appointmentDateRadioButton);
+            searchGroupBox.Controls.Add(birthdateDateRadioButton);
             searchGroupBox.Controls.Add(nameRadioButton);
             searchGroupBox.ForeColor = Color.FromArgb(255, 255, 244);
             searchGroupBox.Location = new Point(166, 79);
@@ -303,16 +303,16 @@
             bothRadioButton.Text = "Both";
             bothRadioButton.UseVisualStyleBackColor = true;
             // 
-            // appointmentDateRadioButton
+            // birthdateDateRadioButton
             // 
-            appointmentDateRadioButton.AutoSize = true;
-            appointmentDateRadioButton.Location = new Point(450, 47);
-            appointmentDateRadioButton.Name = "appointmentDateRadioButton";
-            appointmentDateRadioButton.Size = new Size(81, 19);
-            appointmentDateRadioButton.TabIndex = 1;
-            appointmentDateRadioButton.TabStop = true;
-            appointmentDateRadioButton.Text = "Appt. Date";
-            appointmentDateRadioButton.UseVisualStyleBackColor = true;
+            birthdateDateRadioButton.AutoSize = true;
+            birthdateDateRadioButton.Location = new Point(450, 47);
+            birthdateDateRadioButton.Name = "birthdateDateRadioButton";
+            birthdateDateRadioButton.Size = new Size(73, 19);
+            birthdateDateRadioButton.TabIndex = 1;
+            birthdateDateRadioButton.TabStop = true;
+            birthdateDateRadioButton.Text = "Birthdate";
+            birthdateDateRadioButton.UseVisualStyleBackColor = true;
             // 
             // nameRadioButton
             // 
@@ -374,7 +374,7 @@
         private TextBox fnameSearchTextBox;
         private DateTimePicker searchDatePicker;
         private RadioButton bothRadioButton;
-        private RadioButton appointmentDateRadioButton;
+        private RadioButton birthdateDateRadioButton;
         private RadioButton nameRadioButton;
         private Button searchButton;
     }

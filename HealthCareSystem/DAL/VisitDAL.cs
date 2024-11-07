@@ -17,6 +17,32 @@ namespace HealthCareSystem.DAL
             this.databaseConnection = new DataHelper();
         }
 
+        public Visit GetVisitByPatientIDAndAppointmentDateTime(int id, DateTime appointmentDateTime)
+        {
+            using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
+            {
+                connection.Open();
+
+                string query = "SELECT * FROM visit WHERE patient_id = @id AND appointment_datetime = @appointmentDateTime;";
+
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@id", id);
+                    command.Parameters.AddWithValue("@appointmentDateTime", appointmentDateTime);
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            // return new Visit()
+                        }
+                    }
+                }
+            }
+
+            return null;
+        }
+
         public bool InsertVisitInformation(Visit visit)
         {
             using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))

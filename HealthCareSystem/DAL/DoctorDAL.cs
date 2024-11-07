@@ -58,5 +58,29 @@ namespace HealthCareSystem.DAL
                 return doctors;
         }
 
+        public string GetDoctorNameByDoctorID(int id)
+        {
+            using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
+            {
+                connection.Open();
+
+                string query = "SELECT CONCAT(fname, ' ', lname) AS full_name FROM doctor WHERE doctor_id = @id;";
+
+                using (var cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return reader["full_name"].ToString();
+                        }
+                    }
+                }
+            }
+            return null;
+        }
+
     }
 }

@@ -109,8 +109,7 @@ namespace HealthCareSystem.View
             }
             else
             {
-                this.errorLabel.Visible = true;
-                this.errorLabel.Text = "No Appointment selected. Please select an appointment to start inputting visit information.";
+                MessageBox.Show("Please select an appointment to view Visit Information");
             }
 
             if (appointment != null)
@@ -160,7 +159,7 @@ namespace HealthCareSystem.View
                     appointmentsDataGridView.Rows.Add(appointment.PatientID, appointment.DoctorID, appointment.AppointmentDateTime);
                 }
             }
-            else if (this.appointmentDateRadioButton.Checked)
+            else if (this.birthdateDateRadioButton.Checked)
             {
                 List<Appointment> appointments =  appointmentDAL.getAllAppointments();
 
@@ -196,6 +195,8 @@ namespace HealthCareSystem.View
             }
             else
             {
+                MessageBox.Show("No search criteria selected. Please click Name, Birthdate or Both.");
+
                 this.errorLabel.Text = "No criteria selected."; // Maybe change to search being disabled
             }
         }
