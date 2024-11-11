@@ -144,7 +144,7 @@ namespace HealthCareSystem.View
             if (this.nameRadioButton.Checked) // Condense this part PH
             {
                 //Patient patient = await patientDAL
-                List<Appointment> appointments = appointmentDAL.getAllAppointments();
+                List<Appointment> appointments = await appointmentDAL.GetListOfAppointmentsByPatientName(fnameSearchTextBox.Text, lnameTextBox.Text);
 
                 appointmentsDataGridView.Columns.Clear();
                 appointmentsDataGridView.Columns.Add("PatientID", "Patient ID");
@@ -161,7 +161,7 @@ namespace HealthCareSystem.View
             }
             else if (this.birthdateDateRadioButton.Checked)
             {
-                List<Appointment> appointments =  appointmentDAL.getAllAppointments();
+                List<Appointment> appointments = await appointmentDAL.GetListOfAppointmentsByPatientBirthdate(searchDatePicker.Value);
 
                 appointmentsDataGridView.Columns.Clear();
                 appointmentsDataGridView.Columns.Add("PatientID", "Patient ID");
@@ -178,7 +178,7 @@ namespace HealthCareSystem.View
             }
             else if (this.bothRadioButton.Checked)
             {
-                List<Appointment> appointments = appointmentDAL.getAllAppointments();
+                List<Appointment> appointments = await appointmentDAL.GetListOfAppointmentsByPatientNameAndBirthdate(fnameSearchTextBox.Text, lnameTextBox.Text, searchDatePicker.Value);
 
                 appointmentsDataGridView.Columns.Clear();
                 appointmentsDataGridView.Columns.Add("PatientID", "Patient ID");
@@ -199,6 +199,33 @@ namespace HealthCareSystem.View
 
                 this.errorLabel.Text = "No criteria selected."; // Maybe change to search being disabled
             }
+        }
+
+        private void nameRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            this.searchDatePicker.Enabled = false;
+            this.fnameSearchTextBox.Enabled = true;
+            this.lnameTextBox.Enabled = true;
+
+            this.appointmentSearchButton.Enabled = true;
+        }
+
+        private void birthdateDateRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            this.searchDatePicker.Enabled = true;
+            this.fnameSearchTextBox.Enabled = false;
+            this.lnameTextBox.Enabled = false;
+
+            this.appointmentSearchButton.Enabled = true;
+        }
+
+        private void bothRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            this.searchDatePicker.Enabled = true;
+            this.fnameSearchTextBox.Enabled = true;
+            this.lnameTextBox.Enabled = true;
+
+            this.appointmentSearchButton.Enabled = true;
         }
     }
 }

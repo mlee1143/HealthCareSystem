@@ -302,6 +302,7 @@
             bothRadioButton.TabStop = true;
             bothRadioButton.Text = "Both";
             bothRadioButton.UseVisualStyleBackColor = true;
+            bothRadioButton.CheckedChanged += bothRadioButton_CheckedChanged;
             // 
             // birthdateDateRadioButton
             // 
@@ -313,6 +314,7 @@
             birthdateDateRadioButton.TabStop = true;
             birthdateDateRadioButton.Text = "Birthdate";
             birthdateDateRadioButton.UseVisualStyleBackColor = true;
+            birthdateDateRadioButton.CheckedChanged += birthdateDateRadioButton_CheckedChanged;
             // 
             // nameRadioButton
             // 
@@ -324,6 +326,7 @@
             nameRadioButton.TabStop = true;
             nameRadioButton.Text = "Name";
             nameRadioButton.UseVisualStyleBackColor = true;
+            nameRadioButton.CheckedChanged += nameRadioButton_CheckedChanged;
             // 
             // AppointmentsPage
             // 

@@ -21,6 +21,11 @@ namespace HealthCareSystem.View
         VisitDAL visitDAL;
         DoctorDAL doctorDAL;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="VisitInformation"/> class.
+        /// </summary>
+        /// <param name="nurse">The nurse.</param>
+        /// <param name="appointment">The appointment.</param>
         public VisitInformation(Nurse nurse, Appointment appointment)
         {
             InitializeComponent();

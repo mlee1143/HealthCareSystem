@@ -11,14 +11,25 @@ using System.Threading.Tasks;
 
 namespace HealthCareSystem.DAL
 {
+    /// <summary>
+    /// PatientDAl class.
+    /// </summary>
     public class PatientDAL
     {
         private readonly DataHelper databaseConnection;
 
+        /// <summary>
+        /// PatientDAL constructor.
+        /// </summary>
         public PatientDAL()
         {
             this.databaseConnection = new DataHelper();
         }
+
+        /// <summary>
+        /// Gets all the patients from the database.
+        /// </summary>
+        /// <returns> A list of all patients from the database.</returns>
         public List<Patient> GetAllPatients()
         {
             List<Patient> patients = new List<Patient>();
@@ -61,6 +72,11 @@ namespace HealthCareSystem.DAL
             return patients;
         }
 
+        /// <summary>
+        /// Registers a patient.
+        /// </summary>
+        /// <param name="patient"> The patient being registered.</param>
+        /// <returns> True if updated, false otherwise.</returns>
         public async Task<bool> RegisterPatient(Patient patient)
         {
             using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
@@ -91,6 +107,11 @@ namespace HealthCareSystem.DAL
             }
         }
 
+        /// <summary>
+        /// Updates the patient information.
+        /// </summary>
+        /// <param name="patient"> The patient who is updating infromation.</param>
+        /// <returns> True if patient updated, false otherwise.</returns>
         public async Task<bool> UpdatePatientInformation(Patient patient)
         {
             using (var connection = new MySqlConnection(databaseConnection.GetConnectionString())) // FIX to update names too. BOTH Updates
@@ -133,6 +154,12 @@ namespace HealthCareSystem.DAL
             }
         }
 
+        /// <summary>
+        /// Updates the patient information.
+        /// </summary>
+        /// <param name="patientID"> The patient ID</param>
+        /// <param name="patient"> The patient.</param>
+        /// <returns> True if patient was updated, false otherwise.</returns>
         public async Task<bool> UpdatePatientInformationUsingID(int patientID, Patient patient)
         {
             using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
@@ -179,6 +206,11 @@ namespace HealthCareSystem.DAL
             }
         }
 
+        /// <summary>
+        /// Gets the Patient from database by ID
+        /// </summary>
+        /// <param name="id">id of the patient being searched for.</param>
+        /// <returns>patient from database.</returns>
         public Patient GetPatientByID(int id)
         {
             using (var connection = new MySqlConnection(databaseConnection.GetConnectionString())) {
@@ -217,6 +249,10 @@ namespace HealthCareSystem.DAL
             return null;
         }
 
+        /// <summary>
+        /// Gets a list of active patients
+        /// </summary>
+        /// <returns> A list of active patients.</returns>
         public List<Patient> GetActivePatients()
         {
             List<Patient> activePatients = new List<Patient>();
@@ -259,6 +295,12 @@ namespace HealthCareSystem.DAL
             return activePatients;
         }
 
+        /// <summary>
+        /// Gets a list of patients with specified first name and last name
+        /// </summary>
+        /// <param name="firstName"> The first name.</param>
+        /// <param name="lastName"> The last name.</param>
+        /// <returns> A list of patients who have the specified first name and last name.</returns>
         public async Task<List<Patient>> GetPatientsByName(string firstName, string lastName)
         {
             var patients = new List<Patient>();
@@ -304,6 +346,11 @@ namespace HealthCareSystem.DAL
             return patients;
         }
 
+        /// <summary>
+        /// Gets a list of patients who have the specified birthdate.
+        /// </summary>
+        /// <param name="dob"> The dob being searched.</param>
+        /// <returns> A list of patients who have the specified birthdate.</returns>
         public async Task<List<Patient>> GetPatientsByBirthdate(DateTime dob)
         {
             var patients = new List<Patient>();
@@ -350,6 +397,13 @@ namespace HealthCareSystem.DAL
             return patients;
         }
 
+        /// <summary>
+        /// Gets a list of patients by specified name and birthdate.
+        /// </summary>
+        /// <param name="firstname">The first name.</param>
+        /// <param name="lastname"> The last name.</param>
+        /// <param name="dob"> The dob</param>
+        /// <returns> Returns a list of patients retrieved by the specified first name, last name and birthdate.</returns>
         public async Task<List<Patient>> GetPatientsByNameAndBirthdate(string firstname, string lastname, DateTime dob)
         {
             var patients = new List<Patient>();
@@ -398,6 +452,11 @@ namespace HealthCareSystem.DAL
             return patients;
         }
 
+        /// <summary>
+        /// Get the name of the patient from ID
+        /// </summary>
+        /// <param name="id"> The specified ID.</param>
+        /// <returns> The patient name from the specified ID.</returns>
         public string GetPatientNameFromPatientID(int id)
         {
             using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
