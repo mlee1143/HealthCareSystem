@@ -51,7 +51,6 @@ namespace HealthCareSystem.View
             nurseNameLabel.Text = $"Name: {this.nurse.Firstname} {this.nurse.Lastname}";
             nurseIdLabel.Text = $"Nurse ID: {this.nurse.NurseId}";
             List<Appointment> appointments = this.appointmentDAL.getAllAppointments();
-            //appointmentsDataGridView.DataSource = appointments;
 
             appointmentsDataGridView.Columns.Clear();
             appointmentsDataGridView.Columns.Add("PatientID", "Patient ID");
@@ -96,7 +95,7 @@ namespace HealthCareSystem.View
                 if (selectedRow != null)
                 {
                     var patientID = (int)selectedRow.Cells[0].Value;
-                    var docID = selectedRow.Cells[1].Value;
+                    //var docID = selectedRow.Cells[1].Value;
                     DateTime appDateTime = (DateTime)selectedRow.Cells[2].Value;
 
                     if (patientID != null && appDateTime != null)
@@ -141,9 +140,8 @@ namespace HealthCareSystem.View
 
         private async void appointmentSearchButton_Click(object sender, EventArgs e)
         {
-            if (this.nameRadioButton.Checked) // Condense this part PH
+            if (this.nameRadioButton.Checked) // Condense resource - PH takes DataGridView, List as param for both App and Pt
             {
-                //Patient patient = await patientDAL
                 List<Appointment> appointments = await appointmentDAL.GetListOfAppointmentsByPatientName(fnameSearchTextBox.Text, lnameTextBox.Text);
 
                 appointmentsDataGridView.Columns.Clear();
@@ -152,7 +150,6 @@ namespace HealthCareSystem.View
                 appointmentsDataGridView.Columns.Add("AppointmentDateTime", "Date/Time");
 
                 appointmentsDataGridView.Rows.Clear();
-
 
                 foreach (var appointment in appointments)
                 {
@@ -170,7 +167,6 @@ namespace HealthCareSystem.View
 
                 appointmentsDataGridView.Rows.Clear();
 
-
                 foreach (var appointment in appointments)
                 {
                     appointmentsDataGridView.Rows.Add(appointment.PatientID, appointment.DoctorID, appointment.AppointmentDateTime);
@@ -187,7 +183,6 @@ namespace HealthCareSystem.View
 
                 appointmentsDataGridView.Rows.Clear();
 
-
                 foreach (var appointment in appointments)
                 {
                     appointmentsDataGridView.Rows.Add(appointment.PatientID, appointment.DoctorID, appointment.AppointmentDateTime);
@@ -196,8 +191,6 @@ namespace HealthCareSystem.View
             else
             {
                 MessageBox.Show("No search criteria selected. Please click Name, Birthdate or Both.");
-
-                this.errorLabel.Text = "No criteria selected."; // Maybe change to search being disabled
             }
         }
 

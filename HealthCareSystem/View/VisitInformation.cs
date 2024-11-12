@@ -44,22 +44,39 @@ namespace HealthCareSystem.View
         {
             this.patientIDLabel.Text += $" {appointment.PatientID}";
 
-            string name = patientDAL.GetPatientNameFromPatientID(appointment.PatientID);
-            this.patientnameLabel.Text += $" {name}";
+            Patient patient = patientDAL.GetPatientByID(appointment.PatientID);
+            this.patientnameLabel.Text += $" {patient.FullName}";
+            this.patientDobLabel.Text += $" {patient.Birthdate.ToString("yyyy-MM-dd")}";
 
             this.doctorIDLabel.Text += $" {appointment.DoctorID}";
             var doctorName = doctorDAL.GetDoctorNameByDoctorID(appointment.DoctorID);
             this.doctorNameLabel.Text += $" {doctorName}";
+
+            if (visitDAL.VisitInformationExistsAlready(appointment.PatientID, appointment.AppointmentDateTime))
+            {
+                Visit visit = visitDAL.GetVisitByPatientIDAndAppointmentDateTime(appointment);
+                this.PopulateFields(visit);
+            }
         }
 
-        private void PopulateFields()
+        private void PopulateFields(Visit visit)
         {
-
+            this.heightTextbox.Text = visit.Height.ToString();
+            this.weightTextbox.Text = visit.Weight.ToString();
+            this.bloodpressureTextBox.Text = visit.BloodPressure.ToString();
+            this.pulseTextbox.Text = visit.Pulse.ToString();
+            this.temperatureTextbox.Text = visit.Temperature.ToString();
+            this.symptomsTextbox.Text = visit.SymptomsDescription.ToString();
         }
 
         private bool IsNumberValid(string number)
         {
             return System.Text.RegularExpressions.Regex.IsMatch(number, "^[0-9]+$");
+        }
+
+        private bool IsDecimalNumberValid(string number)
+        {
+            return System.Text.RegularExpressions.Regex.IsMatch(number, "^\\d+\\.\\d{1,2}$");
         }
 
         private void bloodpressureTextBox_TextChanged(object sender, EventArgs e)
@@ -94,9 +111,9 @@ namespace HealthCareSystem.View
         {
             var temp = this.temperatureTextbox.Text.Trim();
 
-            if (!IsNumberValid(temp))
+            if (!IsDecimalNumberValid(temp))
             {
-                this.errorLabel.Text = $"Invalid Format: ({temp}) should only contains numbers.";
+                this.errorLabel.Text = $"Invalid Format: ({temp}) should only contains numbers and at least one decimal.";
             }
             else
             {
@@ -108,9 +125,9 @@ namespace HealthCareSystem.View
         {
             var height = this.heightTextbox.Text.Trim();
 
-            if (!IsNumberValid(height))
+            if (!IsDecimalNumberValid(height))
             {
-                this.errorLabel.Text = $"Invalid Format: ({height}) should only contains numbers.";
+                this.errorLabel.Text = $"Invalid Format: ({height}) should only contains numbers and at least one decimal.";
             }
             else
             {
@@ -122,9 +139,9 @@ namespace HealthCareSystem.View
         {
             var weight = this.weightTextbox.Text.Trim();
 
-            if (!IsNumberValid(weight))
+            if (!IsDecimalNumberValid(weight))
             {
-                this.errorLabel.Text = $"Invalid Format: ({weight}) should only contains numbers.";
+                this.errorLabel.Text = $"Invalid Format: ({weight}) should only contains numbers and at least one decimal.";
             }
             else
             {
@@ -134,13 +151,12 @@ namespace HealthCareSystem.View
 
         private void submitButton_Click(object sender, EventArgs e)
         {
-            Visit visit = new Visit(this.appointment, Convert.ToDouble(this.weightTextbox.Text), Convert.ToDouble(this.heightTextbox.Text), this.bloodpressureTextBox.Text)
+            Visit visit = new Visit(this.appointment, Convert.ToDouble(this.weightTextbox.Text), Convert.ToDouble(this.heightTextbox.Text), Convert.ToInt32(this.bloodpressureTextBox.Text), this.symptomsTextbox.Text)
             {
-                Nurse = this.nurse,
-                Pulse = this.pulseTextbox.Text.Trim(),
+                NurseID = this.nurse.NurseId,
+                Pulse = Convert.ToInt32(this.pulseTextbox.Text.Trim()),
                 Temperature = Convert.ToDouble(this.temperatureTextbox.Text.Trim()),
-                InitialDiagnosis = this.diagnosisTextbox.Text.Trim(),
-                SymptomsDescription = this.symptomsTextbox.Text.Trim()
+                InitialDiagnosis = this.diagnosisTextbox.Text.Trim()
             };
 
             if (visitDAL.InsertVisitInformation(visit))

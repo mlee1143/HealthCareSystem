@@ -52,6 +52,7 @@
             submitButton = new Button();
             errorLabel = new Label();
             doctorNameLabel = new Label();
+            patientDobLabel = new Label();
             healthCareNamePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)symbolPictureBox).BeginInit();
             SuspendLayout();
@@ -306,12 +307,24 @@
             doctorNameLabel.TabIndex = 23;
             doctorNameLabel.Text = "Doctor Name:";
             // 
+            // patientDobLabel
+            // 
+            patientDobLabel.AutoSize = true;
+            patientDobLabel.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            patientDobLabel.ForeColor = Color.FromArgb(242, 243, 244);
+            patientDobLabel.Location = new Point(40, 122);
+            patientDobLabel.Name = "patientDobLabel";
+            patientDobLabel.Size = new Size(85, 17);
+            patientDobLabel.TabIndex = 24;
+            patientDobLabel.Text = "Patient DOB:";
+            // 
             // VisitInformation
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(40, 116, 166);
             ClientSize = new Size(624, 533);
+            Controls.Add(patientDobLabel);
             Controls.Add(doctorNameLabel);
             Controls.Add(errorLabel);
             Controls.Add(submitButton);
@@ -369,5 +382,6 @@
         private Button submitButton;
         private Label errorLabel;
         private Label doctorNameLabel;
+        private Label patientDobLabel;
     }
 }

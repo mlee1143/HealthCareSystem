@@ -378,7 +378,7 @@ namespace HealthCareSystem.DAL
                                (Gender)Enum.Parse(typeof(Gender), reader["gender"].ToString()),
                                Convert.ToInt32(reader["active"])
                            )
-                            {
+                           {
                                 PatientId = Convert.ToInt32(reader["patient_id"]),
                                 MiddleInitial = reader["minitial"].ToString(),
                                 Address = reader["address"].ToString(),
