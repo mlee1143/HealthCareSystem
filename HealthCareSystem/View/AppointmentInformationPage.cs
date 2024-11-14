@@ -108,7 +108,7 @@ namespace HealthCareSystem.View
             List<Patient> activePatients = patientDAL.GetActivePatients();
 
             patientComboBox.DisplayMember = "FullName";
-            patientComboBox.ValueMember = "PatientID";
+            patientComboBox.ValueMember = "PatientId";
             patientComboBox.DataSource = activePatients;
         }
 

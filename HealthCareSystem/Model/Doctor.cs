@@ -14,7 +14,14 @@ namespace HealthCareSystem.Model
 
         public string Lastname { get; set; }
 
-        public string FullName { get; private set; }
+        public string FullName
+        {
+            get
+            {
+                return $"{Firstname} {Lastname} Id: {DoctorId}";
+            }
+        }
+
 
         public DateTime Birthdate { get; set; }
 
@@ -40,7 +47,7 @@ namespace HealthCareSystem.Model
             this.Firstname = firstname;
             this.Lastname = lastname;
 
-            this.FullName = firstname + " " + lastname;
+            //this.FullName = firstname + " " + lastname + " " + "Id: " + this.DoctorId;
         }
     }
 }
