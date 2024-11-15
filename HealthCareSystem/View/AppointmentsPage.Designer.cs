@@ -63,7 +63,7 @@
             healthCareNamePanel.Controls.Add(healthCareNameLabel);
             healthCareNamePanel.Location = new Point(87, 0);
             healthCareNamePanel.Name = "healthCareNamePanel";
-            healthCareNamePanel.Size = new Size(651, 76);
+            healthCareNamePanel.Size = new Size(702, 76);
             healthCareNamePanel.TabIndex = 0;
             // 
             // healthCareNameLabel
@@ -184,7 +184,7 @@
             appointmentsDataGridView.Location = new Point(166, 218);
             appointmentsDataGridView.Name = "appointmentsDataGridView";
             appointmentsDataGridView.ReadOnly = true;
-            appointmentsDataGridView.Size = new Size(538, 293);
+            appointmentsDataGridView.Size = new Size(610, 293);
             appointmentsDataGridView.TabIndex = 3;
             // 
             // nurseNameLabel
@@ -330,7 +330,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(40, 116, 166);
-            ClientSize = new Size(716, 526);
+            ClientSize = new Size(788, 526);
             Controls.Add(searchGroupBox);
             Controls.Add(errorLabel);
             Controls.Add(appointmentsLabel);

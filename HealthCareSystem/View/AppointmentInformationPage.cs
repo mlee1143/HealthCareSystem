@@ -222,7 +222,7 @@ namespace HealthCareSystem.View
         {
             if (bypassEvent) return;
 
-            string searchText = patientComboBox.Text;
+            string searchText = patientComboBox.Text.ToLower();
 
             bypassEvent = true;
 
@@ -246,7 +246,7 @@ namespace HealthCareSystem.View
         {
             if (bypassEvent) return;
 
-            string searchText = doctorComboBox.Text;
+            string searchText = doctorComboBox.Text.ToLower();
 
             bypassEvent = true;
 
