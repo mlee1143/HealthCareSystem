@@ -203,7 +203,7 @@
             nurseIdLabel.AutoSize = true;
             nurseIdLabel.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
             nurseIdLabel.ForeColor = Color.FromArgb(242, 243, 244);
-            nurseIdLabel.Location = new Point(349, 79);
+            nurseIdLabel.Location = new Point(404, 79);
             nurseIdLabel.Name = "nurseIdLabel";
             nurseIdLabel.Size = new Size(77, 21);
             nurseIdLabel.TabIndex = 5;
@@ -214,7 +214,7 @@
             appointmentsLabel.AutoSize = true;
             appointmentsLabel.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
             appointmentsLabel.ForeColor = Color.FromArgb(242, 243, 244);
-            appointmentsLabel.Location = new Point(166, 139);
+            appointmentsLabel.Location = new Point(166, 192);
             appointmentsLabel.Name = "appointmentsLabel";
             appointmentsLabel.Size = new Size(115, 21);
             appointmentsLabel.TabIndex = 6;
@@ -225,7 +225,7 @@
             errorLabel.AutoSize = true;
             errorLabel.Font = new Font("Segoe UI", 12F);
             errorLabel.ForeColor = Color.Red;
-            errorLabel.Location = new Point(349, 139);
+            errorLabel.Location = new Point(378, 192);
             errorLabel.Name = "errorLabel";
             errorLabel.Size = new Size(52, 21);
             errorLabel.TabIndex = 7;

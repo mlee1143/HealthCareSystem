@@ -121,8 +121,8 @@ namespace HealthCareSystem.View
                 if (selectedRow != null)
                 {
                     var patientID = (int)selectedRow.Cells[0].Value;
-                    var docID = selectedRow.Cells[1].Value;
-                    DateTime appDateTime = (DateTime)selectedRow.Cells[2].Value;
+                    var docID = selectedRow.Cells[2].Value;
+                    DateTime appDateTime = (DateTime)selectedRow.Cells[4].Value;
 
                     if (patientID != null && appDateTime != null)
                     {
