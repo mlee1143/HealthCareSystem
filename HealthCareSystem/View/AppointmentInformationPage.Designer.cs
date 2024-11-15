@@ -132,17 +132,17 @@
             patientComboBox.Name = "patientComboBox";
             patientComboBox.Size = new Size(193, 23);
             patientComboBox.TabIndex = 6;
+            patientComboBox.TextChanged += patientComboBox_TextChanged;
             // 
             // doctorComboBox
-            // 
-            doctorComboBox.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            doctorComboBox.AutoCompleteSource = AutoCompleteSource.ListItems;
+            //
             doctorComboBox.BackColor = Color.FromArgb(242, 243, 244);
             doctorComboBox.FormattingEnabled = true;
             doctorComboBox.Location = new Point(364, 129);
             doctorComboBox.Name = "doctorComboBox";
             doctorComboBox.Size = new Size(193, 23);
             doctorComboBox.TabIndex = 7;
+            doctorComboBox.TextChanged += doctorComboBox_TextChanged;
             // 
             // apptDateTimePicker
             // 

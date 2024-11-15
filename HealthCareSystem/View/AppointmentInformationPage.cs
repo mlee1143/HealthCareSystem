@@ -20,8 +20,10 @@ namespace HealthCareSystem.View
         private AppointmentDAL appointmentDAL;
         private int originalPatientId;
         private DateTime originalDateTime;
-
         private Nurse nurse;
+        private List<Patient>? allPatients;
+        private List<Doctor>? allDoctors;
+        private bool bypassEvent = false;
 
         public AppointmentInformationPage(Nurse nurse)
         {
@@ -96,20 +98,20 @@ namespace HealthCareSystem.View
 
         private void loadDoctors()
         {
-            List<Doctor> doctors = doctorDAL.GetAllDoctors();
+            this.allDoctors = doctorDAL.GetAllDoctors();
 
             doctorComboBox.DisplayMember = "FullName";
             doctorComboBox.ValueMember = "DoctorId";
-            doctorComboBox.DataSource = doctors;
+            doctorComboBox.DataSource = this.allDoctors;
         }
 
         private void loadActivePatients()
         {
-            List<Patient> activePatients = patientDAL.GetActivePatients();
+            this.allPatients = patientDAL.GetActivePatients();
 
             patientComboBox.DisplayMember = "FullName";
             patientComboBox.ValueMember = "PatientId";
-            patientComboBox.DataSource = activePatients;
+            patientComboBox.DataSource = this.allPatients;
         }
 
         private void saveButton_Click(object sender, EventArgs e)
@@ -214,6 +216,53 @@ namespace HealthCareSystem.View
                 MessageBox.Show("Failed to update the appointment. Please try again.");
                 return false;
             }
+        }
+
+        private void patientComboBox_TextChanged(object sender, EventArgs e)
+        {
+            if (bypassEvent) return;
+
+            string searchText = patientComboBox.Text;
+
+            bypassEvent = true;
+
+            var filteredPatients = this.allPatients
+                .Where(p => p.FullName.ToLower().Contains(searchText))
+                .ToList();
+
+           
+            patientComboBox.DisplayMember = "FullName";
+            patientComboBox.ValueMember = "PatientId";
+            patientComboBox.DataSource = filteredPatients;
+
+            patientComboBox.Text = searchText;
+            patientComboBox.SelectionStart = searchText.Length;
+            patientComboBox.SelectionLength = 0;
+
+            bypassEvent = false;
+        }
+
+        private void doctorComboBox_TextChanged(object sender, EventArgs e)
+        {
+            if (bypassEvent) return;
+
+            string searchText = doctorComboBox.Text;
+
+            bypassEvent = true;
+
+            var filteredDoctors = this.allDoctors
+                .Where(d => d.FullName.ToLower().Contains(searchText))
+                .ToList();
+
+            doctorComboBox.DataSource = filteredDoctors;
+            doctorComboBox.DisplayMember = "FullName";
+            doctorComboBox.ValueMember = "DoctorId";
+
+            doctorComboBox.Text = searchText;
+            doctorComboBox.SelectionStart = searchText.Length;
+            doctorComboBox.SelectionLength = 0;
+
+            bypassEvent = false;
         }
     }
 }
