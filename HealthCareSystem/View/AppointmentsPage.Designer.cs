@@ -63,7 +63,7 @@
             healthCareNamePanel.Controls.Add(healthCareNameLabel);
             healthCareNamePanel.Location = new Point(87, 0);
             healthCareNamePanel.Name = "healthCareNamePanel";
-            healthCareNamePanel.Size = new Size(651, 76);
+            healthCareNamePanel.Size = new Size(702, 76);
             healthCareNamePanel.TabIndex = 0;
             // 
             // healthCareNameLabel
@@ -184,7 +184,7 @@
             appointmentsDataGridView.Location = new Point(166, 218);
             appointmentsDataGridView.Name = "appointmentsDataGridView";
             appointmentsDataGridView.ReadOnly = true;
-            appointmentsDataGridView.Size = new Size(538, 293);
+            appointmentsDataGridView.Size = new Size(610, 293);
             appointmentsDataGridView.TabIndex = 3;
             // 
             // nurseNameLabel
@@ -194,16 +194,16 @@
             nurseNameLabel.ForeColor = Color.FromArgb(242, 243, 244);
             nurseNameLabel.Location = new Point(166, 79);
             nurseNameLabel.Name = "nurseNameLabel";
-            nurseNameLabel.Size = new Size(57, 21);
+            nurseNameLabel.Size = new Size(104, 21);
             nurseNameLabel.TabIndex = 4;
-            nurseNameLabel.Text = "Name:";
+            nurseNameLabel.Text = "Nurse Name:";
             // 
             // nurseIdLabel
             // 
             nurseIdLabel.AutoSize = true;
             nurseIdLabel.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
             nurseIdLabel.ForeColor = Color.FromArgb(242, 243, 244);
-            nurseIdLabel.Location = new Point(349, 79);
+            nurseIdLabel.Location = new Point(404, 79);
             nurseIdLabel.Name = "nurseIdLabel";
             nurseIdLabel.Size = new Size(77, 21);
             nurseIdLabel.TabIndex = 5;
@@ -214,7 +214,7 @@
             appointmentsLabel.AutoSize = true;
             appointmentsLabel.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
             appointmentsLabel.ForeColor = Color.FromArgb(242, 243, 244);
-            appointmentsLabel.Location = new Point(166, 139);
+            appointmentsLabel.Location = new Point(166, 192);
             appointmentsLabel.Name = "appointmentsLabel";
             appointmentsLabel.Size = new Size(115, 21);
             appointmentsLabel.TabIndex = 6;
@@ -225,7 +225,7 @@
             errorLabel.AutoSize = true;
             errorLabel.Font = new Font("Segoe UI", 12F);
             errorLabel.ForeColor = Color.Red;
-            errorLabel.Location = new Point(349, 139);
+            errorLabel.Location = new Point(378, 192);
             errorLabel.Name = "errorLabel";
             errorLabel.Size = new Size(52, 21);
             errorLabel.TabIndex = 7;
@@ -330,7 +330,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(40, 116, 166);
-            ClientSize = new Size(716, 526);
+            ClientSize = new Size(788, 526);
             Controls.Add(searchGroupBox);
             Controls.Add(errorLabel);
             Controls.Add(appointmentsLabel);

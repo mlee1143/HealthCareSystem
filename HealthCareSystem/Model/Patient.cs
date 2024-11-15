@@ -16,7 +16,13 @@ namespace HealthCareSystem.Model
 
         public string Lastname { get;  set; }
 
-        public string FullName { get; private set; }
+        public string FullName
+        {
+            get
+            {
+                return $"{Firstname} {Lastname} Id: {PatientId}";
+            }
+        }
 
         public DateTime Birthdate { get;  set; }
 
@@ -45,8 +51,6 @@ namespace HealthCareSystem.Model
             this.Birthdate = birthdate;
             this.Gender = gender;
             this.IsActive = isActive;
-
-            this.FullName = firstname + " " + lastname;
         }
     }
 }
