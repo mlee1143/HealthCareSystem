@@ -60,7 +60,7 @@ namespace HealthCareSystem.View
 
         private void setNurseInformation()
         {
-            nurseNameLabel.Text = $"Name: {this.nurse.Firstname} {this.nurse.Lastname}";
+            nurseNameLabel.Text = $"Nurse Name: {this.nurse.Firstname} {this.nurse.Lastname}";
             nurseIdLabel.Text = $"Nurse ID: {this.nurse.NurseId}";
         }
 

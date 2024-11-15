@@ -194,9 +194,9 @@
             nurseNameLabel.ForeColor = Color.FromArgb(242, 243, 244);
             nurseNameLabel.Location = new Point(166, 79);
             nurseNameLabel.Name = "nurseNameLabel";
-            nurseNameLabel.Size = new Size(57, 21);
+            nurseNameLabel.Size = new Size(104, 21);
             nurseNameLabel.TabIndex = 4;
-            nurseNameLabel.Text = "Name:";
+            nurseNameLabel.Text = "Nurse Name:";
             // 
             // nurseIdLabel
             // 

@@ -66,7 +66,7 @@ namespace HealthCareSystem.View
             //    appointmentsDataGridView.Rows.Add(appointment.PatientID, appointment.DoctorID, appointment.AppointmentDateTime);
             //}
 
-            nurseNameLabel.Text = $"Name: {this.nurse.Firstname} {this.nurse.Lastname}";
+            nurseNameLabel.Text = $"Nurse Name: {this.nurse.Firstname} {this.nurse.Lastname}";
             nurseIdLabel.Text = $"Nurse ID: {this.nurse.NurseId}";
 
             var appointments = appointmentDAL.getAllAppointmentsWithDetails();
