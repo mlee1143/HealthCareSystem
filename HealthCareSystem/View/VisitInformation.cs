@@ -45,28 +45,61 @@ namespace HealthCareSystem.View
             this.patientIDLabel.Text += $" {appointment.PatientID}";
 
             Patient patient = patientDAL.GetPatientByID(appointment.PatientID);
-            this.patientnameLabel.Text += $" {patient.FullName}";
+            this.patientnameLabel.Text += $" \n{patient.FullName}";
             this.patientDobLabel.Text += $" {patient.Birthdate.ToString("yyyy-MM-dd")}";
 
             this.doctorIDLabel.Text += $" {appointment.DoctorID}";
             var doctorName = doctorDAL.GetDoctorNameByDoctorID(appointment.DoctorID);
-            this.doctorNameLabel.Text += $" {doctorName}";
+            this.doctorNameLabel.Text += $" \n{doctorName}";
 
+            this.SetupCurrentVisit();
+        }
+
+        private void SetupCurrentVisit()
+        {
             if (visitDAL.VisitInformationExistsAlready(appointment.PatientID, appointment.AppointmentDateTime))
             {
+                this.checkupCheckbox.Checked = true;
                 Visit visit = visitDAL.GetVisitByPatientIDAndAppointmentDateTime(appointment);
                 this.PopulateFields(visit);
+
+                this.routineGroupBox.Visible = false;
+                this.diagnosisGroupbox.Visible = true;
+                this.diagnosisButton.Enabled = true;
             }
+
+            if (visitDAL.InitialDiagnosisExistsForVisit(appointment.PatientID, appointment.AppointmentDateTime))
+            {
+                this.routineGroupBox.Visible = false;
+                this.diagnosisGroupbox.Visible = true;
+                this.diagnosisButton.Enabled = true;
+
+            }
+
+
+
+
         }
 
         private void PopulateFields(Visit visit)
         {
             this.heightTextbox.Text = visit.Height.ToString();
             this.weightTextbox.Text = visit.Weight.ToString();
-            this.bloodpressureTextBox.Text = visit.BloodPressure.ToString();
+
+            string[] bp_values = visit.BloodPressure.Split('/');
+
+            this.systolicTextBox.Text = bp_values[0];
+            this.distolicTextbox.Text = bp_values[1];
+
             this.pulseTextbox.Text = visit.Pulse.ToString();
             this.temperatureTextbox.Text = visit.Temperature.ToString();
             this.symptomsTextbox.Text = visit.SymptomsDescription.ToString();
+        }
+
+        private void PopulateDiagnosis(Visit visit)
+        {
+            this.diagnosisTextbox.Text = visit.InitialDiagnosis;
+            this.finalDiagnosisTextbox.Text = visit.FinalDiagnosis;
         }
 
         private bool IsNumberValid(string number)
@@ -81,13 +114,13 @@ namespace HealthCareSystem.View
 
         private void bloodpressureTextBox_TextChanged(object sender, EventArgs e)
         {
-            var bp = bloodpressureTextBox.Text.Trim();
+            var bp = systolicTextBox.Text.Trim();
 
             if (!IsNumberValid(bp))
             {
                 this.errorLabel.Text = $"Invalid Format: ({bp}) should only contains numbers.";
             }
-            else 
+            else
             {
                 this.errorLabel.Text = "";
             }
@@ -95,7 +128,7 @@ namespace HealthCareSystem.View
 
         private void pulseTextbox_TextChanged(object sender, EventArgs e)
         {
-            var pulse  = pulseTextbox.Text.Trim();
+            var pulse = pulseTextbox.Text.Trim();
 
             if (!IsNumberValid(pulse))
             {
@@ -151,23 +184,35 @@ namespace HealthCareSystem.View
 
         private void submitButton_Click(object sender, EventArgs e)
         {
-            Visit visit = new Visit(this.appointment, Convert.ToDouble(this.weightTextbox.Text), Convert.ToDouble(this.heightTextbox.Text), Convert.ToInt32(this.bloodpressureTextBox.Text), this.symptomsTextbox.Text)
+            // CHECK FOR WHEN TO UPDATE INSTEAD OF INSERTING
+            if (CheckIfAllFieldsAreCompleted())
             {
-                NurseID = this.nurse.NurseId,
-                Pulse = Convert.ToInt32(this.pulseTextbox.Text.Trim()),
-                Temperature = Convert.ToDouble(this.temperatureTextbox.Text.Trim()),
-                InitialDiagnosis = this.diagnosisTextbox.Text.Trim()
-            };
+                string bloodpressure = $" {this.systolicTextBox.Text}/{this.distolicTextbox.Text}";
+                Visit visit = new Visit(this.appointment, Convert.ToDouble(this.weightTextbox.Text), Convert.ToDouble(this.heightTextbox.Text), bloodpressure, this.symptomsTextbox.Text)
+                {
+                    NurseID = this.nurse.NurseId,
+                    Pulse = Convert.ToInt32(this.pulseTextbox.Text.Trim()),
+                    Temperature = Convert.ToDouble(this.temperatureTextbox.Text.Trim())
+                    //InitialDiagnosis = this.diagnosisTextbox.Text.Trim()
+                };
 
-            if (visitDAL.InsertVisitInformation(visit))
-            {
-                AppointmentsPage apps = new AppointmentsPage(this.nurse);
-                apps.Show();
-                this.Close();
-            } else
-            {
-                errorLabel.Text = "Could not insert visit information";
+                if (visitDAL.InsertVisitInformation(visit))
+                {
+
+                    AppointmentsPage apps = new AppointmentsPage(this.nurse);
+                    apps.Show();
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Could NOT insert Visit information.");
+                }
             }
+            else
+            {
+                MessageBox.Show("Please fill out ALL the fields before submitting.");
+            }
+
         }
 
         private void back_btn_Click(object sender, EventArgs e)
@@ -179,7 +224,95 @@ namespace HealthCareSystem.View
 
         private bool CheckIfAllFieldsAreCompleted()
         {
-            return true;
+            if (this.weightTextbox.Text.Length > 0 && this.heightTextbox.Text.Length > 0 && this.temperatureTextbox.Text.Length > 0 && this.systolicTextBox.Text.Length > 0 && this.distolicTextbox.Text.Length > 0 && this.pulseTextbox.Text.Length > 0 && this.symptomsTextbox.Text.Length > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private void patientnameLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void diagnosisTextbox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void confirmBtn_Click(object sender, EventArgs e)
+        { 
+            if (this.diagnosisTextbox.Text.Length > 0)
+            {
+                this.visitDAL.UpdateInitialDiagnosisForVisit(this.diagnosisTextbox.Text, appointment.PatientID, appointment.AppointmentDateTime);
+
+            } else
+            {
+                MessageBox.Show("No diagnosis to update. Please enter an initial diagnosis.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
+            if (this.finalDiagnosisTextbox.Text.Length > 0)
+            {
+                const string message =
+                    "Are you sure that you want to Confirm the final diagnosis? " +
+                    "Once confirmed cannot go back and make changes to the visit.";
+
+                const string caption = "Visit Information Confirmation";
+
+                var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                if (result == DialogResult.Yes)
+                {
+                    this.checkupButton.Enabled = false;
+                    this.diagnosisButton.Enabled = false;
+                    this.diagnosisCheckbox.Checked = true;
+                    this.completedCheckbox.Checked = true;
+                    this.completedButton.Enabled = true;
+
+                    this.diagnosisGroupbox.Visible = false;
+                    this.completeInformationGroupbox.Visible = true;
+
+                    this.visitDAL.UpdateFinalDiagnosisForVisit(this.finalDiagnosisTextbox.Text, this.appointment.PatientID, this.appointment.AppointmentDateTime);
+
+                }
+                
+            }
+        }
+
+        private void PopulateSummaryFields()
+        {
+
+        }
+
+        private void weightLabelSummary_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void completedButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void diagnosisButton_Click(object sender, EventArgs e)
+        {
+            this.diagnosisGroupbox.Visible = true;
+            this.routineGroupBox.Visible = false;
+            this.completeInformationGroupbox.Visible = false;
+        }
+
+        private void checkupButton_Click(object sender, EventArgs e)
+        {
+            this.routineGroupBox.Visible = true;
+            this.diagnosisGroupbox.Visible=false;
+            this.completeInformationGroupbox.Visible=false;
         }
     }
 }

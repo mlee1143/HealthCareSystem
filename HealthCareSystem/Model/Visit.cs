@@ -17,7 +17,7 @@ namespace HealthCareSystem.Model
 
         public double Height { get; private set; }
 
-        public int BloodPressure { get;  set; }
+        public string BloodPressure { get;  set; }
 
         public int? Pulse { get;  set; }
 
@@ -29,7 +29,7 @@ namespace HealthCareSystem.Model
 
         public string SymptomsDescription { get;  set; }
 
-        public Visit(Appointment appointment, double weight, double height, int bloodPressure, string symptomsDescription)
+        public Visit(Appointment appointment, double weight, double height, string bloodPressure, string symptomsDescription)
         {
             this.Appointment = appointment;
             this.Weight = weight;

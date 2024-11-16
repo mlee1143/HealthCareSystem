@@ -49,7 +49,7 @@ namespace HealthCareSystem.DAL
                                 appointment,
                                 reader.GetDouble("weight"),
                                 reader.GetDouble("height"),
-                                reader.GetInt32("blood_pressure"),
+                                reader.GetString("blood_pressure"),
                                 reader.GetString("symptomsDescription"))
                             {
                                 InitialDiagnosis = reader["initial_diagnosis"].ToString(),
@@ -72,8 +72,8 @@ namespace HealthCareSystem.DAL
             {
                 connection.Open();
 
-                string query = "INSERT INTO visit (patient_id, doctor_id, appointment_datetime, nurse_id, weight, height, blood_pressure, pulse, temperature, symptomsDescription, initial_diagnosis) " +
-                               "VALUES (@patientId, @doctorId, @appointmentDateTime, @nurse_id, @weight, @height, @blood_pressure, @pulse, @temperature, @symptomsDescription, @initial_diagnosis)";
+                string query = "INSERT INTO visit (patient_id, doctor_id, appointment_datetime, nurse_id, weight, height, blood_pressure, pulse, temperature, symptomsDescription) " + //, initial_diagnosis
+                               "VALUES (@patientId, @doctorId, @appointmentDateTime, @nurse_id, @weight, @height, @blood_pressure, @pulse, @temperature, @symptomsDescription)"; //, @initial_diagnosis
 
                 using (var cmd = new MySqlCommand(query, connection))
                 {
@@ -87,14 +87,13 @@ namespace HealthCareSystem.DAL
                     cmd.Parameters.AddWithValue("@pulse", visit.Pulse);
                     cmd.Parameters.AddWithValue("@temperature", visit.Temperature);
                     cmd.Parameters.AddWithValue("@symptomsDescription", visit.SymptomsDescription);
-                    cmd.Parameters.AddWithValue("@initial_diagnosis", visit.InitialDiagnosis);
+                    //cmd.Parameters.AddWithValue("@initial_diagnosis", visit.InitialDiagnosis);
 
                     int result = cmd.ExecuteNonQuery();
                     return result > 0;
                 }
             }
         }
-
 
         public bool VisitInformationExistsAlready(int patientID, DateTime appointmentDateTime)
         {
@@ -108,6 +107,65 @@ namespace HealthCareSystem.DAL
                 {
                     command.Parameters.AddWithValue("@patient_id", patientID);
                     command.Parameters.AddWithValue("@appointment_datetime", appointmentDateTime);
+
+                    int count = Convert.ToInt32(command.ExecuteScalar());
+                    return count > 0;
+                }
+            }
+        }
+
+        public bool InitialDiagnosisExistsForVisit(int patientID, DateTime appointmentDateTime)
+        {
+            using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
+            {
+                connection.Open();
+
+                string query = "SELECT COUNT(*) AS init_diagnosis_exists FROM visit WHERE patient_id = @patient_id AND appointment_datetime = @appointment_datetime AND initial_diagnosis IS NOT NULL AND initial_diagnosis <> '';";
+
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@patient_id", patientID);
+                    command.Parameters.AddWithValue("@appointment_datetime", appointmentDateTime);
+
+                    int count = Convert.ToInt32(command.ExecuteScalar());
+                    return count > 0;
+                }
+            }
+        }
+
+        public bool UpdateInitialDiagnosisForVisit(string diagnosis, int patientID, DateTime appointmentDateTime)
+        {
+            using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
+            {
+                connection.Open();
+
+                string query = "UPDATE visit SET initial_diagnosis = @initial_diagnosis WHERE patient_id = @patient_id AND appointment_datetime = @appointment_datetime;";
+
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@patient_id", patientID);
+                    command.Parameters.AddWithValue("@appointment_datetime", appointmentDateTime);
+                    command.Parameters.AddWithValue("@initial_diagnosis", diagnosis);
+
+                    int count = Convert.ToInt32(command.ExecuteScalar());
+                    return count > 0;
+                }
+            }
+        }
+
+        public bool UpdateFinalDiagnosisForVisit(string diagnosis, int patientID, DateTime appointmentDateTime)
+        {
+            using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
+            {
+                connection.Open();
+
+                string query = "UPDATE visit SET final_diagnosis = @final_diagnosis WHERE patient_id = @patient_id AND appointment_datetime = @appointment_datetime;";
+
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@patient_id", patientID);
+                    command.Parameters.AddWithValue("@appointment_datetime", appointmentDateTime);
+                    command.Parameters.AddWithValue("@final_diagnosis", diagnosis);
 
                     int count = Convert.ToInt32(command.ExecuteScalar());
                     return count > 0;
