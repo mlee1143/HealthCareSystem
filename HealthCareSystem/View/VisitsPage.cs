@@ -1,4 +1,5 @@
-﻿using HealthCareSystem.Model;
+﻿using HealthCareSystem.DAL;
+using HealthCareSystem.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,6 +21,7 @@ namespace HealthCareSystem.View
 
             this.nurse = nurse;
             this.setLoggedNurseInfo();
+            this.LoadVisits();
         }
 
         private void setLoggedNurseInfo()
@@ -34,6 +36,34 @@ namespace HealthCareSystem.View
             orderTestPage.Show();
 
             this.Close();
+        }
+
+        private void LoadVisits()
+        {
+            VisitDAL visitDAL = new VisitDAL();
+            var visits = visitDAL.GetAllVisitsWithDetails();
+
+            visitsDataGrid.Columns.Clear();
+            visitsDataGrid.Columns.Add("PatientID", "Patient ID");
+            visitsDataGrid.Columns.Add("PatientName", "Patient Name");
+            visitsDataGrid.Columns.Add("DoctorID", "Doctor ID");
+            visitsDataGrid.Columns.Add("DoctorName", "Doctor Name");
+            visitsDataGrid.Columns.Add("AppointmentDateTime", "Appointment Date/Time");
+            visitsDataGrid.Columns.Add("SymptomsDescription", "Symptoms Description");
+
+            visitsDataGrid.Rows.Clear();
+
+            foreach (var visit in visits)
+            {
+                visitsDataGrid.Rows.Add(
+                    visit.PatientID,
+                    visit.PatientName,
+                    visit.DoctorID,
+                    visit.DoctorName,
+                    visit.AppointmentDateTime,
+                    visit.SymptomsDescription
+                );
+            }
         }
 
         private void enterTestResultsButton_Click(object sender, EventArgs e)

@@ -45,5 +45,51 @@ namespace HealthCareSystem.DAL
                 }
             }
         }
+
+        public List<dynamic> GetAllVisitsWithDetails()
+        {
+            List<dynamic> visits = new List<dynamic>();
+
+            using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
+            {
+                connection.Open();
+
+                string query = @"
+            SELECT 
+                v.patient_id, 
+                CONCAT(p.fname, ' ', p.lname) AS PatientName, 
+                v.doctor_id, 
+                CONCAT(d.fname, ' ', d.lname) AS DoctorName, 
+                v.appointment_datetime, 
+                v.symptomsDescription
+            FROM 
+                visit v
+            JOIN 
+                patient p ON v.patient_id = p.patient_id
+            JOIN 
+                doctor d ON v.doctor_id = d.doctor_id";
+
+                using (var cmd = new MySqlCommand(query, connection))
+                {
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            visits.Add(new
+                            {
+                                PatientID = reader.GetInt32("patient_id"),
+                                PatientName = reader.GetString("PatientName"),
+                                DoctorID = reader.GetInt32("doctor_id"),
+                                DoctorName = reader.GetString("DoctorName"),
+                                AppointmentDateTime = reader.GetDateTime("appointment_datetime"),
+                                SymptomsDescription = reader.GetString("symptomsDescription")
+                            });
+                        }
+                    }
+                }
+            }
+
+            return visits;
+        }
     }
 }
