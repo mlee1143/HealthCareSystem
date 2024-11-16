@@ -13,6 +13,9 @@
     <Compile Update="View\MainPage.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="View\OrderTestPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="View\PatientInformation.cs">
       <SubType>Form</SubType>
     </Compile>
