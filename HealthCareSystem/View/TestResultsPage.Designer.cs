@@ -269,6 +269,7 @@
             goBackButton.TabIndex = 19;
             goBackButton.Text = "Go Back";
             goBackButton.UseVisualStyleBackColor = true;
+            goBackButton.Click += goBackButton_Click;
             // 
             // TestResultsPage
             // 

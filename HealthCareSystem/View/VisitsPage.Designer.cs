@@ -143,6 +143,7 @@
             enterTestResultsButton.TabIndex = 1;
             enterTestResultsButton.Text = "Enter Test Result";
             enterTestResultsButton.UseVisualStyleBackColor = true;
+            enterTestResultsButton.Click += enterTestResultsButton_Click;
             // 
             // orderTestButton
             // 
@@ -156,6 +157,7 @@
             orderTestButton.TabIndex = 0;
             orderTestButton.Text = "Order Test";
             orderTestButton.UseVisualStyleBackColor = true;
+            orderTestButton.Click += orderTestButton_Click;
             // 
             // nurseNameLabel
             // 

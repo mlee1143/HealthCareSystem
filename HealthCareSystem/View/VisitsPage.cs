@@ -28,6 +28,22 @@ namespace HealthCareSystem.View
             nurseIdLabel.Text = $"Nurse ID: {this.nurse.NurseId}";
         }
 
+        private void orderTestButton_Click(object sender, EventArgs e)
+        {
+            OrderTestPage orderTestPage = new OrderTestPage(this.nurse); 
+            orderTestPage.Show();
+
+            this.Close();
+        }
+
+        private void enterTestResultsButton_Click(object sender, EventArgs e)
+        {
+            TestResultsPage testResultsPage = new TestResultsPage(this.nurse); 
+            testResultsPage.Show();
+
+            this.Close();
+        }
+
         private void backToMainButton_Click(object sender, EventArgs e)
         {
             MainPage mainPage = new MainPage(this.nurse);
