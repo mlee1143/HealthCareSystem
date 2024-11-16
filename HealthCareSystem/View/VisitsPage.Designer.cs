@@ -30,15 +30,16 @@
         {
             symbolPictureBox = new PictureBox();
             healthCareNamePanel = new Panel();
-            visitsButtonPanel = new Panel();
             healthCareNameLabel = new Label();
+            visitsButtonPanel = new Panel();
+            backToMainButton = new Button();
+            viewVisitInfoButton = new Button();
+            enterDiagnosisButton = new Button();
+            enterTestResultsButton = new Button();
+            orderTestButton = new Button();
             nurseNameLabel = new Label();
             nurseIdLabel = new Label();
             visitsLabel = new Label();
-            orderTestButton = new Button();
-            enterTestResultsButton = new Button();
-            enterDiagnosisButton = new Button();
-            viewVisitInfoButton = new Button();
             visitsDataGrid = new DataGridView();
             ((System.ComponentModel.ISupportInitialize)symbolPictureBox).BeginInit();
             healthCareNamePanel.SuspendLayout();
@@ -66,18 +67,6 @@
             healthCareNamePanel.Size = new Size(693, 76);
             healthCareNamePanel.TabIndex = 1;
             // 
-            // visitsButtonPanel
-            // 
-            visitsButtonPanel.BackColor = Color.FromArgb(93, 109, 126);
-            visitsButtonPanel.Controls.Add(viewVisitInfoButton);
-            visitsButtonPanel.Controls.Add(enterDiagnosisButton);
-            visitsButtonPanel.Controls.Add(enterTestResultsButton);
-            visitsButtonPanel.Controls.Add(orderTestButton);
-            visitsButtonPanel.Location = new Point(0, 82);
-            visitsButtonPanel.Name = "visitsButtonPanel";
-            visitsButtonPanel.Size = new Size(160, 368);
-            visitsButtonPanel.TabIndex = 2;
-            // 
             // healthCareNameLabel
             // 
             healthCareNameLabel.AutoSize = true;
@@ -88,6 +77,85 @@
             healthCareNameLabel.Size = new Size(298, 32);
             healthCareNameLabel.TabIndex = 0;
             healthCareNameLabel.Text = "UWG Health Care System";
+            // 
+            // visitsButtonPanel
+            // 
+            visitsButtonPanel.BackColor = Color.FromArgb(93, 109, 126);
+            visitsButtonPanel.Controls.Add(backToMainButton);
+            visitsButtonPanel.Controls.Add(viewVisitInfoButton);
+            visitsButtonPanel.Controls.Add(enterDiagnosisButton);
+            visitsButtonPanel.Controls.Add(enterTestResultsButton);
+            visitsButtonPanel.Controls.Add(orderTestButton);
+            visitsButtonPanel.Location = new Point(0, 82);
+            visitsButtonPanel.Name = "visitsButtonPanel";
+            visitsButtonPanel.Size = new Size(160, 368);
+            visitsButtonPanel.TabIndex = 2;
+            // 
+            // backToMainButton
+            // 
+            backToMainButton.BackColor = Color.FromArgb(255, 255, 244);
+            backToMainButton.FlatAppearance.BorderSize = 0;
+            backToMainButton.FlatStyle = FlatStyle.Flat;
+            backToMainButton.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
+            backToMainButton.Location = new Point(0, 200);
+            backToMainButton.Name = "backToMainButton";
+            backToMainButton.Size = new Size(160, 50);
+            backToMainButton.TabIndex = 4;
+            backToMainButton.Text = "Back To Main";
+            backToMainButton.UseVisualStyleBackColor = true;
+            backToMainButton.Click += backToMainButton_Click;
+            // 
+            // viewVisitInfoButton
+            // 
+            viewVisitInfoButton.BackColor = Color.FromArgb(255, 255, 244);
+            viewVisitInfoButton.FlatAppearance.BorderSize = 0;
+            viewVisitInfoButton.FlatStyle = FlatStyle.Flat;
+            viewVisitInfoButton.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
+            viewVisitInfoButton.Location = new Point(0, 150);
+            viewVisitInfoButton.Name = "viewVisitInfoButton";
+            viewVisitInfoButton.Size = new Size(160, 50);
+            viewVisitInfoButton.TabIndex = 3;
+            viewVisitInfoButton.Text = "Visits Information";
+            viewVisitInfoButton.UseVisualStyleBackColor = true;
+            // 
+            // enterDiagnosisButton
+            // 
+            enterDiagnosisButton.BackColor = Color.FromArgb(255, 255, 244);
+            enterDiagnosisButton.FlatAppearance.BorderSize = 0;
+            enterDiagnosisButton.FlatStyle = FlatStyle.Flat;
+            enterDiagnosisButton.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
+            enterDiagnosisButton.Location = new Point(0, 100);
+            enterDiagnosisButton.Name = "enterDiagnosisButton";
+            enterDiagnosisButton.Size = new Size(160, 50);
+            enterDiagnosisButton.TabIndex = 2;
+            enterDiagnosisButton.Text = "Enter Diagnosis";
+            enterDiagnosisButton.UseVisualStyleBackColor = true;
+            // 
+            // enterTestResultsButton
+            // 
+            enterTestResultsButton.BackColor = Color.FromArgb(255, 255, 244);
+            enterTestResultsButton.FlatAppearance.BorderSize = 0;
+            enterTestResultsButton.FlatStyle = FlatStyle.Flat;
+            enterTestResultsButton.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
+            enterTestResultsButton.Location = new Point(0, 50);
+            enterTestResultsButton.Name = "enterTestResultsButton";
+            enterTestResultsButton.Size = new Size(160, 50);
+            enterTestResultsButton.TabIndex = 1;
+            enterTestResultsButton.Text = "Enter Test Result";
+            enterTestResultsButton.UseVisualStyleBackColor = true;
+            // 
+            // orderTestButton
+            // 
+            orderTestButton.BackColor = Color.FromArgb(255, 255, 244);
+            orderTestButton.FlatAppearance.BorderSize = 0;
+            orderTestButton.FlatStyle = FlatStyle.Flat;
+            orderTestButton.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
+            orderTestButton.Location = new Point(0, 0);
+            orderTestButton.Name = "orderTestButton";
+            orderTestButton.Size = new Size(160, 50);
+            orderTestButton.TabIndex = 0;
+            orderTestButton.Text = "Order Test";
+            orderTestButton.UseVisualStyleBackColor = true;
             // 
             // nurseNameLabel
             // 
@@ -122,64 +190,14 @@
             visitsLabel.TabIndex = 5;
             visitsLabel.Text = "Visits with check-up completed:";
             // 
-            // orderTestButton
-            // 
-            orderTestButton.BackColor = Color.FromArgb(255, 255, 244);
-            orderTestButton.FlatAppearance.BorderSize = 0;
-            orderTestButton.FlatStyle = FlatStyle.Flat;
-            orderTestButton.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
-            orderTestButton.Location = new Point(0, 0);
-            orderTestButton.Name = "orderTestButton";
-            orderTestButton.Size = new Size(160, 50);
-            orderTestButton.TabIndex = 0;
-            orderTestButton.Text = "Order Test";
-            orderTestButton.UseVisualStyleBackColor = true;
-            // 
-            // enterTestResultsButton
-            // 
-            enterTestResultsButton.BackColor = Color.FromArgb(255, 255, 244);
-            enterTestResultsButton.FlatAppearance.BorderSize = 0;
-            enterTestResultsButton.FlatStyle = FlatStyle.Flat;
-            enterTestResultsButton.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
-            enterTestResultsButton.Location = new Point(0, 50);
-            enterTestResultsButton.Name = "enterTestResultsButton";
-            enterTestResultsButton.Size = new Size(160, 50);
-            enterTestResultsButton.TabIndex = 1;
-            enterTestResultsButton.Text = "Enter Test Result";
-            enterTestResultsButton.UseVisualStyleBackColor = true;
-            // 
-            // enterDiagnosisButton
-            // 
-            enterDiagnosisButton.BackColor = Color.FromArgb(255, 255, 244);
-            enterDiagnosisButton.FlatAppearance.BorderSize = 0;
-            enterDiagnosisButton.FlatStyle = FlatStyle.Flat;
-            enterDiagnosisButton.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
-            enterDiagnosisButton.Location = new Point(0, 100);
-            enterDiagnosisButton.Name = "enterDiagnosisButton";
-            enterDiagnosisButton.Size = new Size(160, 50);
-            enterDiagnosisButton.TabIndex = 2;
-            enterDiagnosisButton.Text = "Enter Diagnosis";
-            enterDiagnosisButton.UseVisualStyleBackColor = true;
-            // 
-            // viewVisitInfoButton
-            // 
-            viewVisitInfoButton.BackColor = Color.FromArgb(255, 255, 244);
-            viewVisitInfoButton.FlatAppearance.BorderSize = 0;
-            viewVisitInfoButton.FlatStyle = FlatStyle.Flat;
-            viewVisitInfoButton.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
-            viewVisitInfoButton.Location = new Point(0, 150);
-            viewVisitInfoButton.Name = "viewVisitInfoButton";
-            viewVisitInfoButton.Size = new Size(160, 50);
-            viewVisitInfoButton.TabIndex = 3;
-            viewVisitInfoButton.Text = "Visits Information";
-            viewVisitInfoButton.UseVisualStyleBackColor = true;
-            // 
             // visitsDataGrid
             // 
+            visitsDataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             visitsDataGrid.BackgroundColor = Color.FromArgb(93, 173, 226);
             visitsDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             visitsDataGrid.Location = new Point(166, 200);
             visitsDataGrid.Name = "visitsDataGrid";
+            visitsDataGrid.ReadOnly = true;
             visitsDataGrid.Size = new Size(602, 238);
             visitsDataGrid.TabIndex = 6;
             // 
@@ -221,5 +239,6 @@
         private Label nurseIdLabel;
         private Label visitsLabel;
         private DataGridView visitsDataGrid;
+        private Button backToMainButton;
     }
 }

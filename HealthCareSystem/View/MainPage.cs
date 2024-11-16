@@ -16,7 +16,7 @@ namespace HealthCareSystem.View
     public partial class MainPage : Form
     {
         private PatientDAL patientDAL;
-        
+
         private Nurse nurse;
 
         public MainPage(Nurse nurse)
@@ -227,6 +227,14 @@ namespace HealthCareSystem.View
 
             this.Close();
         }
+
+        private void visitsButton_Click(object sender, EventArgs e)
+        {
+            VisitsPage visits = new VisitsPage(this.nurse);
+            visits.Show();
+
+            this.Close();
+        }
     }
-    
+
 }

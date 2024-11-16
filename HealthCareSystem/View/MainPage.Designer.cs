@@ -129,6 +129,7 @@
             visitsButton.TabIndex = 9;
             visitsButton.Text = "Visits with Check-up Completed";
             visitsButton.UseVisualStyleBackColor = true;
+            visitsButton.Click += visitsButton_Click;
             // 
             // searchButton
             // 
