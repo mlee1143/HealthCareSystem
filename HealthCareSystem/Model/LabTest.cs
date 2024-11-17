@@ -10,6 +10,8 @@ namespace HealthCareSystem.Model
     {
         public int TestCode {  get; set; }
 
+        public string TestName { get; set; }
+
         public int PatientID { get; set; }
 
         public int NurseID { get; set; }
@@ -18,30 +20,31 @@ namespace HealthCareSystem.Model
 
         public DateTime AppointmentDateTime { get; set; }
 
-        public int Low {  get; set; }
+        public decimal? Low {  get; set; }
 
-        public int High { get; set; }
+        public decimal? High { get; set; }
 
-        public int UnirMeasurement { get; set; }
+        public string? UnitMeasurement { get; set; }
 
-        public DateTime? TestDateTime { get; private set; }
+        public DateTime? TestDateTime { get; set; }
 
-        public bool? IsAbnormal { get; private set; }
+        public bool? IsAbnormal { get; set; }
 
-        public string? Result { get; private set; }
+        public string? Result { get; set; }
 
-        public LabTest(int testCode, int patientId, int doctorId, int nurseId, DateTime appointmentDateTime, int low, int high, String unit, DateTime testDateTime, bool normality, string result) 
+        public LabTest(int testCode, int patientId, int doctorId, int nurseId, DateTime appointmentDateTime, decimal? low, decimal? high, string? unitMeasurement, DateTime? testDateTime, bool? isAbnormal, string? result) 
         {
             // Pre-condition checks
             this.TestCode = testCode;
             this.PatientID = patientId;
-            this.DoctorID = doctorId; 
-            this.NurseID = nurseId; 
+            this.DoctorID = doctorId;
+            this.NurseID = nurseId;
             this.AppointmentDateTime = appointmentDateTime;
             this.Low = low;
             this.High = high;
+            this.UnitMeasurement = unitMeasurement;
             this.TestDateTime = testDateTime;
-            this.IsAbnormal = normality;
+            this.IsAbnormal = isAbnormal;
             this.Result = result;
         }
     }

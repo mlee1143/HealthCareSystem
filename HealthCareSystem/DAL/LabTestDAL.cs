@@ -111,5 +111,61 @@ namespace HealthCareSystem.DAL
                 }
             }
         }
+
+        public List<LabTest> GetLabTestsForVisit(int patientId, int doctorId, int nurseId, DateTime appointmentDateTime)
+        {
+            List<LabTest> labTests = new List<LabTest>();
+
+            using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
+            {
+                connection.Open();
+
+                string query = @"
+            SELECT lt.test_code, tt.test_name, lt.nurse_id, lt.appointment_datetime, lt.low, lt.high, lt.unit_measurement, lt.test_datetime, lt.abnormal, lt.result 
+            FROM lab_test lt
+            JOIN test_type tt ON lt.test_code = tt.test_code
+            WHERE lt.patient_id = @patientId 
+              AND lt.doctor_id = @doctorId 
+              AND lt.nurse_id = @nurseId 
+              AND lt.appointment_datetime = @appointmentDateTime";
+
+                using (var cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@patientId", patientId);
+                    cmd.Parameters.AddWithValue("@doctorId", doctorId);
+                    cmd.Parameters.AddWithValue("@nurseId", nurseId);
+                    cmd.Parameters.AddWithValue("@appointmentDateTime", appointmentDateTime.ToString("yyyy-MM-dd HH:mm:ss"));
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            LabTest labTest = new LabTest(
+                                testCode: reader.GetInt32("test_code"),
+                                patientId: patientId,
+                                doctorId: doctorId,
+                                nurseId: nurseId,
+                                appointmentDateTime: appointmentDateTime,
+                                low: reader["low"] != DBNull.Value ? Convert.ToDecimal(reader["low"]) : (decimal?)null,
+                                high: reader["high"] != DBNull.Value ? Convert.ToDecimal(reader["high"]) : (decimal?)null,
+                                unitMeasurement: reader["unit_measurement"] != DBNull.Value ? reader["unit_measurement"].ToString() : null,
+                                testDateTime: reader["test_datetime"] != DBNull.Value ? Convert.ToDateTime(reader["test_datetime"]) : (DateTime?)null,
+                                isAbnormal: reader["abnormal"] != DBNull.Value ? Convert.ToBoolean(reader["abnormal"]) : (bool?)null,
+                                result: reader["result"] != DBNull.Value ? reader["result"].ToString() : null
+                            )
+                            {
+                                TestName = reader["test_name"].ToString()
+                            };
+
+                            labTests.Add(labTest);
+                        }
+                    }
+                }
+            }
+
+            return labTests;
+        }
+
+
     }
 }
