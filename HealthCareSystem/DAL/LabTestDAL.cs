@@ -166,6 +166,46 @@ namespace HealthCareSystem.DAL
             return labTests;
         }
 
+        public bool UpdateLabTestResult(int testCode, int patientId, int nurseId, int doctorId, DateTime appointmentDateTime, decimal? low, decimal? high, string unitMeasurement, DateTime testDateTime, bool? isAbnormal, string result)
+        {
+            using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
+            {
+                connection.Open();
 
+                string query = @"
+            UPDATE lab_test
+            SET 
+                low = @low,
+                high = @high,
+                unit_measurement = @unitMeasurement,
+                test_datetime = @testDateTime,
+                abnormal = @isAbnormal,
+                result = @result
+            WHERE 
+                test_code = @testCode AND 
+                patient_id = @patientId AND
+                nurse_id = @nurseId AND
+                doctor_id = @doctorId AND
+                appointment_datetime = @appointmentDateTime";
+
+                using (var cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@low", low.HasValue ? (object)low.Value : DBNull.Value);
+                    cmd.Parameters.AddWithValue("@high", high.HasValue ? (object)high.Value : DBNull.Value);
+                    cmd.Parameters.AddWithValue("@unitMeasurement", unitMeasurement);
+                    cmd.Parameters.AddWithValue("@testDateTime", testDateTime);
+                    cmd.Parameters.AddWithValue("@isAbnormal", isAbnormal.HasValue ? (object)isAbnormal.Value : DBNull.Value);
+                    cmd.Parameters.AddWithValue("@result", result);
+                    cmd.Parameters.AddWithValue("@testCode", testCode);
+                    cmd.Parameters.AddWithValue("@patientId", patientId);
+                    cmd.Parameters.AddWithValue("@nurseId", nurseId);
+                    cmd.Parameters.AddWithValue("@doctorId", doctorId);
+                    cmd.Parameters.AddWithValue("@appointmentDateTime", appointmentDateTime.ToString("yyyy-MM-dd HH:mm:ss"));
+
+                    int rowsAffected = cmd.ExecuteNonQuery();
+                    return rowsAffected > 0;
+                }
+            }
+        }
     }
 }

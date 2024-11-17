@@ -51,8 +51,8 @@
             noLowValueCheckBox = new CheckBox();
             noHighValueCheckBox = new CheckBox();
             normalityGroupBox = new GroupBox();
-            abnormalRadioButton = new RadioButton();
             normalRadioButton = new RadioButton();
+            abnormalRadioButton = new RadioButton();
             errorLabel = new Label();
             ((System.ComponentModel.ISupportInitialize)symbolPictureBox).BeginInit();
             healthCareNamePanel.SuspendLayout();
@@ -154,6 +154,7 @@
             labTestDataGrid.Name = "labTestDataGrid";
             labTestDataGrid.Size = new Size(710, 293);
             labTestDataGrid.TabIndex = 7;
+            this.labTestDataGrid.SelectionChanged += new System.EventHandler(this.labTestDataGrid_SelectionChanged);
             // 
             // lowLabel
             // 
@@ -244,6 +245,7 @@
             saveResultButton.TabIndex = 18;
             saveResultButton.Text = "Save";
             saveResultButton.UseVisualStyleBackColor = true;
+            saveResultButton.Click += saveResultButton_Click;
             // 
             // goBackButton
             // 
@@ -269,6 +271,7 @@
             noLowValueCheckBox.TabIndex = 20;
             noLowValueCheckBox.Text = "No Low Value";
             noLowValueCheckBox.UseVisualStyleBackColor = true;
+            this.noLowValueCheckBox.CheckedChanged += new System.EventHandler(this.noLowValueCheckBox_CheckedChanged);
             // 
             // noHighValueCheckBox
             // 
@@ -280,6 +283,7 @@
             noHighValueCheckBox.TabIndex = 21;
             noHighValueCheckBox.Text = "No High Value";
             noHighValueCheckBox.UseVisualStyleBackColor = true;
+            this.noHighValueCheckBox.CheckedChanged += new System.EventHandler(this.noHighValueCheckBox_CheckedChanged);
             // 
             // normalityGroupBox
             // 
@@ -293,17 +297,6 @@
             normalityGroupBox.TabStop = false;
             normalityGroupBox.Text = "Normality";
             // 
-            // abnormalRadioButton
-            // 
-            abnormalRadioButton.AutoSize = true;
-            abnormalRadioButton.Location = new Point(6, 22);
-            abnormalRadioButton.Name = "abnormalRadioButton";
-            abnormalRadioButton.Size = new Size(78, 19);
-            abnormalRadioButton.TabIndex = 0;
-            abnormalRadioButton.TabStop = true;
-            abnormalRadioButton.Text = "Abnormal";
-            abnormalRadioButton.UseVisualStyleBackColor = true;
-            // 
             // normalRadioButton
             // 
             normalRadioButton.AutoSize = true;
@@ -314,6 +307,17 @@
             normalRadioButton.TabStop = true;
             normalRadioButton.Text = "Normal";
             normalRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // abnormalRadioButton
+            // 
+            abnormalRadioButton.AutoSize = true;
+            abnormalRadioButton.Location = new Point(6, 22);
+            abnormalRadioButton.Name = "abnormalRadioButton";
+            abnormalRadioButton.Size = new Size(78, 19);
+            abnormalRadioButton.TabIndex = 0;
+            abnormalRadioButton.TabStop = true;
+            abnormalRadioButton.Text = "Abnormal";
+            abnormalRadioButton.UseVisualStyleBackColor = true;
             // 
             // errorLabel
             // 

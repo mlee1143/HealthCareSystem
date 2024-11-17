@@ -47,6 +47,102 @@ namespace HealthCareSystem.View
             patientInfoLabel.Text = $"Order Test For: {this.patientName} ID: {this.patientId}";
         }
 
+        private void saveResultButton_Click(object sender, EventArgs e)
+        {
+            if (labTestDataGrid.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select a test before saving the result.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                int testCode = Convert.ToInt32(labTestDataGrid.SelectedRows[0].Cells["TestCode"].Value);
+
+                decimal? lowValue = noLowValueCheckBox.Checked ? null : (decimal?)Convert.ToDecimal(lowTextBox.Text);
+                decimal? highValue = noHighValueCheckBox.Checked ? null : (decimal?)Convert.ToDecimal(highTextBox.Text);
+                string unitMeasurement = "mIU/L";
+                DateTime testDateTime = testDateTimePicker.Value;
+                string result = testResultTextBox.Text;
+
+                if (string.IsNullOrWhiteSpace(result))
+                {
+                    MessageBox.Show("Please enter a test result.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (lowValue.HasValue && highValue.HasValue && lowValue.Value > highValue.Value)
+                {
+                    MessageBox.Show("Low value cannot be greater than High value.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                bool? isAbnormal = null;
+
+                if (lowValue.HasValue && highValue.HasValue)
+                {
+                    decimal numericResult = Convert.ToDecimal(result);
+                    isAbnormal = numericResult < lowValue || numericResult > highValue;
+                }
+                else if (lowValue.HasValue || highValue.HasValue)
+                {
+                    decimal numericResult = Convert.ToDecimal(result);
+                    if (lowValue.HasValue)
+                    {
+                        isAbnormal = numericResult < lowValue;
+                    }
+                    else if (highValue.HasValue)
+                    {
+                        isAbnormal = numericResult > highValue;
+                    }
+                }
+                else if (normalityGroupBox.Enabled)
+                {
+                    isAbnormal = abnormalRadioButton.Checked ? true : (normalRadioButton.Checked ? false : (bool?)null);
+                }
+
+                if (!isAbnormal.HasValue)
+                {
+                    MessageBox.Show("Please specify whether the result is normal or abnormal.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                LabTestDAL labTestDAL = new LabTestDAL();
+                bool success = labTestDAL.UpdateLabTestResult(
+                    testCode,
+                    patientId,
+                    visitNurseId,
+                    doctorId,
+                    appointmentDateTime,
+                    lowValue,
+                    highValue,
+                    unitMeasurement,
+                    testDateTime,
+                    isAbnormal,
+                    result
+                );
+
+                if (success)
+                {
+                    MessageBox.Show("Test result saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.loadLabTests();
+                }
+                else
+                {
+                    MessageBox.Show("Failed to save test result. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Invalid numeric input for test result, low, or high values.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
         private void goBackButton_Click(object sender, EventArgs e)
         {
             VisitsPage visitsPage = new VisitsPage(this.nurse);
@@ -90,5 +186,49 @@ namespace HealthCareSystem.View
             }
         }
 
+        private void labTestDataGrid_SelectionChanged(object sender, EventArgs e)
+        {
+            bool isTestSelected = labTestDataGrid.SelectedRows.Count > 0;
+
+            lowTextBox.Enabled = isTestSelected;
+            highTextBox.Enabled = isTestSelected;
+            noLowValueCheckBox.Enabled = isTestSelected;
+            noHighValueCheckBox.Enabled = isTestSelected;
+            normalityGroupBox.Enabled = false;
+            testResultTextBox.Enabled = isTestSelected;
+            testDateTimePicker.Enabled = isTestSelected;
+            saveResultButton.Enabled = isTestSelected;
+
+            if (!isTestSelected)
+            {
+                lowTextBox.Text = "";
+                highTextBox.Text = "";
+                noLowValueCheckBox.Checked = false;
+                noHighValueCheckBox.Checked = false;
+                abnormalRadioButton.Checked = false;
+                normalRadioButton.Checked = false;
+                testResultTextBox.Text = "";
+                testDateTimePicker.Value = DateTime.Now;
+            }
+        }
+
+        private void noLowValueCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            lowTextBox.Enabled = !noLowValueCheckBox.Checked;
+
+            EvaluateNormalityGroupAvailability();
+        }
+
+        private void noHighValueCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            highTextBox.Enabled = !noHighValueCheckBox.Checked;
+
+            EvaluateNormalityGroupAvailability();
+        }
+
+        private void EvaluateNormalityGroupAvailability()
+        {
+            normalityGroupBox.Enabled = noLowValueCheckBox.Checked && noHighValueCheckBox.Checked;
+        }
     }
 }
