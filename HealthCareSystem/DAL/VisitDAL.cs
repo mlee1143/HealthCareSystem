@@ -18,6 +18,11 @@ namespace HealthCareSystem.DAL
             this.databaseConnection = new DataHelper();
         }
 
+        /// <summary>
+        /// Gets the visit by patient identifier and appointment date time.
+        /// </summary>
+        /// <param name="app">The application.</param>
+        /// <returns></returns>
         public Visit GetVisitByPatientIDAndAppointmentDateTime(Appointment app)
         {
             int id = app.PatientID;
@@ -66,14 +71,19 @@ namespace HealthCareSystem.DAL
             return null;
         }
 
+        /// <summary>
+        /// Inserts the visit information.
+        /// </summary>
+        /// <param name="visit">The visit.</param>
+        /// <returns></returns>
         public bool InsertVisitInformation(Visit visit)
         {
             using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
             {
                 connection.Open();
 
-                string query = "INSERT INTO visit (patient_id, doctor_id, appointment_datetime, nurse_id, weight, height, blood_pressure, pulse, temperature, symptomsDescription) " + //, initial_diagnosis
-                               "VALUES (@patientId, @doctorId, @appointmentDateTime, @nurse_id, @weight, @height, @blood_pressure, @pulse, @temperature, @symptomsDescription)"; //, @initial_diagnosis
+                string query = "INSERT INTO visit (patient_id, doctor_id, appointment_datetime, nurse_id, weight, height, blood_pressure, pulse, temperature, symptomsDescription) " +
+                               "VALUES (@patientId, @doctorId, @appointmentDateTime, @nurse_id, @weight, @height, @blood_pressure, @pulse, @temperature, @symptomsDescription)";
 
                 using (var cmd = new MySqlCommand(query, connection))
                 {
@@ -94,6 +104,13 @@ namespace HealthCareSystem.DAL
             }
         }
 
+        /// <summary>
+        /// Updates the visit information check up.
+        /// </summary>
+        /// <param name="patientID">The patient identifier.</param>
+        /// <param name="appointmentDateTime">The appointment date time.</param>
+        /// <param name="visit">The visit.</param>
+        /// <returns></returns>
         public bool UpdateVisitInformationCheckUp(int patientID, DateTime appointmentDateTime, Visit visit)
         {
             using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
@@ -120,6 +137,12 @@ namespace HealthCareSystem.DAL
             }
         }
 
+        /// <summary>
+        /// Visits the information exists already.
+        /// </summary>
+        /// <param name="patientID">The patient identifier.</param>
+        /// <param name="appointmentDateTime">The appointment date time.</param>
+        /// <returns></returns>
         public bool VisitInformationExistsAlready(int patientID, DateTime appointmentDateTime)
         {
             using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
@@ -139,6 +162,12 @@ namespace HealthCareSystem.DAL
             }
         }
 
+        /// <summary>
+        /// Initials the diagnosis exists for visit.
+        /// </summary>
+        /// <param name="patientID">The patient identifier.</param>
+        /// <param name="appointmentDateTime">The appointment date time.</param>
+        /// <returns></returns>
         public bool InitialDiagnosisExistsForVisit(int patientID, DateTime appointmentDateTime)
         {
             using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
@@ -158,6 +187,12 @@ namespace HealthCareSystem.DAL
             }
         }
 
+        /// <summary>
+        /// Finals the diagnosis exists for visit.
+        /// </summary>
+        /// <param name="patientID">The patient identifier.</param>
+        /// <param name="appointmentDateTime">The appointment date time.</param>
+        /// <returns></returns>
         public bool FinalDiagnosisExistsForVisit(int patientID, DateTime appointmentDateTime)
         {
             using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
@@ -177,6 +212,13 @@ namespace HealthCareSystem.DAL
             }
         }
 
+        /// <summary>
+        /// Updates the initial diagnosis for visit.
+        /// </summary>
+        /// <param name="diagnosis">The diagnosis.</param>
+        /// <param name="patientID">The patient identifier.</param>
+        /// <param name="appointmentDateTime">The appointment date time.</param>
+        /// <returns></returns>
         public bool UpdateInitialDiagnosisForVisit(string diagnosis, int patientID, DateTime appointmentDateTime)
         {
             using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
@@ -197,6 +239,13 @@ namespace HealthCareSystem.DAL
             }
         }
 
+        /// <summary>
+        /// Updates the final diagnosis for visit.
+        /// </summary>
+        /// <param name="diagnosis">The diagnosis.</param>
+        /// <param name="patientID">The patient identifier.</param>
+        /// <param name="appointmentDateTime">The appointment date time.</param>
+        /// <returns></returns>
         public bool UpdateFinalDiagnosisForVisit(string diagnosis, int patientID, DateTime appointmentDateTime)
         {
             using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
