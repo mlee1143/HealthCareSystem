@@ -504,7 +504,6 @@
             completedButton.TabIndex = 30;
             completedButton.Text = "Completed Information";
             completedButton.UseVisualStyleBackColor = false;
-            completedButton.Click += completedButton_Click;
             // 
             // orderTestButton
             // 
@@ -691,7 +690,6 @@
             weightLabelSummary.Size = new Size(51, 15);
             weightLabelSummary.TabIndex = 0;
             weightLabelSummary.Text = "Weight :";
-            weightLabelSummary.Click += weightLabelSummary_Click;
             // 
             // VisitInformation
             // 

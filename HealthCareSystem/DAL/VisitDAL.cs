@@ -87,10 +87,35 @@ namespace HealthCareSystem.DAL
                     cmd.Parameters.AddWithValue("@pulse", visit.Pulse);
                     cmd.Parameters.AddWithValue("@temperature", visit.Temperature);
                     cmd.Parameters.AddWithValue("@symptomsDescription", visit.SymptomsDescription);
-                    //cmd.Parameters.AddWithValue("@initial_diagnosis", visit.InitialDiagnosis);
 
                     int result = cmd.ExecuteNonQuery();
                     return result > 0;
+                }
+            }
+        }
+
+        public bool UpdateVisitInformationCheckUp(int patientID, DateTime appointmentDateTime, Visit visit)
+        {
+            using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
+            {
+                connection.Open();
+
+                string query = "UPDATE visit SET height = @height, weight = @weight, temperature = @temperature, blood_pressure = @blood_pressure, pulse = @pulse, symptomsDescription = @symptoms WHERE patient_id = @patient_id AND appointment_datetime = @appointment_datetime;";
+
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@patient_id", patientID);
+                    command.Parameters.AddWithValue("@appointment_datetime", appointmentDateTime);
+
+                    command.Parameters.AddWithValue("@weight", visit.Weight);
+                    command.Parameters.AddWithValue("@height", visit.Height);
+                    command.Parameters.AddWithValue("@blood_pressure", visit.BloodPressure);
+                    command.Parameters.AddWithValue("@pulse", visit.Pulse);
+                    command.Parameters.AddWithValue("@temperature", visit.Temperature);
+                    command.Parameters.AddWithValue("@symptoms", visit.SymptomsDescription);
+
+                    int count = Convert.ToInt32(command.ExecuteScalar());
+                    return count > 0;
                 }
             }
         }

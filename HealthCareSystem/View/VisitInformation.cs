@@ -134,8 +134,6 @@ namespace HealthCareSystem.View
             this.symptomsLabelSummary.Text+= visit.SymptomsDescription;
             this.initialDiagnosisLabelSummary.Text += visit.InitialDiagnosis;
             this.finalDiagnosisLabelSummary.Text += visit.FinalDiagnosis;
-
-
         }
 
         private bool IsNumberValid(string number)
@@ -232,15 +230,26 @@ namespace HealthCareSystem.View
                     
                 };
 
-                if (visitDAL.InsertVisitInformation(visit))
+                if (visitDAL.VisitInformationExistsAlready(this.appointment.PatientID, this.appointment.AppointmentDateTime))
                 {
+                    if (this.visitDAL.UpdateVisitInformationCheckUp(this.appointment.PatientID, this.appointment.AppointmentDateTime, visit))
+                    {
+                        MessageBox.Show("Update of visit information successful.");
+                    }
 
-                   
-                }
-                else
+                } else
                 {
-                    MessageBox.Show("Could NOT insert Visit information.");
+                    if (this.visitDAL.InsertVisitInformation(visit))
+                    {
+                        this.checkupCheckbox.Checked = true;
+                        this.diagnosisGroupbox.Visible = true;
+                        this.routineGroupBox.Visible = false;
+                    } else
+                    {
+                        MessageBox.Show("Could NOT insert Visit information.");
+                    }
                 }
+                   
             }
             else
             {
@@ -318,21 +327,6 @@ namespace HealthCareSystem.View
                 }
                 
             }
-        }
-
-        private void PopulateSummaryFields()
-        {
-
-        }
-
-        private void weightLabelSummary_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void completedButton_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void diagnosisButton_Click(object sender, EventArgs e)

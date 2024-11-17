@@ -33,6 +33,7 @@
             symbolPictureBox = new PictureBox();
             welcomeNameLabel = new Label();
             buttonsPanel = new Panel();
+            button1 = new Button();
             searchButton = new Button();
             appointmentsButton = new Button();
             editPatientButton = new Button();
@@ -104,6 +105,7 @@
             // buttonsPanel
             // 
             buttonsPanel.BackColor = Color.FromArgb(93, 109, 126);
+            buttonsPanel.Controls.Add(button1);
             buttonsPanel.Controls.Add(searchButton);
             buttonsPanel.Controls.Add(appointmentsButton);
             buttonsPanel.Controls.Add(editPatientButton);
@@ -114,6 +116,19 @@
             buttonsPanel.Name = "buttonsPanel";
             buttonsPanel.Size = new Size(174, 540);
             buttonsPanel.TabIndex = 3;
+            // 
+            // button1
+            // 
+            button1.BackColor = Color.FromArgb(255, 255, 244);
+            button1.FlatAppearance.BorderSize = 0;
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button1.Location = new Point(0, 456);
+            button1.Name = "button1";
+            button1.Size = new Size(174, 42);
+            button1.TabIndex = 9;
+            button1.Text = "View Information";
+            button1.UseVisualStyleBackColor = false;
             // 
             // searchButton
             // 
@@ -395,5 +410,6 @@
         private TextBox lnameTextBox;
         private TextBox fnameSearchTextBox;
         private Button appointmentsButton;
+        private Button button1;
     }
 }
