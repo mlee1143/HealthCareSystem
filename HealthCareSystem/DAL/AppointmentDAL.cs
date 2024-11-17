@@ -216,5 +216,123 @@ namespace HealthCareSystem.DAL
                 }
             }
         }
+
+
+
+
+        public async Task<List<Appointment>> GetListOfAppointmentsByPatientBirthdate(DateTime birthdate)
+        {
+            List<Appointment> list = new List<Appointment>();
+            var bdate = birthdate.ToString("yyyy-MM-dd");
+
+            using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
+            {
+                await connection.OpenAsync();
+                
+                string query = "SELECT a.patient_id, a.doctor_id, a.appointment_datetime, a.reason " +
+                    "FROM appointment a " +
+                    "JOIN patient p ON a.patient_id = p.patient_id " +
+                    "WHERE p.bdate = @birthdate;";
+
+                using (var command  = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@birthdate", bdate);
+
+                    using (var reader = await command.ExecuteReaderAsync())
+                    {
+                        while (await reader.ReadAsync())
+                        {
+                            var appointment = new Appointment(
+                                reader.GetInt32("patient_id"),
+                                reader.GetInt32("doctor_id"),
+                                reader.GetDateTime("appointment_datetime"),
+                                reader.GetString("reason")
+                                );
+
+                            list.Add(appointment);
+                        }
+                    }
+                }
+            }
+            return list;
+        }
+
+        public async Task<List<Appointment>> GetListOfAppointmentsByPatientName(string fname, string lname)
+        {
+            List<Appointment> list = new List<Appointment>();
+            
+
+            using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
+            {
+                await connection.OpenAsync();
+
+                string query = "SELECT a.patient_id, a.doctor_id, a.appointment_datetime, a.reason " +
+                    "FROM appointment a " +
+                    "JOIN patient p ON a.patient_id = p.patient_id " +
+                    "WHERE p.fname = @fname AND p.lname = @lname;";
+
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@fname", fname);
+                    command.Parameters.AddWithValue("@lname", lname);
+
+                    using (var reader = await command.ExecuteReaderAsync())
+                    {
+                        while (await reader.ReadAsync())
+                        {
+                            var appointment = new Appointment(
+                                reader.GetInt32("patient_id"),
+                                reader.GetInt32("doctor_id"),
+                                reader.GetDateTime("appointment_datetime"),
+                                reader.GetString("reason")
+                                );
+
+                            list.Add(appointment);
+                        }
+                    }
+                }
+            }
+            return list;
+        }
+
+        public async Task<List<Appointment>> GetListOfAppointmentsByPatientNameAndBirthdate(string fname, string lname, DateTime birthdate)
+        {
+            List<Appointment> list = new List<Appointment>();
+            var bdate = birthdate.ToString("yyyy-MM-dd");
+
+            using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
+            {
+                await connection.OpenAsync();
+
+                string query = "SELECT a.patient_id, a.doctor_id, a.appointment_datetime, a.reason " +
+                    "FROM appointment a " +
+                    "JOIN patient p ON a.patient_id = p.patient_id " +
+                    "WHERE p.fname = @fname AND p.lname = @lname AND p.bdate = @birthdate;";
+
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@fname", fname);
+                    command.Parameters.AddWithValue("@lname", lname);
+                    command.Parameters.AddWithValue("@birthdate", bdate);
+
+                    using (var reader = await command.ExecuteReaderAsync())
+                    {
+                        while (await reader.ReadAsync())
+                        {
+                            var appointment = new Appointment(
+                                reader.GetInt32("patient_id"),
+                                reader.GetInt32("doctor_id"),
+                                reader.GetDateTime("appointment_datetime"),
+                                reader.GetString("reason")
+                                );
+
+                            list.Add(appointment);
+                        }
+                    }
+                }
+            }
+            return list;
+        }
     }
 }
+
