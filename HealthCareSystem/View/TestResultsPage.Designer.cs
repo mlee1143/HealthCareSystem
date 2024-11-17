@@ -53,7 +53,6 @@
             normalityGroupBox = new GroupBox();
             normalRadioButton = new RadioButton();
             abnormalRadioButton = new RadioButton();
-            errorLabel = new Label();
             ((System.ComponentModel.ISupportInitialize)symbolPictureBox).BeginInit();
             healthCareNamePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)labTestDataGrid).BeginInit();
@@ -154,7 +153,7 @@
             labTestDataGrid.Name = "labTestDataGrid";
             labTestDataGrid.Size = new Size(710, 293);
             labTestDataGrid.TabIndex = 7;
-            this.labTestDataGrid.SelectionChanged += new System.EventHandler(this.labTestDataGrid_SelectionChanged);
+            labTestDataGrid.SelectionChanged += labTestDataGrid_SelectionChanged;
             // 
             // lowLabel
             // 
@@ -271,7 +270,7 @@
             noLowValueCheckBox.TabIndex = 20;
             noLowValueCheckBox.Text = "No Low Value";
             noLowValueCheckBox.UseVisualStyleBackColor = true;
-            this.noLowValueCheckBox.CheckedChanged += new System.EventHandler(this.noLowValueCheckBox_CheckedChanged);
+            noLowValueCheckBox.CheckedChanged += noLowValueCheckBox_CheckedChanged;
             // 
             // noHighValueCheckBox
             // 
@@ -283,7 +282,7 @@
             noHighValueCheckBox.TabIndex = 21;
             noHighValueCheckBox.Text = "No High Value";
             noHighValueCheckBox.UseVisualStyleBackColor = true;
-            this.noHighValueCheckBox.CheckedChanged += new System.EventHandler(this.noHighValueCheckBox_CheckedChanged);
+            noHighValueCheckBox.CheckedChanged += noHighValueCheckBox_CheckedChanged;
             // 
             // normalityGroupBox
             // 
@@ -319,23 +318,12 @@
             abnormalRadioButton.Text = "Abnormal";
             abnormalRadioButton.UseVisualStyleBackColor = true;
             // 
-            // errorLabel
-            // 
-            errorLabel.AutoSize = true;
-            errorLabel.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
-            errorLabel.Location = new Point(732, 148);
-            errorLabel.Name = "errorLabel";
-            errorLabel.Size = new Size(76, 19);
-            errorLabel.TabIndex = 23;
-            errorLabel.Text = "Error Label";
-            // 
             // TestResultsPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(40, 116, 166);
             ClientSize = new Size(980, 535);
-            Controls.Add(errorLabel);
             Controls.Add(normalityGroupBox);
             Controls.Add(noHighValueCheckBox);
             Controls.Add(noLowValueCheckBox);
@@ -396,6 +384,5 @@
         private GroupBox normalityGroupBox;
         private RadioButton normalRadioButton;
         private RadioButton abnormalRadioButton;
-        private Label errorLabel;
     }
 }
