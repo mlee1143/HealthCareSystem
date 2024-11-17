@@ -32,10 +32,25 @@ namespace HealthCareSystem.View
 
         private void orderTestButton_Click(object sender, EventArgs e)
         {
-            OrderTestPage orderTestPage = new OrderTestPage(this.nurse); 
-            orderTestPage.Show();
+            if (visitsDataGrid.SelectedRows.Count > 0)
+            {
+                // Get selected visit data
+                var selectedRow = visitsDataGrid.SelectedRows[0];
+                int patientId = (int)selectedRow.Cells["PatientID"].Value;
+                string patientName = (string)selectedRow.Cells["PatientName"].Value;
+                int doctorId = (int)selectedRow.Cells["DoctorID"].Value;
+                string doctorName = (string)selectedRow.Cells["DoctorName"].Value;
 
-            this.Close();
+                // Open OrderTestPage with selected visit data
+                OrderTestPage orderTestPage = new OrderTestPage(this.nurse, patientId, patientName, doctorId, doctorName);
+                orderTestPage.Show();
+
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Please select a visit to order tests for.");
+            }
         }
 
         private void LoadVisits()

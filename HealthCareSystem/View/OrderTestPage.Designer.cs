@@ -39,9 +39,9 @@
             testOptionsComboBox = new ComboBox();
             addTestButton = new Button();
             removeTestButton = new Button();
-            selectedTestsListView = new ListView();
             cancelButton = new Button();
             orderTests = new Button();
+            labTestsListBox = new ListBox();
             ((System.ComponentModel.ISupportInitialize)symbolPictureBox).BeginInit();
             healthCareNamePanel.SuspendLayout();
             SuspendLayout();
@@ -63,7 +63,7 @@
             healthCareNamePanel.Controls.Add(healthCareNameLabel);
             healthCareNamePanel.Location = new Point(87, 0);
             healthCareNamePanel.Name = "healthCareNamePanel";
-            healthCareNamePanel.Size = new Size(560, 76);
+            healthCareNamePanel.Size = new Size(544, 76);
             healthCareNamePanel.TabIndex = 1;
             // 
             // healthCareNameLabel
@@ -104,7 +104,7 @@
             doctorNameLabel.AutoSize = true;
             doctorNameLabel.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             doctorNameLabel.ForeColor = Color.FromArgb(242, 243, 244);
-            doctorNameLabel.Location = new Point(341, 91);
+            doctorNameLabel.Location = new Point(308, 91);
             doctorNameLabel.Name = "doctorNameLabel";
             doctorNameLabel.Size = new Size(96, 19);
             doctorNameLabel.TabIndex = 4;
@@ -115,7 +115,7 @@
             doctorIdLabel.AutoSize = true;
             doctorIdLabel.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             doctorIdLabel.ForeColor = Color.FromArgb(242, 243, 244);
-            doctorIdLabel.Location = new Point(518, 91);
+            doctorIdLabel.Location = new Point(507, 91);
             doctorIdLabel.Name = "doctorIdLabel";
             doctorIdLabel.Size = new Size(71, 19);
             doctorIdLabel.TabIndex = 5;
@@ -135,8 +135,12 @@
             // testOptionsComboBox
             // 
             testOptionsComboBox.BackColor = Color.FromArgb(242, 243, 244);
+            testOptionsComboBox.DropDownHeight = 150;
+            testOptionsComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            testOptionsComboBox.FlatStyle = FlatStyle.Flat;
             testOptionsComboBox.Font = new Font("Segoe UI", 10F);
             testOptionsComboBox.FormattingEnabled = true;
+            testOptionsComboBox.IntegralHeight = false;
             testOptionsComboBox.Location = new Point(12, 162);
             testOptionsComboBox.Name = "testOptionsComboBox";
             testOptionsComboBox.Size = new Size(392, 25);
@@ -154,6 +158,7 @@
             addTestButton.TabIndex = 8;
             addTestButton.Text = "Add Test";
             addTestButton.UseVisualStyleBackColor = true;
+            addTestButton.Click += addTestButton_Click;
             // 
             // removeTestButton
             // 
@@ -161,21 +166,13 @@
             removeTestButton.FlatAppearance.BorderSize = 0;
             removeTestButton.FlatStyle = FlatStyle.Flat;
             removeTestButton.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
-            removeTestButton.Location = new Point(555, 160);
+            removeTestButton.Location = new Point(535, 160);
             removeTestButton.Name = "removeTestButton";
             removeTestButton.Size = new Size(80, 26);
             removeTestButton.TabIndex = 9;
             removeTestButton.Text = "Remove Test";
             removeTestButton.UseVisualStyleBackColor = true;
-            // 
-            // selectedTestsListView
-            // 
-            selectedTestsListView.Font = new Font("Segoe UI", 12F);
-            selectedTestsListView.Location = new Point(12, 205);
-            selectedTestsListView.Name = "selectedTestsListView";
-            selectedTestsListView.Size = new Size(623, 190);
-            selectedTestsListView.TabIndex = 10;
-            selectedTestsListView.UseCompatibleStateImageBehavior = false;
+            removeTestButton.Click += removeTestButton_Click;
             // 
             // cancelButton
             // 
@@ -183,7 +180,7 @@
             cancelButton.FlatAppearance.BorderSize = 0;
             cancelButton.FlatStyle = FlatStyle.Flat;
             cancelButton.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
-            cancelButton.Location = new Point(207, 408);
+            cancelButton.Location = new Point(208, 452);
             cancelButton.Name = "cancelButton";
             cancelButton.Size = new Size(90, 30);
             cancelButton.TabIndex = 11;
@@ -197,22 +194,33 @@
             orderTests.FlatAppearance.BorderSize = 0;
             orderTests.FlatStyle = FlatStyle.Flat;
             orderTests.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
-            orderTests.Location = new Point(347, 408);
+            orderTests.Location = new Point(341, 452);
             orderTests.Name = "orderTests";
             orderTests.Size = new Size(90, 30);
             orderTests.TabIndex = 12;
             orderTests.Text = "OrderTests";
             orderTests.UseVisualStyleBackColor = true;
             // 
+            // labTestsListBox
+            // 
+            labTestsListBox.BackColor = Color.FromArgb(242, 243, 244);
+            labTestsListBox.Font = new Font("Segoe UI", 12F);
+            labTestsListBox.FormattingEnabled = true;
+            labTestsListBox.ItemHeight = 21;
+            labTestsListBox.Location = new Point(12, 207);
+            labTestsListBox.Name = "labTestsListBox";
+            labTestsListBox.Size = new Size(603, 214);
+            labTestsListBox.TabIndex = 10;
+            // 
             // OrderTestPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(40, 116, 166);
-            ClientSize = new Size(647, 450);
+            ClientSize = new Size(629, 494);
+            Controls.Add(labTestsListBox);
             Controls.Add(orderTests);
             Controls.Add(cancelButton);
-            Controls.Add(selectedTestsListView);
             Controls.Add(removeTestButton);
             Controls.Add(addTestButton);
             Controls.Add(testOptionsComboBox);
@@ -245,8 +253,8 @@
         private ComboBox testOptionsComboBox;
         private Button addTestButton;
         private Button removeTestButton;
-        private ListView selectedTestsListView;
         private Button cancelButton;
         private Button orderTests;
+        private ListBox labTestsListBox;
     }
 }
