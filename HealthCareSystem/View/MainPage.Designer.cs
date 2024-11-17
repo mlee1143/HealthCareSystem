@@ -34,6 +34,7 @@
             welcomeNameLabel = new Label();
             buttonsPanel = new Panel();
             button1 = new Button();
+            visitsButton = new Button();
             searchButton = new Button();
             appointmentsButton = new Button();
             editPatientButton = new Button();
@@ -110,6 +111,7 @@
             // 
             buttonsPanel.BackColor = Color.FromArgb(93, 109, 126);
             buttonsPanel.Controls.Add(button1);
+            buttonsPanel.Controls.Add(visitsButton);
             buttonsPanel.Controls.Add(searchButton);
             buttonsPanel.Controls.Add(appointmentsButton);
             buttonsPanel.Controls.Add(editPatientButton);
@@ -137,6 +139,22 @@
             button1.Text = "View Information";
             button1.UseVisualStyleBackColor = false;
             button1.Visible = false;
+            buttonsPanel.Size = new Size(174, 511);
+            buttonsPanel.TabIndex = 3;
+            // 
+            // visitsButton
+            // 
+            visitsButton.BackColor = Color.FromArgb(255, 255, 242);
+            visitsButton.FlatAppearance.BorderSize = 0;
+            visitsButton.FlatStyle = FlatStyle.Flat;
+            visitsButton.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
+            visitsButton.Location = new Point(0, 354);
+            visitsButton.Name = "visitsButton";
+            visitsButton.Size = new Size(174, 49);
+            visitsButton.TabIndex = 9;
+            visitsButton.Text = "Visits with Check-up Completed";
+            visitsButton.UseVisualStyleBackColor = true;
+            visitsButton.Click += visitsButton_Click;
             // 
             // searchButton
             // 
@@ -193,8 +211,7 @@
             logoutButton.FlatStyle = FlatStyle.Flat;
             logoutButton.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             logoutButton.ForeColor = Color.Black;
-            logoutButton.Location = new Point(0, 582);
-            logoutButton.Margin = new Padding(4, 5, 4, 5);
+            logoutButton.Location = new Point(0, 403);
             logoutButton.Name = "logoutButton";
             logoutButton.Size = new Size(249, 82);
             logoutButton.TabIndex = 6;
@@ -439,5 +456,6 @@
         private TextBox fnameSearchTextBox;
         private Button appointmentsButton;
         private Button button1;
+        private Button visitsButton;
     }
 }

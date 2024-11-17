@@ -124,21 +124,27 @@
             // 
             // patientComboBox
             // 
+            patientComboBox.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            patientComboBox.AutoCompleteSource = AutoCompleteSource.ListItems;
             patientComboBox.BackColor = Color.FromArgb(242, 243, 244);
             patientComboBox.FormattingEnabled = true;
             patientComboBox.Location = new Point(85, 126);
             patientComboBox.Name = "patientComboBox";
             patientComboBox.Size = new Size(193, 23);
             patientComboBox.TabIndex = 6;
+            patientComboBox.TextChanged += patientComboBox_TextChanged;
             // 
             // doctorComboBox
-            // 
+            //
+            doctorComboBox.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            doctorComboBox.AutoCompleteSource = AutoCompleteSource.ListItems;
             doctorComboBox.BackColor = Color.FromArgb(242, 243, 244);
             doctorComboBox.FormattingEnabled = true;
             doctorComboBox.Location = new Point(364, 129);
             doctorComboBox.Name = "doctorComboBox";
             doctorComboBox.Size = new Size(193, 23);
             doctorComboBox.TabIndex = 7;
+            doctorComboBox.TextChanged += doctorComboBox_TextChanged;
             // 
             // apptDateTimePicker
             // 
@@ -199,16 +205,16 @@
             nurseNameLabel.ForeColor = Color.FromArgb(242, 243, 244);
             nurseNameLabel.Location = new Point(14, 86);
             nurseNameLabel.Name = "nurseNameLabel";
-            nurseNameLabel.Size = new Size(49, 19);
+            nurseNameLabel.Size = new Size(90, 19);
             nurseNameLabel.TabIndex = 12;
-            nurseNameLabel.Text = "Name:";
+            nurseNameLabel.Text = "Nurse Name:";
             // 
             // nurseIdLabel
             // 
             nurseIdLabel.AutoSize = true;
             nurseIdLabel.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             nurseIdLabel.ForeColor = Color.FromArgb(242, 243, 244);
-            nurseIdLabel.Location = new Point(193, 86);
+            nurseIdLabel.Location = new Point(237, 86);
             nurseIdLabel.Name = "nurseIdLabel";
             nurseIdLabel.Size = new Size(67, 19);
             nurseIdLabel.TabIndex = 13;

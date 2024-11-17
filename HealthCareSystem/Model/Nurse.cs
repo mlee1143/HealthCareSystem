@@ -53,9 +53,5 @@ namespace HealthCareSystem.Model
             this.Password = password ?? throw new ArgumentNullException(nameof(password), $"{nameof(password)} cannot be null");
 
         }
-
-
-
-
     }
 }

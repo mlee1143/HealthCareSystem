@@ -8,20 +8,44 @@ namespace HealthCareSystem.Model
 {
     public class LabTest
     {
-        //public TestType TestType { get: private set;}
+        public int TestCode {  get; set; }
 
-        public Visit Visit { get; set; }
+        public string TestName { get; set; }
 
-        public DateTime? TestDateTime { get; private set; }
+        public int PatientID { get; set; }
 
-        public bool? IsAbnormal { get; private set; }
+        public int NurseID { get; set; }
 
-        public string? Result { get; private set; }
+        public int DoctorID { get; set; }
 
-        public LabTest(Visit visit) 
+        public DateTime AppointmentDateTime { get; set; }
+
+        public decimal? Low {  get; set; }
+
+        public decimal? High { get; set; }
+
+        public string? UnitMeasurement { get; set; }
+
+        public DateTime? TestDateTime { get; set; }
+
+        public bool? IsAbnormal { get; set; }
+
+        public string? Result { get; set; }
+
+        public LabTest(int testCode, int patientId, int doctorId, int nurseId, DateTime appointmentDateTime, decimal? low, decimal? high, string? unitMeasurement, DateTime? testDateTime, bool? isAbnormal, string? result) 
         {
             // Pre-condition checks
-            this.Visit = visit;
+            this.TestCode = testCode;
+            this.PatientID = patientId;
+            this.DoctorID = doctorId;
+            this.NurseID = nurseId;
+            this.AppointmentDateTime = appointmentDateTime;
+            this.Low = low;
+            this.High = high;
+            this.UnitMeasurement = unitMeasurement;
+            this.TestDateTime = testDateTime;
+            this.IsAbnormal = isAbnormal;
+            this.Result = result;
         }
     }
 }

@@ -13,10 +13,11 @@ namespace HealthCareSystem.Model
 
         public string? TestName { get; private set; }
 
-        public TestType(int testcode) 
+        public TestType(int testcode, string name) 
         {
             // Pre-condition checks
             this.TestCode = testcode;
+            this.TestName = name;
         }
     }
 }

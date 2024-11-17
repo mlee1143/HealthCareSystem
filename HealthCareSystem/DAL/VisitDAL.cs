@@ -113,6 +113,7 @@ namespace HealthCareSystem.DAL
         /// <returns></returns>
         public bool UpdateVisitInformationCheckUp(int patientID, DateTime appointmentDateTime, Visit visit)
         {
+       
             using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
             {
                 connection.Open();
@@ -265,5 +266,47 @@ namespace HealthCareSystem.DAL
                 }
             }
         }
+
+         public List<dynamic> GetAllVisitsWithDetails()
+        {
+            List<dynamic> visits = new List<dynamic>();
+
+                string query = @"
+            SELECT v.patient_id, 
+                CONCAT(p.fname, ' ', p.lname) AS PatientName, 
+                v.doctor_id, 
+                CONCAT(d.fname, ' ', d.lname) AS DoctorName, 
+                v.nurse_id,
+                CONCAT(n.fname, ' ', n.lname) AS NurseName,
+                v.appointment_datetime
+            FROM visit v
+            JOIN patient p ON v.patient_id = p.patient_id
+            JOIN doctor d ON v.doctor_id = d.doctor_id
+            JOIN nurse n ON v.nurse_id = n.nurse_id";
+
+                using (var cmd = new MySqlCommand(query, connection))
+                {
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            visits.Add(new
+                            {
+                                PatientID = reader.GetInt32("patient_id"),
+                                PatientName = reader.GetString("PatientName"),
+                                DoctorID = reader.GetInt32("doctor_id"),
+                                DoctorName = reader.GetString("DoctorName"),
+                                NurseID = reader.GetInt32("nurse_id"),
+                                NurseName = reader.GetString("NurseName"),
+                                AppointmentDateTime = reader.GetDateTime("appointment_datetime")
+                            });
+                        }
+                    }
+                }
+            }
+
+            return visits;
+        }
+
     }
 }

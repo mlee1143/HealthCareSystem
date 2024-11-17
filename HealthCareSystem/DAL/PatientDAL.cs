@@ -285,7 +285,6 @@ namespace HealthCareSystem.DAL
                                 ZipCode = reader["zipcode"] != DBNull.Value ? Convert.ToInt32(reader["zipcode"]) : (int?)null,
                                 PhoneNumber = reader["phone_number"].ToString()
                             };
-
                             activePatients.Add(patient);
                         }
                     }

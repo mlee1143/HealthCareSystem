@@ -48,21 +48,47 @@ namespace HealthCareSystem.View
 
         private void loadAppointments()
         {
-            nurseNameLabel.Text = $"Name: {this.nurse.Firstname} {this.nurse.Lastname}";
+            //nurseNameLabel.Text = $"Name: {this.nurse.Firstname} {this.nurse.Lastname}";
+            //nurseIdLabel.Text = $"Nurse ID: {this.nurse.NurseId}";
+            //List<Appointment> appointments = this.appointmentDAL.getAllAppointments();
+            ////appointmentsDataGridView.DataSource = appointments;
+
+            //appointmentsDataGridView.Columns.Clear();
+            //appointmentsDataGridView.Columns.Add("PatientID", "Patient ID");
+            //appointmentsDataGridView.Columns.Add("DoctorID", "Doctor ID");
+            //appointmentsDataGridView.Columns.Add("AppointmentDateTime", "Date/Time");
+
+            //appointmentsDataGridView.Rows.Clear();
+
+
+            //foreach (var appointment in appointments)
+            //{
+            //    appointmentsDataGridView.Rows.Add(appointment.PatientID, appointment.DoctorID, appointment.AppointmentDateTime);
+            //}
+
+            nurseNameLabel.Text = $"Nurse Name: {this.nurse.Firstname} {this.nurse.Lastname}";
             nurseIdLabel.Text = $"Nurse ID: {this.nurse.NurseId}";
-            List<Appointment> appointments = this.appointmentDAL.getAllAppointments();
+
+            var appointments = appointmentDAL.getAllAppointmentsWithDetails();
 
             appointmentsDataGridView.Columns.Clear();
             appointmentsDataGridView.Columns.Add("PatientID", "Patient ID");
+            appointmentsDataGridView.Columns.Add("PatientName", "Patient Name");
             appointmentsDataGridView.Columns.Add("DoctorID", "Doctor ID");
+            appointmentsDataGridView.Columns.Add("DoctorName", "Doctor Name");
             appointmentsDataGridView.Columns.Add("AppointmentDateTime", "Date/Time");
 
             appointmentsDataGridView.Rows.Clear();
 
-
             foreach (var appointment in appointments)
             {
-                appointmentsDataGridView.Rows.Add(appointment.PatientID, appointment.DoctorID, appointment.AppointmentDateTime);
+                appointmentsDataGridView.Rows.Add(
+                    appointment.PatientID,
+                    appointment.PatientName,
+                    appointment.DoctorID,
+                    appointment.DoctorName,
+                    appointment.AppointmentDateTime
+                );
             }
         }
 
@@ -95,8 +121,8 @@ namespace HealthCareSystem.View
                 if (selectedRow != null)
                 {
                     var patientID = (int)selectedRow.Cells[0].Value;
-                    //var docID = selectedRow.Cells[1].Value;
-                    DateTime appDateTime = (DateTime)selectedRow.Cells[2].Value;
+                    var docID = selectedRow.Cells[2].Value;
+                    DateTime appDateTime = (DateTime)selectedRow.Cells[4].Value;
 
                     if (patientID != null && appDateTime != null)
                     {

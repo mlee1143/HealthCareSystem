@@ -45,6 +45,50 @@ namespace HealthCareSystem.DAL
                 return appointments;
         }
 
+        public List<dynamic> getAllAppointmentsWithDetails()
+        {
+            List<dynamic> appointments = new List<dynamic>();
+
+            using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
+            {
+                connection.Open();
+                string query = @"
+            SELECT 
+                a.patient_id, 
+                CONCAT(p.fname, ' ', p.lname) AS PatientName, 
+                a.doctor_id, 
+                CONCAT(d.fname, ' ', d.lname) AS DoctorName, 
+                a.appointment_datetime 
+            FROM 
+                appointment a
+            JOIN 
+                patient p ON a.patient_id = p.patient_id
+            JOIN 
+                doctor d ON a.doctor_id = d.doctor_id";
+
+                using (var cmd = new MySqlCommand(query, connection))
+                {
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            appointments.Add(new
+                            {
+                                PatientID = reader.GetInt32("patient_id"),
+                                PatientName = reader.GetString("PatientName"),
+                                DoctorID = reader.GetInt32("doctor_id"),
+                                DoctorName = reader.GetString("DoctorName"),
+                                AppointmentDateTime = reader.GetDateTime("appointment_datetime")
+                            });
+                        }
+                    }
+                }
+            }
+
+            return appointments;
+        }
+
+
         public bool InsertAppointment(Appointment appointment)
         {
             using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))

@@ -64,7 +64,7 @@
             healthCareNamePanel.Location = new Point(124, 0);
             healthCareNamePanel.Margin = new Padding(4, 5, 4, 5);
             healthCareNamePanel.Name = "healthCareNamePanel";
-            healthCareNamePanel.Size = new Size(930, 127);
+            healthCareNamePanel.Size = new Size(702, 76);
             healthCareNamePanel.TabIndex = 0;
             // 
             // healthCareNameLabel
@@ -102,7 +102,7 @@
             appointmentsButtonPanel.Location = new Point(0, 137);
             appointmentsButtonPanel.Margin = new Padding(4, 5, 4, 5);
             appointmentsButtonPanel.Name = "appointmentsButtonPanel";
-            appointmentsButtonPanel.Size = new Size(229, 715);
+            appointmentsButtonPanel.Size = new Size(160, 444);
             appointmentsButtonPanel.TabIndex = 2;
             // 
             // searchButton
@@ -194,8 +194,7 @@
             appointmentsDataGridView.Margin = new Padding(4, 5, 4, 5);
             appointmentsDataGridView.Name = "appointmentsDataGridView";
             appointmentsDataGridView.ReadOnly = true;
-            appointmentsDataGridView.RowHeadersWidth = 62;
-            appointmentsDataGridView.Size = new Size(769, 488);
+            appointmentsDataGridView.Size = new Size(610, 293);
             appointmentsDataGridView.TabIndex = 3;
             // 
             // nurseNameLabel
@@ -208,7 +207,7 @@
             nurseNameLabel.Name = "nurseNameLabel";
             nurseNameLabel.Size = new Size(85, 32);
             nurseNameLabel.TabIndex = 4;
-            nurseNameLabel.Text = "Name:";
+            nurseNameLabel.Text = "Nurse Name:";
             // 
             // nurseIdLabel
             // 
