@@ -21,7 +21,7 @@ namespace HealthCareSystem.View
 
             this.nurse = nurse;
             this.setLoggedNurseInfo();
-            this.LoadVisits();
+            this.loadVisits();
         }
 
         private void setLoggedNurseInfo()
@@ -34,15 +34,15 @@ namespace HealthCareSystem.View
         {
             if (visitsDataGrid.SelectedRows.Count > 0)
             {
-                // Get selected visit data
                 var selectedRow = visitsDataGrid.SelectedRows[0];
                 int patientId = (int)selectedRow.Cells["PatientID"].Value;
                 string patientName = (string)selectedRow.Cells["PatientName"].Value;
                 int doctorId = (int)selectedRow.Cells["DoctorID"].Value;
                 string doctorName = (string)selectedRow.Cells["DoctorName"].Value;
+                int visitNurseId = (int)selectedRow.Cells["NurseID"].Value;
+                DateTime appointmentDateTime = (DateTime)selectedRow.Cells["AppointmentDateTime"].Value;
 
-                // Open OrderTestPage with selected visit data
-                OrderTestPage orderTestPage = new OrderTestPage(this.nurse, patientId, patientName, doctorId, doctorName);
+                OrderTestPage orderTestPage = new OrderTestPage(this.nurse, patientId, patientName, doctorId, doctorName, appointmentDateTime, visitNurseId);
                 orderTestPage.Show();
 
                 this.Close();
@@ -53,18 +53,22 @@ namespace HealthCareSystem.View
             }
         }
 
-        private void LoadVisits()
+        private void loadVisits()
         {
+            nurseNameLabel.Text = $"Nurse Name: {this.nurse.Firstname} {this.nurse.Lastname}";
+            nurseIdLabel.Text = $"Nurse ID: {this.nurse.NurseId}";
+
             VisitDAL visitDAL = new VisitDAL();
-            var visits = visitDAL.GetAllVisitsWithDetails();
+            List<dynamic> visits = visitDAL.GetAllVisitsWithDetails();
 
             visitsDataGrid.Columns.Clear();
             visitsDataGrid.Columns.Add("PatientID", "Patient ID");
             visitsDataGrid.Columns.Add("PatientName", "Patient Name");
             visitsDataGrid.Columns.Add("DoctorID", "Doctor ID");
             visitsDataGrid.Columns.Add("DoctorName", "Doctor Name");
+            visitsDataGrid.Columns.Add("NurseID", "Nurse ID");
+            visitsDataGrid.Columns.Add("NurseName", "Nurse Name");
             visitsDataGrid.Columns.Add("AppointmentDateTime", "Appointment Date/Time");
-            visitsDataGrid.Columns.Add("SymptomsDescription", "Symptoms Description");
 
             visitsDataGrid.Rows.Clear();
 
@@ -75,8 +79,9 @@ namespace HealthCareSystem.View
                     visit.PatientName,
                     visit.DoctorID,
                     visit.DoctorName,
-                    visit.AppointmentDateTime,
-                    visit.SymptomsDescription
+                    visit.NurseID,
+                    visit.NurseName,
+                    visit.AppointmentDateTime
                 );
             }
         }

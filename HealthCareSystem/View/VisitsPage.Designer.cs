@@ -64,7 +64,7 @@
             healthCareNamePanel.Controls.Add(healthCareNameLabel);
             healthCareNamePanel.Location = new Point(87, 0);
             healthCareNamePanel.Name = "healthCareNamePanel";
-            healthCareNamePanel.Size = new Size(701, 76);
+            healthCareNamePanel.Size = new Size(806, 76);
             healthCareNamePanel.TabIndex = 1;
             // 
             // healthCareNameLabel
@@ -200,7 +200,7 @@
             visitsDataGrid.Location = new Point(166, 200);
             visitsDataGrid.Name = "visitsDataGrid";
             visitsDataGrid.ReadOnly = true;
-            visitsDataGrid.Size = new Size(610, 314);
+            visitsDataGrid.Size = new Size(715, 314);
             visitsDataGrid.TabIndex = 6;
             // 
             // VisitsPage
@@ -208,7 +208,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(40, 116, 166);
-            ClientSize = new Size(788, 526);
+            ClientSize = new Size(893, 526);
             Controls.Add(visitsDataGrid);
             Controls.Add(visitsLabel);
             Controls.Add(nurseIdLabel);

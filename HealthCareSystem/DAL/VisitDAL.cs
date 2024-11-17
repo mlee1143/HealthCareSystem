@@ -55,19 +55,17 @@ namespace HealthCareSystem.DAL
                 connection.Open();
 
                 string query = @"
-            SELECT 
-                v.patient_id, 
+            SELECT v.patient_id, 
                 CONCAT(p.fname, ' ', p.lname) AS PatientName, 
                 v.doctor_id, 
                 CONCAT(d.fname, ' ', d.lname) AS DoctorName, 
-                v.appointment_datetime, 
-                v.symptomsDescription
-            FROM 
-                visit v
-            JOIN 
-                patient p ON v.patient_id = p.patient_id
-            JOIN 
-                doctor d ON v.doctor_id = d.doctor_id";
+                v.nurse_id,
+                CONCAT(n.fname, ' ', n.lname) AS NurseName,
+                v.appointment_datetime
+            FROM visit v
+            JOIN patient p ON v.patient_id = p.patient_id
+            JOIN doctor d ON v.doctor_id = d.doctor_id
+            JOIN nurse n ON v.nurse_id = n.nurse_id";
 
                 using (var cmd = new MySqlCommand(query, connection))
                 {
@@ -81,8 +79,9 @@ namespace HealthCareSystem.DAL
                                 PatientName = reader.GetString("PatientName"),
                                 DoctorID = reader.GetInt32("doctor_id"),
                                 DoctorName = reader.GetString("DoctorName"),
-                                AppointmentDateTime = reader.GetDateTime("appointment_datetime"),
-                                SymptomsDescription = reader.GetString("symptomsDescription")
+                                NurseID = reader.GetInt32("nurse_id"),
+                                NurseName = reader.GetString("NurseName"),
+                                AppointmentDateTime = reader.GetDateTime("appointment_datetime")
                             });
                         }
                     }
@@ -91,5 +90,6 @@ namespace HealthCareSystem.DAL
 
             return visits;
         }
+
     }
 }

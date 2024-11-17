@@ -35,10 +35,6 @@ namespace HealthCareSystem.Model
             this.Weight = weight;
             this.Height = height;
             this.BloodPressure = bloodPressure;
-        } 
-        
-
-        
-
+        }
     }
 }

@@ -200,6 +200,7 @@
             orderTests.TabIndex = 12;
             orderTests.Text = "OrderTests";
             orderTests.UseVisualStyleBackColor = true;
+            orderTests.Click += orderTests_Click;
             // 
             // labTestsListBox
             // 
