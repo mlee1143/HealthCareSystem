@@ -98,7 +98,7 @@
             appointmentsButtonPanel.Controls.Add(newAppointmentButton);
             appointmentsButtonPanel.Location = new Point(0, 82);
             appointmentsButtonPanel.Name = "appointmentsButtonPanel";
-            appointmentsButtonPanel.Size = new Size(160, 429);
+            appointmentsButtonPanel.Size = new Size(160, 444);
             appointmentsButtonPanel.TabIndex = 2;
             // 
             // searchButton
@@ -242,7 +242,7 @@
             searchGroupBox.Controls.Add(appointmentDateRadioButton);
             searchGroupBox.Controls.Add(nameRadioButton);
             searchGroupBox.ForeColor = Color.FromArgb(255, 255, 244);
-            searchGroupBox.Location = new Point(166, 79);
+            searchGroupBox.Location = new Point(166, 80);
             searchGroupBox.Name = "searchGroupBox";
             searchGroupBox.Size = new Size(538, 133);
             searchGroupBox.TabIndex = 9;
