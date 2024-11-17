@@ -133,6 +133,25 @@ namespace HealthCareSystem.DAL
             }
         }
 
+        public bool FinalDiagnosisExistsForVisit(int patientID, DateTime appointmentDateTime)
+        {
+            using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
+            {
+                connection.Open();
+
+                string query = "SELECT COUNT(*) AS final_diagnosis_exists FROM visit WHERE patient_id = @patient_id AND appointment_datetime = @appointment_datetime AND final_diagnosis IS NOT NULL AND final_diagnosis <> '';";
+
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@patient_id", patientID);
+                    command.Parameters.AddWithValue("@appointment_datetime", appointmentDateTime);
+
+                    int count = Convert.ToInt32(command.ExecuteScalar());
+                    return count > 0;
+                }
+            }
+        }
+
         public bool UpdateInitialDiagnosisForVisit(string diagnosis, int patientID, DateTime appointmentDateTime)
         {
             using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))

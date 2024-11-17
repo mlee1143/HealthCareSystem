@@ -71,14 +71,36 @@ namespace HealthCareSystem.View
             if (visitDAL.InitialDiagnosisExistsForVisit(appointment.PatientID, appointment.AppointmentDateTime))
             {
                 this.routineGroupBox.Visible = false;
+                this.checkupCheckbox.Checked = true;
                 this.diagnosisGroupbox.Visible = true;
                 this.diagnosisButton.Enabled = true;
 
+                Visit visit = visitDAL.GetVisitByPatientIDAndAppointmentDateTime(appointment);
+                this.PopulateDiagnosis(visit);
+
+                this.orderTestButton.Enabled = true;
             }
 
+            if (visitDAL.FinalDiagnosisExistsForVisit(appointment.PatientID, appointment.AppointmentDateTime))
+            {
+                this.routineGroupBox.Visible = false;
+                this.diagnosisGroupbox.Visible = false;
 
+                this.diagnosisButton.Enabled = false;
+                this.checkupButton.Enabled = false;
+                this.completedButton.Enabled = true;
 
+                this.completeInformationGroupbox.Visible = true;
 
+                this.diagnosisCheckbox.Checked = true;
+                this.checkupCheckbox.Checked = true;
+                this.completedCheckbox.Checked = true;
+
+                this.orderTestButton.Enabled = true;
+
+                Visit visit = visitDAL.GetVisitByPatientIDAndAppointmentDateTime(appointment);
+                this.PopulateSummary(visit);
+            }
         }
 
         private void PopulateFields(Visit visit)
@@ -100,6 +122,20 @@ namespace HealthCareSystem.View
         {
             this.diagnosisTextbox.Text = visit.InitialDiagnosis;
             this.finalDiagnosisTextbox.Text = visit.FinalDiagnosis;
+        }
+
+        private void PopulateSummary(Visit visit)
+        {
+            this.heightLabelSummary.Text += visit.Height;
+            this.weightLabelSummary.Text += visit.Weight;
+            this.temperatureLabelSummary.Text += visit.Temperature;
+            this.pulseLabelSummary.Text += visit.Pulse;
+            this.bloodpressureLabelSummary.Text += visit.BloodPressure;
+            this.symptomsLabelSummary.Text+= visit.SymptomsDescription;
+            this.initialDiagnosisLabelSummary.Text += visit.InitialDiagnosis;
+            this.finalDiagnosisLabelSummary.Text += visit.FinalDiagnosis;
+
+
         }
 
         private bool IsNumberValid(string number)
@@ -193,15 +229,13 @@ namespace HealthCareSystem.View
                     NurseID = this.nurse.NurseId,
                     Pulse = Convert.ToInt32(this.pulseTextbox.Text.Trim()),
                     Temperature = Convert.ToDouble(this.temperatureTextbox.Text.Trim())
-                    //InitialDiagnosis = this.diagnosisTextbox.Text.Trim()
+                    
                 };
 
                 if (visitDAL.InsertVisitInformation(visit))
                 {
 
-                    AppointmentsPage apps = new AppointmentsPage(this.nurse);
-                    apps.Show();
-                    this.Close();
+                   
                 }
                 else
                 {
