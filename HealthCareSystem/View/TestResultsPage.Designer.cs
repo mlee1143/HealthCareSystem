@@ -40,18 +40,24 @@
             lowLabel = new Label();
             highLabel = new Label();
             testDateLabel = new Label();
-            normalityLabel = new Label();
             testResultLabel = new Label();
             lowTextBox = new TextBox();
             highTextBox = new TextBox();
-            normalityTextBox = new TextBox();
             testResultTextBox = new TextBox();
             testDateTimePicker = new DateTimePicker();
             saveResultButton = new Button();
             goBackButton = new Button();
+            backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            noLowValueCheckBox = new CheckBox();
+            noHighValueCheckBox = new CheckBox();
+            normalityGroupBox = new GroupBox();
+            abnormalRadioButton = new RadioButton();
+            normalRadioButton = new RadioButton();
+            errorLabel = new Label();
             ((System.ComponentModel.ISupportInitialize)symbolPictureBox).BeginInit();
             healthCareNamePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)labTestDataGrid).BeginInit();
+            normalityGroupBox.SuspendLayout();
             SuspendLayout();
             // 
             // symbolPictureBox
@@ -71,7 +77,7 @@
             healthCareNamePanel.Controls.Add(healthCareNameLabel);
             healthCareNamePanel.Location = new Point(87, 0);
             healthCareNamePanel.Name = "healthCareNamePanel";
-            healthCareNamePanel.Size = new Size(808, 76);
+            healthCareNamePanel.Size = new Size(894, 76);
             healthCareNamePanel.TabIndex = 1;
             // 
             // healthCareNameLabel
@@ -146,7 +152,7 @@
             labTestDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             labTestDataGrid.Location = new Point(12, 180);
             labTestDataGrid.Name = "labTestDataGrid";
-            labTestDataGrid.Size = new Size(635, 251);
+            labTestDataGrid.Size = new Size(710, 293);
             labTestDataGrid.TabIndex = 7;
             // 
             // lowLabel
@@ -154,7 +160,7 @@
             lowLabel.AutoSize = true;
             lowLabel.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
             lowLabel.ForeColor = Color.FromArgb(242, 243, 244);
-            lowLabel.Location = new Point(666, 183);
+            lowLabel.Location = new Point(732, 186);
             lowLabel.Name = "lowLabel";
             lowLabel.Size = new Size(29, 15);
             lowLabel.TabIndex = 8;
@@ -165,7 +171,7 @@
             highLabel.AutoSize = true;
             highLabel.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
             highLabel.ForeColor = Color.FromArgb(242, 243, 244);
-            highLabel.Location = new Point(666, 226);
+            highLabel.Location = new Point(728, 242);
             highLabel.Name = "highLabel";
             highLabel.Size = new Size(33, 15);
             highLabel.TabIndex = 9;
@@ -176,29 +182,18 @@
             testDateLabel.AutoSize = true;
             testDateLabel.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
             testDateLabel.ForeColor = Color.FromArgb(242, 243, 244);
-            testDateLabel.Location = new Point(666, 268);
+            testDateLabel.Location = new Point(728, 301);
             testDateLabel.Name = "testDateLabel";
             testDateLabel.Size = new Size(56, 15);
             testDateLabel.TabIndex = 10;
             testDateLabel.Text = "Test Date";
-            // 
-            // normalityLabel
-            // 
-            normalityLabel.AutoSize = true;
-            normalityLabel.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-            normalityLabel.ForeColor = Color.FromArgb(242, 243, 244);
-            normalityLabel.Location = new Point(666, 311);
-            normalityLabel.Name = "normalityLabel";
-            normalityLabel.Size = new Size(60, 15);
-            normalityLabel.TabIndex = 11;
-            normalityLabel.Text = "Normality";
             // 
             // testResultLabel
             // 
             testResultLabel.AutoSize = true;
             testResultLabel.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
             testResultLabel.ForeColor = Color.FromArgb(242, 243, 244);
-            testResultLabel.Location = new Point(666, 348);
+            testResultLabel.Location = new Point(728, 444);
             testResultLabel.Name = "testResultLabel";
             testResultLabel.Size = new Size(63, 15);
             testResultLabel.TabIndex = 12;
@@ -206,28 +201,21 @@
             // 
             // lowTextBox
             // 
-            lowTextBox.Location = new Point(735, 180);
+            lowTextBox.Location = new Point(797, 178);
             lowTextBox.Name = "lowTextBox";
             lowTextBox.Size = new Size(147, 23);
             lowTextBox.TabIndex = 13;
             // 
             // highTextBox
             // 
-            highTextBox.Location = new Point(735, 218);
+            highTextBox.Location = new Point(797, 239);
             highTextBox.Name = "highTextBox";
             highTextBox.Size = new Size(147, 23);
             highTextBox.TabIndex = 14;
             // 
-            // normalityTextBox
-            // 
-            normalityTextBox.Location = new Point(735, 303);
-            normalityTextBox.Name = "normalityTextBox";
-            normalityTextBox.Size = new Size(147, 23);
-            normalityTextBox.TabIndex = 15;
-            // 
             // testResultTextBox
             // 
-            testResultTextBox.Location = new Point(735, 340);
+            testResultTextBox.Location = new Point(797, 436);
             testResultTextBox.Name = "testResultTextBox";
             testResultTextBox.Size = new Size(147, 23);
             testResultTextBox.TabIndex = 16;
@@ -238,7 +226,7 @@
             testDateTimePicker.CustomFormat = "yyyy-MM-dd HH:mm";
             testDateTimePicker.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
             testDateTimePicker.Format = DateTimePickerFormat.Custom;
-            testDateTimePicker.Location = new Point(735, 260);
+            testDateTimePicker.Location = new Point(797, 293);
             testDateTimePicker.Name = "testDateTimePicker";
             testDateTimePicker.ShowUpDown = true;
             testDateTimePicker.Size = new Size(147, 23);
@@ -250,7 +238,7 @@
             saveResultButton.FlatAppearance.BorderSize = 0;
             saveResultButton.FlatStyle = FlatStyle.Flat;
             saveResultButton.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
-            saveResultButton.Location = new Point(772, 391);
+            saveResultButton.Location = new Point(832, 474);
             saveResultButton.Name = "saveResultButton";
             saveResultButton.Size = new Size(80, 26);
             saveResultButton.TabIndex = 18;
@@ -263,7 +251,7 @@
             goBackButton.FlatAppearance.BorderSize = 0;
             goBackButton.FlatStyle = FlatStyle.Flat;
             goBackButton.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
-            goBackButton.Location = new Point(416, 453);
+            goBackButton.Location = new Point(415, 493);
             goBackButton.Name = "goBackButton";
             goBackButton.Size = new Size(90, 30);
             goBackButton.TabIndex = 19;
@@ -271,21 +259,89 @@
             goBackButton.UseVisualStyleBackColor = true;
             goBackButton.Click += goBackButton_Click;
             // 
+            // noLowValueCheckBox
+            // 
+            noLowValueCheckBox.AutoSize = true;
+            noLowValueCheckBox.ForeColor = Color.FromArgb(242, 243, 244);
+            noLowValueCheckBox.Location = new Point(797, 207);
+            noLowValueCheckBox.Name = "noLowValueCheckBox";
+            noLowValueCheckBox.Size = new Size(98, 19);
+            noLowValueCheckBox.TabIndex = 20;
+            noLowValueCheckBox.Text = "No Low Value";
+            noLowValueCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // noHighValueCheckBox
+            // 
+            noHighValueCheckBox.AutoSize = true;
+            noHighValueCheckBox.ForeColor = Color.FromArgb(242, 243, 244);
+            noHighValueCheckBox.Location = new Point(797, 268);
+            noHighValueCheckBox.Name = "noHighValueCheckBox";
+            noHighValueCheckBox.Size = new Size(102, 19);
+            noHighValueCheckBox.TabIndex = 21;
+            noHighValueCheckBox.Text = "No High Value";
+            noHighValueCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // normalityGroupBox
+            // 
+            normalityGroupBox.Controls.Add(normalRadioButton);
+            normalityGroupBox.Controls.Add(abnormalRadioButton);
+            normalityGroupBox.ForeColor = Color.FromArgb(242, 243, 244);
+            normalityGroupBox.Location = new Point(797, 332);
+            normalityGroupBox.Name = "normalityGroupBox";
+            normalityGroupBox.Size = new Size(147, 88);
+            normalityGroupBox.TabIndex = 22;
+            normalityGroupBox.TabStop = false;
+            normalityGroupBox.Text = "Normality";
+            // 
+            // abnormalRadioButton
+            // 
+            abnormalRadioButton.AutoSize = true;
+            abnormalRadioButton.Location = new Point(6, 22);
+            abnormalRadioButton.Name = "abnormalRadioButton";
+            abnormalRadioButton.Size = new Size(78, 19);
+            abnormalRadioButton.TabIndex = 0;
+            abnormalRadioButton.TabStop = true;
+            abnormalRadioButton.Text = "Abnormal";
+            abnormalRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // normalRadioButton
+            // 
+            normalRadioButton.AutoSize = true;
+            normalRadioButton.Location = new Point(6, 56);
+            normalRadioButton.Name = "normalRadioButton";
+            normalRadioButton.Size = new Size(65, 19);
+            normalRadioButton.TabIndex = 1;
+            normalRadioButton.TabStop = true;
+            normalRadioButton.Text = "Normal";
+            normalRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // errorLabel
+            // 
+            errorLabel.AutoSize = true;
+            errorLabel.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
+            errorLabel.Location = new Point(732, 148);
+            errorLabel.Name = "errorLabel";
+            errorLabel.Size = new Size(76, 19);
+            errorLabel.TabIndex = 23;
+            errorLabel.Text = "Error Label";
+            // 
             // TestResultsPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(40, 116, 166);
-            ClientSize = new Size(980, 499);
+            ClientSize = new Size(980, 535);
+            Controls.Add(errorLabel);
+            Controls.Add(normalityGroupBox);
+            Controls.Add(noHighValueCheckBox);
+            Controls.Add(noLowValueCheckBox);
             Controls.Add(goBackButton);
             Controls.Add(saveResultButton);
             Controls.Add(testDateTimePicker);
             Controls.Add(testResultTextBox);
-            Controls.Add(normalityTextBox);
             Controls.Add(highTextBox);
             Controls.Add(lowTextBox);
             Controls.Add(testResultLabel);
-            Controls.Add(normalityLabel);
             Controls.Add(testDateLabel);
             Controls.Add(highLabel);
             Controls.Add(lowLabel);
@@ -303,6 +359,8 @@
             healthCareNamePanel.ResumeLayout(false);
             healthCareNamePanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)labTestDataGrid).EndInit();
+            normalityGroupBox.ResumeLayout(false);
+            normalityGroupBox.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -321,14 +379,19 @@
         private Label lowLabel;
         private Label highLabel;
         private Label testDateLabel;
-        private Label normalityLabel;
         private Label testResultLabel;
         private TextBox lowTextBox;
         private TextBox highTextBox;
-        private TextBox normalityTextBox;
         private TextBox testResultTextBox;
         private DateTimePicker testDateTimePicker;
         private Button saveResultButton;
         private Button goBackButton;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private CheckBox noLowValueCheckBox;
+        private CheckBox noHighValueCheckBox;
+        private GroupBox normalityGroupBox;
+        private RadioButton normalRadioButton;
+        private RadioButton abnormalRadioButton;
+        private Label errorLabel;
     }
 }

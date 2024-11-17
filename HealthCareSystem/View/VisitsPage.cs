@@ -53,6 +53,29 @@ namespace HealthCareSystem.View
             }
         }
 
+        private void enterTestResultsButton_Click(object sender, EventArgs e)
+        {
+            if (visitsDataGrid.SelectedRows.Count > 0)
+            {
+                var selectedRow = visitsDataGrid.SelectedRows[0];
+                int patientId = (int)selectedRow.Cells["PatientID"].Value;
+                string patientName = (string)selectedRow.Cells["PatientName"].Value;
+                int doctorId = (int)selectedRow.Cells["DoctorID"].Value;
+                string doctorName = (string)selectedRow.Cells["DoctorName"].Value;
+                int visitNurseId = (int)selectedRow.Cells["NurseID"].Value;
+                DateTime appointmentDateTime = (DateTime)selectedRow.Cells["AppointmentDateTime"].Value;
+
+                TestResultsPage orderTestPage = new TestResultsPage(this.nurse, patientId, patientName, doctorId, doctorName, appointmentDateTime, visitNurseId);
+                orderTestPage.Show();
+
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Please select a visit to order tests for.");
+            }
+        }
+
         private void loadVisits()
         {
             nurseNameLabel.Text = $"Nurse Name: {this.nurse.Firstname} {this.nurse.Lastname}";
@@ -84,14 +107,6 @@ namespace HealthCareSystem.View
                     visit.AppointmentDateTime
                 );
             }
-        }
-
-        private void enterTestResultsButton_Click(object sender, EventArgs e)
-        {
-            TestResultsPage testResultsPage = new TestResultsPage(this.nurse); 
-            testResultsPage.Show();
-
-            this.Close();
         }
 
         private void backToMainButton_Click(object sender, EventArgs e)

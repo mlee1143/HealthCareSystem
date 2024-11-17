@@ -8,9 +8,21 @@ namespace HealthCareSystem.Model
 {
     public class LabTest
     {
-        //public TestType TestType { get: private set;}
+        public int TestCode {  get; set; }
 
-        public Visit Visit { get; set; }
+        public int PatientID { get; set; }
+
+        public int NurseID { get; set; }
+
+        public int DoctorID { get; set; }
+
+        public DateTime AppointmentDateTime { get; set; }
+
+        public int Low {  get; set; }
+
+        public int High { get; set; }
+
+        public int UnirMeasurement { get; set; }
 
         public DateTime? TestDateTime { get; private set; }
 
@@ -18,10 +30,19 @@ namespace HealthCareSystem.Model
 
         public string? Result { get; private set; }
 
-        public LabTest(Visit visit) 
+        public LabTest(int testCode, int patientId, int doctorId, int nurseId, DateTime appointmentDateTime, int low, int high, String unit, DateTime testDateTime, bool normality, string result) 
         {
             // Pre-condition checks
-            this.Visit = visit;
+            this.TestCode = testCode;
+            this.PatientID = patientId;
+            this.DoctorID = doctorId; 
+            this.NurseID = nurseId; 
+            this.AppointmentDateTime = appointmentDateTime;
+            this.Low = low;
+            this.High = high;
+            this.TestDateTime = testDateTime;
+            this.IsAbnormal = normality;
+            this.Result = result;
         }
     }
 }
