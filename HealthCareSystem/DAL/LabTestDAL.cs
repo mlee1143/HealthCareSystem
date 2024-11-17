@@ -90,6 +90,26 @@ namespace HealthCareSystem.DAL
             }
         }
 
+        public bool IsTestAlreadyOrderedForPatient(int testCode, int patientId)
+        {
+            using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
+            {
+                connection.Open();
 
+                string query = @"
+            SELECT COUNT(*) 
+            FROM lab_test 
+            WHERE test_code = @testCode AND patient_id = @patientId";
+
+                using (var cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@testCode", testCode);
+                    cmd.Parameters.AddWithValue("@patientId", patientId);
+
+                    int count = Convert.ToInt32(cmd.ExecuteScalar());
+                    return count > 0;
+                }
+            }
+        }
     }
 }

@@ -85,38 +85,22 @@ namespace HealthCareSystem.View
 
         private void orderTests_Click(object sender, EventArgs e)
         {
-            if (labTestsListBox.Items.Count == 0)
-            {
-                MessageBox.Show("Please add at least one test before ordering.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            if (!areTestsSelected())
                 return;
-            }
 
             try
             {
-                List<int> testCodes = new List<int>();
-                foreach (var item in labTestsListBox.Items)
+                List<int> testCodes = extractTestCodesFromListBox();
+                List<int> validTestCodes = validateTests(testCodes);
+
+                if (validTestCodes.Count > 0)
                 {
-                    string test = item.ToString();
-                    int startIndex = test.LastIndexOf("(") + 1;
-                    int endIndex = test.LastIndexOf(")");
-                    int testCode = int.Parse(test.Substring(startIndex, endIndex - startIndex));
-                    testCodes.Add(testCode);
-                }
-
-                LabTestDAL labTestDAL = new LabTestDAL();
-                bool success = labTestDAL.InsertLabTests(testCodes, this.patientId, this.visitNurseId, this.doctorId, this.appointmentDateTime);
-
-                if (success)
-                {
-                    MessageBox.Show("Tests ordered successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    VisitsPage visitsPage = new VisitsPage(this.nurse);
-                    visitsPage.Show();
-                    this.Close();
+                    bool success = insertValidTests(validTestCodes);
+                    showInsertResult(success);
                 }
                 else
                 {
-                    MessageBox.Show("Failed to order tests. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("No valid tests were ordered.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
@@ -132,5 +116,76 @@ namespace HealthCareSystem.View
 
             this.Close();
         }
+
+        private bool areTestsSelected()
+        {
+            if (labTestsListBox.Items.Count == 0)
+            {
+                MessageBox.Show("Please add at least one test before ordering.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            return true;
+        }
+
+        private List<int> extractTestCodesFromListBox()
+        {
+            List<int> testCodes = new List<int>();
+
+            foreach (var item in labTestsListBox.Items)
+            {
+                string test = item.ToString();
+                int startIndex = test.LastIndexOf("(") + 1;
+                int endIndex = test.LastIndexOf(")");
+                int testCode = int.Parse(test.Substring(startIndex, endIndex - startIndex));
+                testCodes.Add(testCode);
+            }
+
+            return testCodes;
+        }
+
+        private List<int> validateTests(List<int> testCodes)
+        {
+            LabTestDAL labTestDAL = new LabTestDAL();
+            List<int> validTestCodes = new List<int>();
+
+            foreach (var testCode in testCodes)
+            {
+                if (labTestDAL.IsTestAlreadyOrderedForPatient(testCode, this.patientId))
+                {
+                    string testName = labTestsListBox.Items.Cast<string>().FirstOrDefault(t => t.Contains($"({testCode})"));
+                    MessageBox.Show($"The test '{testName}' has already been ordered for this patient.", "Duplicate Test", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    validTestCodes.Add(testCode);
+                }
+            }
+
+            return validTestCodes;
+        }
+
+        private bool insertValidTests(List<int> testCodes)
+        {
+            LabTestDAL labTestDAL = new LabTestDAL();
+            return labTestDAL.InsertLabTests(testCodes, this.patientId, this.visitNurseId, this.doctorId, this.appointmentDateTime);
+        }
+
+        private void showInsertResult(bool success)
+        {
+            if (success)
+            {
+                MessageBox.Show("Tests ordered successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                VisitsPage visitsPage = new VisitsPage(this.nurse);
+                visitsPage.Show();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Failed to order tests. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+
     }
 }
