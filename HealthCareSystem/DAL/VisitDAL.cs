@@ -267,6 +267,10 @@ namespace HealthCareSystem.DAL
             }
         }
 
+        /// <summary>
+        /// Gets all visits with details.
+        /// </summary>
+        /// <returns></returns>
         public List<dynamic> GetAllVisitsWithDetails()
         {
             List<dynamic> visits = new List<dynamic>();

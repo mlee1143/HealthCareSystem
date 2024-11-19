@@ -134,6 +134,24 @@ namespace HealthCareSystem.View
             this.symptomsLabelSummary.Text += visit.SymptomsDescription;
             this.initialDiagnosisLabelSummary.Text += visit.InitialDiagnosis;
             this.finalDiagnosisLabelSummary.Text += visit.FinalDiagnosis;
+
+          
+
+            //LabTestDAL labDal = new LabTestDAL();
+           // List<LabTest> tests = labDal.GetLabTestsForVisit(visit.PatientID, visit.DoctorID, this.nurse.NurseId, visit.AppointmentDateTime);
+
+            //orderedTestsGridview.Columns.Clear();
+            //orderedTestsGridview.Columns.Add("TestCode", "Test Code");
+            //orderedTestsGridview.Columns.Add("TestName", "Test Name");
+            //orderedTestsGridview.Columns.Add("TestDateTime", "Test Date/Time");
+
+            //orderedTestsGridview.Rows.Clear();
+           // foreach (LabTest test in tests)
+           // {
+           //    this.orderedTestsGridview.Rows.Add(test.TestCode, test.TestName, test.TestDateTime);
+          //  }
+
+           
         }
 
         private bool IsNumberValid(string number)
@@ -328,6 +346,8 @@ namespace HealthCareSystem.View
 
                     this.visitDAL.UpdateFinalDiagnosisForVisit(this.finalDiagnosisTextbox.Text, this.appointment.PatientID, this.appointment.AppointmentDateTime);
 
+                    Visit visit = visitDAL.GetVisitByPatientIDAndAppointmentDateTime(appointment);
+                    this.PopulateSummary(visit);
                 }
 
             }
@@ -357,5 +377,6 @@ namespace HealthCareSystem.View
             otestPage.Show();
             this.Close();
         }
+
     }
 }

@@ -181,10 +181,10 @@
             appointmentsDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             appointmentsDataGridView.BackgroundColor = Color.FromArgb(93, 173, 226);
             appointmentsDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            appointmentsDataGridView.Location = new Point(202, 252);
+            appointmentsDataGridView.Location = new Point(166, 238);
             appointmentsDataGridView.Name = "appointmentsDataGridView";
             appointmentsDataGridView.ReadOnly = true;
-            appointmentsDataGridView.Size = new Size(487, 223);
+            appointmentsDataGridView.Size = new Size(538, 242);
             appointmentsDataGridView.TabIndex = 3;
             // 
             // nurseNameLabel

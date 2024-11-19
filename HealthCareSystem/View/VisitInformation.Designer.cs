@@ -71,11 +71,11 @@
             diagnosisCheckbox = new CheckBox();
             completedCheckbox = new CheckBox();
             completeInformationGroupbox = new GroupBox();
+            orderedTestsGridview = new DataGridView();
             label4 = new Label();
             finalDiagnosisLabelSummary = new Label();
             initialDiagnosisLabelSummary = new Label();
             symptomsLabelSummary = new Label();
-            orderedTestListView = new ListView();
             pulseLabelSummary = new Label();
             temperatureLabelSummary = new Label();
             bloodpressureLabelSummary = new Label();
@@ -87,6 +87,7 @@
             diagnosisGroupbox.SuspendLayout();
             appointmentsButtonPanel.SuspendLayout();
             completeInformationGroupbox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)orderedTestsGridview).BeginInit();
             SuspendLayout();
             // 
             // healthCareNamePanel
@@ -584,11 +585,11 @@
             // 
             // completeInformationGroupbox
             // 
+            completeInformationGroupbox.Controls.Add(orderedTestsGridview);
             completeInformationGroupbox.Controls.Add(label4);
             completeInformationGroupbox.Controls.Add(finalDiagnosisLabelSummary);
             completeInformationGroupbox.Controls.Add(initialDiagnosisLabelSummary);
             completeInformationGroupbox.Controls.Add(symptomsLabelSummary);
-            completeInformationGroupbox.Controls.Add(orderedTestListView);
             completeInformationGroupbox.Controls.Add(pulseLabelSummary);
             completeInformationGroupbox.Controls.Add(temperatureLabelSummary);
             completeInformationGroupbox.Controls.Add(bloodpressureLabelSummary);
@@ -602,6 +603,14 @@
             completeInformationGroupbox.TabStop = false;
             completeInformationGroupbox.Text = "Information Summary";
             completeInformationGroupbox.Visible = false;
+            // 
+            // orderedTestsGridview
+            // 
+            orderedTestsGridview.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            orderedTestsGridview.Location = new Point(134, 277);
+            orderedTestsGridview.Name = "orderedTestsGridview";
+            orderedTestsGridview.Size = new Size(346, 96);
+            orderedTestsGridview.TabIndex = 10;
             // 
             // label4
             // 
@@ -638,14 +647,6 @@
             symptomsLabelSummary.Size = new Size(70, 15);
             symptomsLabelSummary.TabIndex = 6;
             symptomsLabelSummary.Text = "Symptoms :";
-            // 
-            // orderedTestListView
-            // 
-            orderedTestListView.Location = new Point(47, 295);
-            orderedTestListView.Name = "orderedTestListView";
-            orderedTestListView.Size = new Size(180, 61);
-            orderedTestListView.TabIndex = 5;
-            orderedTestListView.UseCompatibleStateImageBehavior = false;
             // 
             // pulseLabelSummary
             // 
@@ -700,7 +701,6 @@
             ClientSize = new Size(726, 534);
             Controls.Add(routineGroupBox);
             Controls.Add(diagnosisGroupbox);
-            Controls.Add(completeInformationGroupbox);
             Controls.Add(completedCheckbox);
             Controls.Add(diagnosisCheckbox);
             Controls.Add(checkupCheckbox);
@@ -712,6 +712,7 @@
             Controls.Add(patientIDLabel);
             Controls.Add(symbolPictureBox);
             Controls.Add(healthCareNamePanel);
+            Controls.Add(completeInformationGroupbox);
             Name = "VisitInformation";
             Text = "VisitInformation";
             healthCareNamePanel.ResumeLayout(false);
@@ -724,6 +725,7 @@
             appointmentsButtonPanel.ResumeLayout(false);
             completeInformationGroupbox.ResumeLayout(false);
             completeInformationGroupbox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)orderedTestsGridview).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -775,7 +777,6 @@
         private Label heightLabelSummary;
         private Label weightLabelSummary;
         private Label bloodpressureLabelSummary;
-        private ListView orderedTestListView;
         private Label pulseLabelSummary;
         private Label temperatureLabelSummary;
         private Label finalDiagnosisLabelSummary;
@@ -783,5 +784,6 @@
         private Label symptomsLabelSummary;
         private Label label5;
         private Label label4;
+        private DataGridView orderedTestsGridview;
     }
 }
