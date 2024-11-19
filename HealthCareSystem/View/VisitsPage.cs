@@ -116,5 +116,42 @@ namespace HealthCareSystem.View
 
             this.Close();
         }
+
+        private void viewVisitInfoButton_Click(object sender, EventArgs e)
+        {
+            Appointment appointment = null;
+            AppointmentDAL appDal = new AppointmentDAL();
+
+            if (this.visitsDataGrid.SelectedRows.Count > 0)
+            {
+                DataGridViewRow selectedRow = this.visitsDataGrid.SelectedRows[0];
+
+                if (selectedRow != null)
+                {
+                    var patientID = (int)selectedRow.Cells[0].Value;
+                    //var docID = selectedRow.Cells[2].Value;
+                    DateTime appDateTime = (DateTime)selectedRow.Cells[6].Value;
+
+                    if (patientID != null && appDateTime != null)
+                    {
+                        appointment = appDal.GetAppointment(patientID, appDateTime);
+                    }
+
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Please select an appointment to view Visit Information");
+            }
+
+            if (appointment != null)
+            {
+                VisitInformation visitInformation = new VisitInformation(this.nurse, appointment);
+                visitInformation.Show();
+                this.Close();
+
+            }
+        }
     }
 }

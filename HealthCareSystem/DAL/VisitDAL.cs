@@ -113,7 +113,7 @@ namespace HealthCareSystem.DAL
         /// <returns></returns>
         public bool UpdateVisitInformationCheckUp(int patientID, DateTime appointmentDateTime, Visit visit)
         {
-       
+
             using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
             {
                 connection.Open();
@@ -267,9 +267,13 @@ namespace HealthCareSystem.DAL
             }
         }
 
-         public List<dynamic> GetAllVisitsWithDetails()
+        public List<dynamic> GetAllVisitsWithDetails()
         {
             List<dynamic> visits = new List<dynamic>();
+
+            using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
+            {
+                connection.Open();
 
                 string query = @"
             SELECT v.patient_id, 
@@ -304,9 +308,9 @@ namespace HealthCareSystem.DAL
                     }
                 }
             }
-
             return visits;
         }
-
     }
 }
+
+

@@ -518,6 +518,7 @@
             orderTestButton.TabIndex = 13;
             orderTestButton.Text = "Order Tests";
             orderTestButton.UseVisualStyleBackColor = false;
+            orderTestButton.Click += orderTestButton_Click;
             // 
             // diagnosisButton
             // 

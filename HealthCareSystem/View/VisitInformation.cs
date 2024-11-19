@@ -14,7 +14,7 @@ namespace HealthCareSystem.View
 {
     public partial class VisitInformation : Form
     {
-        private Nurse nurse;
+        public Nurse nurse { get; set; }
         private Appointment appointment;
 
         PatientDAL patientDAL;
@@ -131,7 +131,7 @@ namespace HealthCareSystem.View
             this.temperatureLabelSummary.Text += visit.Temperature;
             this.pulseLabelSummary.Text += visit.Pulse;
             this.bloodpressureLabelSummary.Text += visit.BloodPressure;
-            this.symptomsLabelSummary.Text+= visit.SymptomsDescription;
+            this.symptomsLabelSummary.Text += visit.SymptomsDescription;
             this.initialDiagnosisLabelSummary.Text += visit.InitialDiagnosis;
             this.finalDiagnosisLabelSummary.Text += visit.FinalDiagnosis;
         }
@@ -227,7 +227,7 @@ namespace HealthCareSystem.View
                     NurseID = this.nurse.NurseId,
                     Pulse = Convert.ToInt32(this.pulseTextbox.Text.Trim()),
                     Temperature = Convert.ToDouble(this.temperatureTextbox.Text.Trim())
-                    
+
                 };
 
                 if (visitDAL.VisitInformationExistsAlready(this.appointment.PatientID, this.appointment.AppointmentDateTime))
@@ -237,19 +237,21 @@ namespace HealthCareSystem.View
                         MessageBox.Show("Update of visit information successful.");
                     }
 
-                } else
+                }
+                else
                 {
                     if (this.visitDAL.InsertVisitInformation(visit))
                     {
                         this.checkupCheckbox.Checked = true;
                         this.diagnosisGroupbox.Visible = true;
                         this.routineGroupBox.Visible = false;
-                    } else
+                    }
+                    else
                     {
                         MessageBox.Show("Could NOT insert Visit information.");
                     }
                 }
-                   
+
             }
             else
             {
@@ -290,12 +292,14 @@ namespace HealthCareSystem.View
         }
 
         private void confirmBtn_Click(object sender, EventArgs e)
-        { 
+        {
             if (this.diagnosisTextbox.Text.Length > 0)
             {
                 this.visitDAL.UpdateInitialDiagnosisForVisit(this.diagnosisTextbox.Text, appointment.PatientID, appointment.AppointmentDateTime);
+                this.orderTestButton.Enabled = true;
 
-            } else
+            }
+            else
             {
                 MessageBox.Show("No diagnosis to update. Please enter an initial diagnosis.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -325,7 +329,7 @@ namespace HealthCareSystem.View
                     this.visitDAL.UpdateFinalDiagnosisForVisit(this.finalDiagnosisTextbox.Text, this.appointment.PatientID, this.appointment.AppointmentDateTime);
 
                 }
-                
+
             }
         }
 
@@ -339,8 +343,19 @@ namespace HealthCareSystem.View
         private void checkupButton_Click(object sender, EventArgs e)
         {
             this.routineGroupBox.Visible = true;
-            this.diagnosisGroupbox.Visible=false;
-            this.completeInformationGroupbox.Visible=false;
+            this.diagnosisGroupbox.Visible = false;
+            this.completeInformationGroupbox.Visible = false;
+        }
+
+        private void orderTestButton_Click(object sender, EventArgs e)
+        {
+            string patientName = this.patientnameLabel.Text;
+            var doctorName = doctorDAL.GetDoctorNameByDoctorID(appointment.DoctorID);
+
+            OrderTestPage otestPage = new OrderTestPage(this.nurse, this.appointment.PatientID, patientName, this.appointment.DoctorID, doctorName, appointment.AppointmentDateTime, this.nurse.NurseId);
+
+            otestPage.Show();
+            this.Close();
         }
     }
 }
