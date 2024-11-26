@@ -81,8 +81,8 @@
             bloodpressureLabelSummary = new Label();
             heightLabelSummary = new Label();
             weightLabelSummary = new Label();
+            nurseIdLabel = new Label();
             nurseNameLabel = new Label();
-            label6 = new Label();
             healthCareNamePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)symbolPictureBox).BeginInit();
             routineGroupBox.SuspendLayout();
@@ -123,7 +123,7 @@
             back_btn.Name = "back_btn";
             back_btn.Size = new Size(143, 49);
             back_btn.TabIndex = 1;
-            back_btn.Text = "Back To Main";
+            back_btn.Text = "Go Back";
             back_btn.UseVisualStyleBackColor = false;
             back_btn.Click += back_btn_Click;
             // 
@@ -701,27 +701,27 @@
             weightLabelSummary.TabIndex = 0;
             weightLabelSummary.Text = "Weight :";
             // 
+            // nurseIdLabel
+            // 
+            nurseIdLabel.AutoSize = true;
+            nurseIdLabel.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
+            nurseIdLabel.ForeColor = Color.FromArgb(244, 243, 242);
+            nurseIdLabel.Location = new Point(503, 112);
+            nurseIdLabel.Name = "nurseIdLabel";
+            nurseIdLabel.Size = new Size(64, 17);
+            nurseIdLabel.TabIndex = 32;
+            nurseIdLabel.Text = "Nurse ID:";
+            // 
             // nurseNameLabel
             // 
             nurseNameLabel.AutoSize = true;
             nurseNameLabel.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
             nurseNameLabel.ForeColor = Color.FromArgb(244, 243, 242);
-            nurseNameLabel.Location = new Point(503, 112);
+            nurseNameLabel.Location = new Point(600, 110);
             nurseNameLabel.Name = "nurseNameLabel";
-            nurseNameLabel.Size = new Size(64, 17);
-            nurseNameLabel.TabIndex = 32;
-            nurseNameLabel.Text = "Nurse ID:";
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
-            label6.ForeColor = Color.FromArgb(244, 243, 242);
-            label6.Location = new Point(600, 110);
-            label6.Name = "label6";
-            label6.Size = new Size(87, 17);
-            label6.TabIndex = 33;
-            label6.Text = "Nurse Name:";
+            nurseNameLabel.Size = new Size(87, 17);
+            nurseNameLabel.TabIndex = 33;
+            nurseNameLabel.Text = "Nurse Name:";
             // 
             // VisitInformation
             // 
@@ -730,8 +730,8 @@
             BackColor = Color.FromArgb(40, 116, 166);
             ClientSize = new Size(806, 582);
             Controls.Add(routineGroupBox);
-            Controls.Add(label6);
             Controls.Add(nurseNameLabel);
+            Controls.Add(nurseIdLabel);
             Controls.Add(diagnosisGroupbox);
             Controls.Add(completedCheckbox);
             Controls.Add(diagnosisCheckbox);
@@ -817,7 +817,7 @@
         private Label label5;
         private Label label4;
         private DataGridView orderedTestsGridview;
+        private Label nurseIdLabel;
         private Label nurseNameLabel;
-        private Label label6;
     }
 }
