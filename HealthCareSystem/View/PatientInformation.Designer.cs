@@ -56,7 +56,6 @@
             city_txtbx = new TextBox();
             minit_txtbx = new TextBox();
             feedback_label = new Label();
-            patientID_txtbx = new TextBox();
             ptId_label = new Label();
             country_txtbx = new TextBox();
             label2 = new Label();
@@ -366,16 +365,6 @@
             feedback_label.Text = "Feedback:";
             feedback_label.Visible = false;
             // 
-            // patientID_txtbx
-            // 
-            patientID_txtbx.BackColor = Color.FromArgb(255, 255, 242);
-            patientID_txtbx.Enabled = false;
-            patientID_txtbx.Location = new Point(573, 83);
-            patientID_txtbx.Name = "patientID_txtbx";
-            patientID_txtbx.ReadOnly = true;
-            patientID_txtbx.Size = new Size(50, 23);
-            patientID_txtbx.TabIndex = 32;
-            // 
             // ptId_label
             // 
             ptId_label.AutoSize = true;
@@ -458,7 +447,6 @@
             Controls.Add(label2);
             Controls.Add(country_txtbx);
             Controls.Add(ptId_label);
-            Controls.Add(patientID_txtbx);
             Controls.Add(feedback_label);
             Controls.Add(minit_txtbx);
             Controls.Add(city_txtbx);
@@ -523,7 +511,6 @@
         private TextBox city_txtbx;
         private TextBox minit_txtbx;
         private Label feedback_label;
-        private TextBox patientID_txtbx;
         private Label ptId_label;
         private TextBox country_txtbx;
         private Label label2;

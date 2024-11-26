@@ -75,8 +75,8 @@ namespace HealthCareSystem.View
             this.update_btn.Enabled = false;
             this.update_btn.Visible = false;
 
-            this.patientID_txtbx.Visible = false;
-            this.patientID_txtbx.Enabled = false;
+            //this.patientID_txtbx.Visible = false;
+            //this.patientID_txtbx.Enabled = false;
 
             this.ptId_label.Visible = false;
             this.ptId_label.Enabled = false;
@@ -209,7 +209,8 @@ namespace HealthCareSystem.View
                     PhoneNumber = phone
                 };
 
-                int patientID = Convert.ToInt32(this.patientID_txtbx.Text);
+                //int patientID = Convert.ToInt32(this.patientID_txtbx.Text);
+                int patientID = this.patient.PatientId;
 
                 await this.patientDAL.UpdatePatientInformationUsingID(patientID, patient);
 
