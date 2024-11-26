@@ -115,7 +115,7 @@
             viewVisitInfoButton.Name = "viewVisitInfoButton";
             viewVisitInfoButton.Size = new Size(160, 50);
             viewVisitInfoButton.TabIndex = 3;
-            viewVisitInfoButton.Text = "Visits Information";
+            viewVisitInfoButton.Text = "Visits Final Info.";
             viewVisitInfoButton.UseVisualStyleBackColor = true;
             viewVisitInfoButton.Click += viewVisitInfoButton_Click;
             // 

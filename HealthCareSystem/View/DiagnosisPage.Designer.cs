@@ -91,7 +91,7 @@
             nurseIdLabel.AutoSize = true;
             nurseIdLabel.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             nurseIdLabel.ForeColor = Color.FromArgb(242, 243, 244);
-            nurseIdLabel.Location = new Point(166, 92);
+            nurseIdLabel.Location = new Point(229, 92);
             nurseIdLabel.Name = "nurseIdLabel";
             nurseIdLabel.Size = new Size(67, 19);
             nurseIdLabel.TabIndex = 3;

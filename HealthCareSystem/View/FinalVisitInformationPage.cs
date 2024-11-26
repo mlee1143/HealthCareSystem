@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HealthCareSystem.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,13 +13,34 @@ namespace HealthCareSystem.View
 {
     public partial class FinalVisitInformationPage : Form
     {
-        public FinalVisitInformationPage()
+        private Nurse nurse;
+        private int patientId;
+        private string patientName;
+
+        public FinalVisitInformationPage(Nurse nurse, int patientId, string patientName)
         {
             InitializeComponent();
+
+            this.nurse = nurse;
+            this.patientId = patientId;
+            this.patientName = patientName;
+
+            this.setInformation();
+        }
+
+        private void setInformation()
+        {
+            nurseNameLabel.Text = $"Nurse Name: {this.nurse.Firstname} {this.nurse.Lastname}";
+            nurseIdLabel.Text = $"Nurse ID: {this.nurse.NurseId}";
+            patientInfoLabel.Text = $"Patient: {this.patientName} ID: {this.patientId}";
         }
 
         private void goBackButton_Click(object sender, EventArgs e)
         {
+            VisitsPage visitsPage = new VisitsPage(this.nurse);
+            visitsPage.Show();
+
+            this.Close();
         }
     }
 }

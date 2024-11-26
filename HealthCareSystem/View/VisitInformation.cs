@@ -52,8 +52,8 @@ namespace HealthCareSystem.View
             var doctorName = doctorDAL.GetDoctorNameByDoctorID(appointment.DoctorID);
             this.doctorNameLabel.Text += $" {doctorName}";
 
-            this.nurseNameLabel.Text += $"{this.nurse.Firstname} {this.nurse.Lastname}";
-            this.nurseIdLabel.Text += $"{this.nurse.NurseId}";
+            this.nurseNameLabel.Text += $" {this.nurse.Firstname} {this.nurse.Lastname}";
+            this.nurseIdLabel.Text += $" {this.nurse.NurseId}";
 
             this.SetupCurrentVisit();
         }
