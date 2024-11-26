@@ -20,7 +20,7 @@ namespace HealthCareSystem.Model
         {
             get
             {
-                return $"{Firstname} {Lastname} Id: {PatientId}";
+                return $"{Firstname} {Lastname}";
             }
         }
 

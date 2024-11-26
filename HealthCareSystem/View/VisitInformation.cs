@@ -45,12 +45,15 @@ namespace HealthCareSystem.View
             this.patientIDLabel.Text += $" {appointment.PatientID}";
 
             Patient patient = patientDAL.GetPatientByID(appointment.PatientID);
-            this.patientnameLabel.Text += $" \n{patient.FullName}";
+            this.patientnameLabel.Text += $" {patient.FullName}";
             this.patientDobLabel.Text += $" {patient.Birthdate.ToString("yyyy-MM-dd")}";
 
             this.doctorIDLabel.Text += $" {appointment.DoctorID}";
             var doctorName = doctorDAL.GetDoctorNameByDoctorID(appointment.DoctorID);
-            this.doctorNameLabel.Text += $" \n{doctorName}";
+            this.doctorNameLabel.Text += $" {doctorName}";
+
+            this.nurseNameLabel.Text += $" {this.nurse.Firstname} {this.nurse.Lastname}";
+            this.nurseIdLabel.Text += $" {this.nurse.NurseId}";
 
             this.SetupCurrentVisit();
         }
@@ -369,10 +372,10 @@ namespace HealthCareSystem.View
 
         private void orderTestButton_Click(object sender, EventArgs e)
         {
-            string patientName = this.patientnameLabel.Text;
+            var patientName = patientDAL.GetPatientByID(appointment.PatientID);
             var doctorName = doctorDAL.GetDoctorNameByDoctorID(appointment.DoctorID);
 
-            OrderTestPage otestPage = new OrderTestPage(this.nurse, this.appointment.PatientID, patientName, this.appointment.DoctorID, doctorName, appointment.AppointmentDateTime, this.nurse.NurseId);
+            OrderTestPage otestPage = new OrderTestPage(this.nurse, this.appointment.PatientID, patientName.FullName, this.appointment.DoctorID, doctorName, appointment.AppointmentDateTime, this.nurse.NurseId);
 
             otestPage.Show();
             this.Close();

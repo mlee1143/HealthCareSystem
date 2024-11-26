@@ -119,38 +119,39 @@ namespace HealthCareSystem.View
 
         private void viewVisitInfoButton_Click(object sender, EventArgs e)
         {
-            Appointment appointment = null;
-            AppointmentDAL appDal = new AppointmentDAL();
-
-            if (this.visitsDataGrid.SelectedRows.Count > 0)
+            if (visitsDataGrid.SelectedRows.Count > 0)
             {
-                DataGridViewRow selectedRow = this.visitsDataGrid.SelectedRows[0];
+                var selectedRow = visitsDataGrid.SelectedRows[0];
+                int patientId = (int)selectedRow.Cells["PatientID"].Value;
+                string patientName = (string)selectedRow.Cells["PatientName"].Value;
 
-                if (selectedRow != null)
-                {
-                    var patientID = (int)selectedRow.Cells[0].Value;
-                    //var docID = selectedRow.Cells[2].Value;
-                    DateTime appDateTime = (DateTime)selectedRow.Cells[6].Value;
+                FinalVisitInformationPage finalInfo = new FinalVisitInformationPage(this.nurse, patientId, patientName);
+                finalInfo.Show();
 
-                    if (patientID != null && appDateTime != null)
-                    {
-                        appointment = appDal.GetAppointment(patientID, appDateTime);
-                    }
-
-                }
-
+                this.Close();
             }
             else
             {
-                MessageBox.Show("Please select an appointment to view Visit Information");
+                MessageBox.Show("Please select a visit to order tests for.");
             }
+        }
 
-            if (appointment != null)
+        private void enterDiagnosisButton_Click(object sender, EventArgs e)
+        {
+            if (visitsDataGrid.SelectedRows.Count > 0)
             {
-                VisitInformation visitInformation = new VisitInformation(this.nurse, appointment);
-                visitInformation.Show();
-                this.Close();
+                var selectedRow = visitsDataGrid.SelectedRows[0];
+                int patientId = (int)selectedRow.Cells["PatientID"].Value;
+                string patientName = (string)selectedRow.Cells["PatientName"].Value;
 
+                DiagnosisPage diagnosisPage = new DiagnosisPage(this.nurse, patientId, patientName);
+                diagnosisPage.Show();
+
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Please select a visit to order tests for.");
             }
         }
     }

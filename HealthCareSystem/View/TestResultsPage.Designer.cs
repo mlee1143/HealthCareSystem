@@ -201,6 +201,7 @@
             // 
             // lowTextBox
             // 
+            lowTextBox.BackColor = Color.FromArgb(255, 255, 242);
             lowTextBox.Location = new Point(797, 178);
             lowTextBox.Name = "lowTextBox";
             lowTextBox.Size = new Size(147, 23);
@@ -208,6 +209,7 @@
             // 
             // highTextBox
             // 
+            highTextBox.BackColor = Color.FromArgb(255, 255, 242);
             highTextBox.Location = new Point(797, 239);
             highTextBox.Name = "highTextBox";
             highTextBox.Size = new Size(147, 23);
@@ -215,6 +217,7 @@
             // 
             // testResultTextBox
             // 
+            testResultTextBox.BackColor = Color.FromArgb(255, 255, 242);
             testResultTextBox.Location = new Point(797, 436);
             testResultTextBox.Name = "testResultTextBox";
             testResultTextBox.Size = new Size(147, 23);

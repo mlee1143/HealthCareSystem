@@ -40,7 +40,9 @@ namespace HealthCareSystem.View
 
             this.register_btn.Visible = false;
             this.register_btn.Enabled = false;
-            
+
+            this.ptId_label.Text = $"Patient Id: {this.patient.PatientId}"; ;
+
         }
 
         /// <summary>
@@ -73,8 +75,8 @@ namespace HealthCareSystem.View
             this.update_btn.Enabled = false;
             this.update_btn.Visible = false;
 
-            this.patientID_txtbx.Visible = false;
-            this.patientID_txtbx.Enabled = false;
+            //this.patientID_txtbx.Visible = false;
+            //this.patientID_txtbx.Enabled = false;
 
             this.ptId_label.Visible = false;
             this.ptId_label.Enabled = false;
@@ -82,12 +84,12 @@ namespace HealthCareSystem.View
 
         private void PopulateFields()
         {
-            this.nurseIdLabel.Text = $"ID: {this.nurse.NurseId}";
-            this.nurseNameLabel.Text = $"Name: {this.nurse.Firstname} {this.nurse.Lastname}";
+            this.nurseIdLabel.Text = $"Nurse ID: {this.nurse.NurseId}";
+            this.nurseNameLabel.Text = $"Nurse Name: {this.nurse.Firstname} {this.nurse.Lastname}";
 
             if (patient != null)
             {
-                this.patientID_txtbx.Text = this.patient.PatientId.ToString();
+                //this.patientID_txtbx.Text = this.patient.PatientId.ToString();
                 this.pt_fname_txtbx.Text = this.patient.Firstname;
                 this.minit_txtbx.Text = this.patient.MiddleInitial;
                 this.pt_lname_txtbx.Text = this.patient.Lastname;
@@ -207,7 +209,8 @@ namespace HealthCareSystem.View
                     PhoneNumber = phone
                 };
 
-                int patientID = Convert.ToInt32(this.patientID_txtbx.Text);
+                //int patientID = Convert.ToInt32(this.patientID_txtbx.Text);
+                int patientID = this.patient.PatientId;
 
                 await this.patientDAL.UpdatePatientInformationUsingID(patientID, patient);
 
