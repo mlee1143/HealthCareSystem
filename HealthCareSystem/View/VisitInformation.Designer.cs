@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             healthCareNamePanel = new Panel();
-            back_btn = new Button();
             healthCareNameLabel = new Label();
+            back_btn = new Button();
             symbolPictureBox = new PictureBox();
             patientIDLabel = new Label();
             patientnameLabel = new Label();
@@ -81,6 +81,8 @@
             bloodpressureLabelSummary = new Label();
             heightLabelSummary = new Label();
             weightLabelSummary = new Label();
+            nurseNameLabel = new Label();
+            label6 = new Label();
             healthCareNamePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)symbolPictureBox).BeginInit();
             routineGroupBox.SuspendLayout();
@@ -93,45 +95,46 @@
             // healthCareNamePanel
             // 
             healthCareNamePanel.BackColor = Color.FromArgb(93, 109, 126);
-            healthCareNamePanel.Controls.Add(back_btn);
             healthCareNamePanel.Controls.Add(healthCareNameLabel);
             healthCareNamePanel.Location = new Point(83, 0);
             healthCareNamePanel.Name = "healthCareNamePanel";
-            healthCareNamePanel.Size = new Size(657, 76);
+            healthCareNamePanel.Size = new Size(769, 79);
             healthCareNamePanel.TabIndex = 2;
-            // 
-            // back_btn
-            // 
-            back_btn.BackColor = Color.FromArgb(255, 255, 242);
-            back_btn.FlatAppearance.BorderSize = 0;
-            back_btn.FlatStyle = FlatStyle.Flat;
-            back_btn.ForeColor = Color.Black;
-            back_btn.Location = new Point(537, 36);
-            back_btn.Name = "back_btn";
-            back_btn.Size = new Size(75, 23);
-            back_btn.TabIndex = 1;
-            back_btn.Text = "Back";
-            back_btn.UseVisualStyleBackColor = false;
-            back_btn.Click += back_btn_Click;
             // 
             // healthCareNameLabel
             // 
             healthCareNameLabel.AutoSize = true;
             healthCareNameLabel.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
             healthCareNameLabel.ForeColor = Color.FromArgb(242, 243, 244);
-            healthCareNameLabel.Location = new Point(12, 29);
+            healthCareNameLabel.Location = new Point(11, 21);
             healthCareNameLabel.Name = "healthCareNameLabel";
             healthCareNameLabel.Size = new Size(298, 32);
             healthCareNameLabel.TabIndex = 0;
             healthCareNameLabel.Text = "UWG Health Care System";
             // 
+            // back_btn
+            // 
+            back_btn.BackColor = Color.FromArgb(255, 255, 242);
+            back_btn.FlatAppearance.BorderSize = 0;
+            back_btn.FlatStyle = FlatStyle.Flat;
+            back_btn.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
+            back_btn.ForeColor = Color.Black;
+            back_btn.Location = new Point(0, 196);
+            back_btn.Name = "back_btn";
+            back_btn.Size = new Size(143, 49);
+            back_btn.TabIndex = 1;
+            back_btn.Text = "Back To Main";
+            back_btn.UseVisualStyleBackColor = false;
+            back_btn.Click += back_btn_Click;
+            // 
             // symbolPictureBox
             // 
+            symbolPictureBox.BackColor = Color.FromArgb(242, 243, 244);
             symbolPictureBox.Image = Properties.Resources.Symbol;
             symbolPictureBox.Location = new Point(1, 0);
             symbolPictureBox.Name = "symbolPictureBox";
             symbolPictureBox.Size = new Size(87, 76);
-            symbolPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+            symbolPictureBox.SizeMode = PictureBoxSizeMode.Zoom;
             symbolPictureBox.TabIndex = 3;
             symbolPictureBox.TabStop = false;
             // 
@@ -140,7 +143,8 @@
             patientIDLabel.AutoSize = true;
             patientIDLabel.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             patientIDLabel.ForeColor = Color.FromArgb(242, 243, 244);
-            patientIDLabel.Location = new Point(13, 79);
+            patientIDLabel.LiveSetting = System.Windows.Forms.Automation.AutomationLiveSetting.Assertive;
+            patientIDLabel.Location = new Point(181, 93);
             patientIDLabel.Name = "patientIDLabel";
             patientIDLabel.Size = new Size(75, 17);
             patientIDLabel.TabIndex = 4;
@@ -151,7 +155,7 @@
             patientnameLabel.AutoSize = true;
             patientnameLabel.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             patientnameLabel.ForeColor = Color.FromArgb(242, 243, 244);
-            patientnameLabel.Location = new Point(12, 113);
+            patientnameLabel.Location = new Point(313, 93);
             patientnameLabel.Name = "patientnameLabel";
             patientnameLabel.Size = new Size(94, 17);
             patientnameLabel.TabIndex = 5;
@@ -161,7 +165,7 @@
             // systolicTextBox
             // 
             systolicTextBox.BackColor = Color.FromArgb(255, 255, 242);
-            systolicTextBox.Location = new Point(78, 166);
+            systolicTextBox.Location = new Point(21, 145);
             systolicTextBox.Name = "systolicTextBox";
             systolicTextBox.Size = new Size(43, 23);
             systolicTextBox.TabIndex = 6;
@@ -172,7 +176,7 @@
             bpLabel.AutoSize = true;
             bpLabel.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             bpLabel.ForeColor = Color.FromArgb(242, 243, 244);
-            bpLabel.Location = new Point(74, 124);
+            bpLabel.Location = new Point(17, 103);
             bpLabel.Name = "bpLabel";
             bpLabel.Size = new Size(138, 17);
             bpLabel.TabIndex = 7;
@@ -182,9 +186,9 @@
             // 
             temperatureTextbox.BackColor = Color.FromArgb(255, 255, 242);
             temperatureTextbox.ForeColor = Color.Black;
-            temperatureTextbox.Location = new Point(360, 58);
+            temperatureTextbox.Location = new Point(303, 55);
             temperatureTextbox.Name = "temperatureTextbox";
-            temperatureTextbox.Size = new Size(63, 23);
+            temperatureTextbox.Size = new Size(100, 23);
             temperatureTextbox.TabIndex = 8;
             temperatureTextbox.TextChanged += temperatureTextbox_TextChanged;
             // 
@@ -193,7 +197,7 @@
             temperatureLabel.AutoSize = true;
             temperatureLabel.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             temperatureLabel.ForeColor = Color.FromArgb(242, 243, 244);
-            temperatureLabel.Location = new Point(360, 38);
+            temperatureLabel.Location = new Point(303, 33);
             temperatureLabel.Name = "temperatureLabel";
             temperatureLabel.Size = new Size(100, 17);
             temperatureLabel.TabIndex = 9;
@@ -204,7 +208,7 @@
             pulseLabel.AutoSize = true;
             pulseLabel.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             pulseLabel.ForeColor = Color.FromArgb(255, 255, 242);
-            pulseLabel.Location = new Point(312, 124);
+            pulseLabel.Location = new Point(454, 33);
             pulseLabel.Name = "pulseLabel";
             pulseLabel.Size = new Size(77, 17);
             pulseLabel.TabIndex = 10;
@@ -214,7 +218,7 @@
             // 
             pulseTextbox.BackColor = Color.FromArgb(255, 255, 242);
             pulseTextbox.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            pulseTextbox.Location = new Point(312, 145);
+            pulseTextbox.Location = new Point(454, 53);
             pulseTextbox.Name = "pulseTextbox";
             pulseTextbox.Size = new Size(63, 23);
             pulseTextbox.TabIndex = 11;
@@ -225,7 +229,7 @@
             symptomsLabel.AutoSize = true;
             symptomsLabel.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             symptomsLabel.ForeColor = Color.FromArgb(255, 255, 242);
-            symptomsLabel.Location = new Point(61, 215);
+            symptomsLabel.Location = new Point(17, 186);
             symptomsLabel.Name = "symptomsLabel";
             symptomsLabel.Size = new Size(69, 17);
             symptomsLabel.TabIndex = 12;
@@ -235,9 +239,9 @@
             // 
             symptomsTextbox.BackColor = Color.FromArgb(255, 255, 242);
             symptomsTextbox.ForeColor = Color.Black;
-            symptomsTextbox.Location = new Point(61, 243);
+            symptomsTextbox.Location = new Point(17, 206);
             symptomsTextbox.Name = "symptomsTextbox";
-            symptomsTextbox.Size = new Size(399, 76);
+            symptomsTextbox.Size = new Size(548, 132);
             symptomsTextbox.TabIndex = 13;
             symptomsTextbox.Text = "";
             // 
@@ -254,9 +258,10 @@
             // 
             // heightTextbox
             // 
-            heightTextbox.Location = new Point(74, 58);
+            heightTextbox.BackColor = Color.FromArgb(255, 255, 242);
+            heightTextbox.Location = new Point(17, 55);
             heightTextbox.Name = "heightTextbox";
-            heightTextbox.Size = new Size(60, 23);
+            heightTextbox.Size = new Size(94, 23);
             heightTextbox.TabIndex = 15;
             heightTextbox.TextChanged += heightTextbox_TextChanged;
             // 
@@ -264,7 +269,7 @@
             // 
             heightLabel.AutoSize = true;
             heightLabel.ForeColor = Color.FromArgb(242, 243, 244);
-            heightLabel.Location = new Point(74, 41);
+            heightLabel.Location = new Point(17, 38);
             heightLabel.Name = "heightLabel";
             heightLabel.Size = new Size(67, 15);
             heightLabel.TabIndex = 16;
@@ -272,9 +277,10 @@
             // 
             // weightTextbox
             // 
-            weightTextbox.Location = new Point(209, 58);
+            weightTextbox.BackColor = Color.FromArgb(255, 255, 242);
+            weightTextbox.Location = new Point(152, 55);
             weightTextbox.Name = "weightTextbox";
-            weightTextbox.Size = new Size(66, 23);
+            weightTextbox.Size = new Size(103, 23);
             weightTextbox.TabIndex = 17;
             weightTextbox.TextChanged += weightTextbox_TextChanged;
             // 
@@ -282,7 +288,7 @@
             // 
             weightLabel.AutoSize = true;
             weightLabel.ForeColor = Color.FromArgb(244, 243, 242);
-            weightLabel.Location = new Point(209, 38);
+            weightLabel.Location = new Point(152, 35);
             weightLabel.Name = "weightLabel";
             weightLabel.Size = new Size(74, 15);
             weightLabel.TabIndex = 18;
@@ -293,7 +299,7 @@
             doctorIDLabel.AutoSize = true;
             doctorIDLabel.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             doctorIDLabel.ForeColor = Color.FromArgb(244, 243, 242);
-            doctorIDLabel.Location = new Point(12, 160);
+            doctorIDLabel.Location = new Point(503, 93);
             doctorIDLabel.Name = "doctorIDLabel";
             doctorIDLabel.Size = new Size(69, 17);
             doctorIDLabel.TabIndex = 19;
@@ -317,7 +323,7 @@
             submitButton.FlatStyle = FlatStyle.Flat;
             submitButton.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             submitButton.ForeColor = Color.Black;
-            submitButton.Location = new Point(209, 351);
+            submitButton.Location = new Point(259, 344);
             submitButton.Name = "submitButton";
             submitButton.Size = new Size(90, 32);
             submitButton.TabIndex = 21;
@@ -331,7 +337,7 @@
             errorLabel.BackColor = Color.FromArgb(244, 243, 242);
             errorLabel.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             errorLabel.ForeColor = Color.Red;
-            errorLabel.Location = new Point(68, 107);
+            errorLabel.Location = new Point(24, 104);
             errorLabel.Name = "errorLabel";
             errorLabel.Size = new Size(0, 17);
             errorLabel.TabIndex = 22;
@@ -341,7 +347,7 @@
             doctorNameLabel.AutoSize = true;
             doctorNameLabel.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             doctorNameLabel.ForeColor = Color.FromArgb(244, 243, 242);
-            doctorNameLabel.Location = new Point(12, 177);
+            doctorNameLabel.Location = new Point(600, 93);
             doctorNameLabel.Name = "doctorNameLabel";
             doctorNameLabel.Size = new Size(92, 17);
             doctorNameLabel.TabIndex = 23;
@@ -352,7 +358,7 @@
             patientDobLabel.AutoSize = true;
             patientDobLabel.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             patientDobLabel.ForeColor = Color.FromArgb(242, 243, 244);
-            patientDobLabel.Location = new Point(13, 96);
+            patientDobLabel.Location = new Point(181, 110);
             patientDobLabel.Name = "patientDobLabel";
             patientDobLabel.Size = new Size(85, 17);
             patientDobLabel.TabIndex = 24;
@@ -379,11 +385,11 @@
             routineGroupBox.Controls.Add(pulseTextbox);
             routineGroupBox.Controls.Add(pulseLabel);
             routineGroupBox.ForeColor = Color.FromArgb(244, 243, 242);
-            routineGroupBox.Location = new Point(192, 83);
+            routineGroupBox.Location = new Point(181, 142);
             routineGroupBox.Margin = new Padding(2);
             routineGroupBox.Name = "routineGroupBox";
             routineGroupBox.Padding = new Padding(2);
-            routineGroupBox.Size = new Size(523, 395);
+            routineGroupBox.Size = new Size(580, 395);
             routineGroupBox.TabIndex = 25;
             routineGroupBox.TabStop = false;
             routineGroupBox.Text = "Routine Check Up";
@@ -392,7 +398,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.Location = new Point(127, 167);
+            label5.Location = new Point(70, 146);
             label5.Name = "label5";
             label5.Size = new Size(15, 20);
             label5.TabIndex = 25;
@@ -401,7 +407,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(147, 151);
+            label3.Location = new Point(90, 130);
             label3.Margin = new Padding(2, 0, 2, 0);
             label3.Name = "label3";
             label3.Size = new Size(18, 15);
@@ -411,7 +417,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(78, 148);
+            label2.Location = new Point(21, 127);
             label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
             label2.Size = new Size(19, 15);
@@ -420,7 +426,7 @@
             // 
             // distolicTextbox
             // 
-            distolicTextbox.Location = new Point(147, 167);
+            distolicTextbox.Location = new Point(90, 146);
             distolicTextbox.Margin = new Padding(2);
             distolicTextbox.Name = "distolicTextbox";
             distolicTextbox.Size = new Size(38, 23);
@@ -434,7 +440,7 @@
             diagnosisGroupbox.Controls.Add(diagnosisTextbox);
             diagnosisGroupbox.Controls.Add(diagnosisLabel);
             diagnosisGroupbox.ForeColor = Color.FromArgb(244, 243, 242);
-            diagnosisGroupbox.Location = new Point(170, 155);
+            diagnosisGroupbox.Location = new Point(251, 214);
             diagnosisGroupbox.Margin = new Padding(2);
             diagnosisGroupbox.Name = "diagnosisGroupbox";
             diagnosisGroupbox.Padding = new Padding(2);
@@ -483,12 +489,13 @@
             // 
             appointmentsButtonPanel.BackColor = Color.FromArgb(93, 109, 126);
             appointmentsButtonPanel.Controls.Add(completedButton);
+            appointmentsButtonPanel.Controls.Add(back_btn);
             appointmentsButtonPanel.Controls.Add(orderTestButton);
             appointmentsButtonPanel.Controls.Add(diagnosisButton);
             appointmentsButtonPanel.Controls.Add(checkupButton);
-            appointmentsButtonPanel.Location = new Point(1, 230);
+            appointmentsButtonPanel.Location = new Point(0, 82);
             appointmentsButtonPanel.Name = "appointmentsButtonPanel";
-            appointmentsButtonPanel.Size = new Size(109, 287);
+            appointmentsButtonPanel.Size = new Size(143, 504);
             appointmentsButtonPanel.TabIndex = 27;
             // 
             // completedButton
@@ -497,14 +504,15 @@
             completedButton.Enabled = false;
             completedButton.FlatAppearance.BorderSize = 0;
             completedButton.FlatStyle = FlatStyle.Flat;
-            completedButton.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            completedButton.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             completedButton.ForeColor = Color.Black;
-            completedButton.Location = new Point(0, 81);
+            completedButton.Location = new Point(0, 147);
             completedButton.Name = "completedButton";
-            completedButton.Size = new Size(109, 49);
+            completedButton.Size = new Size(143, 49);
             completedButton.TabIndex = 30;
             completedButton.Text = "Completed Information";
             completedButton.UseVisualStyleBackColor = false;
+            completedButton.Visible = false;
             // 
             // orderTestButton
             // 
@@ -512,10 +520,10 @@
             orderTestButton.Enabled = false;
             orderTestButton.FlatAppearance.BorderSize = 0;
             orderTestButton.FlatStyle = FlatStyle.Flat;
-            orderTestButton.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            orderTestButton.Location = new Point(0, 245);
+            orderTestButton.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
+            orderTestButton.Location = new Point(0, 98);
             orderTestButton.Name = "orderTestButton";
-            orderTestButton.Size = new Size(109, 42);
+            orderTestButton.Size = new Size(143, 49);
             orderTestButton.TabIndex = 13;
             orderTestButton.Text = "Order Tests";
             orderTestButton.UseVisualStyleBackColor = false;
@@ -527,11 +535,11 @@
             diagnosisButton.Enabled = false;
             diagnosisButton.FlatAppearance.BorderSize = 0;
             diagnosisButton.FlatStyle = FlatStyle.Flat;
-            diagnosisButton.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            diagnosisButton.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             diagnosisButton.ForeColor = Color.Black;
-            diagnosisButton.Location = new Point(0, 41);
+            diagnosisButton.Location = new Point(0, 49);
             diagnosisButton.Name = "diagnosisButton";
-            diagnosisButton.Size = new Size(109, 48);
+            diagnosisButton.Size = new Size(143, 49);
             diagnosisButton.TabIndex = 11;
             diagnosisButton.Text = "Diagnosis";
             diagnosisButton.UseVisualStyleBackColor = false;
@@ -546,9 +554,9 @@
             checkupButton.ForeColor = Color.Black;
             checkupButton.Location = new Point(0, 0);
             checkupButton.Name = "checkupButton";
-            checkupButton.Size = new Size(109, 42);
+            checkupButton.Size = new Size(143, 49);
             checkupButton.TabIndex = 1;
-            checkupButton.Text = "Check Up";
+            checkupButton.Text = "Check-Up Info.";
             checkupButton.UseVisualStyleBackColor = true;
             checkupButton.Click += checkupButton_Click;
             // 
@@ -556,7 +564,7 @@
             // 
             checkupCheckbox.AutoSize = true;
             checkupCheckbox.Enabled = false;
-            checkupCheckbox.Location = new Point(116, 246);
+            checkupCheckbox.Location = new Point(150, 96);
             checkupCheckbox.Name = "checkupCheckbox";
             checkupCheckbox.Size = new Size(15, 14);
             checkupCheckbox.TabIndex = 28;
@@ -567,7 +575,7 @@
             // 
             diagnosisCheckbox.AutoSize = true;
             diagnosisCheckbox.Enabled = false;
-            diagnosisCheckbox.Location = new Point(116, 290);
+            diagnosisCheckbox.Location = new Point(150, 142);
             diagnosisCheckbox.Name = "diagnosisCheckbox";
             diagnosisCheckbox.Size = new Size(15, 14);
             diagnosisCheckbox.TabIndex = 29;
@@ -577,7 +585,7 @@
             // 
             completedCheckbox.AutoSize = true;
             completedCheckbox.Enabled = false;
-            completedCheckbox.Location = new Point(116, 330);
+            completedCheckbox.Location = new Point(150, 180);
             completedCheckbox.Name = "completedCheckbox";
             completedCheckbox.Size = new Size(15, 14);
             completedCheckbox.TabIndex = 30;
@@ -596,7 +604,7 @@
             completeInformationGroupbox.Controls.Add(heightLabelSummary);
             completeInformationGroupbox.Controls.Add(weightLabelSummary);
             completeInformationGroupbox.ForeColor = Color.FromArgb(244, 244, 242);
-            completeInformationGroupbox.Location = new Point(185, 134);
+            completeInformationGroupbox.Location = new Point(266, 193);
             completeInformationGroupbox.Name = "completeInformationGroupbox";
             completeInformationGroupbox.Size = new Size(530, 383);
             completeInformationGroupbox.TabIndex = 31;
@@ -693,13 +701,37 @@
             weightLabelSummary.TabIndex = 0;
             weightLabelSummary.Text = "Weight :";
             // 
+            // nurseNameLabel
+            // 
+            nurseNameLabel.AutoSize = true;
+            nurseNameLabel.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
+            nurseNameLabel.ForeColor = Color.FromArgb(244, 243, 242);
+            nurseNameLabel.Location = new Point(503, 112);
+            nurseNameLabel.Name = "nurseNameLabel";
+            nurseNameLabel.Size = new Size(64, 17);
+            nurseNameLabel.TabIndex = 32;
+            nurseNameLabel.Text = "Nurse ID:";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
+            label6.ForeColor = Color.FromArgb(244, 243, 242);
+            label6.Location = new Point(600, 110);
+            label6.Name = "label6";
+            label6.Size = new Size(87, 17);
+            label6.TabIndex = 33;
+            label6.Text = "Nurse Name:";
+            // 
             // VisitInformation
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(40, 116, 166);
-            ClientSize = new Size(726, 534);
+            ClientSize = new Size(806, 582);
             Controls.Add(routineGroupBox);
+            Controls.Add(label6);
+            Controls.Add(nurseNameLabel);
             Controls.Add(diagnosisGroupbox);
             Controls.Add(completedCheckbox);
             Controls.Add(diagnosisCheckbox);
@@ -714,7 +746,7 @@
             Controls.Add(healthCareNamePanel);
             Controls.Add(completeInformationGroupbox);
             Name = "VisitInformation";
-            Text = "VisitInformation";
+            Text = "Check-Up Information";
             healthCareNamePanel.ResumeLayout(false);
             healthCareNamePanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)symbolPictureBox).EndInit();
@@ -785,5 +817,7 @@
         private Label label5;
         private Label label4;
         private DataGridView orderedTestsGridview;
+        private Label nurseNameLabel;
+        private Label label6;
     }
 }

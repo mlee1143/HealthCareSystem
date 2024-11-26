@@ -128,15 +128,19 @@ namespace HealthCareSystem.View
 
                 if (selectedRow != null)
                 {
-                    var patientID = (int)selectedRow.Cells[0].Value;
-                    //var docID = selectedRow.Cells[2].Value;
-                    DateTime appDateTime = (DateTime)selectedRow.Cells[6].Value;
+                    //var patientID = (int)selectedRow.Cells[0].Value;
+                    ////var docID = selectedRow.Cells[2].Value;
+                    //DateTime appDateTime = (DateTime)selectedRow.Cells[6].Value;
 
-                    if (patientID != null && appDateTime != null)
-                    {
-                        appointment = appDal.GetAppointment(patientID, appDateTime);
-                    }
+                    //if (patientID != null && appDateTime != null)
+                    //{
+                    //    appointment = appDal.GetAppointment(patientID, appDateTime);
+                    //}
 
+                    FinalVisitInformationPage final = new FinalVisitInformationPage();
+                    final.Show();
+
+                    this.Close();
                 }
 
             }
@@ -145,13 +149,21 @@ namespace HealthCareSystem.View
                 MessageBox.Show("Please select an appointment to view Visit Information");
             }
 
-            if (appointment != null)
-            {
-                VisitInformation visitInformation = new VisitInformation(this.nurse, appointment);
-                visitInformation.Show();
-                this.Close();
+            //if (appointment != null)
+            //{
+            //    VisitInformation visitInformation = new VisitInformation(this.nurse, appointment);
+            //    visitInformation.Show();
+            //    this.Close();
 
-            }
+            //}
+        }
+
+        private void enterDiagnosisButton_Click(object sender, EventArgs e)
+        {
+            DiagnosisPage diagnosisPage = new DiagnosisPage();
+            diagnosisPage.Show();
+
+            this.Close();
         }
     }
 }

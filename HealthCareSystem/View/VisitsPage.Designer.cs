@@ -97,7 +97,7 @@
             backToMainButton.FlatAppearance.BorderSize = 0;
             backToMainButton.FlatStyle = FlatStyle.Flat;
             backToMainButton.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
-            backToMainButton.Location = new Point(0, 140);
+            backToMainButton.Location = new Point(0, 200);
             backToMainButton.Name = "backToMainButton";
             backToMainButton.Size = new Size(160, 50);
             backToMainButton.TabIndex = 4;
@@ -111,7 +111,7 @@
             viewVisitInfoButton.FlatAppearance.BorderSize = 0;
             viewVisitInfoButton.FlatStyle = FlatStyle.Flat;
             viewVisitInfoButton.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
-            viewVisitInfoButton.Location = new Point(0, 94);
+            viewVisitInfoButton.Location = new Point(0, 150);
             viewVisitInfoButton.Name = "viewVisitInfoButton";
             viewVisitInfoButton.Size = new Size(160, 50);
             viewVisitInfoButton.TabIndex = 3;
@@ -125,13 +125,13 @@
             enterDiagnosisButton.FlatAppearance.BorderSize = 0;
             enterDiagnosisButton.FlatStyle = FlatStyle.Flat;
             enterDiagnosisButton.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
-            enterDiagnosisButton.Location = new Point(0, 287);
+            enterDiagnosisButton.Location = new Point(0, 100);
             enterDiagnosisButton.Name = "enterDiagnosisButton";
             enterDiagnosisButton.Size = new Size(160, 50);
             enterDiagnosisButton.TabIndex = 2;
             enterDiagnosisButton.Text = "Enter Diagnosis";
             enterDiagnosisButton.UseVisualStyleBackColor = true;
-            enterDiagnosisButton.Visible = false;
+            enterDiagnosisButton.Click += enterDiagnosisButton_Click;
             // 
             // enterTestResultsButton
             // 

@@ -7,6 +7,12 @@
     <Compile Update="View\AppointmentsPage.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="View\DiagnosisPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View\FinalVisitInformationPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="View\LoginPage.cs">
       <SubType>Form</SubType>
     </Compile>

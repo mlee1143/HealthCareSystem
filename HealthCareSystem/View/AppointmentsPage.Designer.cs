@@ -33,7 +33,7 @@
             symbolPictureBox = new PictureBox();
             appointmentsButtonPanel = new Panel();
             searchButton = new Button();
-            visitInformationButton = new Button();
+            checkUpInformationButton = new Button();
             backToMainButton = new Button();
             editAppointment = new Button();
             newAppointmentButton = new Button();
@@ -63,7 +63,7 @@
             healthCareNamePanel.Controls.Add(healthCareNameLabel);
             healthCareNamePanel.Location = new Point(87, 0);
             healthCareNamePanel.Name = "healthCareNamePanel";
-            healthCareNamePanel.Size = new Size(644, 79);
+            healthCareNamePanel.Size = new Size(716, 79);
             healthCareNamePanel.TabIndex = 0;
             // 
             // healthCareNameLabel
@@ -92,7 +92,7 @@
             // 
             appointmentsButtonPanel.BackColor = Color.FromArgb(93, 109, 126);
             appointmentsButtonPanel.Controls.Add(searchButton);
-            appointmentsButtonPanel.Controls.Add(visitInformationButton);
+            appointmentsButtonPanel.Controls.Add(checkUpInformationButton);
             appointmentsButtonPanel.Controls.Add(backToMainButton);
             appointmentsButtonPanel.Controls.Add(editAppointment);
             appointmentsButtonPanel.Controls.Add(newAppointmentButton);
@@ -106,30 +106,30 @@
             searchButton.BackColor = Color.FromArgb(255, 255, 244);
             searchButton.FlatAppearance.BorderSize = 0;
             searchButton.FlatStyle = FlatStyle.Flat;
-            searchButton.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            searchButton.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             searchButton.ForeColor = Color.Black;
-            searchButton.Location = new Point(0, 156);
+            searchButton.Location = new Point(0, 147);
             searchButton.Name = "searchButton";
-            searchButton.Size = new Size(160, 53);
+            searchButton.Size = new Size(160, 49);
             searchButton.TabIndex = 11;
             searchButton.Text = "Search for Appt.";
             searchButton.UseVisualStyleBackColor = false;
             searchButton.Click += searchButton_Click;
             // 
-            // visitInformationButton
+            // checkUpInformationButton
             // 
-            visitInformationButton.BackColor = Color.FromArgb(255, 255, 244);
-            visitInformationButton.FlatAppearance.BorderSize = 0;
-            visitInformationButton.FlatStyle = FlatStyle.Flat;
-            visitInformationButton.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            visitInformationButton.ForeColor = Color.Black;
-            visitInformationButton.Location = new Point(0, 110);
-            visitInformationButton.Name = "visitInformationButton";
-            visitInformationButton.Size = new Size(160, 49);
-            visitInformationButton.TabIndex = 10;
-            visitInformationButton.Text = "Visit Information";
-            visitInformationButton.UseVisualStyleBackColor = false;
-            visitInformationButton.Click += visitInformationButton_Click;
+            checkUpInformationButton.BackColor = Color.FromArgb(255, 255, 244);
+            checkUpInformationButton.FlatAppearance.BorderSize = 0;
+            checkUpInformationButton.FlatStyle = FlatStyle.Flat;
+            checkUpInformationButton.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
+            checkUpInformationButton.ForeColor = Color.Black;
+            checkUpInformationButton.Location = new Point(0, 98);
+            checkUpInformationButton.Name = "checkUpInformationButton";
+            checkUpInformationButton.Size = new Size(160, 49);
+            checkUpInformationButton.TabIndex = 10;
+            checkUpInformationButton.Text = "Check-Up Info.";
+            checkUpInformationButton.UseVisualStyleBackColor = false;
+            checkUpInformationButton.Click += visitInformationButton_Click;
             // 
             // backToMainButton
             // 
@@ -138,9 +138,9 @@
             backToMainButton.FlatStyle = FlatStyle.Flat;
             backToMainButton.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             backToMainButton.ForeColor = Color.Black;
-            backToMainButton.Location = new Point(0, 204);
+            backToMainButton.Location = new Point(0, 196);
             backToMainButton.Name = "backToMainButton";
-            backToMainButton.Size = new Size(160, 53);
+            backToMainButton.Size = new Size(160, 49);
             backToMainButton.TabIndex = 2;
             backToMainButton.Text = "Back To Main";
             backToMainButton.UseVisualStyleBackColor = true;
@@ -153,9 +153,9 @@
             editAppointment.FlatStyle = FlatStyle.Flat;
             editAppointment.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             editAppointment.ForeColor = Color.Black;
-            editAppointment.Location = new Point(0, 68);
+            editAppointment.Location = new Point(0, 49);
             editAppointment.Name = "editAppointment";
-            editAppointment.Size = new Size(160, 47);
+            editAppointment.Size = new Size(160, 49);
             editAppointment.TabIndex = 1;
             editAppointment.Text = "Edit Appointment";
             editAppointment.UseVisualStyleBackColor = true;
@@ -168,9 +168,9 @@
             newAppointmentButton.FlatStyle = FlatStyle.Flat;
             newAppointmentButton.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             newAppointmentButton.ForeColor = Color.Black;
-            newAppointmentButton.Location = new Point(0, 3);
+            newAppointmentButton.Location = new Point(0, 0);
             newAppointmentButton.Name = "newAppointmentButton";
-            newAppointmentButton.Size = new Size(160, 68);
+            newAppointmentButton.Size = new Size(160, 49);
             newAppointmentButton.TabIndex = 0;
             newAppointmentButton.Text = "New Appointment";
             newAppointmentButton.UseVisualStyleBackColor = true;
@@ -184,7 +184,7 @@
             appointmentsDataGridView.Location = new Point(166, 238);
             appointmentsDataGridView.Name = "appointmentsDataGridView";
             appointmentsDataGridView.ReadOnly = true;
-            appointmentsDataGridView.Size = new Size(538, 242);
+            appointmentsDataGridView.Size = new Size(625, 242);
             appointmentsDataGridView.TabIndex = 3;
             // 
             // nurseNameLabel
@@ -333,7 +333,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(40, 116, 166);
-            ClientSize = new Size(716, 526);
+            ClientSize = new Size(803, 526);
             Controls.Add(searchGroupBox);
             Controls.Add(errorLabel);
             Controls.Add(appointmentsLabel);
@@ -370,7 +370,7 @@
         private Button editAppointment;
         private Button newAppointmentButton;
         private Label errorLabel;
-        private Button visitInformationButton;
+        private Button checkUpInformationButton;
         private GroupBox searchGroupBox;
         private Button appointmentSearchButton;
         private TextBox lnameTextBox;

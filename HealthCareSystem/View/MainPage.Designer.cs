@@ -33,7 +33,6 @@
             symbolPictureBox = new PictureBox();
             welcomeNameLabel = new Label();
             buttonsPanel = new Panel();
-            viewInfoButton = new Button();
             visitsButton = new Button();
             searchButton = new Button();
             appointmentsButton = new Button();
@@ -106,7 +105,6 @@
             // buttonsPanel
             // 
             buttonsPanel.BackColor = Color.FromArgb(93, 109, 126);
-            buttonsPanel.Controls.Add(viewInfoButton);
             buttonsPanel.Controls.Add(visitsButton);
             buttonsPanel.Controls.Add(searchButton);
             buttonsPanel.Controls.Add(appointmentsButton);
@@ -119,35 +117,19 @@
             buttonsPanel.Size = new Size(174, 497);
             buttonsPanel.TabIndex = 3;
             // 
-            // viewInfoButton
-            // 
-            viewInfoButton.BackColor = Color.FromArgb(255, 255, 244);
-            viewInfoButton.Enabled = false;
-            viewInfoButton.FlatAppearance.BorderSize = 0;
-            viewInfoButton.FlatStyle = FlatStyle.Flat;
-            viewInfoButton.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            viewInfoButton.Location = new Point(0, 456);
-            viewInfoButton.Name = "viewInfoButton";
-            viewInfoButton.Size = new Size(174, 42);
-            viewInfoButton.TabIndex = 9;
-            viewInfoButton.Text = "View Information";
-            viewInfoButton.UseVisualStyleBackColor = false;
-            viewInfoButton.Visible = false;
-            // 
             // visitsButton
             // 
             visitsButton.BackColor = Color.FromArgb(255, 255, 242);
             visitsButton.FlatAppearance.BorderSize = 0;
             visitsButton.FlatStyle = FlatStyle.Flat;
             visitsButton.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
-            visitsButton.Location = new Point(26, 422);
+            visitsButton.Location = new Point(0, 349);
             visitsButton.Margin = new Padding(2);
             visitsButton.Name = "visitsButton";
-            visitsButton.Size = new Size(122, 29);
+            visitsButton.Size = new Size(174, 49);
             visitsButton.TabIndex = 9;
             visitsButton.Text = "Visits with Check-up Completed";
             visitsButton.UseVisualStyleBackColor = true;
-            visitsButton.Visible = false;
             visitsButton.Click += visitsButton_Click;
             // 
             // searchButton
@@ -159,7 +141,7 @@
             searchButton.ForeColor = Color.Black;
             searchButton.Location = new Point(0, 300);
             searchButton.Name = "searchButton";
-            searchButton.Size = new Size(174, 54);
+            searchButton.Size = new Size(174, 49);
             searchButton.TabIndex = 8;
             searchButton.Text = "Search for Patient";
             searchButton.UseVisualStyleBackColor = false;
@@ -202,7 +184,7 @@
             logoutButton.FlatStyle = FlatStyle.Flat;
             logoutButton.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             logoutButton.ForeColor = Color.Black;
-            logoutButton.Location = new Point(1, 350);
+            logoutButton.Location = new Point(0, 398);
             logoutButton.Margin = new Padding(2);
             logoutButton.Name = "logoutButton";
             logoutButton.Size = new Size(174, 49);
@@ -431,7 +413,6 @@
         private TextBox lnameTextBox;
         private TextBox fnameSearchTextBox;
         private Button appointmentsButton;
-        private Button viewInfoButton;
         private Button visitsButton;
     }
 }
