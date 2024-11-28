@@ -37,5 +37,8 @@
     <Compile Update="View\VisitsPage.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="View\VisitsReportPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 </Project>
