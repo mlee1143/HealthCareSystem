@@ -70,7 +70,7 @@
             healthCareNamePanel.Controls.Add(healthCareNameLabel);
             healthCareNamePanel.Location = new Point(87, 0);
             healthCareNamePanel.Name = "healthCareNamePanel";
-            healthCareNamePanel.Size = new Size(1013, 76);
+            healthCareNamePanel.Size = new Size(973, 76);
             healthCareNamePanel.TabIndex = 1;
             // 
             // healthCareNameLabel
@@ -146,7 +146,7 @@
             labTestDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             labTestDataGrid.Location = new Point(12, 180);
             labTestDataGrid.Name = "labTestDataGrid";
-            labTestDataGrid.Size = new Size(912, 293);
+            labTestDataGrid.Size = new Size(874, 293);
             labTestDataGrid.TabIndex = 7;
             labTestDataGrid.SelectionChanged += labTestDataGrid_SelectionChanged;
             // 
@@ -155,7 +155,7 @@
             testDateLabel.AutoSize = true;
             testDateLabel.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
             testDateLabel.ForeColor = Color.FromArgb(242, 243, 244);
-            testDateLabel.Location = new Point(940, 180);
+            testDateLabel.Location = new Point(901, 180);
             testDateLabel.Name = "testDateLabel";
             testDateLabel.Size = new Size(56, 15);
             testDateLabel.TabIndex = 10;
@@ -166,7 +166,7 @@
             testResultLabel.AutoSize = true;
             testResultLabel.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
             testResultLabel.ForeColor = Color.FromArgb(242, 243, 244);
-            testResultLabel.Location = new Point(940, 345);
+            testResultLabel.Location = new Point(901, 345);
             testResultLabel.Name = "testResultLabel";
             testResultLabel.Size = new Size(63, 15);
             testResultLabel.TabIndex = 12;
@@ -175,10 +175,11 @@
             // testResultTextBox
             // 
             testResultTextBox.BackColor = Color.FromArgb(255, 255, 242);
-            testResultTextBox.Location = new Point(940, 363);
+            testResultTextBox.Location = new Point(901, 363);
             testResultTextBox.Name = "testResultTextBox";
             testResultTextBox.Size = new Size(147, 23);
             testResultTextBox.TabIndex = 16;
+            testResultTextBox.TextChanged += testResultTextBox_TextChanged;
             // 
             // testDateTimePicker
             // 
@@ -186,7 +187,7 @@
             testDateTimePicker.CustomFormat = "yyyy-MM-dd HH:mm";
             testDateTimePicker.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
             testDateTimePicker.Format = DateTimePickerFormat.Custom;
-            testDateTimePicker.Location = new Point(940, 203);
+            testDateTimePicker.Location = new Point(901, 203);
             testDateTimePicker.Name = "testDateTimePicker";
             testDateTimePicker.ShowUpDown = true;
             testDateTimePicker.Size = new Size(147, 23);
@@ -198,7 +199,7 @@
             saveResultButton.FlatAppearance.BorderSize = 0;
             saveResultButton.FlatStyle = FlatStyle.Flat;
             saveResultButton.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
-            saveResultButton.Location = new Point(984, 411);
+            saveResultButton.Location = new Point(937, 404);
             saveResultButton.Name = "saveResultButton";
             saveResultButton.Size = new Size(80, 26);
             saveResultButton.TabIndex = 18;
@@ -212,7 +213,7 @@
             goBackButton.FlatAppearance.BorderSize = 0;
             goBackButton.FlatStyle = FlatStyle.Flat;
             goBackButton.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
-            goBackButton.Location = new Point(526, 493);
+            goBackButton.Location = new Point(478, 493);
             goBackButton.Name = "goBackButton";
             goBackButton.Size = new Size(90, 30);
             goBackButton.TabIndex = 19;
@@ -225,7 +226,7 @@
             normalityGroupBox.Controls.Add(normalRadioButton);
             normalityGroupBox.Controls.Add(abnormalRadioButton);
             normalityGroupBox.ForeColor = Color.FromArgb(242, 243, 244);
-            normalityGroupBox.Location = new Point(940, 242);
+            normalityGroupBox.Location = new Point(901, 242);
             normalityGroupBox.Name = "normalityGroupBox";
             normalityGroupBox.Size = new Size(147, 88);
             normalityGroupBox.TabIndex = 22;
@@ -259,7 +260,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(40, 116, 166);
-            ClientSize = new Size(1098, 535);
+            ClientSize = new Size(1059, 535);
             Controls.Add(normalityGroupBox);
             Controls.Add(goBackButton);
             Controls.Add(saveResultButton);

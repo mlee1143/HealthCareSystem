@@ -161,53 +161,35 @@ namespace HealthCareSystem.DAL
             return labTests;
         }
 
-        public bool SaveTestResult(LabTest labTest)
+        public bool UpdateLabTestResult(int testCode, int patientId, int nurseId, int doctorId, DateTime appointmentDateTime, DateTime testDateTime, bool? isAbnormal, decimal result)
         {
             using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
             {
                 connection.Open();
 
-                string queryGetLowHigh = "SELECT low, high FROM test_type WHERE test_code = @testCode";
-
-                decimal? low = null;
-                decimal? high = null;
-
-                using (var cmd = new MySqlCommand(queryGetLowHigh, connection))
-                {
-                    cmd.Parameters.AddWithValue("@testCode", labTest.TestCode);
-
-                    using (var reader = cmd.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            low = reader.IsDBNull(reader.GetOrdinal("low")) ? null : reader.GetDecimal("low");
-                            high = reader.IsDBNull(reader.GetOrdinal("high")) ? null : reader.GetDecimal("high");
-                        }
-                    }
-                }
-
-                if (low.HasValue && high.HasValue && labTest.Result != null)
-                {
-                    decimal resultValue = Convert.ToDecimal(labTest.Result);
-                    labTest.IsAbnormal = resultValue < low.Value || resultValue > high.Value;
-                }
-
-                string querySave = @"UPDATE lab_test 
+                string query = @"UPDATE lab_test
                 SET test_datetime = @testDateTime, 
-                abnormal = @abnormal, 
-                result = @result 
-                WHERE test_code = @testCode AND patient_id = @patientId AND appointment_datetime = @appointmentDateTime";
+                abnormal = @isAbnormal,
+                result = @result
+                WHERE test_code = @testCode AND 
+                patient_id = @patientId AND
+                nurse_id = @nurseId AND
+                doctor_id = @doctorId AND
+                appointment_datetime = @appointmentDateTime";
 
-                using (var cmd = new MySqlCommand(querySave, connection))
+                using (var cmd = new MySqlCommand(query, connection))
                 {
-                    cmd.Parameters.AddWithValue("@testDateTime", labTest.TestDateTime);
-                    cmd.Parameters.AddWithValue("@abnormal", labTest.IsAbnormal);
-                    cmd.Parameters.AddWithValue("@result", labTest.Result);
-                    cmd.Parameters.AddWithValue("@testCode", labTest.TestCode);
-                    cmd.Parameters.AddWithValue("@patientId", labTest.PatientID);
-                    cmd.Parameters.AddWithValue("@appointmentDateTime", labTest.AppointmentDateTime.ToString("yyyy-MM-dd HH:mm:ss"));
+                    cmd.Parameters.AddWithValue("@testDateTime", testDateTime.ToString("yyyy-MM-dd HH:mm:ss"));
+                    cmd.Parameters.AddWithValue("@isAbnormal", isAbnormal.HasValue ? (object)isAbnormal.Value : DBNull.Value);
+                    cmd.Parameters.AddWithValue("@result", result);
+                    cmd.Parameters.AddWithValue("@testCode", testCode);
+                    cmd.Parameters.AddWithValue("@patientId", patientId);
+                    cmd.Parameters.AddWithValue("@nurseId", nurseId);
+                    cmd.Parameters.AddWithValue("@doctorId", doctorId);
+                    cmd.Parameters.AddWithValue("@appointmentDateTime", appointmentDateTime.ToString("yyyy-MM-dd HH:mm:ss"));
 
-                    return cmd.ExecuteNonQuery() > 0;
+                    int rowsAffected = cmd.ExecuteNonQuery();
+                    return rowsAffected > 0;
                 }
             }
         }
