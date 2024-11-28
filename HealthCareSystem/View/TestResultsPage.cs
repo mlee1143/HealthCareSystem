@@ -16,19 +16,19 @@ namespace HealthCareSystem.View
     {
         private Nurse nurse;
         private int patientId;
-        private string patientName;
+        //private string patientName;
         private int doctorId;
         private string doctorName;
         private DateTime appointmentDateTime;
         private int visitNurseId;
 
-        public TestResultsPage(Nurse nurse, int patientId, string patientName, int doctorId, string doctorName, DateTime appointmentDateTime, int visitNurseId)
+        public TestResultsPage(Nurse nurse, int patientId, int doctorId, string doctorName, DateTime appointmentDateTime, int visitNurseId)
         {
             InitializeComponent();
 
             this.nurse = nurse;
             this.patientId = patientId;
-            this.patientName = patientName;
+            //this.patientName = patientName;
             this.doctorId = doctorId;
             this.doctorName = doctorName;
             this.appointmentDateTime = appointmentDateTime;
@@ -40,11 +40,14 @@ namespace HealthCareSystem.View
 
         private void setPeopleInvolvedInfo()
         {
+            PatientDAL patientDAL = new PatientDAL();
+            Patient patient = patientDAL.GetPatientByID(this.patientId);
+
             nurseNameLabel.Text = $"Nurse Name: {this.nurse.Firstname} {this.nurse.Lastname}";
             nurseIdLabel.Text = $"Nurse ID: {this.nurse.NurseId}";
             doctorNameLabel.Text = $"Doctor Name: {this.doctorName}";
             doctorIdLabel.Text = $"Doctor ID: {this.doctorId}";
-            patientInfoLabel.Text = $"Order Test For: {this.patientName} ID: {this.patientId}";
+            patientInfoLabel.Text = $"Order Test For: {patient.FullName} ID: {patient.PatientId}  DOB: {patient.Birthdate.ToString("yyyy-MM-dd")}";
         }
 
         private void saveResultButton_Click(object sender, EventArgs e)
