@@ -86,7 +86,7 @@
             adminNameLabel.AutoSize = true;
             adminNameLabel.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             adminNameLabel.ForeColor = Color.FromArgb(242, 243, 244);
-            adminNameLabel.Location = new Point(34, 94);
+            adminNameLabel.Location = new Point(37, 94);
             adminNameLabel.Name = "adminNameLabel";
             adminNameLabel.Size = new Size(49, 19);
             adminNameLabel.TabIndex = 2;
