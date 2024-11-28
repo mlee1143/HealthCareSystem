@@ -91,7 +91,7 @@ namespace HealthCareSystem.View
             try
             {
                 List<int> testCodes = extractTestCodesFromListBox();
-                List<int> validTestCodes = validateTests(testCodes);
+                List<int> validTestCodes = validateTests(testCodes, this.appointmentDateTime);
 
                 if (validTestCodes.Count > 0)
                 {
@@ -143,17 +143,44 @@ namespace HealthCareSystem.View
             return testCodes;
         }
 
-        private List<int> validateTests(List<int> testCodes)
+        //private List<int> validateTests(List<int> testCodes)
+        //{
+        //    LabTestDAL labTestDAL = new LabTestDAL();
+        //    List<int> validTestCodes = new List<int>();
+
+        //    foreach (var testCode in testCodes)
+        //    {
+        //        if (labTestDAL.IsTestAlreadyOrderedForPatient(testCode, this.patientId))
+        //        {
+        //            string testName = labTestsListBox.Items.Cast<string>().FirstOrDefault(t => t.Contains($"({testCode})"));
+        //            MessageBox.Show($"The test '{testName}' has already been ordered for this patient.", "Duplicate Test", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        //        }
+        //        else
+        //        {
+        //            validTestCodes.Add(testCode);
+        //        }
+        //    }
+
+        //    return validTestCodes;
+        //}
+
+        private List<int> validateTests(List<int> testCodes, DateTime appointmentDateTime)
         {
             LabTestDAL labTestDAL = new LabTestDAL();
             List<int> validTestCodes = new List<int>();
 
             foreach (var testCode in testCodes)
             {
-                if (labTestDAL.IsTestAlreadyOrderedForPatient(testCode, this.patientId))
+                if (labTestDAL.IsTestAlreadyOrderedForPatient(testCode, this.patientId, appointmentDateTime))
                 {
                     string testName = labTestsListBox.Items.Cast<string>().FirstOrDefault(t => t.Contains($"({testCode})"));
-                    MessageBox.Show($"The test '{testName}' has already been ordered for this patient.", "Duplicate Test", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    MessageBox.Show(
+                        $"The test '{testName}' has already been ordered for this patient at the specified appointment time.",
+                        "Duplicate Test",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
                 }
                 else
                 {
@@ -163,6 +190,7 @@ namespace HealthCareSystem.View
 
             return validTestCodes;
         }
+
 
         private bool insertValidTests(List<int> testCodes)
         {
