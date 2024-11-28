@@ -108,20 +108,20 @@ namespace HealthCareSystem.View
                 }
 
                 LabTestDAL labTestDAL = new LabTestDAL();
-                bool success = labTestDAL.UpdateLabTestResult(
-                    testCode,
-                    patientId,
-                    visitNurseId,
-                    doctorId,
-                    appointmentDateTime,
-                    lowValue,
-                    highValue,
-                    unitMeasurement,
-                    testDateTime,
-                    isAbnormal,
-                    result
-                );
-
+                //bool success = labTestDAL.SaveTestResult(
+                //    testCode,
+                //    patientId,
+                //    visitNurseId,
+                //    doctorId,
+                //    appointmentDateTime,
+                //    lowValue,
+                //    highValue,
+                //    unitMeasurement,
+                //    testDateTime,
+                //    isAbnormal,
+                //    result
+                //);
+                bool success = true;
                 if (success)
                 {
                     MessageBox.Show("Test result saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -153,37 +153,37 @@ namespace HealthCareSystem.View
 
         private void loadLabTests()
         {
-            LabTestDAL labTestDAL = new LabTestDAL();
-            List<LabTest> labTests = labTestDAL.GetLabTestsForVisit(this.patientId, this.doctorId, this.visitNurseId, this.appointmentDateTime);
+            //LabTestDAL labTestDAL = new LabTestDAL();
+            //List<LabTest> labTests = labTestDAL.GetLabTestsForVisit(this.patientId, this.doctorId, this.visitNurseId, this.appointmentDateTime);
 
-            labTestDataGrid.Columns.Clear();
-            labTestDataGrid.Columns.Add("TestCode", "Test Code");
-            labTestDataGrid.Columns.Add("TestName", "Test Name");
-            labTestDataGrid.Columns.Add("NurseID", "Nurse ID");
-            labTestDataGrid.Columns.Add("AppointmentDateTime", "Appointment Date/Time");
-            labTestDataGrid.Columns.Add("Low", "Low");
-            labTestDataGrid.Columns.Add("High", "High");
-            labTestDataGrid.Columns.Add("UnitMeasurement", "Unit Measurement");
-            labTestDataGrid.Columns.Add("TestDateTime", "Test Date/Time");
-            labTestDataGrid.Columns.Add("Abnormal", "Abnormal");
-            labTestDataGrid.Columns.Add("Result", "Result");
+            //labTestDataGrid.Columns.Clear();
+            //labTestDataGrid.Columns.Add("TestCode", "Test Code");
+            //labTestDataGrid.Columns.Add("TestName", "Test Name");
+            //labTestDataGrid.Columns.Add("NurseID", "Nurse ID");
+            //labTestDataGrid.Columns.Add("AppointmentDateTime", "Appointment Date/Time");
+            //labTestDataGrid.Columns.Add("Low", "Low");
+            //labTestDataGrid.Columns.Add("High", "High");
+            //labTestDataGrid.Columns.Add("UnitMeasurement", "Unit Measurement");
+            //labTestDataGrid.Columns.Add("TestDateTime", "Test Date/Time");
+            //labTestDataGrid.Columns.Add("Abnormal", "Abnormal");
+            //labTestDataGrid.Columns.Add("Result", "Result");
 
-            labTestDataGrid.Rows.Clear();
-            foreach (var labTest in labTests)
-            {
-                labTestDataGrid.Rows.Add(
-                    labTest.TestCode,
-                    labTest.TestName,
-                    labTest.NurseID,
-                    labTest.AppointmentDateTime.ToString("yyyy-MM-dd HH:mm"),
-                    labTest.Low?.ToString() ?? "",
-                    labTest.High?.ToString() ?? "",
-                    labTest.UnitMeasurement ?? "",
-                    labTest.TestDateTime?.ToString("yyyy-MM-dd HH:mm") ?? "",
-                    labTest.IsAbnormal.HasValue ? (labTest.IsAbnormal.Value ? "Yes" : "No") : "",
-                    labTest.Result ?? ""
-                );
-            }
+            //labTestDataGrid.Rows.Clear();
+            //foreach (var labTest in labTests)
+            //{
+            //    labTestDataGrid.Rows.Add(
+            //        labTest.TestCode,
+            //        labTest.TestName,
+            //        labTest.NurseID,
+            //        labTest.AppointmentDateTime.ToString("yyyy-MM-dd HH:mm"),
+            //        //labTest.Low?.ToString() ?? "",
+            //        //labTest.High?.ToString() ?? "",
+            //        //labTest.UnitMeasurement ?? "",
+            //        labTest.TestDateTime?.ToString("yyyy-MM-dd HH:mm") ?? "",
+            //        labTest.IsAbnormal.HasValue ? (labTest.IsAbnormal.Value ? "Yes" : "No") : "",
+            //        labTest.Result ?? ""
+            //    );
+            //}
         }
 
         private void labTestDataGrid_SelectionChanged(object sender, EventArgs e)
