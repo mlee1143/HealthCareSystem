@@ -13,9 +13,9 @@ namespace HealthCareSystem.Model
 
         public string? TestName { get; private set; }
 
-        public decimal? low { get; private set; }
+        public decimal? Low { get; private set; }
 
-        public decimal? high { get; private set; }
+        public decimal? High { get; private set; }
 
         public string? UnitMeasurement { get; set; }
 
@@ -24,8 +24,8 @@ namespace HealthCareSystem.Model
             // Pre-condition checks
             this.TestCode = testcode;
             this.TestName = name;
-            this.low = lowValue;
-            this.high = highValue;
+            this.Low = lowValue;
+            this.High = highValue;
             this.UnitMeasurement = unitMeasurment;
         }
     }

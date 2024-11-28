@@ -111,7 +111,7 @@ namespace HealthCareSystem.DAL
         }
 
 
-        public List<(LabTest, TestType)> GetAllLabTestsForAppointment(int patientId, DateTime appointmentDateTime)
+        public List<(LabTest, TestType)> GetAllLabTestsForVisit(int patientId, DateTime appointmentDateTime)
         {
             var labTests = new List<(LabTest, TestType)>();
 
