@@ -88,6 +88,17 @@ namespace HealthCareSystem.View
             }
         }
 
+        private void apptDateTimePicker_ValueChanged(object sender, EventArgs e)
+        {
+            DateTime selectedDateTime = apptDateTimePicker.Value;
+
+            if (selectedDateTime.Date == DateTime.Today && selectedDateTime <= DateTime.Now)
+            {
+                //MessageBox.Show("You cannot select a past time for today.", "Invalid Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                apptDateTimePicker.Value = DateTime.Now.AddMinutes(1);
+            }
+        }
+
         private void cancelButton_Click(object sender, EventArgs e)
         {
             AppointmentsPage appointments = new AppointmentsPage(this.nurse);

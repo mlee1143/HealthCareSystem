@@ -74,6 +74,13 @@ namespace HealthCareSystem.View
             decimal? lowValue = decimal.TryParse(lowValueStr, out decimal low) ? low : (decimal?)null;
             decimal? highValue = decimal.TryParse(highValueStr, out decimal high) ? high : (decimal?)null;
 
+            if (!lowValue.HasValue && !highValue.HasValue && !abnormalRadioButton.Checked && !normalRadioButton.Checked)
+            {
+                MessageBox.Show("Please select whether the result is normal or abnormal.", "Normality Selection Required", MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
+
             bool? isAbnormal = this.determineAbnormality(result, lowValue, highValue, abnormalRadioButton.Checked ? true : normalRadioButton.Checked ? false : null);
 
             LabTestDAL labTestDAL = new LabTestDAL();
@@ -232,6 +239,20 @@ namespace HealthCareSystem.View
             }
 
             return abnormalFromGroupBox;
+        }
+
+        private void checkOneNormalityOptionIsSelected(decimal? lowValue, decimal? highValue)
+        {
+            if (!lowValue.HasValue && !highValue.HasValue && !abnormalRadioButton.Checked && !normalRadioButton.Checked)
+            {
+                MessageBox.Show(
+                    "Please select whether the result is normal or abnormal.",
+                    "Normality Selection Required",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                return;
+            }
         }
 
     }

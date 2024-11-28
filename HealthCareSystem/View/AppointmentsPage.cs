@@ -99,14 +99,24 @@ namespace HealthCareSystem.View
                 int patientId = (int)appointmentsDataGridView.SelectedRows[0].Cells["PatientId"].Value;
                 DateTime appointmentDateTime = (DateTime)appointmentsDataGridView.SelectedRows[0].Cells["AppointmentDateTime"].Value;
 
+                if (appointmentDateTime < DateTime.Now)
+                {
+                    MessageBox.Show(
+                        "You cannot edit this appointment anymore because it is in the past.",
+                        "Edit Not Allowed",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
+                    return;
+                }
+
                 AppointmentInformationPage editPage = new AppointmentInformationPage(this.nurse, patientId, appointmentDateTime);
                 editPage.Show();
-
                 this.Close();
             }
             else
             {
-                MessageBox.Show("Please select an appointment to edit.");
+                MessageBox.Show("Please select an appointment to edit.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
