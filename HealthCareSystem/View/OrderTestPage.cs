@@ -94,6 +94,13 @@ namespace HealthCareSystem.View
             try
             {
                 List<int> testCodes = extractTestCodesFromListBox();
+
+                if (!ConfirmOrder(testCodes))
+                {
+                    MessageBox.Show("Order cancelled by the user.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
                 List<int> validTestCodes = validateTests(testCodes, this.appointmentDateTime);
 
                 if (validTestCodes.Count > 0)
@@ -111,6 +118,7 @@ namespace HealthCareSystem.View
                 MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private void cancelButton_Click(object sender, EventArgs e)
         {
@@ -145,27 +153,6 @@ namespace HealthCareSystem.View
 
             return testCodes;
         }
-
-        //private List<int> validateTests(List<int> testCodes)
-        //{
-        //    LabTestDAL labTestDAL = new LabTestDAL();
-        //    List<int> validTestCodes = new List<int>();
-
-        //    foreach (var testCode in testCodes)
-        //    {
-        //        if (labTestDAL.IsTestAlreadyOrderedForPatient(testCode, this.patientId))
-        //        {
-        //            string testName = labTestsListBox.Items.Cast<string>().FirstOrDefault(t => t.Contains($"({testCode})"));
-        //            MessageBox.Show($"The test '{testName}' has already been ordered for this patient.", "Duplicate Test", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        //        }
-        //        else
-        //        {
-        //            validTestCodes.Add(testCode);
-        //        }
-        //    }
-
-        //    return validTestCodes;
-        //}
 
         private List<int> validateTests(List<int> testCodes, DateTime appointmentDateTime)
         {
@@ -216,7 +203,24 @@ namespace HealthCareSystem.View
             }
         }
 
+        private bool ConfirmOrder(List<int> testCodes)
+        {
+            if (testCodes.Count == 0)
+            {
+                MessageBox.Show("No tests selected to confirm.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
 
+            string testSummary = string.Join(Environment.NewLine, labTestsListBox.Items.Cast<string>());
 
+            DialogResult result = MessageBox.Show(
+                $"You are about to order the following tests:\n\n{testSummary}\n\nDo you want to proceed?",
+                "Confirm Order",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            return result == DialogResult.Yes;
+        }
     }
 }
