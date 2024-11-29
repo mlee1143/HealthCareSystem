@@ -64,27 +64,17 @@ namespace HealthCareSystem.DAL
             {
                 connection.Open();
 
-                string query = @"
-            SELECT 
-                v.appointment_datetime AS VisitDate,
-                p.patient_id AS PatientId,
-                CONCAT(p.fname, ' ', p.lname) AS PatientName,
-                d.doctor_id AS DoctorId,
-                CONCAT(d.fname, ' ', d.lname) AS DoctorName,
-                n.nurse_id AS NurseId,
-                CONCAT(n.fname, ' ', n.lname) AS NurseName,
+                string query = @"SELECT v.appointment_datetime AS VisitDate,
+                p.patient_id AS PatientId, CONCAT(p.fname, ' ', p.lname) AS PatientName,
+                d.doctor_id AS DoctorId, CONCAT(d.fname, ' ', d.lname) AS DoctorName,
+                n.nurse_id AS NurseId, CONCAT(n.fname, ' ', n.lname) AS NurseName,
                 v.initial_diagnosis AS InitialDiagnosis,
                 v.final_diagnosis AS FinalDiagnosis
-            FROM 
-                visit v
-            JOIN 
-                patient p ON v.patient_id = p.patient_id
-            JOIN 
-                doctor d ON v.doctor_id = d.doctor_id
-            JOIN 
-                nurse n ON v.nurse_id = n.nurse_id
-            WHERE 
-                v.appointment_datetime BETWEEN @startDate AND @endDate";
+                FROM visit v
+                JOIN patient p ON v.patient_id = p.patient_id
+                JOIN doctor d ON v.doctor_id = d.doctor_id
+                JOIN nurse n ON v.nurse_id = n.nurse_id
+                WHERE v.appointment_datetime BETWEEN @startDate AND @endDate";
 
                 using (var cmd = new MySqlCommand(query, connection))
                 {

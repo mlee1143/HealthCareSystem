@@ -99,7 +99,50 @@ namespace HealthCareSystem.View
                     visit.FinalDiagnosis
                 );
             }
-
         }
+
+        private void visitsDataGridView_SelectionChanged(object sender, EventArgs e)
+        {
+            if (visitsDataGridView.SelectedRows.Count > 0)
+            {
+                int patientId = Convert.ToInt32(visitsDataGridView.SelectedRows[0].Cells["PatientID"].Value);
+                DateTime appointmentDateTime = Convert.ToDateTime(visitsDataGridView.SelectedRows[0].Cells["VisitDate"].Value);
+
+                LoadTestsForVisit(patientId, appointmentDateTime);
+            }
+        }
+
+        private void LoadTestsForVisit(int patientId, DateTime appointmentDateTime)
+        {
+            try
+            {
+                LabTestDAL labTestDAL = new LabTestDAL();
+                var labTests = labTestDAL.GetAllLabTestsForVisit(patientId, appointmentDateTime);
+
+                testsDataGridView.Columns.Clear();
+                testsDataGridView.Columns.Add("TestCode", "Test Code");
+                testsDataGridView.Columns.Add("TestName", "Test Name");
+                testsDataGridView.Columns.Add("TestPerformDate", "Test Performed Date");
+                testsDataGridView.Columns.Add("Result", "Result");
+                testsDataGridView.Columns.Add("Abnormal", "Abnormal");
+
+                testsDataGridView.Rows.Clear();
+                foreach (var (labTest, testType) in labTests)
+                {
+                    testsDataGridView.Rows.Add(
+                        labTest.TestCode,
+                        testType.TestName,
+                        labTest.TestDateTime?.ToString("yyyy-MM-dd HH:mm") ?? "N/A",
+                        labTest.Result ?? "N/A",
+                        labTest.IsAbnormal.HasValue ? (labTest.IsAbnormal.Value ? "Yes" : "No") : "N/A"
+                    );
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while loading test details: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
     }
 }

@@ -191,6 +191,7 @@
             visitsDataGridView.Name = "visitsDataGridView";
             visitsDataGridView.Size = new Size(880, 187);
             visitsDataGridView.TabIndex = 11;
+            visitsDataGridView.SelectionChanged += visitsDataGridView_SelectionChanged;
             // 
             // testsDataGridView
             // 
