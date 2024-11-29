@@ -74,7 +74,8 @@ namespace HealthCareSystem.DAL
                 JOIN patient p ON v.patient_id = p.patient_id
                 JOIN doctor d ON v.doctor_id = d.doctor_id
                 JOIN nurse n ON v.nurse_id = n.nurse_id
-                WHERE v.appointment_datetime BETWEEN @startDate AND @endDate";
+                WHERE v.appointment_datetime BETWEEN @startDate AND @endDate
+                ORDER BY v.appointment_datetime ASC, p.lname ASC";
 
                 using (var cmd = new MySqlCommand(query, connection))
                 {
@@ -106,5 +107,6 @@ namespace HealthCareSystem.DAL
 
             return visits;
         }
+
     }
 }
