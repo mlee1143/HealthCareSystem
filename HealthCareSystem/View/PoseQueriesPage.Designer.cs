@@ -157,6 +157,7 @@
             getBackButton.TabIndex = 9;
             getBackButton.Text = "Get Back";
             getBackButton.UseVisualStyleBackColor = true;
+            getBackButton.Click += getBackButton_Click;
             // 
             // submitButton
             // 

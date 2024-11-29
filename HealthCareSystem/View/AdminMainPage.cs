@@ -20,6 +20,8 @@ namespace HealthCareSystem.View
             InitializeComponent();
 
             this.administrator = admin;
+
+            this.setAdminInformation();
         }
 
         private void setAdminInformation()
@@ -27,7 +29,7 @@ namespace HealthCareSystem.View
             adminWelcomeLabel.Text = $"Welcome, {this.administrator.Firstname} {this.administrator.Lastname}!";
             adminIdLabel.Text = $"ID: {this.administrator.AdministratorId}";
             adminUsernameLabel.Text = $"Username: {this.administrator.Username}";
-            adminBirthdateLabel.Text = $"DOB: {this.administrator.Birthdate}";
+            adminBirthdateLabel.Text = $"DOB: {this.administrator.Birthdate.ToString("yyyy-MM-dd")}";
         }
 
         private void logOutButton_Click(object sender, EventArgs e)
@@ -40,12 +42,18 @@ namespace HealthCareSystem.View
 
         private void visitsReportButton_Click(object sender, EventArgs e)
         {
+            VisitsReportPage visitsReport = new VisitsReportPage(this.administrator);
+            visitsReport.Show();
 
+            this.Close();
         }
 
         private void poseQueriesButton_Click(object sender, EventArgs e)
         {
+            PoseQueriesPage poseQueries = new PoseQueriesPage(this.administrator);
+            poseQueries.Show();
 
+            this.Close();
         }
     }
 }

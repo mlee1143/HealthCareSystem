@@ -225,6 +225,7 @@
             getBackButton.TabIndex = 14;
             getBackButton.Text = "Get Back";
             getBackButton.UseVisualStyleBackColor = true;
+            getBackButton.Click += getBackButton_Click;
             // 
             // VisitsReportPage
             // 
