@@ -62,7 +62,7 @@
             healthCareNamePanel.Controls.Add(healthCareNameLabel);
             healthCareNamePanel.Location = new Point(87, 0);
             healthCareNamePanel.Name = "healthCareNamePanel";
-            healthCareNamePanel.Size = new Size(570, 76);
+            healthCareNamePanel.Size = new Size(818, 76);
             healthCareNamePanel.TabIndex = 1;
             // 
             // healthCareNameLabel
@@ -136,7 +136,8 @@
             sqlQueryTextBox.Location = new Point(25, 150);
             sqlQueryTextBox.Multiline = true;
             sqlQueryTextBox.Name = "sqlQueryTextBox";
-            sqlQueryTextBox.Size = new Size(600, 160);
+            sqlQueryTextBox.ScrollBars = ScrollBars.Vertical;
+            sqlQueryTextBox.Size = new Size(855, 160);
             sqlQueryTextBox.TabIndex = 7;
             // 
             // getBackButton
@@ -144,7 +145,7 @@
             getBackButton.BackColor = Color.FromArgb(242, 243, 244);
             getBackButton.FlatAppearance.BorderSize = 0;
             getBackButton.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
-            getBackButton.Location = new Point(214, 530);
+            getBackButton.Location = new Point(336, 530);
             getBackButton.Name = "getBackButton";
             getBackButton.Size = new Size(94, 42);
             getBackButton.TabIndex = 9;
@@ -157,7 +158,7 @@
             submitButton.BackColor = Color.FromArgb(242, 243, 244);
             submitButton.FlatAppearance.BorderSize = 0;
             submitButton.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
-            submitButton.Location = new Point(348, 530);
+            submitButton.Location = new Point(496, 530);
             submitButton.Name = "submitButton";
             submitButton.Size = new Size(94, 42);
             submitButton.TabIndex = 10;
@@ -172,7 +173,7 @@
             queryResultsDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             queryResultsDataGridView.Location = new Point(25, 347);
             queryResultsDataGridView.Name = "queryResultsDataGridView";
-            queryResultsDataGridView.Size = new Size(600, 177);
+            queryResultsDataGridView.Size = new Size(855, 177);
             queryResultsDataGridView.TabIndex = 11;
             // 
             // PoseQueriesPage
@@ -180,7 +181,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(40, 116, 166);
-            ClientSize = new Size(657, 596);
+            ClientSize = new Size(904, 588);
             Controls.Add(queryResultsDataGridView);
             Controls.Add(submitButton);
             Controls.Add(getBackButton);
