@@ -13,11 +13,20 @@ namespace HealthCareSystem.Model
 
         public string? TestName { get; private set; }
 
-        public TestType(int testcode, string name) 
+        public decimal? Low { get; private set; }
+
+        public decimal? High { get; private set; }
+
+        public string? UnitMeasurement { get; set; }
+
+        public TestType(int testcode, string name, decimal? lowValue, decimal? highValue, string unitMeasurment) 
         {
             // Pre-condition checks
             this.TestCode = testcode;
             this.TestName = name;
+            this.Low = lowValue;
+            this.High = highValue;
+            this.UnitMeasurement = unitMeasurment;
         }
     }
 }

@@ -157,6 +157,8 @@
             apptDateTimePicker.ShowUpDown = true;
             apptDateTimePicker.Size = new Size(148, 23);
             apptDateTimePicker.TabIndex = 8;
+            apptDateTimePicker.MinDate = DateTime.Today;
+            apptDateTimePicker.ValueChanged += apptDateTimePicker_ValueChanged;
             // 
             // reasonTextBox
             // 

@@ -63,7 +63,7 @@
             healthCareNamePanel.Controls.Add(healthCareNameLabel);
             healthCareNamePanel.Location = new Point(87, 0);
             healthCareNamePanel.Name = "healthCareNamePanel";
-            healthCareNamePanel.Size = new Size(716, 79);
+            healthCareNamePanel.Size = new Size(772, 79);
             healthCareNamePanel.TabIndex = 0;
             // 
             // healthCareNameLabel
@@ -184,7 +184,7 @@
             appointmentsDataGridView.Location = new Point(166, 238);
             appointmentsDataGridView.Name = "appointmentsDataGridView";
             appointmentsDataGridView.ReadOnly = true;
-            appointmentsDataGridView.Size = new Size(625, 242);
+            appointmentsDataGridView.Size = new Size(681, 276);
             appointmentsDataGridView.TabIndex = 3;
             // 
             // nurseNameLabel
@@ -214,7 +214,7 @@
             appointmentsLabel.AutoSize = true;
             appointmentsLabel.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
             appointmentsLabel.ForeColor = Color.FromArgb(242, 243, 244);
-            appointmentsLabel.Location = new Point(166, 139);
+            appointmentsLabel.Location = new Point(166, 214);
             appointmentsLabel.Name = "appointmentsLabel";
             appointmentsLabel.Size = new Size(115, 21);
             appointmentsLabel.TabIndex = 6;
@@ -225,7 +225,7 @@
             errorLabel.AutoSize = true;
             errorLabel.Font = new Font("Segoe UI", 12F);
             errorLabel.ForeColor = Color.Red;
-            errorLabel.Location = new Point(349, 139);
+            errorLabel.Location = new Point(349, 214);
             errorLabel.Name = "errorLabel";
             errorLabel.Size = new Size(52, 21);
             errorLabel.TabIndex = 7;
@@ -242,7 +242,7 @@
             searchGroupBox.Controls.Add(birthdateDateRadioButton);
             searchGroupBox.Controls.Add(nameRadioButton);
             searchGroupBox.ForeColor = Color.FromArgb(255, 255, 244);
-            searchGroupBox.Location = new Point(166, 85);
+            searchGroupBox.Location = new Point(166, 82);
             searchGroupBox.Name = "searchGroupBox";
             searchGroupBox.Size = new Size(538, 133);
             searchGroupBox.TabIndex = 9;
@@ -333,7 +333,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(40, 116, 166);
-            ClientSize = new Size(803, 526);
+            ClientSize = new Size(859, 526);
             Controls.Add(searchGroupBox);
             Controls.Add(errorLabel);
             Controls.Add(appointmentsLabel);

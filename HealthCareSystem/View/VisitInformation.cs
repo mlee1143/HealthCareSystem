@@ -372,10 +372,10 @@ namespace HealthCareSystem.View
 
         private void orderTestButton_Click(object sender, EventArgs e)
         {
-            var patientName = patientDAL.GetPatientByID(appointment.PatientID);
+            //var patientName = patientDAL.GetPatientByID(appointment.PatientID);
             var doctorName = doctorDAL.GetDoctorNameByDoctorID(appointment.DoctorID);
 
-            OrderTestPage otestPage = new OrderTestPage(this.nurse, this.appointment.PatientID, patientName.FullName, this.appointment.DoctorID, doctorName, appointment.AppointmentDateTime, this.nurse.NurseId);
+            OrderTestPage otestPage = new OrderTestPage(this.nurse, this.appointment.PatientID, this.appointment.DoctorID, doctorName, appointment.AppointmentDateTime, this.nurse.NurseId);
 
             otestPage.Show();
             this.Close();

@@ -36,13 +36,13 @@ namespace HealthCareSystem.View
             {
                 var selectedRow = visitsDataGrid.SelectedRows[0];
                 int patientId = (int)selectedRow.Cells["PatientID"].Value;
-                string patientName = (string)selectedRow.Cells["PatientName"].Value;
+                //string patientName = (string)selectedRow.Cells["PatientName"].Value;
                 int doctorId = (int)selectedRow.Cells["DoctorID"].Value;
                 string doctorName = (string)selectedRow.Cells["DoctorName"].Value;
                 int visitNurseId = (int)selectedRow.Cells["NurseID"].Value;
                 DateTime appointmentDateTime = (DateTime)selectedRow.Cells["AppointmentDateTime"].Value;
 
-                OrderTestPage orderTestPage = new OrderTestPage(this.nurse, patientId, patientName, doctorId, doctorName, appointmentDateTime, visitNurseId);
+                OrderTestPage orderTestPage = new OrderTestPage(this.nurse, patientId, doctorId, doctorName, appointmentDateTime, visitNurseId);
                 orderTestPage.Show();
 
                 this.Close();
@@ -59,13 +59,13 @@ namespace HealthCareSystem.View
             {
                 var selectedRow = visitsDataGrid.SelectedRows[0];
                 int patientId = (int)selectedRow.Cells["PatientID"].Value;
-                string patientName = (string)selectedRow.Cells["PatientName"].Value;
+                //string patientName = (string)selectedRow.Cells["PatientName"].Value;
                 int doctorId = (int)selectedRow.Cells["DoctorID"].Value;
                 string doctorName = (string)selectedRow.Cells["DoctorName"].Value;
                 int visitNurseId = (int)selectedRow.Cells["NurseID"].Value;
                 DateTime appointmentDateTime = (DateTime)selectedRow.Cells["AppointmentDateTime"].Value;
 
-                TestResultsPage orderTestPage = new TestResultsPage(this.nurse, patientId, patientName, doctorId, doctorName, appointmentDateTime, visitNurseId);
+                TestResultsPage orderTestPage = new TestResultsPage(this.nurse, patientId, doctorId, doctorName, appointmentDateTime, visitNurseId);
                 orderTestPage.Show();
 
                 this.Close();

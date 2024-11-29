@@ -16,19 +16,19 @@ namespace HealthCareSystem.View
     {
         private Nurse nurse;
         private int patientId;
-        private string patientName;
+        //private string patientName;
         private int doctorId;
         private string doctorName;
         private DateTime appointmentDateTime;
         private int visitNurseId;
 
-        public OrderTestPage(Nurse nurse, int patientId, string patientName, int doctorId, string doctorName, DateTime appointmentDateTime , int visitNurseId)
+        public OrderTestPage(Nurse nurse, int patientId, int doctorId, string doctorName, DateTime appointmentDateTime , int visitNurseId)
         {
             InitializeComponent();
 
             this.nurse = nurse;
             this.patientId = patientId;
-            this.patientName = patientName;
+            //this.patientName = patientName;
             this.doctorId = doctorId;
             this.doctorName = doctorName;
             this.appointmentDateTime = appointmentDateTime;
@@ -40,11 +40,14 @@ namespace HealthCareSystem.View
 
         private void setPeopleInvolvedInfo()
         {
+            PatientDAL patientDAL = new PatientDAL();
+            Patient patient = patientDAL.GetPatientByID(this.patientId);
+
             nurseNameLabel.Text = $"Nurse Name: {this.nurse.Firstname} {this.nurse.Lastname}";
             nurseIdLabel.Text = $"Nurse ID: {this.nurse.NurseId}";
             doctorNameLabel.Text = $"Doctor Name: {this.doctorName}";
             doctorIdLabel.Text = $"Doctor ID: {this.doctorId}";
-            patientInfoLabel.Text = $"Order Test For: {this.patientName} ID: {this.patientId}";
+            patientInfoLabel.Text = $"Order Test For: {patient.FullName} ID: {patient.PatientId}  DOB: {patient.Birthdate.ToString("yyyy-MM-dd")}";
         }
 
         private void loadTestOptions()
@@ -91,7 +94,14 @@ namespace HealthCareSystem.View
             try
             {
                 List<int> testCodes = extractTestCodesFromListBox();
-                List<int> validTestCodes = validateTests(testCodes);
+
+                if (!ConfirmOrder(testCodes))
+                {
+                    MessageBox.Show("Order cancelled by the user.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                List<int> validTestCodes = validateTests(testCodes, this.appointmentDateTime);
 
                 if (validTestCodes.Count > 0)
                 {
@@ -108,6 +118,7 @@ namespace HealthCareSystem.View
                 MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private void cancelButton_Click(object sender, EventArgs e)
         {
@@ -143,17 +154,23 @@ namespace HealthCareSystem.View
             return testCodes;
         }
 
-        private List<int> validateTests(List<int> testCodes)
+        private List<int> validateTests(List<int> testCodes, DateTime appointmentDateTime)
         {
             LabTestDAL labTestDAL = new LabTestDAL();
             List<int> validTestCodes = new List<int>();
 
             foreach (var testCode in testCodes)
             {
-                if (labTestDAL.IsTestAlreadyOrderedForPatient(testCode, this.patientId))
+                if (labTestDAL.IsTestAlreadyOrderedForPatient(testCode, this.patientId, appointmentDateTime))
                 {
                     string testName = labTestsListBox.Items.Cast<string>().FirstOrDefault(t => t.Contains($"({testCode})"));
-                    MessageBox.Show($"The test '{testName}' has already been ordered for this patient.", "Duplicate Test", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    MessageBox.Show(
+                        $"The test '{testName}' has already been ordered for this patient at the specified appointment time.",
+                        "Duplicate Test",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
                 }
                 else
                 {
@@ -163,6 +180,7 @@ namespace HealthCareSystem.View
 
             return validTestCodes;
         }
+
 
         private bool insertValidTests(List<int> testCodes)
         {
@@ -185,7 +203,24 @@ namespace HealthCareSystem.View
             }
         }
 
+        private bool ConfirmOrder(List<int> testCodes)
+        {
+            if (testCodes.Count == 0)
+            {
+                MessageBox.Show("No tests selected to confirm.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
 
+            string testSummary = string.Join(Environment.NewLine, labTestsListBox.Items.Cast<string>());
 
+            DialogResult result = MessageBox.Show(
+                $"You are about to order the following tests:\n\n{testSummary}\n\nDo you want to proceed?",
+                "Confirm Order",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            return result == DialogResult.Yes;
+        }
     }
 }

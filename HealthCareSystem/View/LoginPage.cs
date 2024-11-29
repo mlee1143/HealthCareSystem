@@ -15,10 +15,12 @@ namespace HealthCareSystem.View
     public partial class LoginPage : Form
     {
         private readonly NurseDAL nurseDAL;
+        private readonly AdministratorDAL adminDAL;
         public LoginPage()
         {
             InitializeComponent();
             this.nurseDAL = new NurseDAL();
+            this.adminDAL = new AdministratorDAL();
         }
 
         private void loginButton_Click(object sender, EventArgs e)
@@ -30,18 +32,25 @@ namespace HealthCareSystem.View
 
             if (nurse != null)
             {
-                var nurseName = nurse.Firstname + " " + nurse.Lastname;
                 MainPage mainPage = new MainPage(nurse);
                 mainPage.Show();
-
                 this.Hide();
-            }
-            else
-            {
-                MessageBox.Show("Invalid username or password. Please try again.", "Login Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
 
+            Administrator admin = adminDAL.ValidateAdministratorLogin(enteredUsername, enteredPassword);
+
+            if (admin != null)
+            {
+                AdminMainPage adminMainPage = new AdminMainPage(admin);
+                adminMainPage.Show();
+                this.Hide();
+                return;
+            }
+
+            MessageBox.Show("Invalid username or password. Please try again.", "Login Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+
 
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
