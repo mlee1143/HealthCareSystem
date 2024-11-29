@@ -55,5 +55,66 @@ namespace HealthCareSystem.DAL
             }
             return null;
         }
+
+        public List<dynamic> GetVisitReports(DateTime startDate, DateTime endDate)
+        {
+            List<dynamic> visits = new List<dynamic>();
+
+            using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
+            {
+                connection.Open();
+
+                string query = @"
+            SELECT 
+                v.appointment_datetime AS VisitDate,
+                p.patient_id AS PatientId,
+                CONCAT(p.fname, ' ', p.lname) AS PatientName,
+                d.doctor_id AS DoctorId,
+                CONCAT(d.fname, ' ', d.lname) AS DoctorName,
+                n.nurse_id AS NurseId,
+                CONCAT(n.fname, ' ', n.lname) AS NurseName,
+                v.initial_diagnosis AS InitialDiagnosis,
+                v.final_diagnosis AS FinalDiagnosis
+            FROM 
+                visit v
+            JOIN 
+                patient p ON v.patient_id = p.patient_id
+            JOIN 
+                doctor d ON v.doctor_id = d.doctor_id
+            JOIN 
+                nurse n ON v.nurse_id = n.nurse_id
+            WHERE 
+                v.appointment_datetime BETWEEN @startDate AND @endDate";
+
+                using (var cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@startDate", startDate.ToString("yyyy-MM-dd HH:mm:ss"));
+                    cmd.Parameters.AddWithValue("@endDate", endDate.ToString("yyyy-MM-dd HH:mm:ss"));
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var visit = new
+                            {
+                                VisitDate = reader.GetDateTime("VisitDate"),
+                                PatientId = reader.GetInt32("PatientId"),
+                                PatientName = reader.GetString("PatientName"),
+                                DoctorId = reader.GetInt32("DoctorId"),
+                                DoctorName = reader.GetString("DoctorName"),
+                                NurseId = reader.GetInt32("NurseId"),
+                                NurseName = reader.GetString("NurseName"),
+                                InitialDiagnosis = reader.IsDBNull(reader.GetOrdinal("InitialDiagnosis")) ? "N/A" : reader.GetString("InitialDiagnosis"),
+                                FinalDiagnosis = reader.IsDBNull(reader.GetOrdinal("FinalDiagnosis")) ? "N/A" : reader.GetString("FinalDiagnosis")
+                            };
+
+                            visits.Add(visit);
+                        }
+                    }
+                }
+            }
+
+            return visits;
+        }
     }
 }

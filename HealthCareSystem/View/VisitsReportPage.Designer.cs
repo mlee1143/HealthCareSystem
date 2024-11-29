@@ -67,7 +67,7 @@
             healthCareNamePanel.Controls.Add(healthCareNameLabel);
             healthCareNamePanel.Location = new Point(87, 0);
             healthCareNamePanel.Name = "healthCareNamePanel";
-            healthCareNamePanel.Size = new Size(650, 76);
+            healthCareNamePanel.Size = new Size(822, 76);
             healthCareNamePanel.TabIndex = 1;
             // 
             // healthCareNameLabel
@@ -86,7 +86,7 @@
             adminNameLabel.AutoSize = true;
             adminNameLabel.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             adminNameLabel.ForeColor = Color.FromArgb(242, 243, 244);
-            adminNameLabel.Location = new Point(37, 94);
+            adminNameLabel.Location = new Point(12, 94);
             adminNameLabel.Name = "adminNameLabel";
             adminNameLabel.Size = new Size(49, 19);
             adminNameLabel.TabIndex = 2;
@@ -97,7 +97,7 @@
             adminIdLabel.AutoSize = true;
             adminIdLabel.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             adminIdLabel.ForeColor = Color.FromArgb(242, 243, 244);
-            adminIdLabel.Location = new Point(250, 94);
+            adminIdLabel.Location = new Point(233, 94);
             adminIdLabel.Name = "adminIdLabel";
             adminIdLabel.Size = new Size(26, 19);
             adminIdLabel.TabIndex = 3;
@@ -119,7 +119,7 @@
             visitDateOneLabel.AutoSize = true;
             visitDateOneLabel.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             visitDateOneLabel.ForeColor = Color.FromArgb(242, 243, 244);
-            visitDateOneLabel.Location = new Point(34, 133);
+            visitDateOneLabel.Location = new Point(12, 133);
             visitDateOneLabel.Name = "visitDateOneLabel";
             visitDateOneLabel.Size = new Size(68, 19);
             visitDateOneLabel.TabIndex = 5;
@@ -130,7 +130,7 @@
             visitDateTwoLabel.AutoSize = true;
             visitDateTwoLabel.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             visitDateTwoLabel.ForeColor = Color.FromArgb(242, 243, 244);
-            visitDateTwoLabel.Location = new Point(275, 133);
+            visitDateTwoLabel.Location = new Point(250, 133);
             visitDateTwoLabel.Name = "visitDateTwoLabel";
             visitDateTwoLabel.Size = new Size(68, 19);
             visitDateTwoLabel.TabIndex = 6;
@@ -141,7 +141,7 @@
             visitsReportLabel.AutoSize = true;
             visitsReportLabel.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             visitsReportLabel.ForeColor = Color.FromArgb(242, 243, 244);
-            visitsReportLabel.Location = new Point(34, 166);
+            visitsReportLabel.Location = new Point(12, 166);
             visitsReportLabel.Name = "visitsReportLabel";
             visitsReportLabel.Size = new Size(43, 19);
             visitsReportLabel.TabIndex = 7;
@@ -152,7 +152,7 @@
             testsForVisitLabel.AutoSize = true;
             testsForVisitLabel.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             testsForVisitLabel.ForeColor = Color.FromArgb(242, 243, 244);
-            testsForVisitLabel.Location = new Point(37, 385);
+            testsForVisitLabel.Location = new Point(12, 385);
             testsForVisitLabel.Name = "testsForVisitLabel";
             testsForVisitLabel.Size = new Size(40, 19);
             testsForVisitLabel.TabIndex = 8;
@@ -164,7 +164,7 @@
             visitOneDateTimePicker.CustomFormat = "yyyy-MM-dd HH:mm";
             visitOneDateTimePicker.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
             visitOneDateTimePicker.Format = DateTimePickerFormat.Custom;
-            visitOneDateTimePicker.Location = new Point(108, 133);
+            visitOneDateTimePicker.Location = new Point(77, 133);
             visitOneDateTimePicker.Name = "visitOneDateTimePicker";
             visitOneDateTimePicker.ShowUpDown = true;
             visitOneDateTimePicker.Size = new Size(146, 23);
@@ -176,7 +176,7 @@
             visitTwoDateTimePicker.CustomFormat = "yyyy-MM-dd HH:mm";
             visitTwoDateTimePicker.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
             visitTwoDateTimePicker.Format = DateTimePickerFormat.Custom;
-            visitTwoDateTimePicker.Location = new Point(349, 133);
+            visitTwoDateTimePicker.Location = new Point(324, 133);
             visitTwoDateTimePicker.Name = "visitTwoDateTimePicker";
             visitTwoDateTimePicker.ShowUpDown = true;
             visitTwoDateTimePicker.Size = new Size(142, 23);
@@ -187,9 +187,9 @@
             visitsDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             visitsDataGridView.BackgroundColor = Color.FromArgb(93, 173, 226);
             visitsDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            visitsDataGridView.Location = new Point(37, 188);
+            visitsDataGridView.Location = new Point(12, 188);
             visitsDataGridView.Name = "visitsDataGridView";
-            visitsDataGridView.Size = new Size(662, 187);
+            visitsDataGridView.Size = new Size(880, 187);
             visitsDataGridView.TabIndex = 11;
             // 
             // testsDataGridView
@@ -197,9 +197,9 @@
             testsDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             testsDataGridView.BackgroundColor = Color.FromArgb(93, 173, 226);
             testsDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            testsDataGridView.Location = new Point(37, 407);
+            testsDataGridView.Location = new Point(12, 407);
             testsDataGridView.Name = "testsDataGridView";
-            testsDataGridView.Size = new Size(662, 197);
+            testsDataGridView.Size = new Size(880, 197);
             testsDataGridView.TabIndex = 12;
             // 
             // getReportButton
@@ -207,19 +207,20 @@
             getReportButton.BackColor = Color.FromArgb(242, 243, 244);
             getReportButton.FlatAppearance.BorderSize = 0;
             getReportButton.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
-            getReportButton.Location = new Point(522, 127);
+            getReportButton.Location = new Point(487, 127);
             getReportButton.Name = "getReportButton";
             getReportButton.Size = new Size(98, 36);
             getReportButton.TabIndex = 13;
             getReportButton.Text = "Get Report";
             getReportButton.UseVisualStyleBackColor = true;
+            getReportButton.Click += getReportButton_Click;
             // 
             // getBackButton
             // 
             getBackButton.BackColor = Color.FromArgb(242, 243, 244);
             getBackButton.FlatAppearance.BorderSize = 0;
             getBackButton.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
-            getBackButton.Location = new Point(314, 610);
+            getBackButton.Location = new Point(421, 610);
             getBackButton.Name = "getBackButton";
             getBackButton.Size = new Size(94, 42);
             getBackButton.TabIndex = 14;
@@ -232,7 +233,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(40, 116, 166);
-            ClientSize = new Size(735, 659);
+            ClientSize = new Size(904, 659);
             Controls.Add(getBackButton);
             Controls.Add(getReportButton);
             Controls.Add(testsDataGridView);

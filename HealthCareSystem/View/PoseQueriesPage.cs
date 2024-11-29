@@ -28,7 +28,7 @@ namespace HealthCareSystem.View
         {
             adminNameLabel.Text = $"Name: {this.administrator.Firstname} {this.administrator.Lastname}";
             adminIdLabel.Text = $"ID: {this.administrator.AdministratorId}";
-            adminBirthdateLabel.Text = $"DOB: {this.administrator.Birthdate}";
+            adminBirthdateLabel.Text = $"DOB: {this.administrator.Birthdate.ToString("yyyy-MM-dd")}";
         }
 
         private void getBackButton_Click(object sender, EventArgs e)
