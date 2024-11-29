@@ -101,6 +101,7 @@
             logOutButton.TabIndex = 6;
             logOutButton.Text = "Log Out";
             logOutButton.UseVisualStyleBackColor = true;
+            logOutButton.Click += logOutButton_Click;
             // 
             // poseQueriesButton
             // 
@@ -114,6 +115,7 @@
             poseQueriesButton.TabIndex = 5;
             poseQueriesButton.Text = "Queries";
             poseQueriesButton.UseVisualStyleBackColor = true;
+            poseQueriesButton.Click += poseQueriesButton_Click;
             // 
             // visitsReportButton
             // 
@@ -127,6 +129,7 @@
             visitsReportButton.TabIndex = 4;
             visitsReportButton.Text = "Visits Report";
             visitsReportButton.UseVisualStyleBackColor = true;
+            visitsReportButton.Click += visitsReportButton_Click;
             // 
             // adminPictureBox
             // 

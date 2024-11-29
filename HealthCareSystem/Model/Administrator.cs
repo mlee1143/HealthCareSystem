@@ -8,7 +8,7 @@ namespace HealthCareSystem.Model
 {
     public class Administrator
     {
-        public int AdministratorId { get; private set; }
+        public int AdministratorId { get; set; }
 
         public string Firstname { get; private set; }
 
@@ -16,7 +16,7 @@ namespace HealthCareSystem.Model
 
         public DateTime Birthdate { get; private set; }
 
-        public Gender Gender { get; private set; }
+        public Gender? Gender { get; private set; }
 
         public string? Address { get; private set; }
 
@@ -34,13 +34,18 @@ namespace HealthCareSystem.Model
 
         public string Password { get; private set; }
 
-        public Administrator(string firstname, string lastname, DateTime birthdate, Gender gender, string username, string password) 
+        public Administrator(string? firstname, string? lastname, DateTime birthdate, Gender? gender, string? address, string? city, string? country, int zipcode, string? phoneNumber, string? username, string? password) 
         {
             // Pre-condition checks
             this.Firstname = firstname;
             this.Lastname = lastname;
             this.Birthdate = birthdate;
             this.Gender = gender;
+            this.Address = address;
+            this.City = city;
+            this.Country = country;
+            this.ZipCode = zipcode;
+            this.PhoneNumber = phoneNumber;
             this.Username = username;
             this.Password = password;
         }
