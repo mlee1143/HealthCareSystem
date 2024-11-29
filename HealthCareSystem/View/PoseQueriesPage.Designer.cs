@@ -36,12 +36,13 @@
             adminBirthdateLabel = new Label();
             poseQueryLabel = new Label();
             outputLabel = new Label();
-            poseQueryTextBox = new TextBox();
-            outputTextBox = new TextBox();
+            sqlQueryTextBox = new TextBox();
             getBackButton = new Button();
             submitButton = new Button();
+            queryResultsDataGridView = new DataGridView();
             ((System.ComponentModel.ISupportInitialize)symbolPictureBox).BeginInit();
             healthCareNamePanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)queryResultsDataGridView).BeginInit();
             SuspendLayout();
             // 
             // symbolPictureBox
@@ -130,21 +131,13 @@
             outputLabel.TabIndex = 6;
             outputLabel.Text = "Output";
             // 
-            // poseQueryTextBox
+            // sqlQueryTextBox
             // 
-            poseQueryTextBox.Location = new Point(25, 150);
-            poseQueryTextBox.Multiline = true;
-            poseQueryTextBox.Name = "poseQueryTextBox";
-            poseQueryTextBox.Size = new Size(600, 160);
-            poseQueryTextBox.TabIndex = 7;
-            // 
-            // outputTextBox
-            // 
-            outputTextBox.Location = new Point(25, 347);
-            outputTextBox.Multiline = true;
-            outputTextBox.Name = "outputTextBox";
-            outputTextBox.Size = new Size(600, 160);
-            outputTextBox.TabIndex = 8;
+            sqlQueryTextBox.Location = new Point(25, 150);
+            sqlQueryTextBox.Multiline = true;
+            sqlQueryTextBox.Name = "sqlQueryTextBox";
+            sqlQueryTextBox.Size = new Size(600, 160);
+            sqlQueryTextBox.TabIndex = 7;
             // 
             // getBackButton
             // 
@@ -170,6 +163,17 @@
             submitButton.TabIndex = 10;
             submitButton.Text = "Submit";
             submitButton.UseVisualStyleBackColor = true;
+            submitButton.Click += submitButton_Click;
+            // 
+            // queryResultsDataGridView
+            // 
+            queryResultsDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            queryResultsDataGridView.BackgroundColor = Color.FromArgb(93, 173, 226);
+            queryResultsDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            queryResultsDataGridView.Location = new Point(25, 347);
+            queryResultsDataGridView.Name = "queryResultsDataGridView";
+            queryResultsDataGridView.Size = new Size(600, 177);
+            queryResultsDataGridView.TabIndex = 11;
             // 
             // PoseQueriesPage
             // 
@@ -177,10 +181,10 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(40, 116, 166);
             ClientSize = new Size(657, 596);
+            Controls.Add(queryResultsDataGridView);
             Controls.Add(submitButton);
             Controls.Add(getBackButton);
-            Controls.Add(outputTextBox);
-            Controls.Add(poseQueryTextBox);
+            Controls.Add(sqlQueryTextBox);
             Controls.Add(outputLabel);
             Controls.Add(poseQueryLabel);
             Controls.Add(adminBirthdateLabel);
@@ -193,6 +197,7 @@
             ((System.ComponentModel.ISupportInitialize)symbolPictureBox).EndInit();
             healthCareNamePanel.ResumeLayout(false);
             healthCareNamePanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)queryResultsDataGridView).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -207,9 +212,9 @@
         private Label adminBirthdateLabel;
         private Label poseQueryLabel;
         private Label outputLabel;
-        private TextBox poseQueryTextBox;
-        private TextBox outputTextBox;
+        private TextBox sqlQueryTextBox;
         private Button getBackButton;
         private Button submitButton;
+        private DataGridView queryResultsDataGridView;
     }
 }
