@@ -24,10 +24,10 @@ namespace HealthCareSystem.DAL
             using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
             {
                 connection.Open();
-                string query = "SELECT * FROM doctor";
 
-                using (var cmd = new MySqlCommand(query, connection))
+                using (var cmd = new MySqlCommand("GetAllDoctors", connection))
                 {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
                     using (var reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
@@ -64,11 +64,10 @@ namespace HealthCareSystem.DAL
             {
                 connection.Open();
 
-                string query = "SELECT CONCAT(fname, ' ', lname) AS full_name FROM doctor WHERE doctor_id = @id;";
-
-                using (var cmd = new MySqlCommand(query, connection))
+                using (var cmd = new MySqlCommand("GetDoctorNameByDoctorId", connection))
                 {
-                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@input_id", id);
 
                     using (var reader = cmd.ExecuteReader())
                     {

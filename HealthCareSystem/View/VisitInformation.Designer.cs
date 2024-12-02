@@ -337,7 +337,7 @@
             errorLabel.BackColor = Color.FromArgb(244, 243, 242);
             errorLabel.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             errorLabel.ForeColor = Color.Red;
-            errorLabel.Location = new Point(24, 104);
+            errorLabel.Location = new Point(40, 385);
             errorLabel.Name = "errorLabel";
             errorLabel.Size = new Size(0, 17);
             errorLabel.TabIndex = 22;
@@ -389,7 +389,7 @@
             routineGroupBox.Margin = new Padding(2);
             routineGroupBox.Name = "routineGroupBox";
             routineGroupBox.Padding = new Padding(2);
-            routineGroupBox.Size = new Size(580, 395);
+            routineGroupBox.Size = new Size(580, 424);
             routineGroupBox.TabIndex = 25;
             routineGroupBox.TabStop = false;
             routineGroupBox.Text = "Routine Check Up";
@@ -440,7 +440,7 @@
             diagnosisGroupbox.Controls.Add(diagnosisTextbox);
             diagnosisGroupbox.Controls.Add(diagnosisLabel);
             diagnosisGroupbox.ForeColor = Color.FromArgb(244, 243, 242);
-            diagnosisGroupbox.Location = new Point(251, 214);
+            diagnosisGroupbox.Location = new Point(198, 142);
             diagnosisGroupbox.Margin = new Padding(2);
             diagnosisGroupbox.Name = "diagnosisGroupbox";
             diagnosisGroupbox.Padding = new Padding(2);
@@ -604,9 +604,9 @@
             completeInformationGroupbox.Controls.Add(heightLabelSummary);
             completeInformationGroupbox.Controls.Add(weightLabelSummary);
             completeInformationGroupbox.ForeColor = Color.FromArgb(244, 244, 242);
-            completeInformationGroupbox.Location = new Point(266, 193);
+            completeInformationGroupbox.Location = new Point(208, 142);
             completeInformationGroupbox.Name = "completeInformationGroupbox";
-            completeInformationGroupbox.Size = new Size(530, 383);
+            completeInformationGroupbox.Size = new Size(530, 402);
             completeInformationGroupbox.TabIndex = 31;
             completeInformationGroupbox.TabStop = false;
             completeInformationGroupbox.Text = "Information Summary";
@@ -729,10 +729,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(40, 116, 166);
             ClientSize = new Size(806, 582);
-            Controls.Add(routineGroupBox);
             Controls.Add(nurseNameLabel);
             Controls.Add(nurseIdLabel);
-            Controls.Add(diagnosisGroupbox);
             Controls.Add(completedCheckbox);
             Controls.Add(diagnosisCheckbox);
             Controls.Add(checkupCheckbox);
@@ -744,6 +742,8 @@
             Controls.Add(patientIDLabel);
             Controls.Add(symbolPictureBox);
             Controls.Add(healthCareNamePanel);
+            Controls.Add(routineGroupBox);
+            Controls.Add(diagnosisGroupbox);
             Controls.Add(completeInformationGroupbox);
             Name = "VisitInformation";
             Text = "Check-Up Information";

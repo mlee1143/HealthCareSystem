@@ -52,6 +52,7 @@
             bothRadioButton = new RadioButton();
             birthdateRadioButton = new RadioButton();
             nameRadioButton = new RadioButton();
+            clearButton = new Button();
             healthCareNamePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)symbolPictureBox).BeginInit();
             buttonsPanel.SuspendLayout();
@@ -265,6 +266,7 @@
             // 
             // searchGroupBox
             // 
+            searchGroupBox.Controls.Add(clearButton);
             searchGroupBox.Controls.Add(patientSearchButton);
             searchGroupBox.Controls.Add(lnameTextBox);
             searchGroupBox.Controls.Add(fnameSearchTextBox);
@@ -288,7 +290,7 @@
             patientSearchButton.FlatAppearance.BorderSize = 0;
             patientSearchButton.FlatStyle = FlatStyle.Flat;
             patientSearchButton.ForeColor = Color.Black;
-            patientSearchButton.Location = new Point(253, 92);
+            patientSearchButton.Location = new Point(209, 92);
             patientSearchButton.Name = "patientSearchButton";
             patientSearchButton.Size = new Size(75, 23);
             patientSearchButton.TabIndex = 6;
@@ -359,6 +361,21 @@
             nameRadioButton.UseVisualStyleBackColor = true;
             nameRadioButton.Click += nameRadioButton_Click;
             // 
+            // clearButton
+            // 
+            clearButton.BackColor = Color.FromArgb(255, 255, 244);
+            clearButton.Enabled = false;
+            clearButton.FlatAppearance.BorderSize = 0;
+            clearButton.FlatStyle = FlatStyle.Flat;
+            clearButton.ForeColor = Color.Black;
+            clearButton.Location = new Point(349, 92);
+            clearButton.Name = "clearButton";
+            clearButton.Size = new Size(75, 23);
+            clearButton.TabIndex = 7;
+            clearButton.Text = "Clear";
+            clearButton.UseVisualStyleBackColor = false;
+            clearButton.Click += clearButton_Click;
+            // 
             // MainPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -414,5 +431,6 @@
         private TextBox fnameSearchTextBox;
         private Button appointmentsButton;
         private Button visitsButton;
+        private Button clearButton;
     }
 }

@@ -199,6 +199,7 @@ namespace HealthCareSystem.View
             this.lnameTextBox.Enabled = true;
 
             this.patientSearchButton.Enabled = true;
+            this.clearButton.Enabled = true;
         }
 
         private void birthdateRadioButton_CheckedChanged(object sender, EventArgs e)
@@ -208,6 +209,7 @@ namespace HealthCareSystem.View
             this.lnameTextBox.Enabled = false;
 
             this.patientSearchButton.Enabled = true;
+            this.clearButton.Enabled = true;
         }
 
         private void bothRadioButton_CheckedChanged(object sender, EventArgs e)
@@ -217,6 +219,7 @@ namespace HealthCareSystem.View
             this.lnameTextBox.Enabled = true;
 
             this.patientSearchButton.Enabled = true;
+            this.clearButton.Enabled = true;
         }
 
         private void appointmentsButton_Click(object sender, EventArgs e)
@@ -233,6 +236,13 @@ namespace HealthCareSystem.View
             visits.Show();
 
             this.Close();
+        }
+
+        private void clearButton_Click(object sender, EventArgs e)
+        {
+            this.searchDatePicker.Value = DateTime.Now;
+            this.fnameSearchTextBox.Text = string.Empty;
+            this.lnameTextBox.Text = string.Empty;
         }
     }
 

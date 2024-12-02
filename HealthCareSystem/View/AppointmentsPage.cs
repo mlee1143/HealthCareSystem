@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -218,6 +219,7 @@ namespace HealthCareSystem.View
             this.lnameTextBox.Enabled = true;
 
             this.appointmentSearchButton.Enabled = true;
+            this.clearButton.Enabled = true;
         }
 
         private void birthdateDateRadioButton_CheckedChanged(object sender, EventArgs e)
@@ -227,6 +229,7 @@ namespace HealthCareSystem.View
             this.lnameTextBox.Enabled = false;
 
             this.appointmentSearchButton.Enabled = true;
+            this.clearButton.Enabled = true;
         }
 
         private void bothRadioButton_CheckedChanged(object sender, EventArgs e)
@@ -236,6 +239,14 @@ namespace HealthCareSystem.View
             this.lnameTextBox.Enabled = true;
 
             this.appointmentSearchButton.Enabled = true;
+            this.clearButton.Enabled = true;
+        }
+
+        private void clearButton_Click(object sender, EventArgs e)
+        {
+            this.searchDatePicker.Value = DateTime.Now;
+            this.fnameSearchTextBox.Text = string.Empty;
+            this.lnameTextBox.Text = string.Empty;
         }
     }
 }

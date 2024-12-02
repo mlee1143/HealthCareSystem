@@ -50,6 +50,7 @@
             bothRadioButton = new RadioButton();
             birthdateDateRadioButton = new RadioButton();
             nameRadioButton = new RadioButton();
+            clearButton = new Button();
             healthCareNamePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)symbolPictureBox).BeginInit();
             appointmentsButtonPanel.SuspendLayout();
@@ -234,6 +235,7 @@
             // 
             // searchGroupBox
             // 
+            searchGroupBox.Controls.Add(clearButton);
             searchGroupBox.Controls.Add(appointmentSearchButton);
             searchGroupBox.Controls.Add(lnameTextBox);
             searchGroupBox.Controls.Add(fnameSearchTextBox);
@@ -257,7 +259,7 @@
             appointmentSearchButton.FlatAppearance.BorderSize = 0;
             appointmentSearchButton.FlatStyle = FlatStyle.Flat;
             appointmentSearchButton.ForeColor = Color.Black;
-            appointmentSearchButton.Location = new Point(253, 92);
+            appointmentSearchButton.Location = new Point(185, 98);
             appointmentSearchButton.Name = "appointmentSearchButton";
             appointmentSearchButton.Size = new Size(75, 23);
             appointmentSearchButton.TabIndex = 6;
@@ -328,6 +330,21 @@
             nameRadioButton.UseVisualStyleBackColor = true;
             nameRadioButton.CheckedChanged += nameRadioButton_CheckedChanged;
             // 
+            // clearButton
+            // 
+            clearButton.BackColor = Color.FromArgb(255, 255, 244);
+            clearButton.Enabled = false;
+            clearButton.FlatAppearance.BorderSize = 0;
+            clearButton.FlatStyle = FlatStyle.Flat;
+            clearButton.ForeColor = Color.Black;
+            clearButton.Location = new Point(320, 98);
+            clearButton.Name = "clearButton";
+            clearButton.Size = new Size(75, 23);
+            clearButton.TabIndex = 7;
+            clearButton.Text = "Clear";
+            clearButton.UseVisualStyleBackColor = false;
+            clearButton.Click += clearButton_Click;
+            // 
             // AppointmentsPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -380,5 +397,6 @@
         private RadioButton birthdateDateRadioButton;
         private RadioButton nameRadioButton;
         private Button searchButton;
+        private Button clearButton;
     }
 }

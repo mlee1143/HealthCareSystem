@@ -37,10 +37,11 @@ namespace HealthCareSystem.DAL
             using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
             {
                 connection.Open();
-                string query = "SELECT * FROM patient";
 
-                using (var cmd = new MySqlCommand(query, connection))
+                using (var cmd = new MySqlCommand("GetAllPatients", connection))
                 {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
                     using (var reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
