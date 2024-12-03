@@ -97,7 +97,6 @@ namespace HealthCareSystem.View
 
                 this.diagnosisCheckbox.Checked = true;
                 this.checkupCheckbox.Checked = true;
-                this.completedCheckbox.Checked = true;
 
                 this.orderTestButton.Enabled = true;
 
@@ -341,7 +340,6 @@ namespace HealthCareSystem.View
                     this.checkupButton.Enabled = false;
                     this.diagnosisButton.Enabled = false;
                     this.diagnosisCheckbox.Checked = true;
-                    this.completedCheckbox.Checked = true;
                     this.completedButton.Enabled = true;
 
                     this.diagnosisGroupbox.Visible = false;

@@ -69,7 +69,6 @@
             checkupButton = new Button();
             checkupCheckbox = new CheckBox();
             diagnosisCheckbox = new CheckBox();
-            completedCheckbox = new CheckBox();
             completeInformationGroupbox = new GroupBox();
             orderedTestsGridview = new DataGridView();
             label4 = new Label();
@@ -581,16 +580,6 @@
             diagnosisCheckbox.TabIndex = 29;
             diagnosisCheckbox.UseVisualStyleBackColor = true;
             // 
-            // completedCheckbox
-            // 
-            completedCheckbox.AutoSize = true;
-            completedCheckbox.Enabled = false;
-            completedCheckbox.Location = new Point(150, 180);
-            completedCheckbox.Name = "completedCheckbox";
-            completedCheckbox.Size = new Size(15, 14);
-            completedCheckbox.TabIndex = 30;
-            completedCheckbox.UseVisualStyleBackColor = true;
-            // 
             // completeInformationGroupbox
             // 
             completeInformationGroupbox.Controls.Add(orderedTestsGridview);
@@ -731,7 +720,6 @@
             ClientSize = new Size(806, 582);
             Controls.Add(nurseNameLabel);
             Controls.Add(nurseIdLabel);
-            Controls.Add(completedCheckbox);
             Controls.Add(diagnosisCheckbox);
             Controls.Add(checkupCheckbox);
             Controls.Add(appointmentsButtonPanel);
@@ -805,7 +793,6 @@
         private Button orderTestButton;
         private GroupBox completeInformationGroupbox;
         private Button completedButton;
-        private CheckBox completedCheckbox;
         private Label heightLabelSummary;
         private Label weightLabelSummary;
         private Label bloodpressureLabelSummary;

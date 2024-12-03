@@ -43,6 +43,7 @@
             appointmentsLabel = new Label();
             errorLabel = new Label();
             searchGroupBox = new GroupBox();
+            clearButton = new Button();
             appointmentSearchButton = new Button();
             lnameTextBox = new TextBox();
             fnameSearchTextBox = new TextBox();
@@ -50,7 +51,6 @@
             bothRadioButton = new RadioButton();
             birthdateDateRadioButton = new RadioButton();
             nameRadioButton = new RadioButton();
-            clearButton = new Button();
             healthCareNamePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)symbolPictureBox).BeginInit();
             appointmentsButtonPanel.SuspendLayout();
@@ -204,7 +204,7 @@
             nurseIdLabel.AutoSize = true;
             nurseIdLabel.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
             nurseIdLabel.ForeColor = Color.FromArgb(242, 243, 244);
-            nurseIdLabel.Location = new Point(349, 79);
+            nurseIdLabel.Location = new Point(403, 79);
             nurseIdLabel.Name = "nurseIdLabel";
             nurseIdLabel.Size = new Size(77, 21);
             nurseIdLabel.TabIndex = 5;
@@ -246,11 +246,26 @@
             searchGroupBox.ForeColor = Color.FromArgb(255, 255, 244);
             searchGroupBox.Location = new Point(166, 82);
             searchGroupBox.Name = "searchGroupBox";
-            searchGroupBox.Size = new Size(538, 133);
+            searchGroupBox.Size = new Size(663, 133);
             searchGroupBox.TabIndex = 9;
             searchGroupBox.TabStop = false;
             searchGroupBox.Text = "Search for appointment:";
             searchGroupBox.Visible = false;
+            // 
+            // clearButton
+            // 
+            clearButton.BackColor = Color.FromArgb(255, 255, 244);
+            clearButton.Enabled = false;
+            clearButton.FlatAppearance.BorderSize = 0;
+            clearButton.FlatStyle = FlatStyle.Flat;
+            clearButton.ForeColor = Color.Black;
+            clearButton.Location = new Point(389, 98);
+            clearButton.Name = "clearButton";
+            clearButton.Size = new Size(75, 23);
+            clearButton.TabIndex = 7;
+            clearButton.Text = "Clear";
+            clearButton.UseVisualStyleBackColor = false;
+            clearButton.Click += clearButton_Click;
             // 
             // appointmentSearchButton
             // 
@@ -259,7 +274,7 @@
             appointmentSearchButton.FlatAppearance.BorderSize = 0;
             appointmentSearchButton.FlatStyle = FlatStyle.Flat;
             appointmentSearchButton.ForeColor = Color.Black;
-            appointmentSearchButton.Location = new Point(185, 98);
+            appointmentSearchButton.Location = new Point(248, 98);
             appointmentSearchButton.Name = "appointmentSearchButton";
             appointmentSearchButton.Size = new Size(75, 23);
             appointmentSearchButton.TabIndex = 6;
@@ -273,7 +288,7 @@
             lnameTextBox.Location = new Point(23, 67);
             lnameTextBox.Name = "lnameTextBox";
             lnameTextBox.PlaceholderText = "Last Name";
-            lnameTextBox.Size = new Size(152, 23);
+            lnameTextBox.Size = new Size(163, 23);
             lnameTextBox.TabIndex = 5;
             // 
             // fnameSearchTextBox
@@ -282,22 +297,22 @@
             fnameSearchTextBox.Location = new Point(23, 28);
             fnameSearchTextBox.Name = "fnameSearchTextBox";
             fnameSearchTextBox.PlaceholderText = "First Name";
-            fnameSearchTextBox.Size = new Size(152, 23);
+            fnameSearchTextBox.Size = new Size(163, 23);
             fnameSearchTextBox.TabIndex = 4;
             // 
             // searchDatePicker
             // 
             searchDatePicker.CustomFormat = "";
             searchDatePicker.ImeMode = ImeMode.Off;
-            searchDatePicker.Location = new Point(223, 41);
+            searchDatePicker.Location = new Point(248, 45);
             searchDatePicker.Name = "searchDatePicker";
-            searchDatePicker.Size = new Size(192, 23);
+            searchDatePicker.Size = new Size(216, 23);
             searchDatePicker.TabIndex = 3;
             // 
             // bothRadioButton
             // 
             bothRadioButton.AutoSize = true;
-            bothRadioButton.Location = new Point(450, 72);
+            bothRadioButton.Location = new Point(552, 74);
             bothRadioButton.Name = "bothRadioButton";
             bothRadioButton.Size = new Size(50, 19);
             bothRadioButton.TabIndex = 2;
@@ -309,7 +324,7 @@
             // birthdateDateRadioButton
             // 
             birthdateDateRadioButton.AutoSize = true;
-            birthdateDateRadioButton.Location = new Point(450, 47);
+            birthdateDateRadioButton.Location = new Point(552, 49);
             birthdateDateRadioButton.Name = "birthdateDateRadioButton";
             birthdateDateRadioButton.Size = new Size(73, 19);
             birthdateDateRadioButton.TabIndex = 1;
@@ -321,7 +336,7 @@
             // nameRadioButton
             // 
             nameRadioButton.AutoSize = true;
-            nameRadioButton.Location = new Point(450, 22);
+            nameRadioButton.Location = new Point(552, 22);
             nameRadioButton.Name = "nameRadioButton";
             nameRadioButton.Size = new Size(57, 19);
             nameRadioButton.TabIndex = 0;
@@ -329,21 +344,6 @@
             nameRadioButton.Text = "Name";
             nameRadioButton.UseVisualStyleBackColor = true;
             nameRadioButton.CheckedChanged += nameRadioButton_CheckedChanged;
-            // 
-            // clearButton
-            // 
-            clearButton.BackColor = Color.FromArgb(255, 255, 244);
-            clearButton.Enabled = false;
-            clearButton.FlatAppearance.BorderSize = 0;
-            clearButton.FlatStyle = FlatStyle.Flat;
-            clearButton.ForeColor = Color.Black;
-            clearButton.Location = new Point(320, 98);
-            clearButton.Name = "clearButton";
-            clearButton.Size = new Size(75, 23);
-            clearButton.TabIndex = 7;
-            clearButton.Text = "Clear";
-            clearButton.UseVisualStyleBackColor = false;
-            clearButton.Click += clearButton_Click;
             // 
             // AppointmentsPage
             // 

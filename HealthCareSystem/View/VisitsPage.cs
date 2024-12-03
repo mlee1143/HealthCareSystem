@@ -123,9 +123,12 @@ namespace HealthCareSystem.View
             {
                 var selectedRow = visitsDataGrid.SelectedRows[0];
                 int patientId = (int)selectedRow.Cells["PatientID"].Value;
-                string patientName = (string)selectedRow.Cells["PatientName"].Value;
+                DateTime appointmentDateTime = (DateTime)selectedRow.Cells["AppointmentDateTime"].Value;
 
-                FinalVisitInformationPage finalInfo = new FinalVisitInformationPage(this.nurse, patientId, patientName);
+                AppointmentDAL apptDal = new AppointmentDAL();
+                Appointment app = apptDal.GetAppointment(patientId, appointmentDateTime);
+
+                FinalVisitInformationPage finalInfo = new FinalVisitInformationPage(this.nurse, app);
                 finalInfo.Show();
 
                 this.Close();
@@ -143,8 +146,12 @@ namespace HealthCareSystem.View
                 var selectedRow = visitsDataGrid.SelectedRows[0];
                 int patientId = (int)selectedRow.Cells["PatientID"].Value;
                 string patientName = (string)selectedRow.Cells["PatientName"].Value;
+                DateTime appointmentDateTime = (DateTime)selectedRow.Cells["AppointmentDateTime"].Value;
 
-                DiagnosisPage diagnosisPage = new DiagnosisPage(this.nurse, patientId, patientName);
+                AppointmentDAL apptDal = new AppointmentDAL();
+                Appointment app = apptDal.GetAppointment(patientId, appointmentDateTime);
+
+                DiagnosisPage diagnosisPage = new DiagnosisPage(this.nurse, app);
                 diagnosisPage.Show();
 
                 this.Close();

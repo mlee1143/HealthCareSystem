@@ -16,6 +16,10 @@ namespace HealthCareSystem.Model
 
         public string Reason { get; set; }
 
+        public string? PatientName { get; set; }
+
+        public string? DoctorName { get; set; }
+
         public Appointment(int patientId, int doctorId, DateTime appointmentDateTime, string reason) 
         {
             // Pre-condition checks

@@ -160,6 +160,7 @@
             submitButton.TabIndex = 9;
             submitButton.Text = "Submit";
             submitButton.UseVisualStyleBackColor = true;
+            submitButton.Click += submitButton_Click;
             // 
             // cancelButton
             // 

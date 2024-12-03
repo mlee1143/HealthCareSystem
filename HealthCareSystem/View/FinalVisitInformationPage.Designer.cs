@@ -196,7 +196,7 @@
             // pulseLabel
             // 
             pulseLabel.AutoSize = true;
-            pulseLabel.Location = new Point(405, 35);
+            pulseLabel.Location = new Point(414, 35);
             pulseLabel.Name = "pulseLabel";
             pulseLabel.Size = new Size(45, 19);
             pulseLabel.TabIndex = 3;
@@ -205,7 +205,7 @@
             // temperatureLabel
             // 
             temperatureLabel.AutoSize = true;
-            temperatureLabel.Location = new Point(222, 35);
+            temperatureLabel.Location = new Point(252, 35);
             temperatureLabel.Name = "temperatureLabel";
             temperatureLabel.Size = new Size(90, 19);
             temperatureLabel.TabIndex = 2;
@@ -214,7 +214,7 @@
             // heightLabel
             // 
             heightLabel.AutoSize = true;
-            heightLabel.Location = new Point(107, 35);
+            heightLabel.Location = new Point(122, 35);
             heightLabel.Name = "heightLabel";
             heightLabel.Size = new Size(54, 19);
             heightLabel.TabIndex = 1;
