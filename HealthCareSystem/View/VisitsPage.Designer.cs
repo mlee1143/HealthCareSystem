@@ -32,6 +32,7 @@
             healthCareNamePanel = new Panel();
             healthCareNameLabel = new Label();
             visitsButtonPanel = new Panel();
+            searchButton = new Button();
             backToMainButton = new Button();
             viewVisitInfoButton = new Button();
             enterDiagnosisButton = new Button();
@@ -41,7 +42,6 @@
             nurseIdLabel = new Label();
             visitsLabel = new Label();
             visitsDataGrid = new DataGridView();
-            searchButton = new Button();
             searchGroupBox = new GroupBox();
             clearButton = new Button();
             patientSearchButton = new Button();
@@ -102,6 +102,20 @@
             visitsButtonPanel.Name = "visitsButtonPanel";
             visitsButtonPanel.Size = new Size(160, 444);
             visitsButtonPanel.TabIndex = 2;
+            // 
+            // searchButton
+            // 
+            searchButton.BackColor = Color.FromArgb(255, 255, 244);
+            searchButton.FlatAppearance.BorderSize = 0;
+            searchButton.FlatStyle = FlatStyle.Flat;
+            searchButton.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
+            searchButton.Location = new Point(0, 199);
+            searchButton.Name = "searchButton";
+            searchButton.Size = new Size(160, 50);
+            searchButton.TabIndex = 7;
+            searchButton.Text = "Search";
+            searchButton.UseVisualStyleBackColor = true;
+            searchButton.Click += searchButton_Click;
             // 
             // backToMainButton
             // 
@@ -217,20 +231,6 @@
             visitsDataGrid.Size = new Size(715, 295);
             visitsDataGrid.TabIndex = 6;
             // 
-            // searchButton
-            // 
-            searchButton.BackColor = Color.FromArgb(255, 255, 244);
-            searchButton.FlatAppearance.BorderSize = 0;
-            searchButton.FlatStyle = FlatStyle.Flat;
-            searchButton.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
-            searchButton.Location = new Point(0, 199);
-            searchButton.Name = "searchButton";
-            searchButton.Size = new Size(160, 50);
-            searchButton.TabIndex = 7;
-            searchButton.Text = "Search";
-            searchButton.UseVisualStyleBackColor = true;
-            searchButton.Click += searchButton_Click;
-            // 
             // searchGroupBox
             // 
             searchGroupBox.Controls.Add(clearButton);
@@ -244,7 +244,7 @@
             searchGroupBox.ForeColor = Color.FromArgb(255, 255, 244);
             searchGroupBox.Location = new Point(166, 82);
             searchGroupBox.Name = "searchGroupBox";
-            searchGroupBox.Size = new Size(587, 134);
+            searchGroupBox.Size = new Size(715, 134);
             searchGroupBox.TabIndex = 9;
             searchGroupBox.TabStop = false;
             searchGroupBox.Text = "Search for patient:";
@@ -257,7 +257,7 @@
             clearButton.FlatAppearance.BorderSize = 0;
             clearButton.FlatStyle = FlatStyle.Flat;
             clearButton.ForeColor = Color.Black;
-            clearButton.Location = new Point(349, 92);
+            clearButton.Location = new Point(418, 100);
             clearButton.Name = "clearButton";
             clearButton.Size = new Size(75, 23);
             clearButton.TabIndex = 7;
@@ -272,7 +272,7 @@
             patientSearchButton.FlatAppearance.BorderSize = 0;
             patientSearchButton.FlatStyle = FlatStyle.Flat;
             patientSearchButton.ForeColor = Color.Black;
-            patientSearchButton.Location = new Point(209, 92);
+            patientSearchButton.Location = new Point(249, 100);
             patientSearchButton.Name = "patientSearchButton";
             patientSearchButton.Size = new Size(75, 23);
             patientSearchButton.TabIndex = 6;
@@ -286,7 +286,7 @@
             lnameTextBox.Location = new Point(23, 67);
             lnameTextBox.Name = "lnameTextBox";
             lnameTextBox.PlaceholderText = "Last Name";
-            lnameTextBox.Size = new Size(152, 23);
+            lnameTextBox.Size = new Size(202, 23);
             lnameTextBox.TabIndex = 5;
             // 
             // fnameSearchTextBox
@@ -295,50 +295,53 @@
             fnameSearchTextBox.Location = new Point(23, 28);
             fnameSearchTextBox.Name = "fnameSearchTextBox";
             fnameSearchTextBox.PlaceholderText = "First Name";
-            fnameSearchTextBox.Size = new Size(152, 23);
+            fnameSearchTextBox.Size = new Size(202, 23);
             fnameSearchTextBox.TabIndex = 4;
             // 
             // searchDatePicker
             // 
             searchDatePicker.CustomFormat = "";
             searchDatePicker.ImeMode = ImeMode.Off;
-            searchDatePicker.Location = new Point(223, 41);
+            searchDatePicker.Location = new Point(318, 46);
             searchDatePicker.Name = "searchDatePicker";
-            searchDatePicker.Size = new Size(192, 23);
+            searchDatePicker.Size = new Size(223, 23);
             searchDatePicker.TabIndex = 3;
             // 
             // bothRadioButton
             // 
             bothRadioButton.AutoSize = true;
-            bothRadioButton.Location = new Point(473, 80);
+            bothRadioButton.Location = new Point(623, 81);
             bothRadioButton.Name = "bothRadioButton";
             bothRadioButton.Size = new Size(50, 19);
             bothRadioButton.TabIndex = 2;
             bothRadioButton.TabStop = true;
             bothRadioButton.Text = "Both";
             bothRadioButton.UseVisualStyleBackColor = true;
+            bothRadioButton.CheckedChanged += bothRadioButton_CheckedChanged_1;
             // 
             // birthdateRadioButton
             // 
             birthdateRadioButton.AutoSize = true;
-            birthdateRadioButton.Location = new Point(473, 52);
+            birthdateRadioButton.Location = new Point(623, 50);
             birthdateRadioButton.Name = "birthdateRadioButton";
             birthdateRadioButton.Size = new Size(73, 19);
             birthdateRadioButton.TabIndex = 1;
             birthdateRadioButton.TabStop = true;
             birthdateRadioButton.Text = "Birthdate";
             birthdateRadioButton.UseVisualStyleBackColor = true;
+            birthdateRadioButton.CheckedChanged += birthdateRadioButton_CheckedChanged_1;
             // 
             // nameRadioButton
             // 
             nameRadioButton.AutoSize = true;
-            nameRadioButton.Location = new Point(473, 22);
+            nameRadioButton.Location = new Point(623, 22);
             nameRadioButton.Name = "nameRadioButton";
             nameRadioButton.Size = new Size(57, 19);
             nameRadioButton.TabIndex = 0;
             nameRadioButton.TabStop = true;
             nameRadioButton.Text = "Name";
             nameRadioButton.UseVisualStyleBackColor = true;
+            nameRadioButton.CheckedChanged += nameRadioButton_CheckedChanged;
             // 
             // VisitsPage
             // 

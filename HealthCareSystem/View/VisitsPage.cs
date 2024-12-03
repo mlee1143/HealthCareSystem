@@ -15,6 +15,7 @@ namespace HealthCareSystem.View
     public partial class VisitsPage : Form
     {
         private Nurse nurse;
+        private VisitDAL visitDAL;
         private PatientDAL patientDAL;
 
         public VisitsPage(Nurse nurse)
@@ -22,6 +23,7 @@ namespace HealthCareSystem.View
             InitializeComponent();
 
             this.nurse = nurse;
+            this.visitDAL = new VisitDAL();
             this.patientDAL = new PatientDAL();
             this.setLoggedNurseInfo();
             this.loadVisits();
@@ -39,7 +41,6 @@ namespace HealthCareSystem.View
             {
                 var selectedRow = visitsDataGrid.SelectedRows[0];
                 int patientId = (int)selectedRow.Cells["PatientID"].Value;
-                //string patientName = (string)selectedRow.Cells["PatientName"].Value;
                 int doctorId = (int)selectedRow.Cells["DoctorID"].Value;
                 string doctorName = (string)selectedRow.Cells["DoctorName"].Value;
                 int visitNurseId = (int)selectedRow.Cells["NurseID"].Value;
@@ -84,7 +85,6 @@ namespace HealthCareSystem.View
             nurseNameLabel.Text = $"Nurse Name: {this.nurse.Firstname} {this.nurse.Lastname}";
             nurseIdLabel.Text = $"Nurse ID: {this.nurse.NurseId}";
 
-            VisitDAL visitDAL = new VisitDAL();
             List<dynamic> visits = visitDAL.GetAllVisitsWithDetails();
 
             visitsDataGrid.Columns.Clear();
@@ -169,99 +169,93 @@ namespace HealthCareSystem.View
         {
             if (this.nameRadioButton.Checked) // Condense this part PH
             {
-                List<Patient> patients = await patientDAL.GetPatientsByName(fnameSearchTextBox.Text, lnameTextBox.Text);
+                
+                List<dynamic> visits = visitDAL.GetVisitsWithDetailsByPatientName(fnameSearchTextBox.Text, lnameTextBox.Text);
 
                 visitsDataGrid.Columns.Clear();
-                visitsDataGrid.Columns.Add("PatientId", "Patient ID");
-                visitsDataGrid.Columns.Add("FirstName", "First Name");
-                visitsDataGrid.Columns.Add("LastName", "Last Name");
-                visitsDataGrid.Columns.Add("Gender", "Gender");
-                visitsDataGrid.Columns.Add("Birthdate", "Birth Date");
-                visitsDataGrid.Columns.Add("IsActive", "Active");
+                visitsDataGrid.Columns.Add("PatientID", "Patient ID");
+                visitsDataGrid.Columns.Add("PatientName", "Patient Name");
+                visitsDataGrid.Columns.Add("DoctorID", "Doctor ID");
+                visitsDataGrid.Columns.Add("DoctorName", "Doctor Name");
+                visitsDataGrid.Columns.Add("NurseID", "Nurse ID");
+                visitsDataGrid.Columns.Add("NurseName", "Nurse Name");
+                visitsDataGrid.Columns.Add("AppointmentDateTime", "Appointment Date/Time");
 
                 visitsDataGrid.Rows.Clear();
 
 
-                foreach (var patient in patients)
+                foreach (var visit in visits)
                 {
-                    visitsDataGrid.Rows.Add(patient.PatientId, patient.Firstname, patient.Lastname, patient.Gender, patient.Birthdate.ToShortDateString(), patient.IsActive);
+                    visitsDataGrid.Rows.Add(visit.PatientID,
+                    visit.PatientName,
+                    visit.DoctorID,
+                    visit.DoctorName,
+                    visit.NurseID,
+                    visit.NurseName,
+                    visit.AppointmentDateTime);
                 }
+                
             }
             else if (this.birthdateRadioButton.Checked)
             {
-                List<Patient> patients = await patientDAL.GetPatientsByBirthdate(this.searchDatePicker.Value);
+                
+                List<dynamic> visits = visitDAL.GetVisitsWithDetailsByPatientBirthdate(searchDatePicker.Value);
 
                 visitsDataGrid.Columns.Clear();
-                visitsDataGrid.Columns.Add("PatientId", "Patient ID");
-                visitsDataGrid.Columns.Add("FirstName", "First Name");
-                visitsDataGrid.Columns.Add("LastName", "Last Name");
-                visitsDataGrid.Columns.Add("Gender", "Gender");
-                visitsDataGrid.Columns.Add("Birthdate", "Birth Date");
-                visitsDataGrid.Columns.Add("IsActive", "Active");
+                visitsDataGrid.Columns.Add("PatientID", "Patient ID");
+                visitsDataGrid.Columns.Add("PatientName", "Patient Name");
+                visitsDataGrid.Columns.Add("DoctorID", "Doctor ID");
+                visitsDataGrid.Columns.Add("DoctorName", "Doctor Name");
+                visitsDataGrid.Columns.Add("NurseID", "Nurse ID");
+                visitsDataGrid.Columns.Add("NurseName", "Nurse Name");
+                visitsDataGrid.Columns.Add("AppointmentDateTime", "Appointment Date/Time");
 
                 visitsDataGrid.Rows.Clear();
 
 
-                foreach (var patient in patients)
+                foreach (var visit in visits)
                 {
-                    visitsDataGrid.Rows.Add(patient.PatientId, patient.Firstname, patient.Lastname, patient.Gender, patient.Birthdate.ToShortDateString(), patient.IsActive);
+                    visitsDataGrid.Rows.Add(visit.PatientID,
+                    visit.PatientName,
+                    visit.DoctorID,
+                    visit.DoctorName,
+                    visit.NurseID,
+                    visit.NurseName,
+                    visit.AppointmentDateTime);
                 }
+                
             }
             else if (this.bothRadioButton.Checked)
             {
-                List<Patient> patients = await patientDAL.GetPatientsByNameAndBirthdate(fnameSearchTextBox.Text, lnameTextBox.Text, this.searchDatePicker.Value);
+                List<dynamic> visits = visitDAL.GetVisitsWithDetailsByPatientNameAndBirthdate(fnameSearchTextBox.Text, lnameTextBox.Text, searchDatePicker.Value);
 
                 visitsDataGrid.Columns.Clear();
-                visitsDataGrid.Columns.Add("PatientId", "Patient ID");
-                visitsDataGrid.Columns.Add("FirstName", "First Name");
-                visitsDataGrid.Columns.Add("LastName", "Last Name");
-                visitsDataGrid.Columns.Add("Gender", "Gender");
-                visitsDataGrid.Columns.Add("Birthdate", "Birth Date");
-                visitsDataGrid.Columns.Add("IsActive", "Active");
+                visitsDataGrid.Columns.Add("PatientID", "Patient ID");
+                visitsDataGrid.Columns.Add("PatientName", "Patient Name");
+                visitsDataGrid.Columns.Add("DoctorID", "Doctor ID");
+                visitsDataGrid.Columns.Add("DoctorName", "Doctor Name");
+                visitsDataGrid.Columns.Add("NurseID", "Nurse ID");
+                visitsDataGrid.Columns.Add("NurseName", "Nurse Name");
+                visitsDataGrid.Columns.Add("AppointmentDateTime", "Appointment Date/Time");
 
                 visitsDataGrid.Rows.Clear();
 
 
-                foreach (var patient in patients)
+                foreach (var visit in visits)
                 {
-                    visitsDataGrid.Rows.Add(patient.PatientId, patient.Firstname, patient.Lastname, patient.Gender, patient.Birthdate.ToShortDateString(), patient.IsActive);
+                    visitsDataGrid.Rows.Add(visit.PatientID,
+                    visit.PatientName,
+                    visit.DoctorID,
+                    visit.DoctorName,
+                    visit.NurseID,
+                    visit.NurseName,
+                    visit.AppointmentDateTime);
                 }
             }
             else
             {
                 MessageBox.Show("No criteria selected.", "Error");
             }
-        }
-
-
-        private void nameRadioButton_Click(object sender, EventArgs e)
-        {
-            this.searchDatePicker.Enabled = false;
-            this.fnameSearchTextBox.Enabled = true;
-            this.lnameTextBox.Enabled = true;
-
-            this.patientSearchButton.Enabled = true;
-            this.clearButton.Enabled = true;
-        }
-
-        private void birthdateRadioButton_CheckedChanged(object sender, EventArgs e)
-        {
-            this.searchDatePicker.Enabled = true;
-            this.fnameSearchTextBox.Enabled = false;
-            this.lnameTextBox.Enabled = false;
-
-            this.patientSearchButton.Enabled = true;
-            this.clearButton.Enabled = true;
-        }
-
-        private void bothRadioButton_CheckedChanged(object sender, EventArgs e)
-        {
-            this.searchDatePicker.Enabled = true;
-            this.fnameSearchTextBox.Enabled = true;
-            this.lnameTextBox.Enabled = true;
-
-            this.patientSearchButton.Enabled = true;
-            this.clearButton.Enabled = true;
         }
 
         private void searchButton_Click(object sender, EventArgs e)
@@ -286,6 +280,36 @@ namespace HealthCareSystem.View
             this.searchDatePicker.Value = DateTime.Now;
             this.fnameSearchTextBox.Text = string.Empty;
             this.lnameTextBox.Text = string.Empty;
+        }
+
+        private void nameRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            this.searchDatePicker.Enabled = false;
+            this.fnameSearchTextBox.Enabled = true;
+            this.lnameTextBox.Enabled = true;
+
+            this.patientSearchButton.Enabled = true;
+            this.clearButton.Enabled = true;
+        }
+
+        private void birthdateRadioButton_CheckedChanged_1(object sender, EventArgs e)
+        {
+            this.searchDatePicker.Enabled = true;
+            this.fnameSearchTextBox.Enabled = false;
+            this.lnameTextBox.Enabled = false;
+
+            this.patientSearchButton.Enabled = true;
+            this.clearButton.Enabled = true;
+        }
+
+        private void bothRadioButton_CheckedChanged_1(object sender, EventArgs e)
+        {
+            this.searchDatePicker.Enabled = true;
+            this.fnameSearchTextBox.Enabled = true;
+            this.lnameTextBox.Enabled = true;
+
+            this.patientSearchButton.Enabled = true;
+            this.clearButton.Enabled = true;
         }
     }
 }

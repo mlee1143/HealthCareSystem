@@ -11,6 +11,7 @@ namespace HealthCareSystem.Model
     {
         public static string HashPassword(string password)
         {
+            /**
             byte[] salt = new byte[16];
             using (var rng = new RNGCryptoServiceProvider())
             {
@@ -27,6 +28,8 @@ namespace HealthCareSystem.Model
 
                 return Convert.ToBase64String(hashBytes);
             }
+            **/
+            return string.Empty;
         }
 
         public static bool VerifyPassword(string password, string savedHash)

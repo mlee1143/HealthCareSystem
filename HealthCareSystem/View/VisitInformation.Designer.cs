@@ -159,7 +159,6 @@
             patientnameLabel.Size = new Size(94, 17);
             patientnameLabel.TabIndex = 5;
             patientnameLabel.Text = "Patient Name:";
-            patientnameLabel.Click += patientnameLabel_Click;
             // 
             // systolicTextBox
             // 
@@ -253,7 +252,6 @@
             diagnosisTextbox.Size = new Size(439, 63);
             diagnosisTextbox.TabIndex = 14;
             diagnosisTextbox.Text = "";
-            diagnosisTextbox.TextChanged += diagnosisTextbox_TextChanged;
             // 
             // heightTextbox
             // 
@@ -568,7 +566,6 @@
             checkupCheckbox.Size = new Size(15, 14);
             checkupCheckbox.TabIndex = 28;
             checkupCheckbox.UseVisualStyleBackColor = true;
-            checkupCheckbox.CheckedChanged += checkBox1_CheckedChanged;
             // 
             // diagnosisCheckbox
             // 

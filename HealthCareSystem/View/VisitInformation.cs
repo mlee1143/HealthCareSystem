@@ -309,21 +309,6 @@ namespace HealthCareSystem.View
             return false;
         }
 
-        private void patientnameLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void diagnosisTextbox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void confirmBtn_Click(object sender, EventArgs e)
         {
             if (this.diagnosisTextbox.Text.Length > 0)
@@ -383,7 +368,6 @@ namespace HealthCareSystem.View
 
         private void orderTestButton_Click(object sender, EventArgs e)
         {
-            //var patientName = patientDAL.GetPatientByID(appointment.PatientID);
             var doctorName = doctorDAL.GetDoctorNameByDoctorID(appointment.DoctorID);
 
             OrderTestPage otestPage = new OrderTestPage(this.nurse, this.appointment.PatientID, this.appointment.DoctorID, doctorName, appointment.AppointmentDateTime, this.nurse.NurseId);

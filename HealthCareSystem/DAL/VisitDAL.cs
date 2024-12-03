@@ -314,7 +314,174 @@ namespace HealthCareSystem.DAL
             }
             return visits;
         }
+
+        /// <summary>
+        /// Gets the name of the visits with details by patient.
+        /// </summary>
+        /// <param name="fname">The fname.</param>
+        /// <param name="lname">The lname.</param>
+        /// <returns></returns>
+        public List<dynamic> GetVisitsWithDetailsByPatientName(string fname, string lname)
+        {
+            List<dynamic> visits = new List<dynamic>();
+
+            using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
+            {
+                connection.Open();
+
+                string query = @"
+            SELECT v.patient_id, 
+                CONCAT(p.fname, ' ', p.lname) AS PatientName, 
+                v.doctor_id, 
+                CONCAT(d.fname, ' ', d.lname) AS DoctorName, 
+                v.nurse_id,
+                CONCAT(n.fname, ' ', n.lname) AS NurseName,
+                v.appointment_datetime
+            FROM visit v
+            JOIN patient p ON v.patient_id = p.patient_id
+            JOIN doctor d ON v.doctor_id = d.doctor_id
+            JOIN nurse n ON v.nurse_id = n.nurse_id
+            WHERE p.fname = @fname AND p.lname = @lname";
+
+                using (var cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@fname", fname);
+                    cmd.Parameters.AddWithValue("@lname", lname);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            visits.Add(new
+                            {
+                                PatientID = reader.GetInt32("patient_id"),
+                                PatientName = reader.GetString("PatientName"),
+                                DoctorID = reader.GetInt32("doctor_id"),
+                                DoctorName = reader.GetString("DoctorName"),
+                                NurseID = reader.GetInt32("nurse_id"),
+                                NurseName = reader.GetString("NurseName"),
+                                AppointmentDateTime = reader.GetDateTime("appointment_datetime")
+                            });
+                        }
+                    }
+                }
+            }
+            return visits;
+        }
+
+
+        /// <summary>
+        /// Gets the visits with details by patient birthdate.
+        /// </summary>
+        /// <param name="birthdate">The birthdate.</param>
+        /// <returns></returns>
+        public List<dynamic> GetVisitsWithDetailsByPatientBirthdate(DateTime birthdate)
+        {
+            List<dynamic> visits = new List<dynamic>();
+
+            var bdate = birthdate.ToString("yyyy-MM-dd");
+
+            using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
+            {
+                connection.Open();
+
+                string query = @"
+            SELECT v.patient_id, 
+                CONCAT(p.fname, ' ', p.lname) AS PatientName, 
+                v.doctor_id, 
+                CONCAT(d.fname, ' ', d.lname) AS DoctorName, 
+                v.nurse_id,
+                CONCAT(n.fname, ' ', n.lname) AS NurseName,
+                v.appointment_datetime
+            FROM visit v
+            JOIN patient p ON v.patient_id = p.patient_id
+            JOIN doctor d ON v.doctor_id = d.doctor_id
+            JOIN nurse n ON v.nurse_id = n.nurse_id
+            WHERE p.bdate = @bdate;";
+
+                using (var cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@bdate", bdate);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            visits.Add(new
+                            {
+                                PatientID = reader.GetInt32("patient_id"),
+                                PatientName = reader.GetString("PatientName"),
+                                DoctorID = reader.GetInt32("doctor_id"),
+                                DoctorName = reader.GetString("DoctorName"),
+                                NurseID = reader.GetInt32("nurse_id"),
+                                NurseName = reader.GetString("NurseName"),
+                                AppointmentDateTime = reader.GetDateTime("appointment_datetime")
+                            });
+                        }
+                    }
+                }
+            }
+            return visits;
+        }
+
+        /// <summary>
+        /// Gets the visits with details by patient name and birthdate.
+        /// </summary>
+        /// <param name="fname">The fname.</param>
+        /// <param name="lname">The lname.</param>
+        /// <param name="birthdate">The birthdate.</param>
+        /// <returns></returns>
+        public List<dynamic> GetVisitsWithDetailsByPatientNameAndBirthdate(string fname, string lname,DateTime birthdate)
+        {
+            List<dynamic> visits = new List<dynamic>();
+
+            var bdate = birthdate.ToString("yyyy-MM-dd");
+
+            using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
+            {
+                connection.Open();
+
+                string query = @"
+            SELECT v.patient_id, 
+                CONCAT(p.fname, ' ', p.lname) AS PatientName, 
+                v.doctor_id, 
+                CONCAT(d.fname, ' ', d.lname) AS DoctorName, 
+                v.nurse_id,
+                CONCAT(n.fname, ' ', n.lname) AS NurseName,
+                v.appointment_datetime
+            FROM visit v
+            JOIN patient p ON v.patient_id = p.patient_id
+            JOIN doctor d ON v.doctor_id = d.doctor_id
+            JOIN nurse n ON v.nurse_id = n.nurse_id
+            WHERE p.fname = @fname AND p.lname = @lname AND p.bdate = @bdate;";
+
+                using (var cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@fname", fname);
+                    cmd.Parameters.AddWithValue("@lname", lname);
+                    cmd.Parameters.AddWithValue("@bdate", bdate);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            visits.Add(new
+                            {
+                                PatientID = reader.GetInt32("patient_id"),
+                                PatientName = reader.GetString("PatientName"),
+                                DoctorID = reader.GetInt32("doctor_id"),
+                                DoctorName = reader.GetString("DoctorName"),
+                                NurseID = reader.GetInt32("nurse_id"),
+                                NurseName = reader.GetString("NurseName"),
+                                AppointmentDateTime = reader.GetDateTime("appointment_datetime")
+                            });
+                        }
+                    }
+                }
+            }
+            return visits;
+        }
+
     }
+
 }
-
-
