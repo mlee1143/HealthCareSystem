@@ -9,8 +9,16 @@ using System.Threading.Tasks;
 
 namespace HealthCareSystem.DAL
 {
+    /// <summary>
+    /// Data Access Layer (DAL) for performing database operations related to the visits.
+    /// Provides methods to retrieve data from vists and update visit.
+    /// </summary>
     public class VisitDAL
     {
+        /// <summary>
+        /// Initializes a new instance of the VisitDAL class.
+        /// Establishes a connection helper for database operations.
+        /// </summary>
         private readonly DataHelper databaseConnection;
 
         public VisitDAL()
