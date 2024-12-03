@@ -39,7 +39,7 @@ namespace HealthCareSystem.Model
         {
             get
             {
-                return $"{Firstname} {Lastname}";
+                return $"{Firstname} {Lastname} {PatientId}";
             }
         }
 
