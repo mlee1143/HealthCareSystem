@@ -23,12 +23,12 @@ namespace HealthCareSystem.DAL
             using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
             {
                 connection.Open();
-                string query = "SELECT * FROM nurse WHERE username = @username";
 
-
-                using (var cmd = new MySqlCommand(query, connection))
+                using (var cmd = new MySqlCommand("GetNurseByUsername", connection))
                 {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@username", username);
+
                     using (var reader = cmd.ExecuteReader())
                     {
                         if (reader.Read())
@@ -61,12 +61,12 @@ namespace HealthCareSystem.DAL
             using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
             {
                 connection.Open();
-                string query = "SELECT * FROM nurse WHERE username = @username AND password = @password";
 
-                using (var cmd = new MySqlCommand(query, connection))
+                using (var cmd = new MySqlCommand("ValidateNurseLogin", connection))
                 {
-                    cmd.Parameters.AddWithValue("@username", username);
-                    cmd.Parameters.AddWithValue("@password", password);
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@input_username", username);
+                    cmd.Parameters.AddWithValue("@input_password", password);
 
                     using (var reader = cmd.ExecuteReader())
                     {

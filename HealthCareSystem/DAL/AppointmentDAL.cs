@@ -2,6 +2,7 @@
 using MySqlConnector;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -24,19 +25,23 @@ namespace HealthCareSystem.DAL
 
             using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
             {
-                string query = "SELECT patient_id, doctor_id, appointment_datetime, reason FROM appointment";
                 connection.Open();
-                using (var command = new MySqlCommand(query, connection))
-                using (var reader = command.ExecuteReader())
+                using (var command = new MySqlCommand("GetAllAppointments", connection))
                 {
-                    while (reader.Read())
+
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    using (var reader = command.ExecuteReader())
                     {
-                        appointments.Add(new Appointment(
-                            reader.GetInt32("patient_id"),
-                            reader.GetInt32("doctor_id"),
-                            reader.GetDateTime("appointment_datetime"),
-                            reader.GetString("reason")
-                            ));
+                        while (reader.Read())
+                        {
+                            appointments.Add(new Appointment(
+                                reader.GetInt32("patient_id"),
+                                reader.GetInt32("doctor_id"),
+                                reader.GetDateTime("appointment_datetime"),
+                                reader.GetString("reason")
+                                ));
+                        }
                     }
                 }
 
@@ -52,22 +57,11 @@ namespace HealthCareSystem.DAL
             using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
             {
                 connection.Open();
-                string query = @"
-            SELECT 
-                a.patient_id, 
-                CONCAT(p.fname, ' ', p.lname) AS PatientName, 
-                a.doctor_id, 
-                CONCAT(d.fname, ' ', d.lname) AS DoctorName, 
-                a.appointment_datetime 
-            FROM 
-                appointment a
-            JOIN 
-                patient p ON a.patient_id = p.patient_id
-            JOIN 
-                doctor d ON a.doctor_id = d.doctor_id";
 
-                using (var cmd = new MySqlCommand(query, connection))
+                using (var cmd = new MySqlCommand("GetAppointments", connection))
                 {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
                     using (var reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
@@ -229,10 +223,20 @@ namespace HealthCareSystem.DAL
             {
                 await connection.OpenAsync();
                 
-                string query = "SELECT a.patient_id, a.doctor_id, a.appointment_datetime, a.reason " +
-                    "FROM appointment a " +
-                    "JOIN patient p ON a.patient_id = p.patient_id " +
-                    "WHERE p.bdate = @birthdate;";
+                string query = " SELECT " +
+                               "a.patient_id, " +
+                               "CONCAT(p.fname, ' ', p.lname) AS PatientName, " +
+                               "a.doctor_id, " +
+                               "CONCAT(d.fname, ' ', d.lname) AS DoctorName, " +
+                               "a.appointment_datetime, " +
+                               "a.reason " +
+                               "FROM " +
+                               "appointment a " +
+                               "JOIN " +
+                               "patient p ON a.patient_id = p.patient_id " +
+                               "JOIN " +
+                               "doctor d ON a.doctor_id = d.doctor_id " +
+                               "WHERE p.bdate = @birthdate;";
 
                 using (var command  = new MySqlCommand(query, connection))
                 {
@@ -247,7 +251,12 @@ namespace HealthCareSystem.DAL
                                 reader.GetInt32("doctor_id"),
                                 reader.GetDateTime("appointment_datetime"),
                                 reader.GetString("reason")
-                                );
+                                )
+                            {
+                                PatientName = reader.GetString("PatientName"),
+                                DoctorName = reader.GetString("DoctorName")
+                            }
+                                ;
 
                             list.Add(appointment);
                         }
@@ -266,10 +275,20 @@ namespace HealthCareSystem.DAL
             {
                 await connection.OpenAsync();
 
-                string query = "SELECT a.patient_id, a.doctor_id, a.appointment_datetime, a.reason " +
-                    "FROM appointment a " +
-                    "JOIN patient p ON a.patient_id = p.patient_id " +
-                    "WHERE p.fname = @fname AND p.lname = @lname;";
+                string query = " SELECT " +
+                              "a.patient_id, " +
+                              "CONCAT(p.fname, ' ', p.lname) AS PatientName, " +
+                              "a.doctor_id, " +
+                              "CONCAT(d.fname, ' ', d.lname) AS DoctorName, " +
+                              "a.appointment_datetime, " +
+                              "a.reason " +
+                              "FROM " +
+                              "appointment a " +
+                              "JOIN " +
+                              "patient p ON a.patient_id = p.patient_id " +
+                              "JOIN " +
+                              "doctor d ON a.doctor_id = d.doctor_id " +
+                              "WHERE p.fname = @fname AND p.lname = @lname;";
 
                 using (var command = new MySqlCommand(query, connection))
                 {
@@ -285,7 +304,12 @@ namespace HealthCareSystem.DAL
                                 reader.GetInt32("doctor_id"),
                                 reader.GetDateTime("appointment_datetime"),
                                 reader.GetString("reason")
-                                );
+                                )
+                            {
+                                PatientName = reader.GetString("PatientName"),
+                                DoctorName = reader.GetString("DoctorName")
+                            };
+
 
                             list.Add(appointment);
                         }
@@ -304,10 +328,20 @@ namespace HealthCareSystem.DAL
             {
                 await connection.OpenAsync();
 
-                string query = "SELECT a.patient_id, a.doctor_id, a.appointment_datetime, a.reason " +
-                    "FROM appointment a " +
-                    "JOIN patient p ON a.patient_id = p.patient_id " +
-                    "WHERE p.fname = @fname AND p.lname = @lname AND p.bdate = @birthdate;";
+                string query = " SELECT " +
+                               "a.patient_id, " +
+                               "CONCAT(p.fname, ' ', p.lname) AS PatientName, " +
+                               "a.doctor_id, " +
+                               "CONCAT(d.fname, ' ', d.lname) AS DoctorName, " +
+                               "a.appointment_datetime, " +
+                               "a.reason " +
+                               "FROM " +
+                               "appointment a " +
+                               "JOIN " +
+                               "patient p ON a.patient_id = p.patient_id " +
+                               "JOIN " +
+                               "doctor d ON a.doctor_id = d.doctor_id " +
+                               "WHERE p.fname = @fname AND p.lname = @lname AND p.bdate = @birthdate;";
 
                 using (var command = new MySqlCommand(query, connection))
                 {
@@ -324,7 +358,11 @@ namespace HealthCareSystem.DAL
                                 reader.GetInt32("doctor_id"),
                                 reader.GetDateTime("appointment_datetime"),
                                 reader.GetString("reason")
-                                );
+                                )
+                            {
+                                PatientName = reader.GetString("PatientName"),
+                                DoctorName = reader.GetString("DoctorName")
+                            };
 
                             list.Add(appointment);
                         }

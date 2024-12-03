@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -157,20 +158,26 @@ namespace HealthCareSystem.View
 
         private async void appointmentSearchButton_Click(object sender, EventArgs e)
         {
-            if (this.nameRadioButton.Checked) // Condense resource - PH takes DataGridView, List as param for both App and Pt
+            if (this.nameRadioButton.Checked)
             {
                 List<Appointment> appointments = await appointmentDAL.GetListOfAppointmentsByPatientName(fnameSearchTextBox.Text, lnameTextBox.Text);
 
                 appointmentsDataGridView.Columns.Clear();
                 appointmentsDataGridView.Columns.Add("PatientID", "Patient ID");
+                appointmentsDataGridView.Columns.Add("PatientName", "Patient Name");
                 appointmentsDataGridView.Columns.Add("DoctorID", "Doctor ID");
+                appointmentsDataGridView.Columns.Add("DoctorName", "Doctor Name");
                 appointmentsDataGridView.Columns.Add("AppointmentDateTime", "Date/Time");
 
                 appointmentsDataGridView.Rows.Clear();
 
                 foreach (var appointment in appointments)
                 {
-                    appointmentsDataGridView.Rows.Add(appointment.PatientID, appointment.DoctorID, appointment.AppointmentDateTime);
+                    appointmentsDataGridView.Rows.Add(appointment.PatientID,
+                    appointment.PatientName,
+                    appointment.DoctorID,
+                    appointment.DoctorName,
+                    appointment.AppointmentDateTime);
                 }
             }
             else if (this.birthdateDateRadioButton.Checked)
@@ -179,14 +186,20 @@ namespace HealthCareSystem.View
 
                 appointmentsDataGridView.Columns.Clear();
                 appointmentsDataGridView.Columns.Add("PatientID", "Patient ID");
+                appointmentsDataGridView.Columns.Add("PatientName", "Patient Name");
                 appointmentsDataGridView.Columns.Add("DoctorID", "Doctor ID");
+                appointmentsDataGridView.Columns.Add("DoctorName", "Doctor Name");
                 appointmentsDataGridView.Columns.Add("AppointmentDateTime", "Date/Time");
 
                 appointmentsDataGridView.Rows.Clear();
 
                 foreach (var appointment in appointments)
                 {
-                    appointmentsDataGridView.Rows.Add(appointment.PatientID, appointment.DoctorID, appointment.AppointmentDateTime);
+                    appointmentsDataGridView.Rows.Add(appointment.PatientID,
+                    appointment.PatientName,
+                    appointment.DoctorID,
+                    appointment.DoctorName,
+                    appointment.AppointmentDateTime);
                 }
             }
             else if (this.bothRadioButton.Checked)
@@ -195,14 +208,20 @@ namespace HealthCareSystem.View
 
                 appointmentsDataGridView.Columns.Clear();
                 appointmentsDataGridView.Columns.Add("PatientID", "Patient ID");
+                appointmentsDataGridView.Columns.Add("PatientName", "Patient Name");
                 appointmentsDataGridView.Columns.Add("DoctorID", "Doctor ID");
+                appointmentsDataGridView.Columns.Add("DoctorName", "Doctor Name");
                 appointmentsDataGridView.Columns.Add("AppointmentDateTime", "Date/Time");
 
                 appointmentsDataGridView.Rows.Clear();
 
                 foreach (var appointment in appointments)
                 {
-                    appointmentsDataGridView.Rows.Add(appointment.PatientID, appointment.DoctorID, appointment.AppointmentDateTime);
+                    appointmentsDataGridView.Rows.Add(appointment.PatientID,
+                    appointment.PatientName,
+                    appointment.DoctorID,
+                    appointment.DoctorName,
+                    appointment.AppointmentDateTime);
                 }
             }
             else
@@ -218,6 +237,7 @@ namespace HealthCareSystem.View
             this.lnameTextBox.Enabled = true;
 
             this.appointmentSearchButton.Enabled = true;
+            this.clearButton.Enabled = true;
         }
 
         private void birthdateDateRadioButton_CheckedChanged(object sender, EventArgs e)
@@ -227,6 +247,7 @@ namespace HealthCareSystem.View
             this.lnameTextBox.Enabled = false;
 
             this.appointmentSearchButton.Enabled = true;
+            this.clearButton.Enabled = true;
         }
 
         private void bothRadioButton_CheckedChanged(object sender, EventArgs e)
@@ -236,6 +257,14 @@ namespace HealthCareSystem.View
             this.lnameTextBox.Enabled = true;
 
             this.appointmentSearchButton.Enabled = true;
+            this.clearButton.Enabled = true;
+        }
+
+        private void clearButton_Click(object sender, EventArgs e)
+        {
+            this.searchDatePicker.Value = DateTime.Now;
+            this.fnameSearchTextBox.Text = string.Empty;
+            this.lnameTextBox.Text = string.Empty;
         }
     }
 }

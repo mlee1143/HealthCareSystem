@@ -97,7 +97,6 @@ namespace HealthCareSystem.View
 
                 this.diagnosisCheckbox.Checked = true;
                 this.checkupCheckbox.Checked = true;
-                this.completedCheckbox.Checked = true;
 
                 this.orderTestButton.Enabled = true;
 
@@ -138,23 +137,36 @@ namespace HealthCareSystem.View
             this.initialDiagnosisLabelSummary.Text += visit.InitialDiagnosis;
             this.finalDiagnosisLabelSummary.Text += visit.FinalDiagnosis;
 
-          
+            try
+            {
+                LabTestDAL labTestDAL = new LabTestDAL();
+                var labTests = labTestDAL.GetAllLabTestsForVisit(visit.Appointment.PatientID, visit.Appointment.AppointmentDateTime);
 
-            //LabTestDAL labDal = new LabTestDAL();
-           // List<LabTest> tests = labDal.GetLabTestsForVisit(visit.PatientID, visit.DoctorID, this.nurse.NurseId, visit.AppointmentDateTime);
+                orderedTestsGridview.Columns.Clear();
+                orderedTestsGridview.Columns.Add("TestCode", "Test Code");
+                orderedTestsGridview.Columns.Add("TestName", "Test Name");
+                orderedTestsGridview.Columns.Add("TestPerformDate", "Test Performed Date");
+                orderedTestsGridview.Columns.Add("Result", "Result");
+                orderedTestsGridview.Columns.Add("Abnormal", "Abnormal");
 
-            //orderedTestsGridview.Columns.Clear();
-            //orderedTestsGridview.Columns.Add("TestCode", "Test Code");
-            //orderedTestsGridview.Columns.Add("TestName", "Test Name");
-            //orderedTestsGridview.Columns.Add("TestDateTime", "Test Date/Time");
+                orderedTestsGridview.Rows.Clear();
+                foreach (var (labTest, testType) in labTests)
+                {
+                    orderedTestsGridview.Rows.Add(
+                        labTest.TestCode,
+                        testType.TestName,
+                        labTest.TestDateTime?.ToString("yyyy-MM-dd HH:mm") ?? "N/A",
+                        labTest.Result ?? "N/A",
+                        labTest.IsAbnormal.HasValue ? (labTest.IsAbnormal.Value ? "Yes" : "No") : "N/A"
+                    );
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while loading test details: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
-            //orderedTestsGridview.Rows.Clear();
-           // foreach (LabTest test in tests)
-           // {
-           //    this.orderedTestsGridview.Rows.Add(test.TestCode, test.TestName, test.TestDateTime);
-          //  }
 
-           
         }
 
         private bool IsNumberValid(string number)
@@ -341,7 +353,6 @@ namespace HealthCareSystem.View
                     this.checkupButton.Enabled = false;
                     this.diagnosisButton.Enabled = false;
                     this.diagnosisCheckbox.Checked = true;
-                    this.completedCheckbox.Checked = true;
                     this.completedButton.Enabled = true;
 
                     this.diagnosisGroupbox.Visible = false;

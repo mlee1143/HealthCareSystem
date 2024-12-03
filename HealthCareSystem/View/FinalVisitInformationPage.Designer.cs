@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             symbolPictureBox = new PictureBox();
             healthCareNamePanel = new Panel();
             healthCareNameLabel = new Label();
@@ -103,9 +106,9 @@
             visitInforGroupBox.Controls.Add(weightLabel);
             visitInforGroupBox.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             visitInforGroupBox.ForeColor = Color.FromArgb(242, 243, 244);
-            visitInforGroupBox.Location = new Point(12, 141);
+            visitInforGroupBox.Location = new Point(12, 124);
             visitInforGroupBox.Name = "visitInforGroupBox";
-            visitInforGroupBox.Size = new Size(729, 393);
+            visitInforGroupBox.Size = new Size(729, 434);
             visitInforGroupBox.TabIndex = 2;
             visitInforGroupBox.TabStop = false;
             visitInforGroupBox.Text = "Information Summary";
@@ -114,44 +117,67 @@
             // 
             orderedTestDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             orderedTestDataGridView.BackgroundColor = Color.FromArgb(93, 173, 226);
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = SystemColors.Control;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
+            dataGridViewCellStyle4.ForeColor = Color.Black;
+            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            orderedTestDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             orderedTestDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            orderedTestDataGridView.Location = new Point(372, 256);
+            orderedTestDataGridView.GridColor = Color.Black;
+            orderedTestDataGridView.Location = new Point(32, 308);
             orderedTestDataGridView.Name = "orderedTestDataGridView";
             orderedTestDataGridView.ReadOnly = true;
-            orderedTestDataGridView.Size = new Size(338, 112);
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = SystemColors.Control;
+            dataGridViewCellStyle5.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
+            dataGridViewCellStyle5.ForeColor = Color.Black;
+            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
+            orderedTestDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle6.BackColor = SystemColors.Window;
+            dataGridViewCellStyle6.ForeColor = Color.Black;
+            orderedTestDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            orderedTestDataGridView.Size = new Size(666, 111);
             orderedTestDataGridView.TabIndex = 12;
             // 
             // finalDiagnosisTextBox
             // 
-            finalDiagnosisTextBox.Location = new Point(4, 256);
+            finalDiagnosisTextBox.Enabled = false;
+            finalDiagnosisTextBox.Location = new Point(495, 107);
             finalDiagnosisTextBox.Multiline = true;
             finalDiagnosisTextBox.Name = "finalDiagnosisTextBox";
             finalDiagnosisTextBox.ReadOnly = true;
-            finalDiagnosisTextBox.Size = new Size(338, 112);
+            finalDiagnosisTextBox.Size = new Size(228, 164);
             finalDiagnosisTextBox.TabIndex = 11;
             // 
             // initialDiagnosisTextBox
             // 
-            initialDiagnosisTextBox.Location = new Point(372, 107);
+            initialDiagnosisTextBox.Enabled = false;
+            initialDiagnosisTextBox.Location = new Point(237, 107);
             initialDiagnosisTextBox.Multiline = true;
             initialDiagnosisTextBox.Name = "initialDiagnosisTextBox";
             initialDiagnosisTextBox.ReadOnly = true;
-            initialDiagnosisTextBox.Size = new Size(338, 112);
+            initialDiagnosisTextBox.Size = new Size(237, 164);
             initialDiagnosisTextBox.TabIndex = 10;
             // 
             // symptomsTextBox
             // 
+            symptomsTextBox.Enabled = false;
             symptomsTextBox.Location = new Point(6, 107);
             symptomsTextBox.Multiline = true;
             symptomsTextBox.Name = "symptomsTextBox";
             symptomsTextBox.ReadOnly = true;
-            symptomsTextBox.Size = new Size(338, 112);
+            symptomsTextBox.Size = new Size(214, 164);
             symptomsTextBox.TabIndex = 9;
             // 
             // orderedTestsLabel
             // 
             orderedTestsLabel.AutoSize = true;
-            orderedTestsLabel.Location = new Point(372, 234);
+            orderedTestsLabel.Location = new Point(32, 286);
             orderedTestsLabel.Name = "orderedTestsLabel";
             orderedTestsLabel.Size = new Size(98, 19);
             orderedTestsLabel.TabIndex = 8;
@@ -160,7 +186,7 @@
             // finalDiagnosisLabel
             // 
             finalDiagnosisLabel.AutoSize = true;
-            finalDiagnosisLabel.Location = new Point(6, 234);
+            finalDiagnosisLabel.Location = new Point(495, 85);
             finalDiagnosisLabel.Name = "finalDiagnosisLabel";
             finalDiagnosisLabel.Size = new Size(107, 19);
             finalDiagnosisLabel.TabIndex = 7;
@@ -169,7 +195,7 @@
             // intialDIagnosisLabel
             // 
             intialDIagnosisLabel.AutoSize = true;
-            intialDIagnosisLabel.Location = new Point(372, 85);
+            intialDIagnosisLabel.Location = new Point(233, 85);
             intialDIagnosisLabel.Name = "intialDIagnosisLabel";
             intialDIagnosisLabel.Size = new Size(113, 19);
             intialDIagnosisLabel.TabIndex = 6;
@@ -189,45 +215,45 @@
             bloodPressureLabel.AutoSize = true;
             bloodPressureLabel.Location = new Point(539, 35);
             bloodPressureLabel.Name = "bloodPressureLabel";
-            bloodPressureLabel.Size = new Size(104, 19);
+            bloodPressureLabel.Size = new Size(108, 19);
             bloodPressureLabel.TabIndex = 4;
-            bloodPressureLabel.Text = "Blood Pressure:";
+            bloodPressureLabel.Text = "Blood Pressure: ";
             // 
             // pulseLabel
             // 
             pulseLabel.AutoSize = true;
-            pulseLabel.Location = new Point(405, 35);
+            pulseLabel.Location = new Point(414, 35);
             pulseLabel.Name = "pulseLabel";
-            pulseLabel.Size = new Size(45, 19);
+            pulseLabel.Size = new Size(49, 19);
             pulseLabel.TabIndex = 3;
-            pulseLabel.Text = "Pulse:";
+            pulseLabel.Text = "Pulse: ";
             // 
             // temperatureLabel
             // 
             temperatureLabel.AutoSize = true;
-            temperatureLabel.Location = new Point(222, 35);
+            temperatureLabel.Location = new Point(252, 35);
             temperatureLabel.Name = "temperatureLabel";
-            temperatureLabel.Size = new Size(90, 19);
+            temperatureLabel.Size = new Size(94, 19);
             temperatureLabel.TabIndex = 2;
-            temperatureLabel.Text = "Temperature:";
+            temperatureLabel.Text = "Temperature: ";
             // 
             // heightLabel
             // 
             heightLabel.AutoSize = true;
-            heightLabel.Location = new Point(107, 35);
+            heightLabel.Location = new Point(122, 35);
             heightLabel.Name = "heightLabel";
-            heightLabel.Size = new Size(54, 19);
+            heightLabel.Size = new Size(58, 19);
             heightLabel.TabIndex = 1;
-            heightLabel.Text = "Height:";
+            heightLabel.Text = "Height: ";
             // 
             // weightLabel
             // 
             weightLabel.AutoSize = true;
             weightLabel.Location = new Point(6, 35);
             weightLabel.Name = "weightLabel";
-            weightLabel.Size = new Size(58, 19);
+            weightLabel.Size = new Size(62, 19);
             weightLabel.TabIndex = 0;
-            weightLabel.Text = "Weight:";
+            weightLabel.Text = "Weight: ";
             // 
             // nurseNameLabel
             // 
@@ -256,7 +282,7 @@
             patientInfoLabel.AutoSize = true;
             patientInfoLabel.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             patientInfoLabel.ForeColor = Color.FromArgb(242, 243, 244);
-            patientInfoLabel.Location = new Point(344, 88);
+            patientInfoLabel.Location = new Point(389, 88);
             patientInfoLabel.Name = "patientInfoLabel";
             patientInfoLabel.Size = new Size(56, 19);
             patientInfoLabel.TabIndex = 5;
@@ -268,7 +294,7 @@
             goBackButton.FlatAppearance.BorderSize = 0;
             goBackButton.FlatStyle = FlatStyle.Flat;
             goBackButton.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
-            goBackButton.Location = new Point(312, 564);
+            goBackButton.Location = new Point(317, 576);
             goBackButton.Name = "goBackButton";
             goBackButton.Size = new Size(105, 45);
             goBackButton.TabIndex = 6;

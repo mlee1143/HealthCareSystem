@@ -37,10 +37,11 @@ namespace HealthCareSystem.DAL
             using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
             {
                 connection.Open();
-                string query = "SELECT * FROM patient";
 
-                using (var cmd = new MySqlCommand(query, connection))
+                using (var cmd = new MySqlCommand("GetAllPatients", connection))
                 {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
                     using (var reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
@@ -480,6 +481,23 @@ namespace HealthCareSystem.DAL
             return null;
         }
 
+        public bool ToggleActiveForPatientByID(int id)
+        {
+            using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
+            {
+                connection.Open();
+
+                string query = "UPDATE patient SET active = CASE WHEN active = 1 THEN 0 ELSE 1 END WHERE patient_id = @id;";
+
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@id", id);
+                    
+                    int count = Convert.ToInt32(command.ExecuteScalar());
+                    return count > 0;
+                }
+            }
+        }
 
     }
 }

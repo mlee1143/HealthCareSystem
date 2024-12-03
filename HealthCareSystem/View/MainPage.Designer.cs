@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             healthCareNamePanel = new Panel();
             healthCareNameLabel = new Label();
             symbolPictureBox = new PictureBox();
@@ -42,9 +43,12 @@
             genericNursePictureBox = new PictureBox();
             idLabel = new Label();
             registeredPatiensDataGridView = new DataGridView();
+            contextMenuStrip1 = new ContextMenuStrip(components);
+            activateDeactivateToolStripMenuItem = new ToolStripMenuItem();
             patientsLabel = new Label();
             errormessageLabel = new Label();
             searchGroupBox = new GroupBox();
+            clearButton = new Button();
             patientSearchButton = new Button();
             lnameTextBox = new TextBox();
             fnameSearchTextBox = new TextBox();
@@ -57,6 +61,7 @@
             buttonsPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)genericNursePictureBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)registeredPatiensDataGridView).BeginInit();
+            contextMenuStrip1.SuspendLayout();
             searchGroupBox.SuspendLayout();
             SuspendLayout();
             // 
@@ -234,11 +239,26 @@
             registeredPatiensDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             registeredPatiensDataGridView.BackgroundColor = Color.FromArgb(93, 173, 226);
             registeredPatiensDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            registeredPatiensDataGridView.ContextMenuStrip = contextMenuStrip1;
             registeredPatiensDataGridView.Location = new Point(180, 239);
             registeredPatiensDataGridView.Name = "registeredPatiensDataGridView";
             registeredPatiensDataGridView.RowHeadersWidth = 62;
             registeredPatiensDataGridView.Size = new Size(595, 334);
             registeredPatiensDataGridView.TabIndex = 5;
+            registeredPatiensDataGridView.MouseDown += registeredPatiensDataGridView_MouseDown;
+            // 
+            // contextMenuStrip1
+            // 
+            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { activateDeactivateToolStripMenuItem });
+            contextMenuStrip1.Name = "contextMenuStrip1";
+            contextMenuStrip1.Size = new Size(178, 26);
+            // 
+            // activateDeactivateToolStripMenuItem
+            // 
+            activateDeactivateToolStripMenuItem.Name = "activateDeactivateToolStripMenuItem";
+            activateDeactivateToolStripMenuItem.Size = new Size(177, 22);
+            activateDeactivateToolStripMenuItem.Text = "Activate/Deactivate";
+            activateDeactivateToolStripMenuItem.Click += activateDeactivateToolStripMenuItem_Click;
             // 
             // patientsLabel
             // 
@@ -265,6 +285,7 @@
             // 
             // searchGroupBox
             // 
+            searchGroupBox.Controls.Add(clearButton);
             searchGroupBox.Controls.Add(patientSearchButton);
             searchGroupBox.Controls.Add(lnameTextBox);
             searchGroupBox.Controls.Add(fnameSearchTextBox);
@@ -281,6 +302,21 @@
             searchGroupBox.Text = "Search for patient:";
             searchGroupBox.Visible = false;
             // 
+            // clearButton
+            // 
+            clearButton.BackColor = Color.FromArgb(255, 255, 244);
+            clearButton.Enabled = false;
+            clearButton.FlatAppearance.BorderSize = 0;
+            clearButton.FlatStyle = FlatStyle.Flat;
+            clearButton.ForeColor = Color.Black;
+            clearButton.Location = new Point(349, 92);
+            clearButton.Name = "clearButton";
+            clearButton.Size = new Size(75, 23);
+            clearButton.TabIndex = 7;
+            clearButton.Text = "Clear";
+            clearButton.UseVisualStyleBackColor = false;
+            clearButton.Click += clearButton_Click;
+            // 
             // patientSearchButton
             // 
             patientSearchButton.BackColor = Color.FromArgb(255, 255, 244);
@@ -288,7 +324,7 @@
             patientSearchButton.FlatAppearance.BorderSize = 0;
             patientSearchButton.FlatStyle = FlatStyle.Flat;
             patientSearchButton.ForeColor = Color.Black;
-            patientSearchButton.Location = new Point(253, 92);
+            patientSearchButton.Location = new Point(209, 92);
             patientSearchButton.Name = "patientSearchButton";
             patientSearchButton.Size = new Size(75, 23);
             patientSearchButton.TabIndex = 6;
@@ -382,6 +418,7 @@
             buttonsPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)genericNursePictureBox).EndInit();
             ((System.ComponentModel.ISupportInitialize)registeredPatiensDataGridView).EndInit();
+            contextMenuStrip1.ResumeLayout(false);
             searchGroupBox.ResumeLayout(false);
             searchGroupBox.PerformLayout();
             ResumeLayout(false);
@@ -414,5 +451,8 @@
         private TextBox fnameSearchTextBox;
         private Button appointmentsButton;
         private Button visitsButton;
+        private Button clearButton;
+        private ContextMenuStrip contextMenuStrip1;
+        private ToolStripMenuItem activateDeactivateToolStripMenuItem;
     }
 }

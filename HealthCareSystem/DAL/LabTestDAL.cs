@@ -25,10 +25,9 @@ namespace HealthCareSystem.DAL
             {
                 connection.Open();
 
-                string query = @"SELECT test_code, test_name, low, high, unit_measurement FROM test_type";
-
-                using (var cmd = new MySqlCommand(query, connection))
+                using (var cmd = new MySqlCommand("GetTestTypes", connection))
                 {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
                     using (var reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
