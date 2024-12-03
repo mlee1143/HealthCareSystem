@@ -97,6 +97,7 @@ namespace HealthCareSystem.Model
         {
             this.Firstname = firstname ?? throw new ArgumentNullException(nameof(firstname), $"{nameof(firstname)} cannot be null");
             this.Lastname = lastname ?? throw new ArgumentNullException(nameof(lastname), $"{nameof(lastname)} cannot be null");
+            this.Birthdate = birthdate;
             this.Gender = gender ?? throw new ArgumentNullException(nameof(gender), $"{nameof(lastname)} cannot be null");
             this.Address = address ?? throw new ArgumentNullException(nameof(address), $"{nameof(address)} cannot be null");
             this.City = city ?? throw new ArgumentNullException(nameof(city), $"{nameof(city)} cannot be null");
