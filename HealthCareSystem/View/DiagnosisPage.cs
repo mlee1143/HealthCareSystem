@@ -93,6 +93,7 @@ namespace HealthCareSystem.View
                 if (result == DialogResult.Yes)
                 {
                     this.visitDAL.UpdateFinalDiagnosisForVisit(this.finalDiagnosisTextBox.Text, this.appointment.PatientID, this.appointment.AppointmentDateTime);
+                    this.submitButton.Enabled = false;
                 }
 
             }
