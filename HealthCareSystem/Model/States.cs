@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 
 namespace HealthCareSystem.Model
 {
+    /// <summary>
+    /// Represents U.S. states and the District of Columbia in the health care system.
+    /// Includes descriptive names for each state.
+    /// </summary>
     public enum States
     {
         [Description("Alabama")]

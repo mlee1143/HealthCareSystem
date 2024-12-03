@@ -8,15 +8,31 @@ using System.Threading.Tasks;
 
 namespace HealthCareSystem.DAL
 {
+    /// <summary>
+    /// Data Access Layer (DAL) for performing database operations related to the Administrator.
+    /// Provides methods to validate login and retrieve visit reports.
+    /// </summary>
     public class AdministratorDAL
     {
         private readonly DataHelper databaseConnection;
 
+        /// <summary>
+        /// Initializes a new instance of the AdministratorDAL class.
+        /// Establishes a connection helper for database operations.
+        /// </summary>
         public AdministratorDAL()
         {
             this.databaseConnection = new DataHelper();
         }
 
+        /// <summary>
+        /// Validates the administrator's login credentials.
+        /// </summary>
+        /// <param name="username">The administrator's username.</param>
+        /// <param name="password">The administrator's password.</param>
+        /// <returns>
+        /// An Administrator object if credentials are valid; otherwise, null.
+        /// </returns>
         public Administrator? ValidateAdministratorLogin(string username, string password)
         {
             using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
@@ -56,6 +72,14 @@ namespace HealthCareSystem.DAL
             return null;
         }
 
+        /// <summary>
+        /// Retrieves a list of visit reports within a specified date range.
+        /// </summary>
+        /// <param name="startDate">The start date for the report.</param>
+        /// <param name="endDate">The end date for the report.</param>
+        /// <returns>
+        /// A list of visit reports as dynamic objects containing patient, doctor, and nurse details.
+        /// </returns>
         public List<dynamic> GetVisitReports(DateTime startDate, DateTime endDate)
         {
             List<dynamic> visits = new List<dynamic>();

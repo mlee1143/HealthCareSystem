@@ -8,15 +8,27 @@ using MySqlConnector;
 
 namespace HealthCareSystem.DAL
 {
+    /// <summary>
+    /// Data Access Layer (DAL) for performing database operations related to doctors.
+    /// Provides methods to retrieve doctor information and names based on their ID.
+    /// </summary>
     public class DoctorDAL
     {
         private readonly DataHelper databaseConnection;
 
+        /// <summary>
+        /// Initializes a new instance of the DoctorDAL class.
+        /// Establishes a connection helper for database operations.
+        /// </summary>
         public DoctorDAL()
         {
             this.databaseConnection = new DataHelper();
         }
 
+        /// <summary>
+        /// Retrieves all doctors from the database.
+        /// </summary>
+        /// <returns>A list of Doctor objects containing detailed information about each doctor.</returns>
         public List<Doctor> GetAllDoctors()
         {
             List<Doctor> doctors = new List<Doctor>();
@@ -58,6 +70,11 @@ namespace HealthCareSystem.DAL
                 return doctors;
         }
 
+        /// <summary>
+        /// Retrieves the full name of a doctor based on their unique ID.
+        /// </summary>
+        /// <param name="id">The unique identifier of the doctor.</param>
+        /// <returns>The full name of the doctor as a string if found; otherwise, null.</returns>
         public string GetDoctorNameByDoctorID(int id)
         {
             using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))

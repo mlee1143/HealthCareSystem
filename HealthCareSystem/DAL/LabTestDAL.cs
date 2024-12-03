@@ -8,15 +8,28 @@ using System.Threading.Tasks;
 
 namespace HealthCareSystem.DAL
 {
+    /// <summary>
+    /// Data Access Layer (DAL) for performing database operations related to lab tests.
+    /// Provides methods for retrieving, inserting, updating, and validating lab tests.
+    /// </summary>
     public class LabTestDAL
     {
+
         private readonly DataHelper databaseConnection;
 
+        /// <summary>
+        /// Initializes a new instance of the LabTestDAL class.
+        /// Establishes a connection helper for database operations.
+        /// </summary>
         public LabTestDAL()
         {
             this.databaseConnection = new DataHelper();
         }
 
+        /// <summary>
+        /// Retrieves all test types from the database.
+        /// </summary>
+        /// <returns>A list of TestType objects containing information about each test type.</returns>
         public List<TestType> GetAllTestTypes()
         {
             List<TestType> testTypes = new List<TestType>();
@@ -47,6 +60,15 @@ namespace HealthCareSystem.DAL
             return testTypes;
         }
 
+        /// <summary>
+        /// Inserts multiple lab tests for a specific appointment into the database.
+        /// </summary>
+        /// <param name="testCodes">A list of test codes to be inserted.</param>
+        /// <param name="patientId">The ID of the patient associated with the tests.</param>
+        /// <param name="nurseId">The ID of the nurse who assisted with the tests.</param>
+        /// <param name="doctorId">The ID of the doctor who ordered the tests.</param>
+        /// <param name="appointmentDateTime">The date and time of the associated appointment.</param>
+        /// <returns>True if the insertion was successful; otherwise, false.</returns>
         public bool InsertLabTests(List<int> testCodes, int patientId, int nurseId, int doctorId, DateTime appointmentDateTime)
         {
             using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
@@ -87,6 +109,13 @@ namespace HealthCareSystem.DAL
             }
         }
 
+        /// <summary>
+        /// Checks if a specific lab test has already been ordered for a patient.
+        /// </summary>
+        /// <param name="testCode">The code of the test to check.</param>
+        /// <param name="patientId">The ID of the patient.</param>
+        /// <param name="appointmentDateTime">The date and time of the associated appointment.</param>
+        /// <returns>True if the test has already been ordered; otherwise, false.</returns>
         public bool IsTestAlreadyOrderedForPatient(int testCode, int patientId, DateTime appointmentDateTime)
         {
             using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
@@ -109,7 +138,12 @@ namespace HealthCareSystem.DAL
             }
         }
 
-
+        /// <summary>
+        /// Retrieves all lab tests and their associated test types for a specific visit.
+        /// </summary>
+        /// <param name="patientId">The ID of the patient associated with the visit.</param>
+        /// <param name="appointmentDateTime">The date and time of the associated appointment.</param>
+        /// <returns>A list of tuples, each containing a LabTest object and a TestType object.</returns>
         public List<(LabTest, TestType)> GetAllLabTestsForVisit(int patientId, DateTime appointmentDateTime)
         {
             var labTests = new List<(LabTest, TestType)>();
@@ -160,6 +194,18 @@ namespace HealthCareSystem.DAL
             return labTests;
         }
 
+        /// <summary>
+        /// Updates the result of a specific lab test in the database.
+        /// </summary>
+        /// <param name="testCode">The code of the test to update.</param>
+        /// <param name="patientId">The ID of the patient associated with the test.</param>
+        /// <param name="nurseId">The ID of the nurse who assisted with the test.</param>
+        /// <param name="doctorId">The ID of the doctor who ordered the test.</param>
+        /// <param name="appointmentDateTime">The date and time of the associated appointment.</param>
+        /// <param name="testDateTime">The date and time when the test was conducted.</param>
+        /// <param name="isAbnormal">Indicates whether the test result is abnormal. This value can be null.</param>
+        /// <param name="result">The result of the test.</param>
+        /// <returns>True if the update was successful; otherwise, false.</returns>
         public bool UpdateLabTestResult(int testCode, int patientId, int nurseId, int doctorId, DateTime appointmentDateTime, DateTime testDateTime, bool? isAbnormal, decimal result)
         {
             using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))

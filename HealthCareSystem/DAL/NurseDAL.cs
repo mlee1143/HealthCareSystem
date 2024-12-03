@@ -9,15 +9,28 @@ using System.Threading.Tasks;
 
 namespace HealthCareSystem.DAL
 {
+    /// <summary>
+    /// Data Access Layer (DAL) for performing database operations related to Nurses.
+    /// Provides methods for retrieving and validating nurse data.
+    /// </summary>
     public class NurseDAL
     {
         private readonly DataHelper databaseConnection;
 
+        /// <summary>
+        /// Initializes a new instance of the NurseDAL class.
+        /// Establishes a connection helper for database operations.
+        /// </summary>
         public NurseDAL()
         {
             this.databaseConnection = new DataHelper();
         }
 
+        /// <summary>
+        /// Retrieves a Nurse object by username.
+        /// </summary>
+        /// <param name="username">The username of the nurse.</param>
+        /// <returns>A Nurse object if the username exists; otherwise, null.</returns>
         public Nurse?  GetNurseByUsername(string username)
         {
             using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
@@ -56,6 +69,12 @@ namespace HealthCareSystem.DAL
             return null;
         }
 
+        /// <summary>
+        /// Validates the nurse's login credentials.
+        /// </summary>
+        /// <param name="username">The nurse's username.</param>
+        /// <param name="password">The nurse's password.</param>
+        /// <returns>A Nurse object if the credentials are valid; otherwise, null.</returns>
         public Nurse? ValidateNurseLogin(string username, string password)
         {
             using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))

@@ -10,15 +10,27 @@ using System.Threading.Tasks;
 
 namespace HealthCareSystem.DAL
 {
+    /// <summary>
+    /// Data Access Layer (DAL) for managing database operations related to appointments.
+    /// Provides methods for fetching, inserting, updating, and validating appointment data.
+    /// </summary>
     public class AppointmentDAL
     {
         private readonly DataHelper databaseConnection;
 
+        /// <summary>
+        /// Initializes a new instance of the AppointmentDAL class.
+        /// Establishes a connection helper for database operations.
+        /// </summary>
         public AppointmentDAL()
         {
             this.databaseConnection = new DataHelper();
         }
 
+        /// <summary>
+        /// Retrieves all appointments from the database.
+        /// </summary>
+        /// <returns>A list of Appointment objects containing basic appointment data.</returns>
         public List<Appointment> getAllAppointments() 
         {
             List<Appointment> appointments = new List<Appointment>();
@@ -50,6 +62,10 @@ namespace HealthCareSystem.DAL
                 return appointments;
         }
 
+        /// <summary>
+        /// Retrieves all appointments with detailed information, including patient and doctor names.
+        /// </summary>
+        /// <returns>A list of dynamic objects containing detailed appointment data.</returns>
         public List<dynamic> getAllAppointmentsWithDetails()
         {
             List<dynamic> appointments = new List<dynamic>();
@@ -82,7 +98,10 @@ namespace HealthCareSystem.DAL
             return appointments;
         }
 
-
+        /// <summary>
+        /// Retrieves all appointments with detailed information, including patient and doctor names.
+        /// </summary>
+        /// <returns>A list of dynamic objects containing detailed appointment data.</returns>
         public bool InsertAppointment(Appointment appointment)
         {
             using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
@@ -105,6 +124,11 @@ namespace HealthCareSystem.DAL
             }
         }
 
+        /// <summary>
+        /// Checks if an appointment already exists in the database.
+        /// </summary>
+        /// <param name="appointment">The appointment object to check for existence.</param>
+        /// <returns>True if the appointment exists; otherwise, false.</returns>
         public bool AppointmentExists(Appointment appointment)
         {
             using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
@@ -125,6 +149,15 @@ namespace HealthCareSystem.DAL
             }
         }
 
+        /// <summary>
+        /// Checks if a doctor already has an appointment at a specific date and time.
+        /// Optionally excludes certain appointments from the check.
+        /// </summary>
+        /// <param name="doctorId">The ID of the doctor.</param>
+        /// <param name="appointmentDateTime">The date and time of the appointment.</param>
+        /// <param name="excludePatientId">Optional: The patient ID to exclude from the check.</param>
+        /// <param name="excludeDateTime">Optional: The date and time to exclude from the check.</param>
+        /// <returns>True if the doctor has a conflicting appointment; otherwise, false.</returns>
         public bool DoctorAppointmentExists(int doctorId, DateTime appointmentDateTime, int? excludePatientId = null, DateTime? excludeDateTime = null)
         {
             using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
@@ -156,6 +189,12 @@ namespace HealthCareSystem.DAL
             }
         }
 
+        /// <summary>
+        /// Retrieves a specific appointment by patient ID and appointment date and time.
+        /// </summary>
+        /// <param name="patientId">The ID of the patient.</param>
+        /// <param name="appointmentDateTime">The date and time of the appointment.</param>
+        /// <returns>An Appointment object if the appointment exists; otherwise, null.</returns>
         public Appointment GetAppointment(int patientId, DateTime appointmentDateTime)
         {
             using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
@@ -187,6 +226,13 @@ namespace HealthCareSystem.DAL
             return null;
         }
 
+        /// <summary>
+        /// Updates an existing appointment in the database.
+        /// </summary>
+        /// <param name="originalPatientId">The original patient ID of the appointment to update.</param>
+        /// <param name="originalDateTime">The original date and time of the appointment to update.</param>
+        /// <param name="appointment">The new appointment object containing updated data.</param>
+        /// <returns>True if the update was successful; otherwise, false.</returns>
         public bool UpdateAppointment(int originalPatientId, DateTime originalDateTime, Appointment appointment)
         {
             using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
@@ -211,9 +257,11 @@ namespace HealthCareSystem.DAL
             }
         }
 
-
-
-
+        /// <summary>
+        /// Asynchronously retrieves a list of appointments by the patient's birthdate.
+        /// </summary>
+        /// <param name="birthdate">The birthdate of the patient.</param>
+        /// <returns>A task that resolves to a list of Appointment objects matching the birthdate.</returns>
         public async Task<List<Appointment>> GetListOfAppointmentsByPatientBirthdate(DateTime birthdate)
         {
             List<Appointment> list = new List<Appointment>();
@@ -265,6 +313,13 @@ namespace HealthCareSystem.DAL
             }
             return list;
         }
+
+        /// <summary>
+        /// Asynchronously retrieves a list of appointments by the patient's first and last name.
+        /// </summary>
+        /// <param name="fname">The first name of the patient.</param>
+        /// <param name="lname">The last name of the patient.</param>
+        /// <returns>A task that resolves to a list of Appointment objects matching the patient's name.</returns>
 
         public async Task<List<Appointment>> GetListOfAppointmentsByPatientName(string fname, string lname)
         {
@@ -319,6 +374,13 @@ namespace HealthCareSystem.DAL
             return list;
         }
 
+        /// <summary>
+        /// Asynchronously retrieves a list of appointments by the patient's name and birthdate.
+        /// </summary>
+        /// <param name="fname">The first name of the patient.</param>
+        /// <param name="lname">The last name of the patient.</param>
+        /// <param name="birthdate">The birthdate of the patient.</param>
+        /// <returns>A task that resolves to a list of Appointment objects matching the name and birthdate.</returns>
         public async Task<List<Appointment>> GetListOfAppointmentsByPatientNameAndBirthdate(string fname, string lname, DateTime birthdate)
         {
             List<Appointment> list = new List<Appointment>();

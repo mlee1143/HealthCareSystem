@@ -481,6 +481,11 @@ namespace HealthCareSystem.DAL
             return null;
         }
 
+        /// <summary>
+        /// Toggles the active for patient by identifier.
+        /// </summary>
+        /// <param name="id">The specified ID.</param>
+        /// <returns> True if the patient is active. False otherwise</returns>
         public bool ToggleActiveForPatientByID(int id)
         {
             using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
