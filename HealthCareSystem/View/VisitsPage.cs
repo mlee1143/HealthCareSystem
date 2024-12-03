@@ -15,11 +15,14 @@ namespace HealthCareSystem.View
     public partial class VisitsPage : Form
     {
         private Nurse nurse;
+        private PatientDAL patientDAL;
+
         public VisitsPage(Nurse nurse)
         {
             InitializeComponent();
 
             this.nurse = nurse;
+            this.patientDAL = new PatientDAL();
             this.setLoggedNurseInfo();
             this.loadVisits();
         }
@@ -161,5 +164,129 @@ namespace HealthCareSystem.View
                 MessageBox.Show("Please select a visit to order tests for.");
             }
         }
+
+        private async void patientSearchButton_Click(object sender, EventArgs e)
+        {
+            if (this.nameRadioButton.Checked) // Condense this part PH
+            {
+                List<Patient> patients = await patientDAL.GetPatientsByName(fnameSearchTextBox.Text, lnameTextBox.Text);
+
+                visitsDataGrid.Columns.Clear();
+                visitsDataGrid.Columns.Add("PatientId", "Patient ID");
+                visitsDataGrid.Columns.Add("FirstName", "First Name");
+                visitsDataGrid.Columns.Add("LastName", "Last Name");
+                visitsDataGrid.Columns.Add("Gender", "Gender");
+                visitsDataGrid.Columns.Add("Birthdate", "Birth Date");
+                visitsDataGrid.Columns.Add("IsActive", "Active");
+
+                visitsDataGrid.Rows.Clear();
+
+
+                foreach (var patient in patients)
+                {
+                    visitsDataGrid.Rows.Add(patient.PatientId, patient.Firstname, patient.Lastname, patient.Gender, patient.Birthdate.ToShortDateString(), patient.IsActive);
+                }
+            }
+            else if (this.birthdateRadioButton.Checked)
+            {
+                List<Patient> patients = await patientDAL.GetPatientsByBirthdate(this.searchDatePicker.Value);
+
+                visitsDataGrid.Columns.Clear();
+                visitsDataGrid.Columns.Add("PatientId", "Patient ID");
+                visitsDataGrid.Columns.Add("FirstName", "First Name");
+                visitsDataGrid.Columns.Add("LastName", "Last Name");
+                visitsDataGrid.Columns.Add("Gender", "Gender");
+                visitsDataGrid.Columns.Add("Birthdate", "Birth Date");
+                visitsDataGrid.Columns.Add("IsActive", "Active");
+
+                visitsDataGrid.Rows.Clear();
+
+
+                foreach (var patient in patients)
+                {
+                    visitsDataGrid.Rows.Add(patient.PatientId, patient.Firstname, patient.Lastname, patient.Gender, patient.Birthdate.ToShortDateString(), patient.IsActive);
+                }
+            }
+            else if (this.bothRadioButton.Checked)
+            {
+                List<Patient> patients = await patientDAL.GetPatientsByNameAndBirthdate(fnameSearchTextBox.Text, lnameTextBox.Text, this.searchDatePicker.Value);
+
+                visitsDataGrid.Columns.Clear();
+                visitsDataGrid.Columns.Add("PatientId", "Patient ID");
+                visitsDataGrid.Columns.Add("FirstName", "First Name");
+                visitsDataGrid.Columns.Add("LastName", "Last Name");
+                visitsDataGrid.Columns.Add("Gender", "Gender");
+                visitsDataGrid.Columns.Add("Birthdate", "Birth Date");
+                visitsDataGrid.Columns.Add("IsActive", "Active");
+
+                visitsDataGrid.Rows.Clear();
+
+
+                foreach (var patient in patients)
+                {
+                    visitsDataGrid.Rows.Add(patient.PatientId, patient.Firstname, patient.Lastname, patient.Gender, patient.Birthdate.ToShortDateString(), patient.IsActive);
+                }
+            }
+            else
+            {
+                MessageBox.Show("No criteria selected.", "Error");
+            }
+        }
+
+
+        private void nameRadioButton_Click(object sender, EventArgs e)
+        {
+            this.searchDatePicker.Enabled = false;
+            this.fnameSearchTextBox.Enabled = true;
+            this.lnameTextBox.Enabled = true;
+
+            this.patientSearchButton.Enabled = true;
+            this.clearButton.Enabled = true;
+        }
+
+        private void birthdateRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            this.searchDatePicker.Enabled = true;
+            this.fnameSearchTextBox.Enabled = false;
+            this.lnameTextBox.Enabled = false;
+
+            this.patientSearchButton.Enabled = true;
+            this.clearButton.Enabled = true;
+        }
+
+        private void bothRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            this.searchDatePicker.Enabled = true;
+            this.fnameSearchTextBox.Enabled = true;
+            this.lnameTextBox.Enabled = true;
+
+            this.patientSearchButton.Enabled = true;
+            this.clearButton.Enabled = true;
+        }
+
+        private void searchButton_Click(object sender, EventArgs e)
+        {
+            if (this.searchGroupBox.Visible)
+            {
+                this.searchGroupBox.Visible = false;
+                this.nurseNameLabel.Visible = true;
+                this.nurseIdLabel.Visible = true;
+                this.loadVisits();
+            }
+            else
+            {
+                this.searchGroupBox.Visible = true;
+                this.nurseNameLabel.Visible = false;
+                this.nurseIdLabel.Visible = false;
+            }
+        }
+
+        private void clearButton_Click(object sender, EventArgs e)
+        {
+            this.searchDatePicker.Value = DateTime.Now;
+            this.fnameSearchTextBox.Text = string.Empty;
+            this.lnameTextBox.Text = string.Empty;
+        }
     }
 }
+

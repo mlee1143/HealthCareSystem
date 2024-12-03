@@ -55,7 +55,7 @@ namespace HealthCareSystem.View
             nurseIdLabel.Text = $"Nurse ID: {this.nurse.NurseId}";
 
             Patient patient = patientDAL.GetPatientByID(appointment.PatientID);
-            patientInfoLabel.Text = $"Patient: {patient.FullName}   ID: {patient.PatientId}";
+            patientInfoLabel.Text = $"Patient: {patient.FullName}   ID: {patient.PatientId}   DOB: {patient.Birthdate.ToShortDateString()}";
         }
 
         private void SetupCurrentVisit()
@@ -70,19 +70,20 @@ namespace HealthCareSystem.View
             if (visitDAL.InitialDiagnosisExistsForVisit(appointment.PatientID, appointment.AppointmentDateTime))
             {
                 this.PopulateDiagnosis(visit);
+                this.PopulateOrderedTests(visit);
             }
 
         }
 
         private void PopulateFields(Visit visit)
         {
-            this.heightLabel.Text += visit.Height.ToString();
-            this.weightLabel.Text += visit.Weight.ToString();
+            this.heightLabel.Text += visit.Height.ToString() + " in.";
+            this.weightLabel.Text += visit.Weight.ToString() + " lbs.";
 
             this.bloodPressureLabel.Text += visit.BloodPressure;
 
-            this.pulseLabel.Text += visit.Pulse.ToString();
-            this.temperatureLabel.Text += visit.Temperature.ToString();
+            this.pulseLabel.Text += visit.Pulse.ToString() + " bpm";
+            this.temperatureLabel.Text += visit.Temperature.ToString() + " F°";
             this.symptomsTextBox.Text = visit.SymptomsDescription.ToString();
         }
 
@@ -90,6 +91,38 @@ namespace HealthCareSystem.View
         {
             this.initialDiagnosisTextBox.Text = visit.InitialDiagnosis;
             this.finalDiagnosisTextBox.Text = visit.FinalDiagnosis;
+        }
+
+        private void PopulateOrderedTests(Visit visit)
+        {
+            try
+            {
+                LabTestDAL labTestDAL = new LabTestDAL();
+                var labTests = labTestDAL.GetAllLabTestsForVisit(visit.Appointment.PatientID, visit.Appointment.AppointmentDateTime);
+
+                orderedTestDataGridView.Columns.Clear();
+                orderedTestDataGridView.Columns.Add("TestCode", "Test Code");
+                orderedTestDataGridView.Columns.Add("TestName", "Test Name");
+                orderedTestDataGridView.Columns.Add("TestPerformDate", "Performed Date");
+                orderedTestDataGridView.Columns.Add("Result", "Result");
+                orderedTestDataGridView.Columns.Add("Abnormal", "Abnormal");
+
+                orderedTestDataGridView.Rows.Clear();
+                foreach (var (labTest, testType) in labTests)
+                {
+                    orderedTestDataGridView.Rows.Add(
+                        labTest.TestCode,
+                        testType.TestName,
+                        labTest.TestDateTime?.ToString("yyyy-MM-dd HH:mm") ?? "N/A",
+                        labTest.Result ?? "N/A",
+                        labTest.IsAbnormal.HasValue ? (labTest.IsAbnormal.Value ? "Yes" : "No") : "N/A"
+                    );
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while loading test details: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void goBackButton_Click(object sender, EventArgs e)

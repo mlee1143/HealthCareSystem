@@ -481,6 +481,23 @@ namespace HealthCareSystem.DAL
             return null;
         }
 
+        public bool ToggleActiveForPatientByID(int id)
+        {
+            using (var connection = new MySqlConnection(databaseConnection.GetConnectionString()))
+            {
+                connection.Open();
+
+                string query = "UPDATE patient SET active = CASE WHEN active = 1 THEN 0 ELSE 1 END WHERE patient_id = @id;";
+
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@id", id);
+                    
+                    int count = Convert.ToInt32(command.ExecuteScalar());
+                    return count > 0;
+                }
+            }
+        }
 
     }
 }

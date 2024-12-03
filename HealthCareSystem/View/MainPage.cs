@@ -48,13 +48,14 @@ namespace HealthCareSystem.View
             registeredPatiensDataGridView.Columns.Add("LastName", "Last Name");
             registeredPatiensDataGridView.Columns.Add("Gender", "Gender");
             registeredPatiensDataGridView.Columns.Add("Birthdate", "Birth Date");
+            registeredPatiensDataGridView.Columns.Add("IsActive", "Active");
 
             registeredPatiensDataGridView.Rows.Clear();
 
 
             foreach (var patient in patients)
             {
-                registeredPatiensDataGridView.Rows.Add(patient.PatientId, patient.Firstname, patient.Lastname, patient.Gender, patient.Birthdate.ToShortDateString());
+                registeredPatiensDataGridView.Rows.Add(patient.PatientId, patient.Firstname, patient.Lastname, patient.Gender, patient.Birthdate.ToShortDateString(), (patient.IsActive == 1 ? "Yes" : "No"));
             }
         }
 
@@ -138,13 +139,14 @@ namespace HealthCareSystem.View
                 registeredPatiensDataGridView.Columns.Add("LastName", "Last Name");
                 registeredPatiensDataGridView.Columns.Add("Gender", "Gender");
                 registeredPatiensDataGridView.Columns.Add("Birthdate", "Birth Date");
+                registeredPatiensDataGridView.Columns.Add("IsActive", "Active");
 
                 registeredPatiensDataGridView.Rows.Clear();
 
 
                 foreach (var patient in patients)
                 {
-                    registeredPatiensDataGridView.Rows.Add(patient.PatientId, patient.Firstname, patient.Lastname, patient.Gender, patient.Birthdate.ToShortDateString());
+                    registeredPatiensDataGridView.Rows.Add(patient.PatientId, patient.Firstname, patient.Lastname, patient.Gender, patient.Birthdate.ToShortDateString(), patient.IsActive);
                 }
             }
             else if (this.birthdateRadioButton.Checked)
@@ -157,13 +159,14 @@ namespace HealthCareSystem.View
                 registeredPatiensDataGridView.Columns.Add("LastName", "Last Name");
                 registeredPatiensDataGridView.Columns.Add("Gender", "Gender");
                 registeredPatiensDataGridView.Columns.Add("Birthdate", "Birth Date");
+                registeredPatiensDataGridView.Columns.Add("IsActive", "Active");
 
                 registeredPatiensDataGridView.Rows.Clear();
 
 
                 foreach (var patient in patients)
                 {
-                    registeredPatiensDataGridView.Rows.Add(patient.PatientId, patient.Firstname, patient.Lastname, patient.Gender, patient.Birthdate.ToShortDateString());
+                    registeredPatiensDataGridView.Rows.Add(patient.PatientId, patient.Firstname, patient.Lastname, patient.Gender, patient.Birthdate.ToShortDateString(), patient.IsActive);
                 }
             }
             else if (this.bothRadioButton.Checked)
@@ -176,18 +179,19 @@ namespace HealthCareSystem.View
                 registeredPatiensDataGridView.Columns.Add("LastName", "Last Name");
                 registeredPatiensDataGridView.Columns.Add("Gender", "Gender");
                 registeredPatiensDataGridView.Columns.Add("Birthdate", "Birth Date");
+                registeredPatiensDataGridView.Columns.Add("IsActive", "Active");
 
                 registeredPatiensDataGridView.Rows.Clear();
 
 
                 foreach (var patient in patients)
                 {
-                    registeredPatiensDataGridView.Rows.Add(patient.PatientId, patient.Firstname, patient.Lastname, patient.Gender, patient.Birthdate.ToShortDateString());
+                    registeredPatiensDataGridView.Rows.Add(patient.PatientId, patient.Firstname, patient.Lastname, patient.Gender, patient.Birthdate.ToShortDateString(), patient.IsActive);
                 }
             }
             else
             {
-                this.errormessageLabel.Text = "No criteria selected."; // Maybe change to search being disabled
+                this.errormessageLabel.Text = "No criteria selected.";
             }
         }
 
@@ -244,6 +248,49 @@ namespace HealthCareSystem.View
             this.fnameSearchTextBox.Text = string.Empty;
             this.lnameTextBox.Text = string.Empty;
         }
-    }
 
+        private void registeredPatiensDataGridView_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                var hitTestInfo = this.registeredPatiensDataGridView.HitTest(e.X, e.Y);
+
+                if (hitTestInfo.Type == DataGridViewHitTestType.Cell)
+                {
+                    registeredPatiensDataGridView.ClearSelection();
+                    registeredPatiensDataGridView.Rows[hitTestInfo.RowIndex].Selected = true;
+
+                    registeredPatiensDataGridView.CurrentCell = registeredPatiensDataGridView.Rows[hitTestInfo.RowIndex].Cells[hitTestInfo.ColumnIndex];
+
+                    contextMenuStrip1.Show(registeredPatiensDataGridView, e.Location);
+                }
+            }
+        }
+
+        private void activateDeactivateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (this.registeredPatiensDataGridView.SelectedRows.Count > 0)
+            {
+                DataGridViewRow selectedRow = registeredPatiensDataGridView.SelectedRows[0];
+
+                if (selectedRow != null)
+                {
+                    var patientid = (int)selectedRow.Cells[0].Value;
+
+                    if (patientDAL.ToggleActiveForPatientByID(patientid)) 
+                    {
+                        MessageBox.Show("Patient Active toggled successfully.");
+                        
+                    }
+
+                }
+                this.LoadPatientData();
+            }
+            else
+            {
+                MessageBox.Show("No Patient selected. Please select a patient to edit patient information");
+            }
+
+        }
+    }
 }
